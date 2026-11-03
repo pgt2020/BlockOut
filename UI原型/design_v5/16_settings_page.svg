@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 1240" width="780" height="2480" role="img" aria-label="设置完整页面：音乐音效震动开关、关于、从暂停层与首页进入的返回路径">
+  <!-- ============================================================
+       BlockOut · 设置页  v5 定稿（2026-10-15 复审修订）
+       首发范围：音乐 / 音效 / 震动 开关 + 关于；通知 / 恢复购买未纳入首发，不展示无效入口
+       入口：暂停层「设置」/ 首页齿轮；返回：上一层（暂停层或首页）
+       从暂停层返回时对局保持暂停（设置不触碰对局状态）
+  ============================================================ -->
+  <defs>
+    <linearGradient id="s16bg" x2="0" y2="1"><stop stop-color="#FFFAF4"/><stop offset="1" stop-color="#FFF1E3"/></linearGradient>
+    <radialGradient id="bm16"><stop stop-color="#62CFA7" stop-opacity=".12"/><stop offset="1" stop-color="#62CFA7" stop-opacity="0"/></radialGradient>
+    <symbol id="back16" viewBox="0 0 24 24"><path d="M15 4l-8 8 8 8" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="music16" viewBox="0 0 24 24">
+      <path d="M9 18V6l10-2v12" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="6.5" cy="18" r="2.6" stroke-width="1.8"/>
+      <circle cx="16.5" cy="16" r="2.6" stroke-width="1.8"/>
+    </symbol>
+    <symbol id="sfx16" viewBox="0 0 24 24">
+      <path d="M4 9v6h4l5 4V5L8 9z" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M16.5 9a4.5 4.5 0 0 1 0 6M19 6.5a8 8 0 0 1 0 11" fill="none" stroke-width="1.8" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="vib16" viewBox="0 0 24 24">
+      <rect x="8" y="4" width="8" height="16" rx="2" fill="none" stroke-width="1.8"/>
+      <path d="M3.5 9v6M20.5 9v6M6 9v6M18 9v6" fill="none" stroke-width="1.8" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="info16" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" fill="none" stroke-width="1.8"/>
+      <path d="M12 10.5V17" fill="none" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="12" cy="7.6" r="1.2"/>
+    </symbol>
+    <style>
+      text{font-family:'Source Han Sans CN','Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif}
+      .cap16{font-size:11px;font-weight:900;fill:#553B36}
+      .ds16{font-size:8.5px;fill:#8A6E62}
+      .nt16{font-size:8.5px;fill:#553B36}
+    </style>
+  </defs>
+
+  <rect width="390" height="1180" fill="url(#s16bg)"/>
+  <text x="195" y="28" text-anchor="middle" font-size="15" font-weight="900" fill="#553B36">设置页 · 完整页面（390×844）</text>
+  <text x="195" y="46" text-anchor="middle" font-size="8.5" fill="#8A6E62">首发范围 = 音乐 / 音效 / 震动 + 关于；二级页面，无底部导航；返回上一层</text>
+
+  <!-- ================= 完整页面 ================= -->
+  <g transform="translate(0,60)">
+    <circle cx="60" cy="130" r="150" fill="url(#bm16)"/>
+    <!-- 顶部栏：返回 + 标题 -->
+    <circle cx="46" cy="50" r="22" fill="#FFFFFF" stroke="#F0DCCB" stroke-width="1.5"/>
+    <use href="#back16" x="37" y="41" width="18" height="18" stroke="#553B36" fill="none"/>
+    <text x="195" y="56" text-anchor="middle" font-size="16" font-weight="900" fill="#553B36">设置</text>
+
+    <!-- 音频卡片 -->
+    <rect x="24" y="84" width="342" height="216" rx="20" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="2"/>
+    <text x="40" y="112" font-size="11" font-weight="900" fill="#8A6E62">音频与反馈</text>
+    <!-- 音乐 -->
+    <use href="#music16" x="40" y="128" width="24" height="24" stroke="#553B36" fill="none"/>
+    <text x="76" y="145" font-size="12" font-weight="700" fill="#553B36">音乐</text>
+    <text x="76" y="161" font-size="8" fill="#8A6E62">背景音乐开关</text>
+    <rect x="292" y="134" width="44" height="24" rx="12" fill="#FF7568"/>
+    <circle cx="326" cy="146" r="9.5" fill="#FFFFFF"/>
+    <!-- 音效 -->
+    <use href="#sfx16" x="40" y="176" width="24" height="24" stroke="#553B36" fill="none"/>
+    <text x="76" y="193" font-size="12" font-weight="700" fill="#553B36">音效</text>
+    <text x="76" y="209" font-size="8" fill="#8A6E62">点击 / 飞出 / 魔法棒等音效</text>
+    <rect x="292" y="182" width="44" height="24" rx="12" fill="#FF7568"/>
+    <circle cx="326" cy="194" r="9.5" fill="#FFFFFF"/>
+    <!-- 震动 -->
+    <use href="#vib16" x="40" y="224" width="24" height="24" stroke="#553B36" fill="none"/>
+    <text x="76" y="241" font-size="12" font-weight="700" fill="#553B36">震动</text>
+    <text x="76" y="257" font-size="8" fill="#8A6E62">受阻反馈震动（跟随系统开关）</text>
+    <rect x="292" y="230" width="44" height="24" rx="12" fill="#E5D5C6"/>
+    <circle cx="304" cy="242" r="9.5" fill="#FFFFFF"/>
+
+    <!-- 关于卡片 -->
+    <rect x="24" y="404" width="342" height="72" rx="20" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="2"/>
+    <use href="#info16" x="40" y="428" width="24" height="24" stroke="#553B36" fill="none"/>
+    <text x="76" y="445" font-size="12" font-weight="700" fill="#553B36">关于</text>
+    <text x="76" y="461" font-size="8" fill="#8A6E62">版本 v1.0.0</text>
+    <path d="M342 431l7 7-7 7" fill="none" stroke="#B9A79B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- 底部：无导航（二级页）+ 安全区 -->
+    <text x="195" y="712" text-anchor="middle" font-size="8" fill="#8A6E62">二级页面：不显示底部导航；返回上一层</text>
+    <path d="M24 776H366" stroke="#F45F70" stroke-width="1" stroke-dasharray="4 3"/>
+    <rect x="24" y="776" width="342" height="36" fill="#674138" opacity=".07"/>
+    <text x="195" y="798" text-anchor="middle" font-size="7" font-weight="700" fill="#8A6E62">底部安全区（读设备 insets）</text>
+    <rect x="128" y="824" width="134" height="5" rx="2.5" fill="#553B36" opacity=".2"/>
+  </g>
+  <text class="cap16" x="195" y="938" text-anchor="middle">图 1 · 设置完整页面（入口：暂停层「设置」/ 首页齿轮）</text>
+
+  <text class="ds16" x="195" y="956" text-anchor="middle">【设计注释 · 首发范围】通知 / 恢复购买 / 账号 / 客服 / 语言未纳入首发，</text>
+  <text class="ds16" x="195" y="970" text-anchor="middle">不在设置页展示无效入口；后续按最终首发范围增补。</text>
+  <text class="ds16" x="195" y="984" text-anchor="middle">【设计注释 · 资源】音乐 / 音效实产资源与授权见 11 §7 / §9（未就绪，需法务确认）；</text>
+  <text class="ds16" x="195" y="998" text-anchor="middle">开关状态本地存档、立即生效，无需确认弹窗。</text>
+
+  <!-- ================= 返回路径 ================= -->
+  <text x="24" y="1020" font-size="11" font-weight="900" fill="#FF7568">返回路径（图标语义与点击结果一致）</text>
+
+  <!-- 从暂停层进入 -->
+  <g transform="translate(24,1032)">
+    <rect width="342" height="76" rx="16" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="1.5"/>
+    <text x="16" y="22" font-size="10" font-weight="900" fill="#553B36">从暂停层进入</text>
+    <rect x="16" y="32" width="86" height="30" rx="15" fill="#FFF1E3" stroke="#FFB84D" stroke-width="1.5"/>
+    <text x="59" y="51" text-anchor="middle" font-size="9" font-weight="800" fill="#B4761A">暂停层</text>
+    <path d="M108 47h20" stroke="#8A6E62" stroke-width="1.6"/>
+    <path d="M124 43l5 4-5 4z" fill="#8A6E62"/>
+    <rect x="136" y="32" width="86" height="30" rx="15" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="1.5"/>
+    <text x="179" y="51" text-anchor="middle" font-size="9" font-weight="800" fill="#553B36">设置页</text>
+    <path d="M228 47h20" stroke="#8A6E62" stroke-width="1.6"/>
+    <path d="M244 43l5 4-5 4z" fill="#8A6E62"/>
+    <rect x="256" y="32" width="70" height="30" rx="15" fill="#FFF1E3" stroke="#FFB84D" stroke-width="1.5"/>
+    <text x="291" y="51" text-anchor="middle" font-size="9" font-weight="800" fill="#B4761A">暂停层</text>
+    <text x="16" y="70" font-size="7" fill="#8A6E62">返回 = 回到暂停层，对局保持暂停（计时/动画/输入仍冻结）</text>
+  </g>
+
+  <!-- 从首页进入 -->
+  <g transform="translate(24,1120)">
+    <rect width="342" height="76" rx="16" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="1.5"/>
+    <text x="16" y="22" font-size="10" font-weight="900" fill="#553B36">从首页齿轮进入</text>
+    <rect x="16" y="32" width="86" height="30" rx="15" fill="#DFF6EC" stroke="#3BB98E" stroke-width="1.5"/>
+    <text x="59" y="51" text-anchor="middle" font-size="9" font-weight="800" fill="#2E7C5B">首页</text>
+    <path d="M108 47h20" stroke="#8A6E62" stroke-width="1.6"/>
+    <path d="M124 43l5 4-5 4z" fill="#8A6E62"/>
+    <rect x="136" y="32" width="86" height="30" rx="15" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="1.5"/>
+    <text x="179" y="51" text-anchor="middle" font-size="9" font-weight="800" fill="#553B36">设置页</text>
+    <path d="M228 47h20" stroke="#8A6E62" stroke-width="1.6"/>
+    <path d="M244 43l5 4-5 4z" fill="#8A6E62"/>
+    <rect x="256" y="32" width="70" height="30" rx="15" fill="#DFF6EC" stroke="#3BB98E" stroke-width="1.5"/>
+    <text x="291" y="51" text-anchor="middle" font-size="9" font-weight="800" fill="#2E7C5B">首页</text>
+    <text x="16" y="70" font-size="7" fill="#8A6E62">返回 = 回到首页；开关本地存档，下次进入保持上次状态</text>
+  </g>
+
+  <text class="nt16" x="195" y="1216" text-anchor="middle">开关组件：44×24 圆角 12，热区外扩至 44×44；状态切换 160ms；动效时长见 09 §7</text>
+</svg>

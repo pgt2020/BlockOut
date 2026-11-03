@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <AssemblyName>BlockOutCompileCheck</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <NoWarn>CS0067;CS0169;CS0414;CS0649;CS8618;CS8625;CS0162;CS0219;CS0414;CS0472;CS0473;CS1998;CS4014;CS0168;CS0108;CS0114</NoWarn>
+  </PropertyGroup>
+  <!-- BlockOut 离线编译校验：Assets/BlockOut/Runtime 全部脚本 + Unity 桩一起编译。
+       不引用 Unity 编辑器、不触发 Unity 刷新/编译；只做静态编译证据。
+       运行目录必须在 BlockOut 工程根（Resources.Load 相对路径与此无关，编译期不受影响）。 -->
+  <ItemGroup>
+    <Compile Include="UnityEngineStub.cs" />
+    <Compile Include="UnityUiStub.cs" />
+    <Compile Include="UnityEditorStub.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\..\Assets\BlockOut\Runtime\**\*.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\..\Assets\BlockOut\Tests\EditMode\*.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\..\Assets\BlockOut\Editor\*.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="3.13.2" />
+  </ItemGroup>
+</Project>

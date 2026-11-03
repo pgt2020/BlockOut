@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Splash · C方案星形糖果可爱风</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .splash-wrap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .splash-logo { width: 140px; height: 140px; border-radius: 40px; background: linear-gradient(180deg,var(--brand-peach),var(--brand-coral)); display: flex; align-items: center; justify-content: center; font-size: 64px; box-shadow: 0 16px 40px rgba(255,122,107,0.32); }
+  .splash-title { margin-top: 28px; }
+  .splash-bar { width: 180px; margin-top: 24px; }
+  .splash-copyright { position: absolute; bottom: 40px; }
+</style>
+</head>
+<body>
+<div class="screen" id="screen">
+  <script src="../assets/scripts.js"></script>
+  <script>
+    const s = document.getElementById('screen');
+    BO.initBackground(s, {decoCount:5});
+    s.insertAdjacentHTML('beforeend', `
+      <div class="splash-wrap">
+        <div class="splash-logo">⭐</div>
+        <div class="display splash-title">BlockOut</div>
+        <div class="progress splash-bar"><div class="progress-fill" style="width:35%"></div></div>
+        <div class="micro splash-copyright">© 2026 BlockOut Studio</div>
+      </div>
+    `);
+  </script>
+</div>
+</body>
+</html>

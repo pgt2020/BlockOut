@@ -1,0 +1,21 @@
+{
+    "name": "BlockOut.UI",
+    "rootNamespace": "BlockOut.UI",
+    "references": [
+        "BlockOut.Core",
+        "BlockOut.Contracts",
+        "BlockOut.Gameplay",
+        "BlockOut.Rendering",
+        "BlockOut.Infrastructure.Persistence",
+        "Unity.ugui"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

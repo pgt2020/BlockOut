@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Settlement · C方案星形糖果可爱风</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .settle-title { position: relative; z-index: 2; margin-top: 90px; text-align: center; }
+  .art-wrap { position: relative; z-index: 2; display: flex; justify-content: center; margin-top: 24px; }
+  .rewards { position: relative; z-index: 2; display: flex; justify-content: center; gap: 40px; margin-top: 24px; }
+  .reward { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .reward-icon { width: 60px; height: 60px; border-radius: 20px; background: var(--bg-card); border: 1px solid var(--line-base); display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: var(--shadow-sm); }
+  .reward-num { font-size: 18px; font-weight: 900; }
+  .actions { position: absolute; bottom: 90px; left: 20px; right: 20px; display: flex; flex-direction: column; gap: 12px; }
+  .btn-row { display: flex; gap: 12px; }
+  .btn-row .btn { flex: 1; }
+</style>
+</head>
+<body>
+<div class="screen" id="screen">
+  <script src="../assets/scripts.js"></script>
+  <script>
+    const s = document.getElementById('screen');
+    BO.initBackground(s, {decoCount:6});
+    s.insertAdjacentHTML('beforeend', `
+      <div class="settle-title">
+        <div class="display" style="color:var(--brand-coral)">Level Clear!</div>
+        <div class="body">Candy Star · Level 12</div>
+      </div>
+      <div class="art-wrap">
+        <div class="art-reveal">🧁</div>
+      </div>
+      <div class="rewards">
+        <div class="reward">
+          <div class="reward-icon">🪙</div>
+          <div class="reward-num num">+120</div>
+        </div>
+        <div class="reward">
+          <div class="reward-icon">⭐</div>
+          <div class="reward-num num">x3</div>
+        </div>
+      </div>
+      <div class="actions">
+        <div class="btn btn-primary">Continue</div>
+        <div class="btn-row">
+          <div class="btn btn-ghost">▶ Double Coins</div>
+          <div class="btn btn-ghost">Share</div>
+        </div>
+      </div>
+    `);
+    BO.renderBanner(s, true);
+  </script>
+</div>
+</body>
+</html>

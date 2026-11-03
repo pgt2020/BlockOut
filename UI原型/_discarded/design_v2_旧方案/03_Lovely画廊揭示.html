@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh"><head><meta charset="utf-8"><style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:"Segoe UI",-apple-system,"PingFang SC",sans-serif; }
+body { background:linear-gradient(135deg,#2a2238,#1c1830); display:flex; justify-content:center; align-items:center; min-height:100vh; }
+.phone { width:390px; height:844px; background:linear-gradient(160deg,#fdf3e7,#f6e3d0); border-radius:44px; position:relative; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.5); border:1px solid #e9d3bd; }
+.sb { height:44px; display:flex; justify-content:space-between; align-items:center; padding:0 26px; color:#8a6f5a; font-size:13px; font-weight:600; }
+.sb .icons { letter-spacing:2px; }
+.hud { display:flex; justify-content:space-between; align-items:center; padding:6px 22px 14px; }
+.hud .lvl { background:#ffffff; color:#6b4f3a; padding:8px 16px; border-radius:16px; font-size:14px; font-weight:700; box-shadow:0 4px 12px rgba(180,140,110,.18); }
+.hud .lvl small { color:#b09379; font-weight:500; font-size:11px; }
+.hud .right { display:flex; gap:10px; align-items:center; }
+.chip { background:#ffffff; color:#a07c5e; padding:8px 13px; border-radius:14px; font-size:13px; font-weight:600; box-shadow:0 3px 8px rgba(180,140,110,.15); }
+.chip.t { color:#e08a3c; }
+.chip.h { color:#e06a6a; }
+/* reward thumbnail (blurred, not shown on board) */
+.reward { width:42px; height:42px; border-radius:12px; background:linear-gradient(135deg,#ffd9a0,#f5a86b); position:relative; overflow:hidden; box-shadow:0 3px 8px rgba(180,140,110,.2); }
+.reward::after { content:"🔒"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:16px; background:rgba(255,255,255,.55); backdrop-filter:blur(2px); border-radius:12px; }
+.boardwrap { display:flex; justify-content:center; margin-top:6px; }
+.board { width:330px; height:330px; background:linear-gradient(160deg,#fbeede,#f3d9c2); border-radius:26px; position:relative; box-shadow:inset 0 0 0 1px rgba(255,255,255,.7), 0 14px 34px rgba(180,140,110,.25); }
+.dots { position:absolute; inset:18px; display:grid; grid-template-columns:repeat(9,1fr); grid-template-rows:repeat(9,1fr); }
+.dots i { width:3px; height:3px; background:#e3c4a8; border-radius:50%; align-self:center; justify-self:center; }
+/* frosted glass blocks */
+.block { position:absolute; border-radius:14px; background:linear-gradient(160deg,rgba(255,255,255,.78),rgba(255,255,255,.5)); backdrop-filter:blur(3px); display:flex; align-items:center; justify-content:center; box-shadow:inset 0 1px 2px rgba(255,255,255,.9), 0 4px 10px rgba(180,140,110,.2); border:1px solid rgba(255,255,255,.6); }
+.block .arrow { font-size:28px; font-weight:900; color:#c98a5a; }
+.block.s2 .arrow { color:#7ba6c9; }
+.block.s3 .arrow { color:#9bbf7a; }
+.b1 { left:18px; top:18px; width:138px; height:64px; } .b2 { left:160px; top:18px; width:64px; height:138px; }
+.b3 { left:228px; top:18px; width:64px; height:64px; } .b4 { left:18px; top:86px; width:64px; height:64px; }
+.b5 { left:86px; top:86px; width:64px; height:64px; } .b6 { left:228px; top:86px; width:64px; height:138px; }
+.b7 { left:18px; top:154px; width:138px; height:64px; } .b8 { left:86px; top:154px; width:64px; height:64px; }
+.b9 { left:160px; top:160px; width:64px; height:64px; } .b10 { left:228px; top:228px; width:64px; height:64px; }
+.tools { display:flex; justify-content:center; gap:14px; margin-top:22px; }
+.tool { width:58px; height:58px; background:#ffffff; border-radius:18px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#a07c5e; font-size:11px; font-weight:600; box-shadow:0 4px 10px rgba(180,140,110,.18); }
+.tool .ic { font-size:22px; margin-bottom:2px; }
+.tool.t1 { color:#e08a3c; }
+.tool.t3 { color:#c98a5a; }
+.progress { margin:18px 40px 0; height:8px; background:#ead2bd; border-radius:6px; overflow:hidden; }
+.progress > div { width:62%; height:100%; background:linear-gradient(90deg,#f5a86b,#e08a3c); border-radius:6px; }
+.ptxt { text-align:center; color:#a07c5e; font-size:11px; margin-top:7px; }
+.cap { position:absolute; bottom:0; width:100%; background:linear-gradient(0deg,rgba(250,238,222,.97),rgba(250,238,222,0)); padding:30px 20px 14px; }
+.cap .t { color:#6b4f3a; font-size:13px; font-weight:700; }
+.cap .d { color:#a07c5e; font-size:11px; line-height:1.5; margin-top:3px; }
+</style></head><body>
+<div class="phone">
+  <div class="sb"><span>9:41</span><span class="icons">●●● 5G ▮</span></div>
+  <div class="hud">
+    <div class="lvl">第 3 章 · 第 7 关<br><small>Chapter 3 · Level 7</small></div>
+    <div class="right">
+      <div class="chip t">⏱ 01:24</div>
+      <div class="chip h">♥♥♥</div>
+      <div class="reward" title="章节奖励（通关后揭示）"></div>
+      <div class="chip">⏸</div>
+    </div>
+  </div>
+  <div class="boardwrap">
+    <div class="board">
+      <div class="dots">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+      <div class="block b1"><span class="arrow">↑</span></div>
+      <div class="block b2 s2"><span class="arrow">→</span></div>
+      <div class="block b3 s3"><span class="arrow">↓</span></div>
+      <div class="block b4"><span class="arrow">←</span></div>
+      <div class="block b5 s2"><span class="arrow">↑</span></div>
+      <div class="block b6 s3"><span class="arrow">↓</span></div>
+      <div class="block b7"><span class="arrow">→</span></div>
+      <div class="block b8 s2"><span class="arrow">↑</span></div>
+      <div class="block b9"><span class="arrow">←</span></div>
+      <div class="block b10 s3"><span class="arrow">↓</span></div>
+    </div>
+  </div>
+  <div class="tools">
+    <div class="tool t1"><span class="ic">💡</span>提示</div>
+    <div class="tool"><span class="ic">🔨</span>锤子</div>
+    <div class="tool t3"><span class="ic">✨</span>魔法棒</div>
+  </div>
+  <div class="progress"><div></div></div>
+  <div class="ptxt">已消除 18 / 29 块 · 本章拼装进度</div>
+  <div class="cap">
+    <div class="t">方案 03 · Lovely 画廊揭示风（对标 Lovely Block Puzzle / Picture Match）</div>
+    <div class="d">暖奶油底 + 磨砂玻璃块 + 柔和箭头；照片仅在通关后揭示（HUD 锁形缩略图为奖励预览，对局中棋盘不显图，严守约束）。治愈、收藏向。</div>
+  </div>
+</div>
+</body></html>

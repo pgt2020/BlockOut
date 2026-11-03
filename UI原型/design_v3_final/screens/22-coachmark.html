@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Coach Mark · C方案星形糖果可爱风</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  #board-wrap { position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%); }
+  .coach-overlay { position: absolute; inset: 0; background: rgba(92,58,42,0.45); z-index: 50; }
+  .coach-hole { position: absolute; width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 0 0 9999px rgba(92,58,42,0.45); left: 50%; top: 48%; transform: translate(-50%, -50%); }
+  .coach-tip { position: absolute; left: 50%; top: 62%; transform: translateX(-50%); background: var(--bg-card); border-radius: 18px; padding: 16px 20px; width: 280px; text-align: center; box-shadow: var(--shadow-lg); z-index: 55; }
+  .coach-arrow { position: absolute; left: 50%; top: -10px; transform: translateX(-50%); width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 10px solid var(--bg-card); }
+  .coach-hand { position: absolute; left: 52%; top: 46%; font-size: 40px; z-index: 56; animation: tap 1s infinite; }
+  @keyframes tap { 0%,100%{ transform: scale(1); } 50%{ transform: scale(0.9); } }
+</style>
+</head>
+<body>
+<div class="screen" id="screen">
+  <script src="../assets/scripts.js"></script>
+  <script>
+    const s = document.getElementById('screen');
+    BO.initBackground(s, {decoCount:2});
+    BO.renderHUD(s, {hearts:5, coins:'3,000', progress:1});
+    const wrap = document.createElement('div');
+    wrap.id = 'board-wrap';
+    wrap.className = 'board-wrap';
+    wrap.style.width = '330px'; wrap.style.height = '400px';
+    s.appendChild(wrap);
+    BO.renderStarBoard(wrap, {tileSize:30});
+    s.insertAdjacentHTML('beforeend', `
+      <div class="coach-overlay"></div>
+      <div class="coach-hole"></div>
+      <div class="coach-hand">👆</div>
+      <div class="coach-tip">
+        <div class="coach-arrow"></div>
+        <div class="subtitle">Tap to remove</div>
+        <div class="body mt-8">Tap a tile, it flies in the arrow direction.</div>
+        <div class="btn btn-primary w-full mt-12" style="height:40px;border-radius:20px;font-size:13px">Got it</div>
+      </div>
+    `);
+  </script>
+</div>
+</body>
+</html>

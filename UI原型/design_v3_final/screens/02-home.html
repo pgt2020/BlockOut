@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Home · C方案星形糖果可爱风</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .home-title { position: relative; z-index: 2; margin-top: 110px; text-align: center; }
+  .chapter-title { margin-top: 6px; color: var(--brand-coral); }
+  .play-btn { position: relative; z-index: 2; width: 190px; margin: 28px auto 0; height: 64px; border-radius: 32px; font-size: 18px; }
+  .progress-card { position: relative; z-index: 2; margin: 24px 20px 0; padding: 16px; }
+  .progress-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .collection-grid { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 0 20px; margin-top: 20px; }
+  .collection-thumb { aspect-ratio: 1; border-radius: 18px; background: var(--bg-card); border: 1px solid var(--line-base); display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: var(--shadow-sm); }
+  .collection-thumb.lock { background: var(--bg-panel); border-style: dashed; font-size: 20px; color: var(--ink-tertiary); }
+  .bottom-nav { position: absolute; bottom: 76px; left: 16px; right: 16px; display: flex; justify-content: space-around; }
+  .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--ink-secondary); font-size: 11px; font-weight: 700; }
+  .nav-icon { width: 48px; height: 48px; border-radius: 16px; background: var(--bg-card); border: 1px solid var(--line-base); display: flex; align-items: center; justify-content: center; font-size: 22px; }
+  .settings-btn { position: absolute; top: 56px; right: 16px; }
+</style>
+</head>
+<body>
+<div class="screen" id="screen">
+  <script src="../assets/scripts.js"></script>
+  <script>
+    const s = document.getElementById('screen');
+    BO.initBackground(s, {decoCount:6});
+    const set = document.createElement('div');
+    set.className = 'btn-icon settings-btn';
+    set.innerHTML = '<span style="font-weight:900; color:var(--ink-primary)">⚙</span>';
+    s.appendChild(set);
+    s.insertAdjacentHTML('beforeend', `
+      <div class="home-title">
+        <div class="display">BlockOut</div>
+        <div class="subtitle chapter-title">Candy Star · Chapter 1</div>
+      </div>
+      <div class="btn btn-primary play-btn">▶  Play</div>
+      <div class="card progress-card">
+        <div class="progress-top">
+          <span class="subtitle">Chapter Progress</span>
+          <span class="caption">12 / 30</span>
+        </div>
+        <div class="progress"><div class="progress-fill" style="width:40%"></div></div>
+      </div>
+      <div class="collection-grid">
+        <div class="collection-thumb">🧁</div>
+        <div class="collection-thumb">🍬</div>
+        <div class="collection-thumb">🍭</div>
+        <div class="collection-thumb lock">🔒</div>
+        <div class="collection-thumb lock">🔒</div>
+        <div class="collection-thumb lock">🔒</div>
+      </div>
+      <div class="bottom-nav">
+        <div class="nav-item"><div class="nav-icon">🏆</div>Achieve</div>
+        <div class="nav-item"><div class="nav-icon">🖼</div>Album</div>
+        <div class="nav-item"><div class="nav-icon">🛒</div>Shop</div>
+      </div>
+    `);
+    BO.renderBanner(s);
+  </script>
+</div>
+</body>
+</html>

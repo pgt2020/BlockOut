@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Settings · C方案星形糖果可爱风</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .set-header { position: absolute; top: 52px; left: 16px; right: 16px; display: flex; align-items: center; gap: 12px; }
+  .set-list { position: absolute; top: 110px; left: 16px; right: 16px; bottom: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+  .set-group { border-radius: 20px; background: var(--bg-card); border: 1px solid var(--line-base); overflow: hidden; }
+  .set-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid var(--line-base); }
+  .set-row:last-child { border-bottom: none; }
+  .set-label { display: flex; align-items: center; gap: 10px; }
+  .set-icon { font-size: 18px; }
+</style>
+</head>
+<body>
+<div class="screen" id="screen">
+  <script src="../assets/scripts.js"></script>
+  <script>
+    const s = document.getElementById('screen');
+    BO.initBackground(s, {decoCount:3});
+    s.insertAdjacentHTML('beforeend', `
+      <div class="set-header">
+        <div class="btn-icon small">←</div>
+        <div class="title" style="flex:1;text-align:center">Settings</div>
+        <div style="width:36px"></div>
+      </div>
+      <div class="set-list">
+        <div class="set-group">
+          <div class="set-row"><div class="set-label"><span class="set-icon">🔊</span><span class="body">Sound Effects</span></div><div class="switch on"></div></div>
+          <div class="set-row"><div class="set-label"><span class="set-icon">🎵</span><span class="body">Music</span></div><div class="switch on"></div></div>
+          <div class="set-row"><div class="set-label"><span class="set-icon">📳</span><span class="body">Vibration</span></div><div class="switch"></div></div>
+        </div>
+        <div class="set-group">
+          <div class="set-row"><div class="set-label"><span class="set-icon">🌐</span><span class="body">Language</span></div><div class="caption">English ></div></div>
+          <div class="set-row"><div class="set-label"><span class="set-icon">🔔</span><span class="body">Notifications</span></div><div class="switch on"></div></div>
+        </div>
+        <div class="set-group">
+          <div class="set-row"><div class="set-label"><span class="set-icon">☁️</span><span class="body">Cloud Save</span></div><div class="caption">Linked ></div></div>
+          <div class="set-row"><div class="set-label"><span class="set-icon">🔄</span><span class="body">Restore Purchases</span></div><div class="caption">></div></div>
+          <div class="set-row"><div class="set-label"><span class="set-icon">🗑</span><span class="body">Reset Progress</span></div><div class="caption">></div></div>
+        </div>
+        <div class="set-group">
+          <div class="set-row"><div class="set-label"><span class="set-icon">📄</span><span class="body">Privacy Policy</span></div><div class="caption">></div></div>
+          <div class="set-row"><div class="set-label"><span class="set-icon">ℹ️</span><span class="body">About</span></div><div class="caption">v1.0.0 ></div></div>
+        </div>
+      </div>
+    `);
+  </script>
+</div>
+</body>
+</html>

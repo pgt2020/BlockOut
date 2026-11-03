@@ -1,0 +1,61 @@
+<!doctype html><html lang="zh"><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}html,body{height:100%}
+body{background:#E9EDF2;display:flex;align-items:center;justify-content:center;font-family:-apple-system,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif}
+.phone{width:390px;height:844px;background:#0E1116;border-radius:46px;padding:11px;box-shadow:0 24px 70px rgba(0,0,0,.35)}
+.screen{width:100%;height:100%;background:#EEF2F7;border-radius:36px;overflow:hidden;position:relative;display:flex;flex-direction:column;color:#1F2733}
+.notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:130px;height:28px;background:#0E1116;border-radius:0 0 18px 18px;z-index:60}
+.sb{height:42px;display:flex;align-items:center;justify-content:space-between;padding:0 26px;font-size:13px;font-weight:700;color:#1F2733;z-index:5;margin-top:6px}
+.sb .r{display:flex;gap:5px;align-items:center}.sb .d{width:6px;height:6px;border-radius:50%;background:#1F2733}
+.hud{margin:4px 16px 0;display:flex;align-items:center;justify-content:space-between}
+.hud .lv{font-weight:900;font-size:15px}.hud .pause{width:34px;height:34px;border-radius:10px;background:#fff;border:1px solid #D7DCE3;display:flex;align-items:center;justify-content:center}
+.ass{margin:8px 16px 0;background:#fff;border:1px solid #E3E8EF;border-radius:14px;padding:8px 12px}
+.ass .top{display:flex;justify-content:space-between;font-size:11px;font-weight:800;color:#0E7C70;margin-bottom:6px}
+.ass .bar{height:9px;background:#E3E8EF;border-radius:999px;overflow:hidden;display:flex;gap:2px}
+.ass .bar i{flex:1;background:#E3E8EF;border-radius:2px}.ass .bar i.on{background:linear-gradient(90deg,#1FB6A6,#FF7A45)}
+.board{margin:12px 22px 0;flex:1;position:relative;background:#F3F6FA;border:1px solid #D7DCE3;border-radius:18px;overflow:hidden;
+  background-image:linear-gradient(rgba(31,182,166,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(31,182,166,.06) 1px,transparent 1px);background-size:53px 53px}
+.cell{position:absolute;background:#fff;border:1px solid #CFD6DF;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:700;color:#1F2733;box-shadow:0 3px 8px rgba(20,40,80,.07)}
+.cell.go{background:linear-gradient(135deg,#Dff7F2,#Bfe9e0);border-color:#7FD3C4;color:#0E7C70;box-shadow:0 0 0 3px rgba(31,182,166,.2)}
+.cell.bad{background:linear-gradient(135deg,#FFE6E6,#FFD2D2);border-color:#FF9B9B;color:#C0392B;box-shadow:0 0 0 3px rgba(255,90,90,.18)}
+.cell.ghost{background:transparent;border:2px dashed #1FB6A6;color:#1FB6A6;opacity:.5}
+.tap{position:absolute;width:46px;height:46px;border-radius:50%;background:rgba(31,182,166,.22);border:2px solid #1FB6A6;display:flex;align-items:center;justify-content:center;font-size:22px;z-index:30;animation:pulse 1.3s infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.18);opacity:1}}
+.arrow-line{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:20}
+.tools{margin:10px 18px 0;display:flex;align-items:center;justify-content:space-around;background:#fff;border:1px solid #E3E8EF;border-radius:16px;padding:10px 0}
+.tools .t{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:700;color:#5C6B82}
+.tools .t .ic{width:38px;height:38px;border-radius:12px;background:#EEF3F6;display:flex;align-items:center;justify-content:center;font-size:18px}
+.foot{margin-top:auto;padding:10px 22px;font-size:10px;color:#A9B2BF;text-align:center;letter-spacing:.5px}
+.pill{position:absolute;background:rgba(124,92,252,.95);border:1px solid #fff;color:#fff;font-size:11px;font-weight:800;padding:4px 9px;border-radius:999px;z-index:40;display:flex;align-items:center;gap:5px}
+.pill .n{background:#fff;color:#5A3FD6;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px}
+.note{position:absolute;left:10px;bottom:150px;background:rgba(11,16,32,.82);color:#fff;border-radius:10px;padding:7px 10px;font-size:10px;line-height:1.6;z-index:38;max-width:210px}
+.note b{color:#9CF}
+</style></head><body><div class="phone"><div class="screen">
+<div class="notch"></div>
+<div class="sb"><span>9:41</span><span class="r"><span class="d"></span><span class="d"></span><span class="d"></span></span></div>
+<div class="hud"><div class="lv">6 - 8</div><div class="pause">⏸</div></div>
+<div class="ass"><div class="top"><span>③ 章节拼装进度</span><span>8 / 12</span></div>
+  <div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></div></div>
+<div class="board">
+  <!-- launchable path: A flies right out of edge -->
+  <div class="cell go" style="left:0;top:60px;width:120px;height:90px">▶</div>
+  <div class="cell ghost" style="left:250px;top:60px;width:120px;height:90px">💨</div>
+  <svg class="arrow-line" viewBox="0 0 346 460" preserveAspectRatio="none">
+    <path d="M120 105 H 250" stroke="#1FB6A6" stroke-width="3" stroke-dasharray="7 6" fill="none" marker-end="url(#a)"/>
+    <defs><marker id="a" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#1FB6A6"/></marker></defs>
+  </svg>
+  <div class="tap" style="left:34px;top:88px">👆</div>
+  <!-- blocked example -->
+  <div class="cell go" style="left:0;top:240px;width:120px;height:90px">◀</div>
+  <div class="cell bad" style="left:130px;top:240px;width:120px;height:90px">◀</div>
+  <div class="tap" style="left:34px;top:268px;background:rgba(255,90,90,.22);border-color:#FF5B6E">👆</div>
+  <div class="note"><b>基础交互＝点击</b>：点绿块→沿箭头飞出边界消除；点红块→路径被挡，判错误（生命模式扣命 / 计时模式仅标红）。<br>「旋转箭头·拖拽定向」为<b>二期可选创新</b>，非基础机制。</div>
+</div>
+<div class="tools">
+  <div class="t"><div class="ic">💡</div>提示</div>
+  <div class="t"><div class="ic">🔨</div>锤子</div>
+  <div class="t"><div class="ic">🪄</div>魔法棒</div>
+  <div class="t"><div class="ic">↩</div>撤销</div>
+</div>
+<div class="pill" style="right:14px;top:150px"><span class="n">⑤</span>点击发射(基础)·旋转属二期</div>
+<div class="foot">BlockOut UI 原型 · 忠于真实机制 v0.2 — 点击发射交互示意</div>
+</div></div></body></html>

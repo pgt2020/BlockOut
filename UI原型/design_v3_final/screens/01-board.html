@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Board · C方案星形糖果可爱风</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  #combo { position: absolute; top: 102px; left: 50%; transform: translateX(-50%); z-index: 10; }
+  #board-wrap { position: absolute; left: 50%; top: 54%; transform: translate(-50%, -50%); }
+</style>
+</head>
+<body>
+<div class="screen" id="screen">
+  <script src="../assets/scripts.js"></script>
+  <script>
+    const s = document.getElementById('screen');
+    BO.initBackground(s, { decoCount: 3 });
+    BO.renderHUD(s, { hearts: 5, coins: '3,000', progress: 3 });
+
+    const combo = document.createElement('div');
+    combo.id = 'combo';
+    combo.className = 'combo';
+    combo.textContent = 'Combo x25';
+    s.appendChild(combo);
+
+    const wrap = document.createElement('div');
+    wrap.id = 'board-wrap';
+    wrap.className = 'board-wrap';
+    wrap.style.width = '330px';
+    wrap.style.height = '400px';
+    s.appendChild(wrap);
+    BO.renderStarBoard(wrap, { tileSize: 34 });
+
+    BO.renderHint(s, 'Tap any square to remove');
+    BO.renderBanner(s);
+  </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080" role="img" aria-label="第一章章节图集12区域遮罩：1080×1080统一画布，4列×3行，region_01至region_12对应全局第1至12关">
+  <!-- ============================================================
+       BlockOut · 第一章章节图集 · 12 区域遮罩（正式资产几何，v5 定稿）
+       画布：1080×1080（完整图 / 预览图 / 剪影图 / 遮罩共用同一坐标系）
+       网格：4 列 × 3 行，每区 270×360，合起来完整覆盖画面
+       对应：region_01 = 全局第 1 关 … region_12 = 全局第 12 关
+       规则：一关解锁一个区域；12/12 = 完整图；首页/结算/收藏揭晓结果一致
+       适配：显示容器一律 cover 裁切（禁止拉伸）；裁切映射见 11_art_resource_list §1.1
+       用法：作为叠加层合成到章节完整插画上；未解锁区域 = 剪影 + 薄雾
+  ============================================================ -->
+  <defs>
+    <style>
+      text{font-family:'Source Han Sans CN','Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif}
+      .rid{font-size:26px;font-weight:900;fill:#8A6E62}
+      .lv{font-size:20px;font-weight:700;fill:#B9A79B}
+    </style>
+  </defs>
+
+  <!-- 区域填充（半透明，可直接叠加在插画上） -->
+  <g fill="#FFF7EF" opacity=".38">
+    <rect x="0" y="0" width="270" height="360"/><rect x="540" y="0" width="270" height="360"/>
+    <rect x="0" y="720" width="270" height="360"/><rect x="540" y="720" width="270" height="360"/>
+    <rect x="270" y="360" width="270" height="360"/>
+  </g>
+  <g fill="#FFF1E3" opacity=".38">
+    <rect x="270" y="0" width="270" height="360"/><rect x="810" y="0" width="270" height="360"/>
+    <rect x="270" y="720" width="270" height="360"/><rect x="810" y="720" width="270" height="360"/>
+    <rect x="0" y="360" width="270" height="360"/><rect x="540" y="360" width="270" height="360"/><rect x="810" y="360" width="270" height="360"/>
+  </g>
+
+  <!-- 区域边界（虚线，合起来完整覆盖，无缺口无重叠） -->
+  <g fill="none" stroke="#E9CFC0" stroke-width="2" stroke-dasharray="10 8">
+    <rect x="0" y="0" width="270" height="360"/><rect x="270" y="0" width="270" height="360"/>
+    <rect x="540" y="0" width="270" height="360"/><rect x="810" y="0" width="270" height="360"/>
+    <rect x="0" y="360" width="270" height="360"/><rect x="270" y="360" width="270" height="360"/>
+    <rect x="540" y="360" width="270" height="360"/><rect x="810" y="360" width="270" height="360"/>
+    <rect x="0" y="720" width="270" height="360"/><rect x="270" y="720" width="270" height="360"/>
+    <rect x="540" y="720" width="270" height="360"/><rect x="810" y="720" width="270" height="360"/>
+  </g>
+  <rect x="1" y="1" width="1078" height="1078" fill="none" stroke="#E8CDBB" stroke-width="3"/>
+
+  <!-- 区域编号 + 关卡对应 -->
+  <g text-anchor="middle">
+    <text class="rid" x="135" y="176">region_01</text><text class="lv" x="135" y="206">第 1 关</text>
+    <text class="rid" x="405" y="176">region_02</text><text class="lv" x="405" y="206">第 2 关</text>
+    <text class="rid" x="675" y="176">region_03</text><text class="lv" x="675" y="206">第 3 关</text>
+    <text class="rid" x="945" y="176">region_04</text><text class="lv" x="945" y="206">第 4 关</text>
+    <text class="rid" x="135" y="536">region_05</text><text class="lv" x="135" y="566">第 5 关</text>
+    <text class="rid" x="405" y="536">region_06</text><text class="lv" x="405" y="566">第 6 关</text>
+    <text class="rid" x="675" y="536">region_07</text><text class="lv" x="675" y="566">第 7 关</text>
+    <text class="rid" x="945" y="536">region_08</text><text class="lv" x="945" y="566">第 8 关</text>
+    <text class="rid" x="135" y="896">region_09</text><text class="lv" x="135" y="926">第 9 关</text>
+    <text class="rid" x="405" y="896">region_10</text><text class="lv" x="405" y="926">第 10 关</text>
+    <text class="rid" x="675" y="896">region_11</text><text class="lv" x="675" y="926">第 11 关</text>
+    <text class="rid" x="945" y="896">region_12</text><text class="lv" x="945" y="926">第 12 关</text>
+  </g>
+</svg>

@@ -1,0 +1,27 @@
+{
+    "name": "BlockOut.Bootstrap",
+    "rootNamespace": "BlockOut.Bootstrap",
+    "references": [
+        "BlockOut.Core",
+        "BlockOut.Contracts",
+        "BlockOut.Rendering",
+        "BlockOut.Infrastructure.Ads",
+        "BlockOut.Infrastructure.Persistence",
+        "BlockOut.Infrastructure.Configuration",
+        "BlockOut.Infrastructure.Resources",
+        "BlockOut.Infrastructure.Audio",
+        "BlockOut.Infrastructure.Analytics",
+        "BlockOut.Gameplay",
+        "BlockOut.UI",
+        "Unity.ugui"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

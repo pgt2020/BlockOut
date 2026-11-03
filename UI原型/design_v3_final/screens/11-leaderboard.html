@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Leaderboard · C方案星形糖果可爱风</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .lb-header { position: absolute; top: 52px; left: 16px; right: 16px; text-align: center; }
+  .tabs { display: flex; gap: 8px; margin-top: 8px; }
+  .tab { flex: 1; padding: 8px; border-radius: 16px; background: var(--bg-card); border: 1px solid var(--line-base); font-weight: 800; font-size: 12px; color: var(--ink-secondary); }
+  .tab.active { background: var(--brand-peach); color: #fff; border-color: var(--brand-peach); }
+  .podium { position: absolute; top: 130px; left: 20px; right: 20px; display: flex; align-items: flex-end; justify-content: center; gap: 12px; }
+  .podium-card { background: var(--bg-card); border-radius: 20px; border: 1px solid var(--line-base); padding: 14px; text-align: center; box-shadow: var(--shadow-sm); }
+  .podium-card.gold { height: 130px; border-color: var(--brand-lemon); }
+  .podium-card.silver { height: 110px; }
+  .podium-card.bronze { height: 100px; }
+  .lb-list { position: absolute; top: 280px; left: 16px; right: 16px; bottom: 76px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
+  .lb-row { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 16px; background: var(--bg-card); border: 1px solid var(--line-base); }
+  .lb-row.me { background: rgba(255,170,128,0.12); border-color: var(--brand-peach); }
+  .lb-rank { width: 28px; font-weight: 900; text-align: center; }
+</style>
+</head>
+<body>
+<div class="screen" id="screen">
+  <script src="../assets/scripts.js"></script>
+  <script>
+    const s = document.getElementById('screen');
+    BO.initBackground(s, {decoCount:4});
+    s.insertAdjacentHTML('beforeend', `
+      <div class="lb-header">
+        <div class="title">Leaderboard</div>
+        <div class="tabs">
+          <div class="tab active">Weekly</div>
+          <div class="tab">Global</div>
+          <div class="tab">Friends</div>
+        </div>
+      </div>
+      <div class="podium">
+        <div class="podium-card silver"><div style="font-size:28px">🥈</div><div class="caption">Alex</div><div class="subtitle">12k</div></div>
+        <div class="podium-card gold"><div style="font-size:32px">🥇</div><div class="caption">You</div><div class="subtitle">15k</div></div>
+        <div class="podium-card bronze"><div style="font-size:26px">🥉</div><div class="caption">Mia</div><div class="subtitle">10k</div></div>
+      </div>
+      <div class="lb-list">
+        <div class="lb-row"><div class="lb-rank">4</div><div class="avatar">🐱</div><div class="grow body">Luna</div><div class="subtitle">9,800</div></div>
+        <div class="lb-row"><div class="lb-rank">5</div><div class="avatar">🐶</div><div class="grow body">Max</div><div class="subtitle">9,200</div></div>
+        <div class="lb-row me"><div class="lb-rank">6</div><div class="avatar">😊</div><div class="grow body">You</div><div class="subtitle" style="color:var(--brand-coral)">8,500</div></div>
+        <div class="lb-row"><div class="lb-rank">7</div><div class="avatar">🦊</div><div class="grow body">Zoe</div><div class="subtitle">8,100</div></div>
+      </div>
+    `);
+    BO.renderBanner(s);
+  </script>
+</div>
+</body>
+</html>

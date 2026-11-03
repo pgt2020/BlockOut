@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>About · C方案星形糖果可爱风</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .ab-header { position: absolute; top: 52px; left: 16px; right: 16px; display: flex; align-items: center; gap: 12px; }
+  .ab-list { position: absolute; top: 110px; left: 16px; right: 16px; bottom: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+  .ab-group { border-radius: 20px; background: var(--bg-card); border: 1px solid var(--line-base); overflow: hidden; }
+  .ab-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid var(--line-base); }
+  .ab-row:last-child { border-bottom: none; }
+  .ab-note { padding: 14px 16px; font-size: 11px; line-height: 1.5; color: var(--ink-secondary); }
+</style>
+</head>
+<body>
+<div class="screen" id="screen">
+  <script src="../assets/scripts.js"></script>
+  <script>
+    const s = document.getElementById('screen');
+    BO.initBackground(s, {decoCount:3});
+    s.insertAdjacentHTML('beforeend', `
+      <div class="ab-header">
+        <div class="btn-icon small">←</div>
+        <div class="title" style="flex:1;text-align:center">About</div>
+        <div style="width:36px"></div>
+      </div>
+      <div class="ab-list">
+        <div class="ab-group">
+          <div class="ab-row"><span class="body">Privacy Policy</span><span class="caption">></span></div>
+          <div class="ab-row"><span class="body">Terms of Service</span><span class="caption">></span></div>
+          <div class="ab-row"><span class="body">Age Declaration</span><span class="caption">13+</span></div>
+        </div>
+        <div class="ab-group">
+          <div class="ab-row"><span class="body">Version</span><span class="caption">1.0.0 (Build 2026)</span></div>
+          <div class="ab-row"><span class="body">Third-Party SDKs</span><span class="caption">></span></div>
+        </div>
+        <div class="ab-group">
+          <div class="ab-note">
+            <strong>Ad Provider</strong><br>
+            Unity LevelPlay (ironSource) — used for banner, interstitial and rewarded video ads. See LevelPlay Privacy Policy for details.
+          </div>
+        </div>
+      </div>
+    `);
+  </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Daily Challenge · C方案星形糖果可爱风</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .daily-header { position: absolute; top: 52px; left: 16px; right: 16px; text-align: center; }
+  .streak-row { display: flex; justify-content: center; gap: 8px; margin-top: 12px; }
+  .streak-day { width: 36px; height: 36px; border-radius: 12px; background: var(--bg-card); border: 1px solid var(--line-base); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; }
+  .streak-day.done { background: var(--brand-mint); color: #fff; border-color: var(--brand-mint); }
+  .daily-card { position: absolute; top: 150px; left: 20px; right: 20px; padding: 20px; text-align: center; }
+  .daily-preview { width: 120px; height: 120px; border-radius: 24px; background: var(--bg-soft); margin: 16px auto; border: 1px solid var(--line-base); display: flex; align-items: center; justify-content: center; font-size: 48px; }
+  .reward-row { display: flex; justify-content: center; gap: 24px; margin-top: 16px; }
+  .reward-small { display: flex; align-items: center; gap: 4px; font-weight: 900; }
+  .play-area { position: absolute; bottom: 76px; left: 20px; right: 20px; }
+</style>
+</head>
+<body>
+<div class="screen" id="screen">
+  <script src="../assets/scripts.js"></script>
+  <script>
+    const s = document.getElementById('screen');
+    BO.initBackground(s, {decoCount:4});
+    s.insertAdjacentHTML('beforeend', `
+      <div class="daily-header">
+        <div class="title">Daily Challenge</div>
+        <div class="caption">Oct 14 · Seed #288</div>
+        <div class="streak-row">
+          <div class="streak-day done">M</div>
+          <div class="streak-day done">T</div>
+          <div class="streak-day done">W</div>
+          <div class="streak-day">T</div>
+          <div class="streak-day">F</div>
+          <div class="streak-day">S</div>
+          <div class="streak-day">S</div>
+        </div>
+      </div>
+      <div class="card daily-card">
+        <div class="subtitle">Today's Puzzle</div>
+        <div class="daily-preview">⭐</div>
+        <div class="reward-row">
+          <div class="reward-small">🪙 <span class="num">500</span></div>
+          <div class="reward-small">⭐ <span class="num">x2</span></div>
+        </div>
+      </div>
+      <div class="play-area">
+        <div class="btn btn-primary w-full">Play Daily</div>
+      </div>
+    `);
+    BO.renderBanner(s);
+  </script>
+</div>
+</body>
+</html>

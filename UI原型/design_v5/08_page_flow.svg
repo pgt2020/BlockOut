@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 790" width="780" height="1580" role="img" aria-label="页面跳转图：首页游戏页及全部弹窗与扩展页面，标注跳转条件、保留规则与复活优先级">
+  <!-- ============================================================
+       BlockOut · 页面跳转图  v5 定稿（2026-10-15 复审修订）
+       全部节点 = v5 定稿布局/流程（04–09 + 12–17）
+       删除：失败层「金币不足 → 商店」引导（商店只卖道具，首发不提供金币获取入口）
+       新增：章末结算节点（17）；结算区分关卡结算（13）与章末结算（17）
+  ============================================================ -->
+  <defs>
+    <linearGradient id="f8bg" x2="0" y2="1"><stop stop-color="#FFFAF4"/><stop offset="1" stop-color="#FFF1E3"/></linearGradient>
+    <filter id="f8sh" x="-30%" y="-30%" width="160%" height="175%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#674138" flood-opacity=".18"/></filter>
+    <marker id="ah" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0 0l7 3.5L0 7z" fill="#8A6E62"/>
+    </marker>
+    <marker id="ahc" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0 0l7 3.5L0 7z" fill="#FF6B5C"/>
+    </marker>
+    <style>
+      text{font-family:'Source Han Sans CN','Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif}
+      .h8{font-size:16px;font-weight:900;fill:#553B36}
+      .nd{font-size:9.5px;font-weight:900}
+      .nds{font-size:6.5px}
+      .lk{font-size:7px;fill:#8A6E62}
+      .lg8{font-size:8px;fill:#553B36}
+    </style>
+  </defs>
+
+  <rect width="390" height="790" fill="url(#f8bg)"/>
+
+  <!-- 标题 -->
+  <text class="h8" x="195" y="26" text-anchor="middle">页面跳转图 · v5 交付边界</text>
+  <text class="lk" x="195" y="42" text-anchor="middle">全部节点 = v5 定稿布局/流程（04–09 + 12–17）· 素材未就绪前剪影+占位降级</text>
+
+  <!-- ================= 节点 ================= -->
+  <!-- 首页（定稿 06/07） -->
+  <g filter="url(#f8sh)">
+    <rect x="20" y="280" width="110" height="48" rx="14" fill="#DFF6EC" stroke="#3BB98E" stroke-width="2"/>
+  </g>
+  <text class="nd" x="75" y="300" text-anchor="middle" fill="#2E7C5B">首页</text>
+  <text class="nds" x="75" y="313" text-anchor="middle" fill="#2E7C5B">06/07 定稿</text>
+
+  <!-- 游戏页（定稿 04/05） -->
+  <g filter="url(#f8sh)">
+    <rect x="160" y="280" width="110" height="48" rx="14" fill="#FFE9E6" stroke="#FF6B5C" stroke-width="2"/>
+  </g>
+  <text class="nd" x="215" y="300" text-anchor="middle" fill="#C7432F">游戏页</text>
+  <text class="nds" x="215" y="313" text-anchor="middle" fill="#C7432F">04/05 定稿</text>
+
+  <!-- 暂停层（定稿 05-D） -->
+  <g filter="url(#f8sh)">
+    <rect x="280" y="120" width="85" height="44" rx="12" fill="#FFF1E3" stroke="#FFB84D" stroke-width="2"/>
+  </g>
+  <text class="nd" x="322" y="138" text-anchor="middle" fill="#B4761A">暂停层</text>
+  <text class="nds" x="322" y="150" text-anchor="middle" fill="#B4761A">05-D 定稿 · 冻结</text>
+
+  <!-- 设置页（定稿 16） -->
+  <g filter="url(#f8sh)">
+    <rect x="280" y="205" width="85" height="44" rx="12" fill="#FFF1E3" stroke="#FFB84D" stroke-width="2"/>
+  </g>
+  <text class="nd" x="322" y="223" text-anchor="middle" fill="#B4761A">设置页</text>
+  <text class="nds" x="322" y="235" text-anchor="middle" fill="#B4761A">16 定稿 · 返回保持暂停</text>
+
+  <!-- 关卡结算（定稿 13 §1/§2） -->
+  <g filter="url(#f8sh)">
+    <rect x="280" y="290" width="85" height="44" rx="12" fill="#DFF6EC" stroke="#3BB98E" stroke-width="2"/>
+  </g>
+  <text class="nd" x="322" y="308" text-anchor="middle" fill="#2E7C5B">关卡结算</text>
+  <text class="nds" x="322" y="320" text-anchor="middle" fill="#2E7C5B">13 §1/§2 定稿</text>
+
+  <!-- 章末结算（定稿 17） -->
+  <g filter="url(#f8sh)">
+    <rect x="170" y="415" width="85" height="44" rx="12" fill="#DFF6EC" stroke="#3BB98E" stroke-width="2"/>
+  </g>
+  <text class="nd" x="212" y="433" text-anchor="middle" fill="#2E7C5B">章末结算</text>
+  <text class="nds" x="212" y="445" text-anchor="middle" fill="#2E7C5B">17 定稿 · 12/12</text>
+
+  <!-- 失败层（定稿 05-E） -->
+  <g filter="url(#f8sh)">
+    <rect x="280" y="415" width="85" height="44" rx="12" fill="#FFE9E6" stroke="#FF6B5C" stroke-width="2"/>
+  </g>
+  <text class="nd" x="322" y="433" text-anchor="middle" fill="#C7432F">失败层</text>
+  <text class="nds" x="322" y="445" text-anchor="middle" fill="#C7432F">05-E 定稿 · 复活</text>
+
+  <!-- 收藏页（定稿 14） -->
+  <g filter="url(#f8sh)">
+    <rect x="30" y="560" width="100" height="44" rx="12" fill="#DFF6EC" stroke="#3BB98E" stroke-width="2"/>
+  </g>
+  <text class="nd" x="80" y="578" text-anchor="middle" fill="#2E7C5B">收藏/图鉴</text>
+  <text class="nds" x="80" y="590" text-anchor="middle" fill="#2E7C5B">14 定稿</text>
+
+  <!-- 商店页（定稿 15） -->
+  <g filter="url(#f8sh)">
+    <rect x="150" y="560" width="100" height="44" rx="12" fill="#DFF6EC" stroke="#3BB98E" stroke-width="2"/>
+  </g>
+  <text class="nd" x="200" y="578" text-anchor="middle" fill="#2E7C5B">商店页</text>
+  <text class="nds" x="200" y="590" text-anchor="middle" fill="#2E7C5B">15 定稿</text>
+
+  <!-- ================= 跳转连线 ================= -->
+  <!-- 首页 -> 游戏页（CTA） -->
+  <path d="M130 296 H158" stroke="#FF6B5C" stroke-width="2" marker-end="url(#ahc)"/>
+  <text class="lk" x="144" y="290" text-anchor="middle">CTA 继续/开始</text>
+
+  <!-- 游戏页 <-> 暂停层 -->
+  <path d="M270 286 H275 V142 H278" stroke="#8A6E62" stroke-width="1.6" marker-end="url(#ah)"/>
+  <text class="lk" x="283" y="200" transform="rotate(90 283 200)" text-anchor="middle">点左上暂停</text>
+  <path d="M278 148 H275 V306 H270" stroke="#8A6E62" stroke-width="1.6" marker-end="url(#ah)"/>
+  <text class="lk" x="266" y="240" text-anchor="end">继续游戏</text>
+
+  <!-- 暂停层 -> 设置页 -->
+  <path d="M322 164 V203" stroke="#8A6E62" stroke-width="1.6" marker-end="url(#ah)"/>
+  <text class="lk" x="327" y="184">设置</text>
+
+  <!-- 暂停层 -> 首页（退出本关，不保留本局） -->
+  <path d="M280 130 V100 H75 V278" stroke="#FF6B5C" stroke-width="1.6" fill="none" marker-end="url(#ahc)"/>
+  <text class="lk" x="178" y="96" text-anchor="middle">退出本关 · 不保留本局（拼片/金币保留）</text>
+
+  <!-- 游戏页 -> 关卡结算（第 1–11 关通关） -->
+  <path d="M270 306 H275 V312 H278" stroke="#3BB98E" stroke-width="1.6" marker-end="url(#ah)"/>
+  <text class="lk" x="263" y="300" text-anchor="end">通关 1–11 关</text>
+
+  <!-- 关卡结算 -> 游戏页（下一关） -->
+  <path d="M280 312 H272" stroke="#8A6E62" stroke-width="1.6" marker-end="url(#ah)"/>
+  <text class="lk" x="276" y="306" text-anchor="end">下一关</text>
+
+  <!-- 游戏页 -> 章末结算（第 12 关通关） -->
+  <path d="M212 328 V413" stroke="#3BB98E" stroke-width="1.6" marker-end="url(#ah)"/>
+  <text class="lk" x="218" y="380">第 12 关通关</text>
+
+  <!-- 章末结算 -> 游戏页（进入下一章 · 第 13 关；未发布则禁用） -->
+  <path d="M212 459 V332" stroke="#8A6E62" stroke-width="1.6" marker-end="url(#ah)"/>
+  <text class="lk" x="218" y="398">进入第二章 · 第 13 关</text>
+  <text class="lk" x="218" y="408">未发布 = 新章节准备中</text>
+
+  <!-- 游戏页 -> 失败层 -->
+  <path d="M270 340 H276 V432 H280" stroke="#FF6B5C" stroke-width="1.6" marker-end="url(#ahc)"/>
+  <text class="lk" x="263" y="386" text-anchor="end">失败</text>
+  <!-- 失败层 -> 游戏页（复活/重开） -->
+  <path d="M280 437 H276 V346 H270" stroke="#8A6E62" stroke-width="1.6" marker-end="url(#ah)"/>
+  <text class="lk" x="288" y="392">复活/重开 · 重开重置资格</text>
+
+  <!-- 失败层 -> 首页（退出，不保留本局） -->
+  <path d="M322 459 V540 H90 V330" stroke="#FF6B5C" stroke-width="1.6" fill="none" marker-end="url(#ahc)"/>
+  <text class="lk" x="210" y="536" text-anchor="middle">退出本关 · 不保留本局</text>
+
+  <!-- 关卡结算 -> 收藏页 -->
+  <path d="M280 334 H276 V520 H132 V558" stroke="#8A6E62" stroke-width="1.6" fill="none" marker-end="url(#ah)"/>
+  <text class="lk" x="212" y="516" text-anchor="middle">查看收藏</text>
+
+  <!-- 首页 -> 收藏页 / 商店页 -->
+  <path d="M60 328 V558" stroke="#8A6E62" stroke-width="1.6" marker-end="url(#ah)"/>
+  <text class="lk" x="55" y="450" text-anchor="end">查看收藏</text>
+  <path d="M115 328 V508 H200 V558" stroke="#8A6E62" stroke-width="1.6" fill="none" marker-end="url(#ah)"/>
+  <text class="lk" x="152" y="504" text-anchor="middle">底部导航 · 商店</text>
+
+  <!-- ================= 图例 ================= -->
+  <rect x="20" y="628" width="350" height="26" rx="8" fill="#FFFFFF" opacity=".75" stroke="#F0DCCB" stroke-width="1"/>
+  <rect x="30" y="636" width="14" height="10" rx="3" fill="#DFF6EC" stroke="#3BB98E" stroke-width="1.5"/>
+  <text class="lg8" x="48" y="644">v5 定稿页/层</text>
+  <rect x="130" y="636" width="14" height="10" rx="3" fill="#FFE9E6" stroke="#FF6B5C" stroke-width="1.5"/>
+  <text class="lg8" x="148" y="644">游戏内层</text>
+  <rect x="210" y="636" width="14" height="10" rx="3" fill="#FFF1E3" stroke="#FFB84D" stroke-width="1.5"/>
+  <text class="lg8" x="228" y="644">暂停相关</text>
+  <path d="M282 641h18" stroke="#FF6B5C" stroke-width="1.8" marker-end="url(#ahc)"/>
+  <text class="lg8" x="304" y="644">退出/失败</text>
+  <path d="M348 641h14" stroke="#8A6E62" stroke-width="1.8" marker-end="url(#ah)"/>
+  <text class="lg8" x="336" y="656" text-anchor="end">进入</text>
+
+  <!-- ================= 规则注记 ================= -->
+  <text class="lk" x="195" y="676" text-anchor="middle">暂停冻结游戏（计时/动画/输入）· 退出本关不保留本局（拼片/金币保留）</text>
+  <text class="lk" x="195" y="690" text-anchor="middle">重开重置复活资格，且不返还已耗道具/已扣金币</text>
+  <text class="lk" x="195" y="704" text-anchor="middle">复活优先级：免费（前 10 关每关首次）&gt; 激励广告 &gt; 300 金币</text>
+  <text class="lk" x="195" y="718" text-anchor="middle">单次挑战唯一一次；金币不足仅提示，首发无「去商店」引导</text>
+  <text class="lk" x="195" y="732" text-anchor="middle">编号：第一章 = 全局 1–12 · 第二章 = 13–24 · 设置从暂停层进入返回保持暂停</text>
+  <text class="lk" x="195" y="746" text-anchor="middle">收藏大图入口：部分解锁只叠已揭晓区域，12/12 才开放完整大图（14 号稿）</text>
+</svg>

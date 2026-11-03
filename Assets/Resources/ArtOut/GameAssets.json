@@ -1,0 +1,2429 @@
+{
+  "version": "20260817-existing-606-l15-replaced-120s-v22",
+  "levels": [
+    {
+      "id": "20260730_tutorial_Level1_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260730_tutorial_Level2_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260730_tutorial_Level3_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_tutorial_Level9_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260805_tutorial_Level7_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_tutorial_Level10_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_tutorial_Level8_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260805_v1_Level4_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level8_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260805_v1_Level3_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260805_v1_Level16_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level14_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260805_v1_Level11_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level17_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v2_Level9_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level12_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level19_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level20_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level18_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level25_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level29_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level52_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level27_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level31_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level24_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level54_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level37_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level41_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level23_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level53_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level35_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level32_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level26_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level43_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level22_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level57_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level39_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level33_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level84_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level51_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level40_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level46_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level61_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level28_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level38_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level88_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level34_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level58_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level21_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level81_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level56_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level72_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level69_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level42_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level79_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level73_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level95_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level30_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level83_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level87_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level68_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level77_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level63_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level93_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level114_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level49_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level45_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level55_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level67_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level94_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level125_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level64_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level59_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level108_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level36_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level86_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level101_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level76_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level102_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level71_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level97_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level89_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level91_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level113_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level155_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level74_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level115_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level65_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level78_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level75_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level126_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level109_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level47_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level111_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level105_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level112_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level123_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level135_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level82_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level107_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level96_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level127_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level122_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level92_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level117_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level106_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level139_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level136_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level48_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level159_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level121_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level119_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level162_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level154_easy",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level98_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level128_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level103_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level50_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level131_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level137_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level157_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level124_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level146_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level118_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level85_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level134_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level129_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level132_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level158_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level133_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level149_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level153_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level70_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level198_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level186_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level143_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level167_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level99_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level66_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level165_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level169_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level104_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level174_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level182_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level191_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level185_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level177_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level151_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level100_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level145_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level195_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level187_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level175_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level168_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level116_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level138_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level241_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level60_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level44_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level148_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level193_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level161_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level156_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level173_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level179_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level209_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level141_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level237_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level253_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level172_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level183_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level181_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level238_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level188_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level235_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level197_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level184_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level236_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level217_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level142_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level147_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level196_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level120_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level216_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level200_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level164_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level256_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level171_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level163_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level215_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level144_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level189_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level166_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level160_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level249_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level274_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level152_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level203_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level62_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level214_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level254_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level262_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level140_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level178_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level176_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level247_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level261_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level225_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level239_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level219_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level231_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level234_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level278_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level207_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level227_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level201_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level150_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level243_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level206_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level199_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level80_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level194_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level204_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level202_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level192_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level271_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level279_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level273_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level208_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level220_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level228_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level252_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level211_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level170_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level226_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level267_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level263_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level248_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level255_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level205_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level258_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level264_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level251_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level221_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level190_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level284_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level212_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level314_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level315_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level218_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level213_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level90_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level244_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level286_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level224_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level230_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level270_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level288_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level232_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level210_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level245_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level265_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level130_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level257_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level233_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level290_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level310_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level229_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level269_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level289_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level240_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level292_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level260_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level222_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level276_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level291_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level287_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level272_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level268_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level266_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level298_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level303_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level259_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level327_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level180_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level223_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level306_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level110_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level339_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level295_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level281_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level275_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level304_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level365_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level282_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level341_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level280_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level242_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level246_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level293_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level337_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level285_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level318_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level250_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level296_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level294_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level324_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level312_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level283_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level373_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level277_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level322_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level331_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level330_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level360_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level323_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level333_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level308_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level305_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level340_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level313_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level368_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level307_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level357_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level345_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level297_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level300_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level302_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level321_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level338_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level311_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level410_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level366_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level351_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level392_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level325_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level328_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level390_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level384_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level361_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level343_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level372_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level336_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level400_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level301_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level332_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level319_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level316_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level408_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level309_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level376_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level407_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level363_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level344_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level349_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level375_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level367_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level393_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level419_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level356_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level395_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level353_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level362_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level382_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level352_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level326_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level461_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level299_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level389_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level346_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level317_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level385_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level342_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level334_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level411_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level350_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level359_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level320_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level412_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level380_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level329_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level413_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level358_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level386_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level431_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level396_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level379_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level348_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level381_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level463_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level394_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level414_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level470_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level438_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level460_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level406_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level391_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level424_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level416_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level451_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level398_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level370_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level405_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level354_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level397_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level355_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level347_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level420_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level447_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level466_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level425_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level430_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level383_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level374_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level435_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level446_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level428_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level335_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level452_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level422_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level377_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level449_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level443_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level456_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level402_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level468_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level442_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level401_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level455_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level440_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level364_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level417_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level454_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level444_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level439_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level464_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level450_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level474_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level426_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level387_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level399_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level429_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level418_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level441_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level421_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level409_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level404_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level462_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level423_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level433_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level453_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level403_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level388_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level459_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level477_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level469_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level476_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level457_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level487_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level482_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level473_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level436_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level448_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level486_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level480_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level458_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level434_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level415_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level495_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level521_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level513_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level479_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level478_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level369_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level427_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level507_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level483_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level494_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level445_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level485_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level517_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level497_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level523_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level467_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level493_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level465_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level432_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level510_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level499_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level371_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level472_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level378_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level520_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level484_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level488_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level531_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level491_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level481_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level527_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level475_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level508_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level511_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level496_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level489_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level516_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level525_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level471_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level536_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level501_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level503_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level498_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level437_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level543_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level512_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level519_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level530_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level500_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level557_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level506_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level548_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level524_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level528_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level533_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level515_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level555_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level522_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level550_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level553_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level504_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level538_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level514_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level534_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level502_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level532_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level518_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level526_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level578_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level509_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level542_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level505_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level560_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level492_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level540_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level490_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level539_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level529_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level563_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level549_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level537_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level570_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level547_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level535_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level569_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level574_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level567_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level559_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level551_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level552_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level541_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level572_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level544_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level556_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level562_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level546_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level584_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level554_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level568_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level571_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level573_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level564_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level565_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level561_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level581_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level590_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level587_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level579_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level588_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level582_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level566_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level576_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level600_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level575_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level577_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level593_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level585_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level597_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level594_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level580_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level583_hard",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level589_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level591_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level598_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level592_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level558_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level601_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level595_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level602_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level596_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level599_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level603_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level586_normal",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level604_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level545_expert",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level605_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v1_Level606_insane",
+      "gametime": 120
+    },
+    {
+      "id": "20260817_v2_Level607_insane",
+      "gametime": 120
+    }
+  ]
+}

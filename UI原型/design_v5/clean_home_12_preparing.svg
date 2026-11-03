@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 390 844" width="780" height="1688" role="img" aria-label="首页 · 12/12 · 下一章未发布（当前程序状态，主按钮禁用）">
+  <defs>
+    <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#FFFAF4"/><stop offset="1" stop-color="#FFF1E3"/></linearGradient>
+    <linearGradient id="cta" x2="0" y2="1"><stop stop-color="#FF8B7E"/><stop offset="1" stop-color="#FF6B5C"/></linearGradient>
+    <linearGradient id="dis" x2="0" y2="1"><stop stop-color="#E9DED3"/><stop offset="1" stop-color="#D4C5B6"/></linearGradient>
+    <style>text{font-family:'Source Han Sans CN','Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif}</style>
+  </defs>
+
+  <rect x="0" y="0" width="390" height="844" fill="url(#bg)"/>
+    <rect x="24" y="40" width="44" height="44" rx="14" fill="#62CFA7"/>
+    <path d="M46 54l12 8-12 8z" fill="#FFFFFF"/>
+    <text x="80" y="60" font-size="17" font-weight="900" fill="#553B36">BlockOut</text>
+    <text x="80" y="76" font-size="9" fill="#8A6E62">箭头方块消除</text>
+    <rect x="252" y="44" width="90" height="32" rx="16" fill="#FFFFFF" stroke="#F0DCCB" stroke-width="1.5"/>
+    <circle cx="272" cy="60" r="11" fill="#FFC53D" stroke="#E3A22E" stroke-width="2"/>
+    <circle cx="272" cy="60" r="6.6" fill="none" stroke="#FFE9B0" stroke-width="2.5"/>
+    <text x="292" y="65" font-size="12.5" font-weight="900" fill="#553B36">300</text>
+    <circle cx="366" cy="60" r="16" fill="#FFFFFF" stroke="#F0DCCB" stroke-width="1.5"/>
+    <polygon points="375.4,58.5 375.4,61.5 371.5,63.6 369.6,65.5 373.7,65.6 371.6,67.7 367.3,66.5 364.7,66.5 367.5,69.4 364.5,69.4 362.4,65.5 360.5,63.6 360.4,67.7 358.3,65.6 359.5,61.3 359.5,58.7 356.6,61.5 356.6,58.5 360.5,56.4 362.4,54.5 358.3,54.4 360.4,52.3 364.7,53.5 367.3,53.5 364.5,50.6 367.5,50.6 369.6,54.5 371.5,56.4 371.6,52.3 373.7,54.4 372.5,58.7 372.5,61.3" fill="#553B36"/>
+    <circle cx="366" cy="60" r="3" fill="#FFFFFF"/>
+    <rect x="24" y="104" width="342" height="336" rx="24" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="2"/>
+    <clipPath id="cpHome"><rect x="30" y="110" width="330" height="288" rx="18"/></clipPath>
+    <image x="30" y="110" width="330" height="288" preserveAspectRatio="xMidYMid slice" xlink:href="assets/r12_330x288.png" clip-path="url(#cpHome)"/>
+    <rect x="30" y="110" width="330" height="288" rx="18" fill="#FFF7EF" opacity=".22"/>
+    <text x="46" y="132" font-size="9" font-weight="700" fill="#8A6E62">第一章 · 作品预览</text>
+    <rect x="272" y="118" width="76" height="24" rx="12" fill="#FFFDF8" stroke="#FF7568" stroke-width="1.2"/>
+    <text x="310" y="134" text-anchor="middle" font-size="9" font-weight="900" fill="#FF6B5C">拼片 12/12</text>
+    <rect x="24" y="456" width="342" height="88" rx="24" fill="url(#dis)"/>
+    <rect x="46" y="478" width="44" height="44" rx="14" fill="#FFFFFF" opacity=".72"/>
+    <path d="M62 492v16M54 500h16" stroke="#A2938A" stroke-width="3.2" stroke-linecap="round"/>
+    <text x="104" y="500" font-size="16.5" font-weight="900" fill="#857A72">新章节准备中</text>
+    <text x="104" y="522" font-size="9" fill="#9A8F87">暂不可进入 · 可查看收藏或返回</text>
+    <rect x="24" y="560" width="342" height="120" rx="24" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="2"/>
+    <text x="42" y="588" font-size="12" font-weight="900" fill="#553B36">第一章 · 甜点星球</text>
+    <text x="348" y="588" text-anchor="end" font-size="10" font-weight="800" fill="#FF6B5C">查看收藏 ›</text>
+    <rect x="42" y="600" width="306" height="10" rx="5" fill="#F5E6D8"/>
+    <rect x="42" y="600" width="306" height="10" rx="5" fill="#FF7568"/>
+    <circle cx="54.75" cy="632" r="8" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1.5"/>
+    <path d="M51.39 632L54.11 634.72L58.35 629.12" fill="none" stroke="#2E7C5B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="80.25" cy="632" r="8" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1.5"/>
+    <path d="M76.89 632L79.61 634.72L83.85 629.12" fill="none" stroke="#2E7C5B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="105.75" cy="632" r="8" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1.5"/>
+    <path d="M102.39 632L105.11 634.72L109.35 629.12" fill="none" stroke="#2E7C5B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="131.25" cy="632" r="8" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1.5"/>
+    <path d="M127.89 632L130.61 634.72L134.85 629.12" fill="none" stroke="#2E7C5B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="156.75" cy="632" r="8" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1.5"/>
+    <path d="M153.39 632L156.11 634.72L160.35 629.12" fill="none" stroke="#2E7C5B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="182.25" cy="632" r="8" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1.5"/>
+    <path d="M178.89 632L181.61 634.72L185.85 629.12" fill="none" stroke="#2E7C5B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="207.75" cy="632" r="8" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1.5"/>
+    <path d="M204.39 632L207.11 634.72L211.35 629.12" fill="none" stroke="#2E7C5B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="233.25" cy="632" r="8" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1.5"/>
+    <path d="M229.89 632L232.61 634.72L236.85 629.12" fill="none" stroke="#2E7C5B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="258.75" cy="632" r="8" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1.5"/>
+    <path d="M255.39 632L258.11 634.72L262.35 629.12" fill="none" stroke="#2E7C5B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="284.25" cy="632" r="8" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1.5"/>
+    <path d="M280.89 632L283.61 634.72L287.85 629.12" fill="none" stroke="#2E7C5B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="309.75" cy="632" r="8" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1.5"/>
+    <path d="M306.39 632L309.11 634.72L313.35 629.12" fill="none" stroke="#2E7C5B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="335.25" cy="632" r="8" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1.5"/>
+    <path d="M331.89 632L334.61 634.72L338.85 629.12" fill="none" stroke="#2E7C5B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="195" y="666" text-anchor="middle" font-size="9" fill="#8A6E62">拼片 12/12 · 完整作品已解锁，可前往收藏查看</text>
+    <rect x="24" y="696" width="342" height="64" rx="22" fill="#FFFFFF" stroke="#F0DCCB" stroke-width="2"/>
+    <path d="M85 726l10-9 10 9v11h-7v-7h-6v7h-7z" fill="#FF6B5C"/>
+    <text x="95" y="750" text-anchor="middle" font-size="9" font-weight="800" fill="#FF6B5C">首页</text>
+    <rect x="188" y="717" width="14" height="18" rx="2" fill="none" stroke="#8A7568" stroke-width="2"/>
+    <path d="M193 726h4" stroke="#8A7568" stroke-width="2"/>
+    <text x="205" y="750" text-anchor="middle" font-size="9" font-weight="800" fill="#8A7568">图鉴</text>
+    <path d="M298 722h20l-2 16h-16z" fill="none" stroke="#8A7568" stroke-width="2"/>
+    <path d="M303 722v-3a5 5 0 0 1 10 0v3" fill="none" stroke="#8A7568" stroke-width="2"/>
+    <text x="315" y="750" text-anchor="middle" font-size="9" font-weight="800" fill="#8A7568">商店</text>
+</svg>

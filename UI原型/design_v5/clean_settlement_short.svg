@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 360 640" width="720" height="1280" role="img" aria-label="普通关卡结算纯界面（360×640短屏真实排版）：卡312×600铺满安全区，作品区280×270按余高压缩，查看收藏与重玩本关左右并排">
+  <defs>
+    <linearGradient id="stbg" x2="0" y2="1"><stop stop-color="#FFFAF4"/><stop offset="1" stop-color="#FFF1E3"/></linearGradient>
+    <linearGradient id="gcta" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#FF8B7E"/><stop offset="1" stop-color="#FF6B5C"/></linearGradient>
+    <linearGradient id="gdis" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#E9DED3"/><stop offset="1" stop-color="#D4C5B6"/></linearGradient>
+    <radialGradient id="bm"><stop stop-color="#62CFA7" stop-opacity=".16"/><stop offset="1" stop-color="#62CFA7" stop-opacity="0"/></radialGradient>
+    <radialGradient id="bc"><stop stop-color="#FF7568" stop-opacity=".12"/><stop offset="1" stop-color="#FF7568" stop-opacity="0"/></radialGradient>
+    <symbol id="coinS" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" fill="#FFC53D" stroke="#E3A22E" stroke-width="1.4"/>
+      <circle cx="12" cy="12" r="6.5" fill="none" stroke="#FFE9B0" stroke-width="1.4"/>
+      <path d="M12 7l1.6 3.4 3.4 1.6-3.4 1.6L12 17l-1.6-3.4L7 12l3.4-1.6z" fill="#E3A22E"/>
+    </symbol>
+    <style>
+      text{font-family:'Source Han Sans CN','Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif}
+      .grid{fill:none;stroke:#E9CFC0;stroke-width:1.5;stroke-dasharray="4 8"}
+    </style>
+  </defs>
+  <rect width="360" height="640" fill="url(#stbg)"/>
+  <circle cx="50.4" cy="130" r="150" fill="url(#bm)"/>
+  <circle cx="316.8" cy="420" r="165" fill="url(#bc)"/>
+  <circle cx="64.8" cy="556" r="150" fill="url(#bm)"/>
+  <circle cx="46" cy="46" r="22" fill="#FFFFFF"/>
+  <text x="180" y="51" text-anchor="middle" font-size="18" font-weight="700" fill="#553B36">第一章 · 第 4 关</text>
+  <circle cx="286" cy="46" r="9" fill="#F45F70"/>
+  <circle cx="308" cy="46" r="9" fill="#F45F70"/>
+  <circle cx="330" cy="46" r="9" fill="#F45F70"/>
+  <rect x="18" y="143" width="324" height="324" rx="22" fill="#FFFDF8" stroke="#E8CDBB" stroke-width="3"/>
+  <path class="grid" d="M72 143V467M18 197H342"/>
+  <path class="grid" d="M126 143V467M18 251H342"/>
+  <path class="grid" d="M180 143V467M18 305H342"/>
+  <path class="grid" d="M234 143V467M18 359H342"/>
+  <path class="grid" d="M288 143V467M18 413H342"/>
+  <rect x="24" y="520" width="312" height="104" rx="26" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="2"/>
+  <circle cx="93.3333" cy="566" r="30" fill="#FFFFFF"/>
+  <text x="93.3333" y="605" text-anchor="middle" font-size="10.5" fill="#553B36">提示</text>
+  <text x="93.3333" y="618" text-anchor="middle" font-size="9" fill="#8A6E62">第 7 关解锁</text>
+  <circle cx="180" cy="566" r="30" fill="#FFFFFF"/>
+  <text x="180" y="605" text-anchor="middle" font-size="10.5" fill="#553B36">锤子</text>
+  <text x="180" y="618" text-anchor="middle" font-size="9" fill="#8A6E62">第 11 关解锁</text>
+  <circle cx="266.667" cy="566" r="30" fill="#FFFFFF"/>
+  <text x="266.667" y="605" text-anchor="middle" font-size="10.5" fill="#553B36">魔法棒</text>
+  <text x="266.667" y="618" text-anchor="middle" font-size="9" fill="#8A6E62">第 16 关解锁</text>
+  <rect x="0" y="0" width="360" height="640" fill="#674138" opacity=".3"/>
+  <rect x="24" y="24" width="312" height="600" rx="24" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="2"/>
+  <text x="180" y="62" text-anchor="middle" font-size="22" font-weight="900" fill="#553B36">新拼片解锁</text>
+  <text x="180" y="90" text-anchor="middle" font-size="11" font-weight="800" fill="#2E7C5B">拼片 4/12</text>
+  <rect x="40" y="108" width="280" height="270" fill="#FFF7EF"/>
+  <clipPath id="cpS_short"><rect x="40" y="108" width="280" height="270"/></clipPath>
+  <image x="40" y="108" width="280" height="270" preserveAspectRatio="xMidYMid slice" xlink:href="assets/r04_280x270.png" clip-path="url(#cpS_short)"/>
+  <text x="180" y="400" text-anchor="middle" font-size="9" fill="#8A6E62">本次新揭晓 1 片拼片</text>
+  <use href="#coinS" x="72" y="413" width="22" height="22"/>
+  <text x="104" y="429" font-size="11" font-weight="900" fill="#553B36">首次通关 · 获得 40 金币</text>
+  <rect x="40" y="450" width="280" height="48" rx="24" fill="url(#gcta)"/>
+  <text x="180" y="481" text-anchor="middle" font-size="13" font-weight="900" fill="#FFFFFF">下一关</text>
+  <rect x="40" y="510" width="134" height="44" rx="19" fill="#FFFFFF" stroke="#E8CDBB" stroke-width="1.5"/>
+  <text x="107" y="538" text-anchor="middle" font-size="11" font-weight="800" fill="#553B36">查看收藏</text>
+  <rect x="186" y="510" width="134" height="44" rx="19" fill="#FFFFFF" stroke="#E8CDBB" stroke-width="1.5"/>
+  <text x="253" y="538" text-anchor="middle" font-size="11" font-weight="800" fill="#553B36">重玩本关</text>
+  <rect x="40" y="566" width="280" height="44" rx="19" fill="#FFFFFF" stroke="#E8CDBB" stroke-width="1.5"/>
+  <text x="180" y="594" text-anchor="middle" font-size="11" font-weight="800" fill="#553B36">返回首页</text>
+</svg>

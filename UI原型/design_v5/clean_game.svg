@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 390 844" width="780" height="1688" role="img" aria-label="游戏页纯界面：6×6 棋盘六块中性方块，HUD 与三道具锁定态">
+  <defs>
+    <linearGradient id="gbg" x2="0" y2="1"><stop stop-color="#FFFAF4"/><stop offset="1" stop-color="#FFF1E3"/></linearGradient>
+    <radialGradient id="bm"><stop stop-color="#62CFA7" stop-opacity=".16"/><stop offset="1" stop-color="#62CFA7" stop-opacity="0"/></radialGradient>
+    <radialGradient id="bc"><stop stop-color="#FF7568" stop-opacity=".12"/><stop offset="1" stop-color="#FF7568" stop-opacity="0"/></radialGradient>
+    <linearGradient id="gA" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#F8CCA0"/><stop offset="1" stop-color="#F0AC6E"/></linearGradient>
+    <linearGradient id="gB" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#A9E8CF"/><stop offset="1" stop-color="#79D2B2"/></linearGradient>
+    <linearGradient id="gC" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#CFC2F2"/><stop offset="1" stop-color="#AC95E2"/></linearGradient>
+    <linearGradient id="gD" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#FABCD0"/><stop offset="1" stop-color="#F193AF"/></linearGradient>
+    <linearGradient id="gE" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#FAE49B"/><stop offset="1" stop-color="#F2C957"/></linearGradient>
+    <linearGradient id="gF" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#B9D2F7"/><stop offset="1" stop-color="#84B4EB"/></linearGradient>
+    <filter id="jsh" x="-30%" y="-30%" width="160%" height="175%"><feDropShadow dx="0" dy="7" stdDeviation="6" flood-color="#674138" flood-opacity=".22"/></filter>
+    <symbol id="ar-r" viewBox="0 0 24 24"><path d="M20.5 12L9.5 20.5v-5.5h-6v-6h6V3.5z"/></symbol>
+    <symbol id="ar-u" viewBox="0 0 24 24"><path d="M12 3.5l8.5 11h-5.5v6h-6v-6H3.5z"/></symbol>
+    <symbol id="ar-l" viewBox="0 0 24 24"><path d="M3.5 12L14.5 3.5v5.5h6v6h-6v5.5z"/></symbol>
+    <symbol id="ar-d" viewBox="0 0 24 24"><path d="M12 20.5L3.5 9.5h5.5v-6h6v6h5.5z"/></symbol>
+    <path id="hrt" d="M12 20.5s-7.8-4.9-9.7-9.3C.7 7.6 2.8 4 6.4 4c2 0 3.7 1 5.6 3.1C13.9 5 15.6 4 17.6 4c3.6 0 5.7 3.6 4.1 7.2-1.9 4.4-9.7 9.3-9.7 9.3z"/>
+    <symbol id="ic-pause" viewBox="0 0 24 24">
+      <rect x="6.5" y="4" width="4.2" height="16" rx="2"/>
+      <rect x="13.3" y="4" width="4.2" height="16" rx="2"/>
+    </symbol>
+    <symbol id="ic-bulb" viewBox="0 0 24 24">
+      <path d="M12 3a6 6 0 0 1 3.4 10.9c-.7.5-1 1.2-1 2.1h-4.8c0-.9-.3-1.6-1-2.1A6 6 0 0 1 12 3z"/>
+      <path d="M9.8 18.5h4.4M10.5 21h3" fill="none"/>
+    </symbol>
+    <symbol id="ic-hammer" viewBox="0 0 24 24">
+      <path d="M14.5 3.5l6 6-2.5 2.5-6-6z"/>
+      <path d="M13 7l-8.5 8.5c-1 1-1 2.6 0 3.5s2.6 1 3.5 0L16.5 11" fill="none"/>
+    </symbol>
+    <symbol id="ic-wand" viewBox="0 0 24 24">
+      <path d="M5 19L15.5 8.5" fill="none"/>
+      <path d="M16.5 3.5l1.2 2.8 2.8 1.2-2.8 1.2-1.2 2.8-1.2-2.8-2.8-1.2 2.8-1.2z"/>
+      <path d="M19.5 14l.8 1.7 1.7.8-1.7.8-.8 1.7-.8-1.7-1.7-.8 1.7-.8z"/>
+    </symbol>
+    <symbol id="ic-lock" viewBox="0 0 24 24">
+      <rect x="5" y="10.5" width="14" height="10" rx="2.5"/>
+      <path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" fill="none"/>
+    </symbol>
+    <style>
+      text{font-family:'Source Han Sans CN','Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif}
+      .t1{font-size:18px;font-weight:700;fill:#553B36}
+      .t2{font-size:10px;fill:#8A6E62}
+      .pt{font-size:12px;font-weight:700;fill:#2E7C5B}
+      .hint{font-size:10.5px;fill:#553B36}
+      .tl{font-size:10.5px;fill:#553B36;text-anchor:middle}
+      .grid{fill:none;stroke:#E9CFC0;stroke-width:1.5;stroke-dasharray:4 8}
+      .arr{fill:#FFFEFA;stroke:#5A4038;stroke-width:1.4;paint-order:stroke fill;stroke-linejoin:round}
+      .seam{stroke:#FFFFFF;stroke-width:1;opacity:.22;fill:none;stroke-linecap:round}
+      .rim{fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linejoin:round;opacity:.92}
+    </style>
+  </defs>
+  <rect width="390" height="844" fill="url(#gbg)"/>
+  <circle cx="55" cy="130" r="150" fill="url(#bm)"/>
+  <circle cx="345" cy="420" r="165" fill="url(#bc)"/>
+  <circle cx="70" cy="760" r="150" fill="url(#bm)"/>
+
+  <circle cx="46" cy="42" r="22" fill="#FFFFFF" filter="url(#jsh)"/>
+  <use href="#ic-pause" x="37" y="33" width="18" height="18" fill="#553B36"/>
+  <text class="t1" x="195" y="40" text-anchor="middle">第一章 · 第 4 关</text>
+  <text class="t2" x="195" y="56" text-anchor="middle">甜点星球 · Dessert Planet</text>
+  <use href="#hrt" transform="translate(310.5,34.5) scale(0.625)" fill="#F45F70"/>
+  <use href="#hrt" transform="translate(330.5,34.5) scale(0.625)" fill="#F45F70"/>
+  <use href="#hrt" transform="translate(350.5,34.5) scale(0.625)" fill="#F45F70"/>
+
+  <rect x="256" y="72" width="110" height="30" rx="15" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1.5"/>
+  <rect x="267" y="80" width="9" height="9" rx="2.5" fill="#2E7C5B"/>
+  <rect x="278" y="85" width="9" height="9" rx="2.5" fill="#FF7568"/>
+  <text class="pt" x="294" y="91.5">剩余 6 块</text>
+
+  <rect x="9" y="140" width="372" height="372" rx="22" fill="#FFFDF8" stroke="#E8CDBB" stroke-width="3"/>
+  <path class="grid" d="M71 140V512M133 140V512M195 140V512M257 140V512M319 140V512M9 202H381M9 264H381M9 326H381M9 388H381M9 450H381"/>
+
+  <g>
+    <path d="M71 202H133V264H195V326H71Z" fill="url(#gA)" filter="url(#jsh)"/>
+    <path class="rim" d="M71 202H133V264H195V326H71Z"/>
+    <path class="seam" d="M77 264H127M133 270V320"/>
+    <use class="arr" href="#ar-r" x="152" y="283" width="24" height="24"/>
+  </g>
+  <g>
+    <path d="M257 202H319V326H257Z" fill="url(#gB)" filter="url(#jsh)"/>
+    <path class="rim" d="M257 202H319V326H257Z"/>
+    <path class="seam" d="M263 264H313"/>
+    <use class="arr" href="#ar-u" x="276" y="221" width="24" height="24"/>
+  </g>
+  <g>
+    <path d="M9 388H195V450H9Z" fill="url(#gC)" filter="url(#jsh)"/>
+    <path class="rim" d="M9 388H195V450H9Z"/>
+    <path class="seam" d="M71 394V444M133 394V444"/>
+    <use class="arr" href="#ar-l" x="90" y="407" width="24" height="24"/>
+  </g>
+  <g>
+    <path d="M195 326H257V388H319V326H381V450H195Z" fill="url(#gD)" filter="url(#jsh)"/>
+    <path class="rim" d="M195 326H257V388H319V326H381V450H195Z"/>
+    <path class="seam" d="M201 388H251M257 394V444M319 394V444M325 388H375"/>
+    <use class="arr" href="#ar-d" x="276" y="407" width="24" height="24"/>
+  </g>
+  <g>
+    <path d="M9 202H71V264H9Z" fill="url(#gE)" filter="url(#jsh)"/>
+    <path class="rim" d="M9 202H71V264H9Z"/>
+    <use class="arr" href="#ar-u" x="30" y="223" width="20" height="20"/>
+  </g>
+  <g>
+    <path d="M133 140H195V264H133Z" fill="url(#gF)" filter="url(#jsh)"/>
+    <path class="rim" d="M133 140H195V264H133Z"/>
+    <path class="seam" d="M139 202H189"/>
+    <use class="arr" href="#ar-r" x="152" y="159" width="24" height="24"/>
+  </g>
+
+  <rect x="95" y="528" width="200" height="32" rx="16" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="1.5" filter="url(#jsh)"/>
+  <use href="#ic-bulb" x="111" y="536" width="16" height="16" fill="#FFB84D" stroke="#E89A2B" stroke-width="1.2"/>
+  <text class="hint" x="133" y="548">轻点整块方块，沿箭头方向飞出</text>
+
+  <rect x="24" y="636" width="342" height="104" rx="26" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="2" filter="url(#jsh)"/>
+  <circle cx="97" cy="682" r="30" fill="#FFFFFF" filter="url(#jsh)"/>
+  <use href="#ic-bulb" x="85" y="670" width="24" height="24" fill="#C9B8AC" stroke="#C9B8AC" stroke-width="1.6"/>
+  <circle cx="117" cy="662" r="10.5" fill="#8A6E62"/>
+  <use href="#ic-lock" x="112.5" y="657.5" width="9" height="9" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2.6"/>
+  <text class="tl" x="97" y="721">提示</text>
+  <text x="97" y="734" text-anchor="middle" font-size="9" fill="#8A6E62">第 7 关解锁</text>
+  <circle cx="195" cy="682" r="30" fill="#FFFFFF" filter="url(#jsh)"/>
+  <use href="#ic-hammer" x="183" y="670" width="24" height="24" fill="#C9B8AC" stroke="#C9B8AC" stroke-width="1.6"/>
+  <circle cx="215" cy="662" r="10.5" fill="#8A6E62"/>
+  <use href="#ic-lock" x="210.5" y="657.5" width="9" height="9" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2.6"/>
+  <text class="tl" x="195" y="721">锤子</text>
+  <text x="195" y="734" text-anchor="middle" font-size="9" fill="#8A6E62">第 11 关解锁</text>
+  <circle cx="293" cy="682" r="30" fill="#FFFFFF" filter="url(#jsh)"/>
+  <use href="#ic-wand" x="281" y="670" width="24" height="24" stroke="#C9B8AC" stroke-width="1.8" fill="#E5D5C6"/>
+  <circle cx="313" cy="662" r="10.5" fill="#8A6E62"/>
+  <use href="#ic-lock" x="308.5" y="657.5" width="9" height="9" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2.6"/>
+  <text class="tl" x="293" y="721">魔法棒</text>
+  <text x="293" y="734" text-anchor="middle" font-size="9" fill="#8A6E62">第 16 关解锁</text>
+</svg>

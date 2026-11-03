@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 390 844" width="780" height="1688" role="img" aria-label="设置纯界面：音乐音效震动开关与关于，无底部导航">
+  <defs>
+    <linearGradient id="s16bg" x2="0" y2="1"><stop stop-color="#FFFAF4"/><stop offset="1" stop-color="#FFF1E3"/></linearGradient>
+    <radialGradient id="bm16"><stop stop-color="#62CFA7" stop-opacity=".12"/><stop offset="1" stop-color="#62CFA7" stop-opacity="0"/></radialGradient>
+    <symbol id="back16" viewBox="0 0 24 24"><path d="M15 4l-8 8 8 8" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="music16" viewBox="0 0 24 24">
+      <path d="M9 18V6l10-2v12" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="6.5" cy="18" r="2.6" stroke-width="1.8"/>
+      <circle cx="16.5" cy="16" r="2.6" stroke-width="1.8"/>
+    </symbol>
+    <symbol id="sfx16" viewBox="0 0 24 24">
+      <path d="M4 9v6h4l5 4V5L8 9z" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M16.5 9a4.5 4.5 0 0 1 0 6M19 6.5a8 8 0 0 1 0 11" fill="none" stroke-width="1.8" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="vib16" viewBox="0 0 24 24">
+      <rect x="8" y="4" width="8" height="16" rx="2" fill="none" stroke-width="1.8"/>
+      <path d="M3.5 9v6M20.5 9v6M6 9v6M18 9v6" fill="none" stroke-width="1.8" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="info16" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" fill="none" stroke-width="1.8"/>
+      <path d="M12 10.5V17" fill="none" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="12" cy="7.6" r="1.2"/>
+    </symbol>
+    <style>
+      text{font-family:'Source Han Sans CN','Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif}
+      .cap16{font-size:11px;font-weight:900;fill:#553B36}
+      .ds16{font-size:8.5px;fill:#8A6E62}
+      .nt16{font-size:8.5px;fill:#553B36}
+    </style>
+  </defs>
+  <g transform="translate(0,60)">
+    <circle cx="60" cy="130" r="150" fill="url(#bm16)"/>
+    <circle cx="46" cy="50" r="22" fill="#FFFFFF" stroke="#F0DCCB" stroke-width="1.5"/>
+    <use href="#back16" x="37" y="41" width="18" height="18" stroke="#553B36" fill="none"/>
+    <text x="195" y="56" text-anchor="middle" font-size="16" font-weight="900" fill="#553B36">设置</text>
+
+    <rect x="24" y="84" width="342" height="216" rx="20" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="2"/>
+    <text x="40" y="112" font-size="11" font-weight="900" fill="#8A6E62">音频与反馈</text>
+    <use href="#music16" x="40" y="128" width="24" height="24" stroke="#553B36" fill="none"/>
+    <text x="76" y="145" font-size="12" font-weight="700" fill="#553B36">音乐</text>
+    <text x="76" y="161" font-size="8" fill="#8A6E62">背景音乐开关</text>
+    <rect x="292" y="134" width="44" height="24" rx="12" fill="#FF7568"/>
+    <circle cx="326" cy="146" r="9.5" fill="#FFFFFF"/>
+    <use href="#sfx16" x="40" y="176" width="24" height="24" stroke="#553B36" fill="none"/>
+    <text x="76" y="193" font-size="12" font-weight="700" fill="#553B36">音效</text>
+    <text x="76" y="209" font-size="8" fill="#8A6E62">点击 / 飞出 / 魔法棒等音效</text>
+    <rect x="292" y="182" width="44" height="24" rx="12" fill="#FF7568"/>
+    <circle cx="326" cy="194" r="9.5" fill="#FFFFFF"/>
+    <use href="#vib16" x="40" y="224" width="24" height="24" stroke="#553B36" fill="none"/>
+    <text x="76" y="241" font-size="12" font-weight="700" fill="#553B36">震动</text>
+    <text x="76" y="257" font-size="8" fill="#8A6E62">受阻反馈震动（跟随系统开关）</text>
+    <rect x="292" y="230" width="44" height="24" rx="12" fill="#E5D5C6"/>
+    <circle cx="304" cy="242" r="9.5" fill="#FFFFFF"/>
+
+    <rect x="24" y="404" width="342" height="72" rx="20" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="2"/>
+    <use href="#info16" x="40" y="428" width="24" height="24" stroke="#553B36" fill="none"/>
+    <text x="76" y="445" font-size="12" font-weight="700" fill="#553B36">关于</text>
+    <text x="76" y="461" font-size="8" fill="#8A6E62">版本 v1.0.0</text>
+    <path d="M342 431l7 7-7 7" fill="none" stroke="#B9A79B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  </g>
+</svg>

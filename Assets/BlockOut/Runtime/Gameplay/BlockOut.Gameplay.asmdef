@@ -1,0 +1,21 @@
+{
+    "name": "BlockOut.Gameplay",
+    "rootNamespace": "BlockOut.Gameplay",
+    "references": [
+        "BlockOut.Core",
+        "BlockOut.Contracts",
+        "BlockOut.Infrastructure.Ads",
+        "BlockOut.Infrastructure.Persistence",
+        "BlockOut.Rendering",
+        "Unity.ugui"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

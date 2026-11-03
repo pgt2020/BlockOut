@@ -1,0 +1,20 @@
+{
+  "id": "blockout_tutorial_01",
+  "displayName": "Level 1",
+  "pictureId": "pic_tutorial_01",
+  "dataVersion": 1,
+  "difficulty": "easy",
+  "chapter": 0,
+  "levelInChapter": 0,
+  "width": 5,
+  "height": 5,
+  "rewardCoins": 25,
+  "pieces": [
+    { "column": 0, "row": 0, "shapeId": 1, "direction": "Left",  "color": "#FF6B6B" },
+    { "column": 4, "row": 0, "shapeId": 1, "direction": "Right", "color": "#FFB347" },
+    { "column": 0, "row": 4, "shapeId": 1, "direction": "Left",  "color": "#FFE066" },
+    { "column": 4, "row": 4, "shapeId": 1, "direction": "Right", "color": "#7ED9A6" },
+    { "column": 2, "row": 2, "shapeId": 3, "direction": "Up",    "color": "#9B7ED9" },
+    { "column": 1, "row": 2, "shapeId": 1, "direction": "Left",  "color": "#6B9FFF" }
+  ]
+}

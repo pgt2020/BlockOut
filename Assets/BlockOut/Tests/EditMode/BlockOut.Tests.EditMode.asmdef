@@ -1,0 +1,29 @@
+{
+    "name": "BlockOut.Tests.EditMode",
+    "rootNamespace": "BlockOut.Tests.EditMode",
+    "references": [
+        "BlockOut.Core",
+        "BlockOut.Contracts",
+        "BlockOut.Infrastructure.Ads",
+        "BlockOut.Infrastructure.Persistence",
+        "BlockOut.Infrastructure.Configuration",
+        "BlockOut.Gameplay",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

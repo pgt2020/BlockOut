@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <AssemblyName>TestRunner</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <NoWarn>CS0067;CS0169;CS0414;CS0649;CS8618;CS8625;CS0162;CS0219;CS0472;CS0473;CS1998;CS4014;CS0168;CS0108;CS0114</NoWarn>
+    <RootNamespace>TestRunner</RootNamespace>
+  </PropertyGroup>
+  <!-- EditMode 测试离线运行器：编译真实 Runtime + Tests/EditMode + Unity 桩，
+       用 NUnitLite 直接运行。仅验证纯逻辑/规则契约（文档 §9：只读静态工具可验证规则契约）；
+       依赖 Unity 运行时（MonoBehaviour 生命周期/协程/Resources 真加载）的用例会如实报告，
+       不得据此宣称"Unity 测试已通过"。 -->
+  <ItemGroup>
+    <Compile Include="..\CompileCheck\UnityEngineStub.cs" />
+    <Compile Include="..\CompileCheck\UnityUiStub.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\..\Assets\BlockOut\Runtime\**\*.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\..\Assets\BlockOut\Tests\EditMode\*.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NUnitLite" Version="3.13.2" />
+  </ItemGroup>
+</Project>

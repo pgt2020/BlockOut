@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Gesture · C方案星形糖果可爱风</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  #board-wrap { position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%); }
+  .finger { position: absolute; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.55); border: 2px solid rgba(255,255,255,0.9); box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 30; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+  .finger::after { content: '👆'; }
+</style>
+</head>
+<body>
+<div class="screen" id="screen">
+  <script src="../assets/scripts.js"></script>
+  <script>
+    const s = document.getElementById('screen');
+    BO.initBackground(s, {decoCount:2});
+    BO.renderHUD(s, {hearts:5, coins:'3,000', progress:2});
+    const wrap = document.createElement('div');
+    wrap.id = 'board-wrap';
+    wrap.className = 'board-wrap';
+    wrap.style.width = '330px'; wrap.style.height = '400px';
+    s.appendChild(wrap);
+    BO.renderStarBoard(wrap, {tileSize:30});
+
+    // mark a tile selected and one bad after render
+    const tiles = wrap.querySelectorAll('.tile');
+    if(tiles.length>10){
+      tiles[8].style.transform = 'scale(1.08)';
+      tiles[8].style.boxShadow = '0 0 0 4px rgba(255,255,255,0.6), 0 0 24px rgba(255,170,128,0.55), inset 0 10px 14px rgba(255,255,255,0.45)';
+      tiles[8].style.zIndex = '5';
+      tiles[12].classList.add('bad');
+      tiles[12].style.background = 'var(--tile-strawberry)';
+      // finger over selected tile
+      const rect = tiles[8].getBoundingClientRect();
+      const f = document.createElement('div');
+      f.className = 'finger';
+      f.style.left = (tiles[8].offsetLeft + wrap.offsetLeft + 4) + 'px';
+      f.style.top = (tiles[8].offsetTop + wrap.offsetTop + 4) + 'px';
+      wrap.appendChild(f);
+    }
+
+    BO.renderHint(s, 'Tap a tile to fly it out');
+    BO.renderBanner(s);
+  </script>
+</div>
+</body>
+</html>

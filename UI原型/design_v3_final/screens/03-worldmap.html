@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>World Map · C方案星形糖果可爱风</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .map-title { position: absolute; top: 58px; left: 0; right: 0; text-align: center; }
+  .map-canvas { position: absolute; top: 110px; left: 20px; right: 20px; bottom: 180px; }
+  .node-line { position: absolute; height: 2px; background: var(--line-base); transform-origin: left center; }
+  .node { position: absolute; width: 56px; height: 56px; border-radius: 50%; background: var(--bg-card); border: 2px solid var(--line-base); display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: var(--shadow-md); z-index: 2; }
+  .node.current { width: 72px; height: 72px; border-color: var(--brand-peach); box-shadow: 0 0 0 6px rgba(255,170,128,0.2), var(--shadow-md); }
+  .node.lock { background: var(--bg-panel); border-style: dashed; font-size: 18px; color: var(--ink-tertiary); }
+  .chapter-card { position: absolute; bottom: 76px; left: 16px; right: 16px; padding: 18px; }
+  .chapter-card-top { display: flex; justify-content: space-between; align-items: center; }
+</style>
+</head>
+<body>
+<div class="screen" id="screen">
+  <script src="../assets/scripts.js"></script>
+  <script>
+    const s = document.getElementById('screen');
+    BO.initBackground(s, {decoCount:4});
+    s.insertAdjacentHTML('beforeend', `
+      <div class="map-title"><div class="title">Star Gallery</div><div class="caption">Scroll & tap to travel</div></div>
+      <div class="map-canvas" id="map"></div>
+      <div class="card chapter-card">
+        <div class="chapter-card-top">
+          <div>
+            <div class="subtitle" style="color:var(--brand-coral)">Chapter 1 · Candy Star</div>
+            <div class="body mt-8">12 / 30 levels cleared</div>
+          </div>
+          <div class="btn btn-primary small">Play</div>
+        </div>
+        <div class="progress mt-12"><div class="progress-fill" style="width:40%"></div></div>
+      </div>
+    `);
+    const map = document.getElementById('map');
+    const nodes = [
+      {x:80, y:260, icon:'⭐', current:true},
+      {x:200, y:180, icon:'🧁', lock:false},
+      {x:280, y:290, icon:'🍭', lock:false},
+      {x:120, y:100, icon:'🍬', lock:true},
+      {x:260, y:60, icon:'🐾', lock:true}
+    ];
+    // lines between sequential nodes
+    for(let i=0;i<nodes.length-1;i++){
+      const a=nodes[i], b=nodes[i+1];
+      const dx=b.x-a.x, dy=b.y-a.y, len=Math.sqrt(dx*dx+dy*dy), ang=Math.atan2(dy,dx)*180/Math.PI;
+      const line=document.createElement('div');
+      line.className='node-line';
+      line.style.left=a.x+'px';
+      line.style.top=a.y+'px';
+      line.style.width=len+'px';
+      line.style.transform='rotate('+ang+'deg)';
+      map.appendChild(line);
+    }
+    nodes.forEach(n=>{
+      const el=document.createElement('div');
+      el.className='node '+(n.current?'current':'')+(n.lock?' lock':'');
+      el.style.left=(n.x-(n.current?36:28))+'px';
+      el.style.top=(n.y-(n.current?36:28))+'px';
+      el.textContent=n.lock?'🔒':n.icon;
+      map.appendChild(el);
+    });
+    BO.renderBanner(s);
+  </script>
+</div>
+</body>
+</html>

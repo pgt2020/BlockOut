@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Subscription · C方案星形糖果可爱风</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .sub-wrap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; padding: 50px 24px 24px; text-align: center; }
+  .sub-icon { width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(180deg,var(--brand-lavender),#A88FEF); display: flex; align-items: center; justify-content: center; font-size: 48px; box-shadow: 0 8px 24px rgba(191,168,255,0.35); }
+  .sub-benefits { width: 100%; margin-top: 20px; }
+  .sub-benefit { display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 14px; background: var(--bg-soft); margin-bottom: 8px; }
+  .sub-close { position: absolute; top: 56px; right: 16px; }
+</style>
+</head>
+<body>
+<div class="screen" id="screen">
+  <script src="../assets/scripts.js"></script>
+  <script>
+    const s = document.getElementById('screen');
+    BO.initBackground(s, {decoCount:4});
+    s.insertAdjacentHTML('beforeend', `
+      <div class="btn-icon sub-close">✕</div>
+      <div class="sub-wrap">
+        <div class="sub-icon">👑</div>
+        <div class="title mt-16">Go VIP</div>
+        <div class="body mt-8">Unlock exclusive themes, daily coins, and remove all ads.</div>
+        <div class="sub-benefits">
+          <div class="sub-benefit"><span>✓</span><span class="body">+500 daily coins</span></div>
+          <div class="sub-benefit"><span>✓</span><span class="body">Exclusive candy skins</span></div>
+          <div class="sub-benefit"><span>✓</span><span class="body">No banner & interstitial ads</span></div>
+        </div>
+        <div style="position:absolute;bottom:40px;left:24px;right:24px;">
+          <div class="btn btn-primary w-full">Start Free Trial · $4.99/m</div>
+          <div class="micro mt-12">Cancel anytime. Terms apply.</div>
+        </div>
+      </div>
+    `);
+  </script>
+</div>
+</body>
+</html>

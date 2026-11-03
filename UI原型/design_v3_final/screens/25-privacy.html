@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Privacy · C方案星形糖果可爱风</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .priv-wrap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; text-align: center; }
+  .priv-icon { width: 80px; height: 80px; border-radius: 50%; background: var(--bg-soft); border: 2px solid var(--brand-mint); display: flex; align-items: center; justify-content: center; font-size: 36px; margin-bottom: 20px; }
+  .priv-card { padding: 20px; margin-top: 16px; text-align: left; }
+  .priv-actions { position: absolute; bottom: 40px; left: 24px; right: 24px; display: flex; gap: 12px; }
+</style>
+</head>
+<body>
+<div class="screen" id="screen">
+  <script src="../assets/scripts.js"></script>
+  <script>
+    const s = document.getElementById('screen');
+    BO.initBackground(s, {decoCount:3});
+    s.insertAdjacentHTML('beforeend', `
+      <div class="priv-wrap">
+        <div class="priv-icon">🔒</div>
+        <div class="title">Privacy First</div>
+        <div class="body mt-12">We use data to personalize ads and improve your experience. You can change this anytime in Settings.</div>
+        <div class="card priv-card">
+          <label class="body" style="display:flex;align-items:center;gap:10px;"><input type="checkbox" checked style="width:18px;height:18px;accent-color:var(--brand-mint)"> Personalized ads</label>
+          <label class="body mt-12" style="display:flex;align-items:center;gap:10px;"><input type="checkbox" checked style="width:18px;height:18px;accent-color:var(--brand-mint)"> Analytics & crash reports</label>
+        </div>
+        <div class="priv-actions">
+          <div class="btn btn-ghost" style="flex:1">More</div>
+          <div class="btn btn-primary" style="flex:1.5">Agree & Play</div>
+        </div>
+      </div>
+    `);
+  </script>
+</div>
+</body>
+</html>

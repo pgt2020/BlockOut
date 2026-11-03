@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Level Select · C方案星形糖果可爱风</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .ls-header { position: absolute; top: 52px; left: 16px; right: 16px; display: flex; align-items: center; gap: 12px; }
+  .ls-title { flex: 1; text-align: center; }
+  .level-grid { position: absolute; top: 120px; left: 20px; right: 20px; bottom: 80px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; overflow-y: auto; }
+  .level-cell { aspect-ratio: 1; border-radius: 18px; background: var(--bg-card); border: 1px solid var(--line-base); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; box-shadow: var(--shadow-sm); }
+  .level-cell.current { border-color: var(--brand-peach); box-shadow: 0 0 0 4px rgba(255,170,128,0.2), var(--shadow-sm); }
+  .level-cell.lock { background: var(--bg-panel); border-style: dashed; color: var(--ink-tertiary); }
+  .level-num { font-size: 16px; font-weight: 900; }
+  .level-stars { font-size: 10px; color: var(--brand-lemon); }
+</style>
+</head>
+<body>
+<div class="screen" id="screen">
+  <script src="../assets/scripts.js"></script>
+  <script>
+    const s = document.getElementById('screen');
+    BO.initBackground(s, {decoCount:4});
+    s.insertAdjacentHTML('beforeend', `
+      <div class="ls-header">
+        <div class="btn-icon">←</div>
+        <div class="ls-title">
+          <div class="title">Candy Star</div>
+          <div class="caption">Chapter 1</div>
+        </div>
+        <div style="width:44px"></div>
+      </div>
+      <div class="level-grid" id="grid"></div>
+    `);
+    const grid = document.getElementById('grid');
+    for(let i=1;i<=30;i++){
+      const lock = i>13;
+      const current = i===13;
+      const stars = lock ? '' : '★★★'.slice(0, Math.floor(Math.random()*3)+1);
+      const el = document.createElement('div');
+      el.className = 'level-cell '+(current?'current':'')+(lock?' lock':'');
+      el.innerHTML = lock ? '<span style="font-size:16px">🔒</span>' : `<div class="level-num">${i}</div><div class="level-stars">${stars}</div>`;
+      grid.appendChild(el);
+    }
+    BO.renderBanner(s);
+  </script>
+</div>
+</body>
+</html>

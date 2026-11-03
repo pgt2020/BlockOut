@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Achievements · C方案星形糖果可爱风</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .ach-header { position: absolute; top: 52px; left: 16px; right: 16px; display: flex; align-items: center; gap: 12px; }
+  .ach-list { position: absolute; top: 110px; left: 16px; right: 16px; bottom: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+  .ach-card { display: flex; align-items: center; gap: 12px; padding: 14px; }
+  .ach-card.lock { opacity: 0.65; }
+  .ach-icon { width: 48px; height: 48px; border-radius: 16px; background: var(--bg-soft); display: flex; align-items: center; justify-content: center; font-size: 24px; }
+  .ach-info { flex: 1; }
+  .ach-progress { margin-top: 6px; }
+  .ach-btn { padding: 6px 12px; border-radius: 12px; background: var(--brand-mint); color: #fff; font-weight: 800; font-size: 11px; }
+</style>
+</head>
+<body>
+<div class="screen" id="screen">
+  <script src="../assets/scripts.js"></script>
+  <script>
+    const s = document.getElementById('screen');
+    BO.initBackground(s, {decoCount:4});
+    s.insertAdjacentHTML('beforeend', `
+      <div class="ach-header">
+        <div class="btn-icon small">←</div>
+        <div class="title" style="flex:1;text-align:center">Achievements</div>
+        <div style="width:36px"></div>
+      </div>
+      <div class="ach-list">
+        <div class="card ach-card">
+          <div class="ach-icon">⭐</div>
+          <div class="ach-info">
+            <div class="subtitle">Star Collector</div>
+            <div class="caption">Earn 100 stars</div>
+            <div class="progress ach-progress"><div class="progress-fill" style="width:72%"></div></div>
+          </div>
+          <div class="ach-btn">Claim</div>
+        </div>
+        <div class="card ach-card lock">
+          <div class="ach-icon">🔥</div>
+          <div class="ach-info">
+            <div class="subtitle">Combo Master</div>
+            <div class="caption">Reach x50 combo</div>
+            <div class="progress ach-progress"><div class="progress-fill" style="width:30%"></div></div>
+          </div>
+        </div>
+        <div class="card ach-card lock">
+          <div class="ach-icon">🏆</div>
+          <div class="ach-info">
+            <div class="subtitle">Gallery Complete</div>
+            <div class="caption">Finish one chapter</div>
+            <div class="progress ach-progress"><div class="progress-fill" style="width:10%"></div></div>
+          </div>
+        </div>
+      </div>
+    `);
+  </script>
+</div>
+</body>
+</html>

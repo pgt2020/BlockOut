@@ -1,0 +1,229 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 390 1592" width="780" height="3184" role="img" aria-label="收藏图鉴完整页面：章节列表、部分解锁摘要、重复挑战关卡网格、空态、完整态、加载失败、大图查看页">
+  <!-- ============================================================
+       BlockOut · 收藏 / 图鉴页  v5 定稿（2026-10-15 复审修订）
+       一张章节卡 = 一个章节（第一章只有一张章节大图，不按 12 幅独立作品）
+       布局：列表卡 312×132（左右 24 · 卡间距 12）；缩略 64×64
+       部分解锁：大图入口置灰/隐藏，放大也不泄露未揭晓区域
+       完整态：大图 contain 完整显示 + 双指缩放 1.0–3.0 + 拖动 + 关闭/返回（不裁作品边缘）
+  ============================================================ -->
+  <defs>
+    <linearGradient id="s14bg" x2="0" y2="1"><stop stop-color="#FFFAF4"/><stop offset="1" stop-color="#FFF1E3"/></linearGradient>
+    <linearGradient id="g14top" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#B5EBD5"/><stop offset="1" stop-color="#79D2B2"/></linearGradient>
+    <linearGradient id="g14cta" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#FF8B7E"/><stop offset="1" stop-color="#FF6B5C"/></linearGradient>
+    <radialGradient id="bm14"><stop stop-color="#62CFA7" stop-opacity=".14"/><stop offset="1" stop-color="#62CFA7" stop-opacity="0"/></radialGradient>
+    <symbol id="coin14" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" fill="#FFC53D" stroke="#E3A22E" stroke-width="1.4"/>
+      <circle cx="12" cy="12" r="6.5" fill="none" stroke="#FFE9B0" stroke-width="1.4"/>
+      <path d="M12 7l1.6 3.4 3.4 1.6-3.4 1.6L12 17l-1.6-3.4L7 12l3.4-1.6z" fill="#E3A22E"/>
+    </symbol>
+    <symbol id="lock14" viewBox="0 0 24 24">
+      <rect x="5" y="10.5" width="14" height="10" rx="2.5"/>
+      <path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" fill="none"/>
+    </symbol>
+    <symbol id="back14" viewBox="0 0 24 24"><path d="M15 4l-8 8 8 8" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="home14" viewBox="0 0 24 24"><path d="M12 3.2l9 7.6h-2.6v9.4H5.6v-9.4H3z"/></symbol>
+    <symbol id="book14" viewBox="0 0 24 24"><path d="M4 4.6h6.2A2.8 2.8 0 0 1 12 6.8v13a2.4 2.4 0 0 0-1.8-1.4H4zm16 0h-6.2A2.8 2.8 0 0 0 12 6.8v13a2.4 2.4 0 0 1 1.8-1.4H20z"/></symbol>
+    <symbol id="bag14" viewBox="0 0 24 24"><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8h1.8l1.2 12H5.5L6.7 8z"/></symbol>
+    <symbol id="imgfail14" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke-width="1.8"/>
+      <path d="M3 16l5-5 4 4 3-3 6 6" fill="none" stroke-width="1.6"/>
+      <path d="M13 4l4 5h-4z" stroke-width="1.4"/>
+    </symbol>
+    <style>
+      text{font-family:'Source Han Sans CN','Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif}
+      .cap14{font-size:11px;font-weight:900;fill:#553B36}
+      .ds14{font-size:8.5px;fill:#8A6E62}
+      .nt14{font-size:8.5px;fill:#553B36}
+    </style>
+  </defs>
+
+  <rect width="390" height="1560" fill="url(#s14bg)"/>
+  <text x="195" y="28" text-anchor="middle" font-size="15" font-weight="900" fill="#553B36">收藏 / 图鉴页 · 完整页面（390×844）</text>
+  <text x="195" y="46" text-anchor="middle" font-size="8.5" fill="#8A6E62">章节列表 + 部分解锁摘要 + 重复挑战关卡网格；下方为四态关键帧与大图查看页</text>
+
+  <!-- ================= 完整页面 ================= -->
+  <g transform="translate(0,60)">
+    <circle cx="50" cy="120" r="150" fill="url(#bm14)"/>
+    <!-- 顶部栏：返回 + 标题 + 金币 -->
+    <circle cx="46" cy="50" r="22" fill="#FFFFFF" stroke="#F0DCCB" stroke-width="1.5"/>
+    <use href="#back14" x="37" y="41" width="18" height="18" stroke="#553B36" fill="none"/>
+    <text x="195" y="56" text-anchor="middle" font-size="16" font-weight="900" fill="#553B36">收藏</text>
+    <rect x="244" y="33" width="92" height="24" rx="12" fill="#FFF1E3" stroke="#F0DCCB" stroke-width="1"/>
+    <use href="#coin14" x="252" y="36" width="18" height="18"/>
+    <text x="275" y="49" font-size="10" font-weight="900" fill="#553B36">300</text>
+
+    <!-- 第一章摘要卡（部分解锁 3/12） -->
+    <rect x="24" y="84" width="342" height="148" rx="24" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="2"/>
+    <rect x="36" y="96" width="120" height="124" rx="12" fill="#FFFFFF" stroke="#E8CDBB" stroke-width="1"/>
+    <!-- 章节缩略：真实资源 assets/r03_120x124.png（3/12，与首页/结算/章末同一张合成图），
+         素材按容器比例裁切导出 + slice 双保险，无拉伸 -->
+    <clipPath id="clipTh14"><rect x="36" y="96" width="120" height="124" rx="12"/></clipPath>
+    <image x="36" y="96" width="120" height="124" preserveAspectRatio="xMidYMid slice"
+           xlink:href="assets/r03_120x124.png" clip-path="url(#clipTh14)"/>
+    <!-- 未揭晓薄雾（程序 Mist 层，暖白 22%） -->
+    <rect x="36" y="96" width="120" height="124" rx="12" fill="#FFF7EF" opacity=".22"/>
+    <!-- 右侧信息 -->
+    <text x="168" y="114" font-size="12" font-weight="900" fill="#553B36">第一章 · 甜点星球</text>
+    <rect x="168" y="126" width="180" height="10" rx="5" fill="#F5E6D8"/>
+    <rect x="168" y="126" width="45" height="10" rx="5" fill="#FF7568"/>
+    <text x="168" y="154" font-size="9" font-weight="700" fill="#553B36">拼片 3/12 · 还差 9 片</text>
+    <rect x="168" y="164" width="120" height="30" rx="15" fill="#E7D7C8"/>
+    <text x="228" y="183" text-anchor="middle" font-size="9" font-weight="900" fill="#8A6E62">集齐12片后查看</text>
+    <text x="168" y="212" font-size="6.5" fill="#8A6E62">集齐12片后开放完整作品</text>
+    <text x="168" y="226" font-size="6.5" fill="#8A6E62">可在下方重复挑战已通关关卡</text>
+
+    <!-- 章节列表 -->
+    <text x="24" y="256" font-size="11" font-weight="900" fill="#553B36">章节</text>
+    <!-- 第一章（已解锁） -->
+    <rect x="24" y="266" width="342" height="72" rx="16" fill="#FFFDF8" stroke="#3BB98E" stroke-width="1.5"/>
+    <rect x="36" y="276" width="52" height="52" rx="10" fill="#FFFFFF" stroke="#E8CDBB" stroke-width="1"/>
+    <circle cx="62" cy="296" r="9" fill="url(#g14top)"/>
+    <circle cx="62" cy="316" r="7" fill="#FF7568"/>
+    <text x="100" y="298" font-size="11" font-weight="800" fill="#553B36">第一章 · 甜点星球</text>
+    <text x="100" y="316" font-size="8.5" fill="#8A6E62">3/12 · 进行中</text>
+    <path d="M348 296l6 6-6 6" fill="none" stroke="#B9A79B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- 第二章（未开放） -->
+    <rect x="24" y="346" width="342" height="72" rx="16" fill="#F3ECE4" stroke="#E5D5C6" stroke-width="1.5"/>
+    <rect x="36" y="356" width="52" height="52" rx="10" fill="#EBD9C6"/>
+    <use href="#lock14" x="55" y="371" width="16" height="16" fill="#B9A79B" stroke="#B9A79B" stroke-width="1.6"/>
+    <text x="100" y="378" font-size="11" font-weight="800" fill="#8A7568">第二章</text>
+    <text x="100" y="396" font-size="8.5" fill="#8A6E62">通关第一章 12/12 后开放</text>
+    <!-- 第三章（未发布） -->
+    <rect x="24" y="426" width="342" height="72" rx="16" fill="#F3ECE4" stroke="#E5D5C6" stroke-width="1.5"/>
+    <rect x="36" y="436" width="52" height="52" rx="10" fill="#EBD9C6"/>
+    <use href="#lock14" x="55" y="451" width="16" height="16" fill="#B9A79B" stroke="#B9A79B" stroke-width="1.6"/>
+    <text x="100" y="458" font-size="11" font-weight="800" fill="#8A7568">第三章</text>
+    <text x="100" y="476" font-size="8.5" fill="#8A6E62">新章节准备中 · 不可进入</text>
+
+    <!-- 重复挑战 · 关卡网格 -->
+    <!-- 滚动内容区（ScrollRect）：顶栏与底部导航固定，内容超出时仅内容区滚动 -->
+    <rect x="24" y="96" width="342" height="588" rx="16" fill="none" stroke="#62CFA7" stroke-width="1.5" stroke-dasharray="6 5" opacity=".75"/>
+    <rect x="292" y="102" width="6" height="120" rx="3" fill="#62CFA7" opacity=".38"/>
+    <text x="40" y="112" font-size="7" font-weight="700" fill="#3BB98E">滚动内容区 ScrollRect</text>
+    <text x="196" y="112" font-size="7" fill="#3BB98E">顶栏 / 底部导航固定不滚动</text>
+    <rect x="24" y="512" width="342" height="140" rx="16" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="2"/>
+    <text x="36" y="536" font-size="11" font-weight="900" fill="#553B36">重复挑战 · 第一章</text>
+    <g>
+      <!-- 第一行 1-6 -->
+      <rect x="109" y="548" width="26" height="26" rx="8" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1.2"/>
+      <path d="M116 561l4 4 7-8" fill="none" stroke="#2E7C5B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="145" y="548" width="26" height="26" rx="8" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1.2"/>
+      <path d="M152 561l4 4 7-8" fill="none" stroke="#2E7C5B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="181" y="548" width="26" height="26" rx="8" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1.2"/>
+      <path d="M188 561l4 4 7-8" fill="none" stroke="#2E7C5B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="217" y="548" width="26" height="26" rx="8" fill="#FFFFFF" stroke="#FF7568" stroke-width="2"/>
+      <text x="230" y="565" text-anchor="middle" font-size="9" font-weight="900" fill="#FF7568">4</text>
+      <rect x="253" y="548" width="26" height="26" rx="8" fill="#F3ECE4" stroke="#E5D5C6" stroke-width="1"/>
+      <use href="#lock14" x="259" y="554" width="14" height="14" fill="#C9B8AC"/>
+      <rect x="289" y="548" width="26" height="26" rx="8" fill="#F3ECE4" stroke="#E5D5C6" stroke-width="1"/>
+      <use href="#lock14" x="295" y="554" width="14" height="14" fill="#C9B8AC"/>
+      <!-- 第二行 7-12 -->
+      <rect x="109" y="582" width="26" height="26" rx="8" fill="#F3ECE4" stroke="#E5D5C6" stroke-width="1"/>
+      <use href="#lock14" x="115" y="588" width="14" height="14" fill="#C9B8AC"/>
+      <rect x="145" y="582" width="26" height="26" rx="8" fill="#F3ECE4" stroke="#E5D5C6" stroke-width="1"/>
+      <use href="#lock14" x="151" y="588" width="14" height="14" fill="#C9B8AC"/>
+      <rect x="181" y="582" width="26" height="26" rx="8" fill="#F3ECE4" stroke="#E5D5C6" stroke-width="1"/>
+      <use href="#lock14" x="187" y="588" width="14" height="14" fill="#C9B8AC"/>
+      <rect x="217" y="582" width="26" height="26" rx="8" fill="#F3ECE4" stroke="#E5D5C6" stroke-width="1"/>
+      <use href="#lock14" x="223" y="588" width="14" height="14" fill="#C9B8AC"/>
+      <rect x="253" y="582" width="26" height="26" rx="8" fill="#F3ECE4" stroke="#E5D5C6" stroke-width="1"/>
+      <use href="#lock14" x="259" y="588" width="14" height="14" fill="#C9B8AC"/>
+      <rect x="289" y="582" width="26" height="26" rx="8" fill="#F3ECE4" stroke="#E5D5C6" stroke-width="1"/>
+      <use href="#lock14" x="295" y="588" width="14" height="14" fill="#C9B8AC"/>
+    </g>
+    <text x="36" y="632" font-size="7" fill="#8A6E62">重玩已通关关卡可获得金币，拼片不会重复解锁；未通关关卡锁定</text>
+    <text x="36" y="646" font-size="7" fill="#3BB98E">每格触控热区固定 ≥44×44 且互不重叠；不压缩热区换更多章节</text>
+
+    <!-- 底部导航（图鉴激活）· 固定，不参与滚动 -->
+    <rect x="24" y="700" width="342" height="64" rx="22" fill="#FFFFFF" stroke="#F0DCCB" stroke-width="2"/>
+    <use href="#home14" x="85" y="716" width="20" height="20" fill="#B9A79B"/>
+    <text x="95" y="752" text-anchor="middle" font-size="9" font-weight="800" fill="#8A7568">首页</text>
+    <use href="#book14" x="195" y="716" width="20" height="20" fill="#FF6B5C"/>
+    <text x="205" y="752" text-anchor="middle" font-size="9" font-weight="800" fill="#FF6B5C">图鉴</text>
+    <use href="#bag14" x="305" y="716" width="20" height="20" fill="#B9A79B"/>
+    <text x="315" y="752" text-anchor="middle" font-size="9" font-weight="800" fill="#8A7568">商店</text>
+    <!-- 导航热区 44×44×3 -->
+    <g fill="none" stroke="#FF7568" stroke-width="1" stroke-dasharray="3 3" opacity=".6">
+      <rect x="41" y="708" width="104" height="52"/><rect x="143" y="708" width="104" height="52"/><rect x="245" y="708" width="104" height="52"/>
+    </g>
+    <!-- 安全区 + 指示条 -->
+    <path d="M24 776H366" stroke="#F45F70" stroke-width="1" stroke-dasharray="4 3"/>
+    <rect x="24" y="776" width="342" height="36" fill="#674138" opacity=".07"/>
+    <text x="195" y="798" text-anchor="middle" font-size="7" font-weight="700" fill="#8A6E62">底部安全区（读设备 insets）· 导航止于安全区上方</text>
+    <rect x="128" y="824" width="134" height="5" rx="2.5" fill="#553B36" opacity=".2"/>
+  </g>
+  <text class="cap14" x="195" y="938" text-anchor="middle">图 1 · 收藏页完整页面（入口：查看收藏 / 底部导航图鉴 / 结算页）</text>
+
+  <!-- ================= 四态关键帧 ================= -->
+  <text x="24" y="972" font-size="11" font-weight="900" fill="#FF7568">收藏页四态关键帧</text>
+
+  <!-- A 空态 0/12 -->
+  <g transform="translate(24,984)">
+    <rect width="165" height="250" rx="16" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="1.5"/>
+    <text x="82.5" y="20" text-anchor="middle" font-size="10" font-weight="900" fill="#553B36">空态 · 0/12</text>
+    <!-- 真实资源 assets/r00_117.png（0/12 全剪影）；按容器比例裁切 + slice -->
+    <clipPath id="clipA14"><rect x="24" y="32" width="117" height="117" rx="12"/></clipPath>
+    <image x="24" y="32" width="117" height="117" preserveAspectRatio="xMidYMid slice"
+           xlink:href="assets/r00_117.png" clip-path="url(#clipA14)"/>
+    <text x="82.5" y="176" text-anchor="middle" font-size="9" font-weight="800" fill="#8A7568">还没有拼片</text>
+    <text x="82.5" y="194" text-anchor="middle" font-size="7.5" fill="#8A6E62">通关第一章解锁</text>
+    <rect x="42" y="208" width="81" height="24" rx="12" fill="#F3ECE4" stroke="#E5D5C6" stroke-width="1"/>
+    <text x="82.5" y="224" text-anchor="middle" font-size="8" font-weight="800" fill="#8A7568">入口禁用</text>
+  </g>
+
+  <!-- B 完整态 12/12 -->
+  <g transform="translate(201,984)">
+    <rect width="165" height="250" rx="16" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="1.5"/>
+    <text x="82.5" y="20" text-anchor="middle" font-size="10" font-weight="900" fill="#553B36">完整 · 12/12</text>
+    <!-- 真实资源 assets/r12_117.png（12/12 完整作品）；按容器比例裁切 + slice -->
+    <clipPath id="clipB14"><rect x="24" y="32" width="117" height="117" rx="12"/></clipPath>
+    <image x="24" y="32" width="117" height="117" preserveAspectRatio="xMidYMid slice"
+           xlink:href="assets/r12_117.png" clip-path="url(#clipB14)"/>
+    <rect x="24" y="32" width="117" height="117" rx="12" fill="none" stroke="#E8CDBB" stroke-width="1"/>
+    <rect x="112" y="38" width="26" height="12" rx="6" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1"/>
+    <text x="125" y="47" text-anchor="middle" font-size="6.5" font-weight="900" fill="#2E7C5B">12/12</text>
+    <text x="82.5" y="176" text-anchor="middle" font-size="9" font-weight="800" fill="#553B36">完整大图</text>
+    <rect x="46" y="188" width="73" height="24" rx="12" fill="url(#g14cta)"/>
+    <text x="82.5" y="204" text-anchor="middle" font-size="8.5" font-weight="900" fill="#FFFFFF">查看大图</text>
+    <text x="82.5" y="230" text-anchor="middle" font-size="7.5" fill="#8A6E62">CTA 切「进入下一章」</text>
+  </g>
+
+  <!-- C 加载失败 -->
+  <g transform="translate(24,1246)">
+    <rect width="165" height="200" rx="16" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="1.5"/>
+    <text x="82.5" y="20" text-anchor="middle" font-size="10" font-weight="900" fill="#553B36">图片加载失败</text>
+    <rect x="24" y="32" width="117" height="100" rx="12" fill="#F3ECE4" stroke="#E5D5C6" stroke-width="1"/>
+    <use href="#imgfail14" x="64" y="60" width="37" height="37" stroke="#B9A79B" fill="none"/>
+    <text x="82.5" y="116" text-anchor="middle" font-size="7.5" fill="#8A6E62">章节图加载失败</text>
+    <rect x="46" y="146" width="73" height="24" rx="12" fill="#FFFFFF" stroke="#E8CDBB" stroke-width="1.5"/>
+    <text x="82.5" y="162" text-anchor="middle" font-size="8.5" font-weight="800" fill="#553B36">重试</text>
+    <text x="82.5" y="186" text-anchor="middle" font-size="7" fill="#8A6E62">失败 2 次转「稍后再试」</text>
+  </g>
+
+  <!-- D 大图查看页 -->
+  <g transform="translate(201,1246)">
+    <rect width="165" height="200" rx="16" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="1.5"/>
+    <text x="82.5" y="20" text-anchor="middle" font-size="10" font-weight="900" fill="#553B36">大图查看页 · 12/12</text>
+    <!-- 真实资源 assets/r12_117x100.png（12/12 完整作品，contain 完整显示，不裁边缘）；
+         该素材是**已按 contain 预渲染**的 117×100 成图（两侧为信笺边），与容器 1:1 同比例，
+         故按 1:1 放置（preserveAspectRatio="none" 在此不产生任何缩放/变形）；
+         若改用 slice 会把 contain 信笺边裁掉，属错误用法 -->
+    <clipPath id="clipD14"><rect x="24" y="32" width="117" height="100" rx="12"/></clipPath>
+    <image x="24" y="32" width="117" height="100" preserveAspectRatio="none"
+           xlink:href="assets/r12_117x100.png" clip-path="url(#clipD14)"/>
+    <rect x="24" y="32" width="117" height="100" rx="12" fill="none" stroke="#E8CDBB" stroke-width="1"/>
+    <circle cx="36" cy="44" r="9" fill="#553B36" opacity=".85"/>
+    <path d="M33 41l6 6M39 41l-6 6" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"/>
+    <text x="129" y="47" text-anchor="middle" font-size="6.5" fill="#8A6E62">双指缩放</text>
+    <rect x="46" y="146" width="73" height="24" rx="12" fill="#FFFFFF" stroke="#E8CDBB" stroke-width="1.5"/>
+    <text x="82.5" y="162" text-anchor="middle" font-size="8.5" font-weight="800" fill="#553B36">返回</text>
+    <text x="82.5" y="186" text-anchor="middle" font-size="7" fill="#8A6E62">contain 完整显示 · 1.0–3.0 缩放</text>
+  </g>
+
+  <text class="nt14" x="195" y="1484" text-anchor="middle">揭晓结果三处一致：首页预览卡 / 关卡结算 / 收藏页</text>
+  <text class="ds14" x="195" y="1500" text-anchor="middle">同一 1080×1080 画布 + 12 区域遮罩；region 固定源画布，不随容器重划分</text>
+  <text class="ds14" x="195" y="1516" text-anchor="middle">缩略用 cover；大图查看页用 contain 完整显示，不裁作品边缘</text>
+  <text class="ds14" x="195" y="1532" text-anchor="middle">部分解锁：大图入口置灰/隐藏，放大也不得泄露未揭晓区域</text>
+  <text class="ds14" x="195" y="1548" text-anchor="middle">手势：双指缩放 1.0–3.0 + 单指拖动；双击复位到 1.0（不是阶梯缩放）；重开复位</text>
+  <text class="ds14" x="195" y="1564" text-anchor="middle">收藏采用滚动内容区：顶栏与底部导航固定，关卡热区固定 44×44 不重叠</text>
+</svg>

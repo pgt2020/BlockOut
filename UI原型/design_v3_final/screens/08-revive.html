@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Revive · C方案星形糖果可爱风</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  #board-wrap { position: absolute; left: 50%; top: 46%; transform: translate(-50%, -50%); opacity: 0.55; }
+  .modal-revive { text-align: center; }
+  .revive-icon { width: 80px; height: 80px; border-radius: 50%; background: var(--bg-soft); border: 2px solid var(--line-base); margin: 0 auto 14px; display: flex; align-items: center; justify-content: center; font-size: 36px; }
+  .modal-btn { width: 100%; margin-top: 12px; }
+  .modal-btn.secondary { background: var(--bg-panel); color: var(--ink-secondary); box-shadow: none; border: 1px solid var(--line-base); }
+</style>
+</head>
+<body>
+<div class="screen" id="screen">
+  <script src="../assets/scripts.js"></script>
+  <script>
+    const s = document.getElementById('screen');
+    BO.initBackground(s, {decoCount:2});
+    BO.renderHUD(s, {hearts:0, coins:'3,000', progress:2});
+    const wrap = document.createElement('div');
+    wrap.id = 'board-wrap';
+    wrap.className = 'board-wrap';
+    wrap.style.width = '300px'; wrap.style.height = '360px';
+    s.appendChild(wrap);
+    BO.renderStarBoard(wrap, {tileSize:28});
+
+    s.insertAdjacentHTML('beforeend', `
+      <div class="overlay" style="align-items:center;">
+        <div class="modal modal-revive">
+          <div class="revive-icon">❤️‍🩹</div>
+          <div class="title">Out of Moves?</div>
+          <div class="body mt-8">Continue from where you left off</div>
+          <div class="btn btn-primary modal-btn">▶ Watch Ad to Revive</div>
+          <div class="btn btn-primary modal-btn" style="background:linear-gradient(180deg,var(--brand-mint),#5BC999); box-shadow:0 4px 0 #4AA882,0 8px 16px rgba(91,201,153,0.25);">🪙 300 Revive</div>
+          <div class="btn modal-btn secondary">Give Up</div>
+        </div>
+      </div>
+    `);
+  </script>
+</div>
+</body>
+</html>

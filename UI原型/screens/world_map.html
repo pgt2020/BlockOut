@@ -1,0 +1,46 @@
+<!doctype html><html lang="zh"><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}html,body{height:100%}
+body{background:#E9EDF2;display:flex;align-items:center;justify-content:center;font-family:-apple-system,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif}
+.phone{width:390px;height:844px;background:#0E1116;border-radius:46px;padding:11px;box-shadow:0 24px 70px rgba(0,0,0,.35)}
+.screen{width:100%;height:100%;background:#0B1020;border-radius:36px;overflow:hidden;position:relative;display:flex;flex-direction:column;color:#EAF0F7}
+.notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:130px;height:28px;background:#0E1116;border-radius:0 0 18px 18px;z-index:60}
+.sb{height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 26px;font-size:13px;font-weight:700;color:#EAF0F7;z-index:5;margin-top:6px}
+.sb .r{display:flex;gap:5px;align-items:center}.sb .d{width:6px;height:6px;border-radius:50%;background:#EAF0F7}
+.head{display:flex;align-items:center;justify-content:space-between;padding:8px 22px 0;color:#EAF0F7}
+.head .t{font-weight:800;font-size:17px}.head .x{font-size:20px;opacity:.7}
+.canvas{position:relative;flex:1;margin:10px;background:radial-gradient(circle at 30% 20%,#1B2547,#0B1020 70%);border-radius:22px;overflow:hidden}
+.island{position:absolute;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
+.island .lab{position:absolute;bottom:8px;left:10px;font-size:11px;font-weight:700;color:#CFE9E4}
+.big{left:24px;top:24px;width:300px;height:300px}
+.big .nodes{position:absolute;inset:14px;display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;gap:8px}
+.node{background:rgba(31,182,166,.25);border:1px solid rgba(31,182,166,.5);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#DFF7F2}
+.node.cur{background:#1FB6A6;color:#06231F;font-weight:900;box-shadow:0 0 0 3px rgba(31,182,166,.4)}
+.node.lock{background:rgba(255,255,255,.05);border-style:dashed;color:#5C6B82}
+.small{left:38px;top:350px;width:150px;height:110px}
+.small2{right:20px;top:380px;width:120px;height:120px;border-style:dashed}
+.small2 .lab{color:#5C6B82}
+.zoom{position:absolute;right:14px;bottom:14px;display:flex;flex-direction:column;gap:8px}
+.zoom .z{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:18px;color:#EAF0F7}
+.mini{position:absolute;left:14px;bottom:14px;width:96px;height:60px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px}
+.mini .b{position:absolute;left:18px;top:18px;width:34px;height:34px;background:rgba(31,182,166,.5);border-radius:6px}
+.pill{position:absolute;background:rgba(31,182,166,.9);border:1px solid #fff;color:#04211D;font-size:11px;font-weight:800;padding:4px 9px;border-radius:999px;z-index:40;display:flex;align-items:center;gap:5px}
+.pill .n{background:#04211D;color:#9CF;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px}
+.foot{position:absolute;bottom:8px;left:0;right:0;text-align:center;font-size:10px;color:#7E8AA0;letter-spacing:.5px}
+</style></head><body><div class="phone"><div class="screen">
+<div class="notch"></div>
+<div class="sb"><span>9:41</span><span class="r"><span class="d"></span><span class="d"></span><span class="d"></span></span></div>
+<div class="head"><div class="t">世界展厅</div><div class="x">✕</div></div>
+<div class="canvas">
+  <div class="island big"><div class="nodes">
+    <div class="node">1</div><div class="node">2</div><div class="node">3</div><div class="node">4</div>
+    <div class="node">5</div><div class="node">6</div><div class="node cur">7</div><div class="node">8</div>
+    <div class="node">9</div><div class="node">10</div><div class="node lock">🔒</div><div class="node lock">🔒</div>
+  </div><div class="lab">第 6 章 · 霓虹都市（放大中）</div></div>
+  <div class="island small"><div class="lab">第 5 章</div></div>
+  <div class="island small2"><div class="lab">第 7 章 🔒</div></div>
+  <div class="mini"><div class="b"></div></div>
+  <div class="zoom"><div class="z">＋</div><div class="z">－</div></div>
+  <div class="pill" style="right:60px;top:60px"><span class="n">②</span>三层菜单合一 · 缩放导航</div>
+</div>
+<div class="foot">BlockOut UI 原型 · 创新结构 v0.1 — 可缩放世界画布</div>
+</div></div></body></html>

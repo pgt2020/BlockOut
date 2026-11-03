@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 390 934" width="780" height="1868" role="img" aria-label="390×844 · 基准（页面高 = 真实 844） 适配图（页面 844 高 + 页外说明区 90）">
+  <defs>
+    <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#FFFAF4"/><stop offset="1" stop-color="#FFF1E3"/></linearGradient>
+    <linearGradient id="cta" x2="0" y2="1"><stop stop-color="#FF8B7E"/><stop offset="1" stop-color="#FF6B5C"/></linearGradient>
+    <style>text{font-family:'Source Han Sans CN','Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif}</style>
+  </defs>
+
+  <rect x="0" y="0" width="390" height="844" fill="url(#bg)"/>
+  <rect x="0" y="0" width="390" height="24" fill="#FF7568" opacity=".07"/>
+  <rect x="0" y="810" width="390" height="34" fill="#FF7568" opacity=".07"/>
+  <path d="M0 24H390" stroke="#F45F70" stroke-width="1" stroke-dasharray="4 3"/>
+  <path d="M0 810H390" stroke="#F45F70" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="195" y="20" text-anchor="middle" font-size="7" fill="#C7432F">顶部安全区 24</text>
+  <text x="195" y="821" text-anchor="middle" font-size="7" fill="#C7432F">底部安全区 34</text>
+  <rect x="24" y="40" width="44" height="44" rx="12" fill="#62CFA7"/>
+  <path d="M41 55l11 7-11 7z" fill="#FFFFFF"/>
+  <text x="84" y="66" font-size="17" font-weight="900" fill="#553B36">BlockOut</text>
+  <text x="84" y="82" font-size="8.5" fill="#8A6E62">箭头方块消除</text>
+  <circle cx="348" cy="56" r="16" fill="#FFFFFF" stroke="#F0DCCB" stroke-width="1.5"/>
+  <circle cx="348" cy="56" r="9.92" fill="#FFC53D" stroke="#E3A22E" stroke-width="1.8"/>
+  <rect x="24" y="98" width="342" height="324" rx="20" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="2"/>
+  <clipPath id="cpA390"><rect x="30" y="104" width="330" height="288" rx="16"/></clipPath>
+  <image x="30" y="104" width="330" height="288" preserveAspectRatio="xMidYMid slice" xlink:href="assets/r03_330x288.png" clip-path="url(#cpA390)"/>
+  <rect x="30" y="104" width="330" height="288" rx="16" fill="#FFF7EF" opacity=".22"/>
+  <rect x="288" y="110" width="72" height="22" rx="11" fill="#FFFDF8" stroke="#FF7568" stroke-width="1.2"/>
+  <text x="324" y="125" text-anchor="middle" font-size="8.5" font-weight="900" fill="#FF6B5C">拼片 3/12</text>
+  <rect x="24" y="504" width="342" height="88" rx="22" fill="url(#cta)"/>
+  <rect x="44" y="528" width="40" height="40" rx="12" fill="#FFFFFF" opacity=".95"/>
+  <path d="M57 541l13 7-13 7z" fill="#FF6B5C"/>
+  <text x="98" y="546" font-size="16.5" font-weight="900" fill="#FFFFFF">继续第 4 关</text>
+  <text x="98" y="566" font-size="8.5" fill="#FFFFFF" opacity=".93">第一章 · 甜点星球 · 已通关 3 关</text>
+  <rect x="24" y="606" width="342" height="120" rx="20" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="2"/>
+  <text x="42" y="632" font-size="12" font-weight="900" fill="#553B36">第一章 · 甜点星球</text>
+  <rect x="42" y="644" width="306" height="9" rx="4.5" fill="#F5E6D8"/>
+  <rect x="42" y="644" width="76.5" height="9" rx="4.5" fill="#FF7568"/>
+  <circle cx="54.75" cy="674" r="7" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1.4"/>
+  <path d="M51.75 674L54.15 676.4L57.95 671.4" fill="none" stroke="#2E7C5B" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="80.25" cy="674" r="7" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1.4"/>
+  <path d="M77.25 674L79.65 676.4L83.45 671.4" fill="none" stroke="#2E7C5B" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="105.75" cy="674" r="7" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1.4"/>
+  <path d="M102.75 674L105.15 676.4L108.95 671.4" fill="none" stroke="#2E7C5B" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="131.25" cy="674" r="7" fill="none" stroke="#E0CDBC" stroke-width="1.6"/>
+  <circle cx="156.75" cy="674" r="7" fill="none" stroke="#E0CDBC" stroke-width="1.6"/>
+  <circle cx="182.25" cy="674" r="7" fill="none" stroke="#E0CDBC" stroke-width="1.6"/>
+  <circle cx="207.75" cy="674" r="7" fill="none" stroke="#E0CDBC" stroke-width="1.6"/>
+  <circle cx="233.25" cy="674" r="7" fill="none" stroke="#E0CDBC" stroke-width="1.6"/>
+  <circle cx="258.75" cy="674" r="7" fill="none" stroke="#E0CDBC" stroke-width="1.6"/>
+  <circle cx="284.25" cy="674" r="7" fill="none" stroke="#E0CDBC" stroke-width="1.6"/>
+  <circle cx="309.75" cy="674" r="7" fill="none" stroke="#E0CDBC" stroke-width="1.6"/>
+  <circle cx="335.25" cy="674" r="7" fill="none" stroke="#E0CDBC" stroke-width="1.6"/>
+  <text x="195" y="714" text-anchor="middle" font-size="8.5" fill="#8A6E62">拼片 3/12 · 还差 9 片解锁完整作品</text>
+  <rect x="24" y="738" width="342" height="64" rx="20" fill="#FFFFFF" stroke="#F0DCCB" stroke-width="2"/>
+  <path d="M72 758l9-8 9 8v10h-6v-6h-6v6h-6z" fill="#FF6B5C"/>
+  <text x="81" y="794" text-anchor="middle" font-size="8.5" font-weight="800" fill="#FF6B5C">首页</text>
+  <rect x="188.5" y="756" width="13" height="17" rx="2" fill="none" stroke="#8A7568" stroke-width="1.9"/>
+  <text x="195" y="794" text-anchor="middle" font-size="8.5" font-weight="800" fill="#8A7568">图鉴</text>
+  <path d="M300 760h18l-2 14h-14z" fill="none" stroke="#8A7568" stroke-width="1.9"/>
+  <text x="309" y="794" text-anchor="middle" font-size="8.5" font-weight="800" fill="#8A7568">商店</text>
+  <rect x="0.5" y="0.5" width="389" height="843" fill="none" stroke="#C9B8AC" stroke-width="1"/>
+  <rect x="0" y="844" width="390" height="90" fill="#F7F2EB"/>
+  <path d="M0 844H390" stroke="#E0D2C4" stroke-width="1"/>
+  <text x="12" y="860" font-size="8" font-weight="800" fill="#8A7568">▲ 页面边界 390×844 · 以上为设备屏幕；以下为图注说明区（不参与页面布局）</text>
+  <text x="12" y="878" font-size="10.5" font-weight="900" fill="#FF7568">390×844 · 基准（页面高 = 真实 844）</text>
+  <text x="12" y="896" font-size="7.5" fill="#8A6E62">· 底部导航 64 吸底、止于安全区 34 上方；CTA 342×88 高不压缩</text>
+  <text x="12" y="908" font-size="7.5" fill="#8A6E62">· 预览卡作品区 330×288（与 06 首页一致，等比裁切非拉伸）</text>
+  <text x="12" y="920" font-size="7.5" fill="#8A6E62">· 中部留白由弹性间隙吸收，不通过加长页面消除；棋盘 354 = 屏宽−36</text>
+</svg>

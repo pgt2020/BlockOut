@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh"><head><meta charset="utf-8"><style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:"Segoe UI",-apple-system,"PingFang SC",sans-serif; }
+body { background:#0c0a16; display:flex; justify-content:center; align-items:center; min-height:100vh; }
+.phone { width:390px; height:844px; background:#15132a; border-radius:44px; position:relative; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.6); border:1px solid #2a2750; }
+/* status bar */
+.sb { height:44px; display:flex; justify-content:space-between; align-items:center; padding:0 26px; color:#cfcae8; font-size:13px; font-weight:600; }
+.sb .icons { letter-spacing:2px; }
+/* top HUD */
+.hud { display:flex; justify-content:space-between; align-items:center; padding:6px 22px 14px; }
+.hud .lvl { background:#221f44; color:#fff; padding:8px 16px; border-radius:14px; font-size:14px; font-weight:700; }
+.hud .lvl small { color:#8e88b8; font-weight:500; }
+.hud .right { display:flex; gap:10px; }
+.chip { background:#221f44; color:#a8a2d0; padding:8px 13px; border-radius:14px; font-size:13px; font-weight:600; display:flex; align-items:center; gap:5px; }
+.chip.t { color:#2dd4bf; }
+.chip.h { color:#ff7a8a; }
+/* board */
+.boardwrap { display:flex; justify-content:center; margin-top:6px; }
+.board { width:330px; height:330px; background:#1c1938; border-radius:26px; position:relative; box-shadow:inset 0 0 0 1px #2e2b54, 0 12px 30px rgba(0,0,0,.35); }
+/* dot grid */
+.dots { position:absolute; inset:18px; display:grid; grid-template-columns:repeat(9,1fr); grid-template-rows:repeat(9,1fr); }
+.dots i { width:3px; height:3px; background:#34305c; border-radius:50%; align-self:center; justify-self:center; }
+/* blocks: multi-cell shapes, non-rectangular footprint with holes */
+.block { position:absolute; border-radius:13px; display:flex; align-items:center; justify-content:center; box-shadow:0 3px 0 rgba(0,0,0,.18), inset 0 2px 3px rgba(255,255,255,.25); }
+.block .arr { font-size:26px; font-weight:900; color:rgba(0,0,0,.55); }
+.block .arr.w { color:rgba(255,255,255,.9); }
+.b1 { left:18px; top:18px; width:138px; height:64px; background:linear-gradient(160deg,#e8a24a,#d6863a); }            /* 2x3-ish */
+.b2 { left:160px; top:18px; width:64px; height:138px; background:linear-gradient(160deg,#7fb8 e6,#5b9bd6); background:linear-gradient(160deg,#7fb8e6,#5b9bd6); } /* tall */
+.b3 { left:228px; top:18px; width:64px; height:64px; background:linear-gradient(160deg,#f0c674,#e0ad4f); }            /* 1x1 */
+.b4 { left:18px; top:86px; width:64px; height:64px; background:linear-gradient(160deg,#c98a4b,#b3743a); }              /* hole gap below */
+.b5 { left:86px; top:86px; width:64px; height:64px; background:linear-gradient(160deg,#8fd4c4,#5cbfa8); }             /* teal accent */
+.b6 { left:228px; top:86px; width:64px; height:138px; background:linear-gradient(160deg,#e8a24a,#d6863a); }           /* tall */
+.b7 { left:18px; top:154px; width:138px; height:64px; background:linear-gradient(160deg,#e6e1f0,#cfc8e6); }           /* light */
+.b8 { left:86px; top:154px; width:64px; height:64px; background:linear-gradient(160deg,#7fb8e6,#5b9bd6); }
+.b9 { left:160px; top:160px; width:64px; height:64px; background:linear-gradient(160deg,#c98a4b,#b3743a); }
+.b10 { left:228px; top:228px; width:64px; height:64px; background:linear-gradient(160deg,#f0c674,#e0ad4f); }
+/* arrows orientation by rotation via text */
+.up::before { content:"\2191"; } .down::before{content:"\2193";} .left::before{content:"\2190";} .right::before{content:"\2192";}
+/* bottom tools */
+.tools { display:flex; justify-content:center; gap:14px; margin-top:22px; }
+.tool { width:58px; height:58px; background:#221f44; border-radius:18px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#a8a2d0; font-size:11px; font-weight:600; box-shadow:0 4px 10px rgba(0,0,0,.25); }
+.tool .ic { font-size:22px; margin-bottom:2px; }
+.tool.t1 { color:#2dd4bf; }
+.tool.t3 { color:#f0c674; }
+.progress { margin:18px 40px 0; height:8px; background:#221f44; border-radius:6px; overflow:hidden; }
+.progress > div { width:62%; height:100%; background:linear-gradient(90deg,#2dd4bf,#5b9bd6); border-radius:6px; }
+.ptxt { text-align:center; color:#8e88b8; font-size:11px; margin-top:7px; }
+/* caption */
+.cap { position:absolute; bottom:0; width:100%; background:linear-gradient(0deg,rgba(12,10,22,.95),rgba(12,10,22,0)); padding:30px 20px 14px; }
+.cap .t { color:#fff; font-size:13px; font-weight:700; }
+.cap .d { color:#9b95c4; font-size:11px; line-height:1.5; margin-top:3px; }
+</style></head><body>
+<div class="phone">
+  <div class="sb"><span>9:41</span><span class="icons">●●● 5G ▮</span></div>
+  <div class="hud">
+    <div class="lvl">第 3 章 · 第 7 关<br><small>Chapter 3 · Level 7</small></div>
+    <div class="right">
+      <div class="chip t">⏱ 01:24</div>
+      <div class="chip h">♥♥♥</div>
+      <div class="chip">⏸</div>
+    </div>
+  </div>
+  <div class="boardwrap">
+    <div class="board">
+      <div class="dots">
+        <!-- 81 dots -->
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+      <div class="block b1 up"><span class="arr">↑</span></div>
+      <div class="block b2 right"><span class="arr w">→</span></div>
+      <div class="block b3 down"><span class="arr">↓</span></div>
+      <div class="block b4 left"><span class="arr">←</span></div>
+      <div class="block b5 up"><span class="arr">↑</span></div>
+      <div class="block b6 down"><span class="arr">↓</span></div>
+      <div class="block b7 right"><span class="arr">→</span></div>
+      <div class="block b8 up"><span class="arr">↑</span></div>
+      <div class="block b9 left"><span class="arr">←</span></div>
+      <div class="block b10 down"><span class="arr">↓</span></div>
+    </div>
+  </div>
+  <div class="tools">
+    <div class="tool t1"><span class="ic">💡</span>提示</div>
+    <div class="tool"><span class="ic">🔨</span>锤子</div>
+    <div class="tool t3"><span class="ic">✨</span>魔法棒</div>
+  </div>
+  <div class="progress"><div></div></div>
+  <div class="ptxt">已消除 18 / 29 块 · 本章拼装进度</div>
+  <div class="cap">
+    <div class="t">方案 01 · Easybrain 极简治愈风（对标 Blockudoku）</div>
+    <div class="d">深靛蓝底 + 木质暖色块 + 单一青绿强调色；大量留白、细字重、低刺激，行业极简标杆。箭头克制内嵌，不喧宾夺主。</div>
+  </div>
+</div>
+</body></html>

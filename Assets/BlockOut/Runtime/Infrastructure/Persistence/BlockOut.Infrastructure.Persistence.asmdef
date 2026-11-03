@@ -1,0 +1,17 @@
+{
+    "name": "BlockOut.Infrastructure.Persistence",
+    "rootNamespace": "BlockOut.Infrastructure.Persistence",
+    "references": [
+        "BlockOut.Core",
+        "BlockOut.Contracts"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

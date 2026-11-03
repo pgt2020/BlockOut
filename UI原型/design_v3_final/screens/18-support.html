@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Support · C方案星形糖果可爱风</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .sup-header { position: absolute; top: 52px; left: 16px; right: 16px; display: flex; align-items: center; gap: 12px; }
+  .sup-list { position: absolute; top: 110px; left: 16px; right: 16px; bottom: 230px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+  .sup-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-radius: 16px; background: var(--bg-card); border: 1px solid var(--line-base); }
+  .sup-form { position: absolute; bottom: 20px; left: 16px; right: 16px; padding: 16px; }
+  .sup-input { width: 100%; min-height: 80px; border-radius: 16px; border: 1px solid var(--line-base); background: var(--bg-soft); padding: 12px; font-family: inherit; font-size: 13px; color: var(--ink-primary); resize: none; }
+  .sup-input::placeholder { color: var(--ink-tertiary); }
+</style>
+</head>
+<body>
+<div class="screen" id="screen">
+  <script src="../assets/scripts.js"></script>
+  <script>
+    const s = document.getElementById('screen');
+    BO.initBackground(s, {decoCount:3});
+    s.insertAdjacentHTML('beforeend', `
+      <div class="sup-header">
+        <div class="btn-icon small">←</div>
+        <div class="title" style="flex:1;text-align:center">Support</div>
+        <div style="width:36px"></div>
+      </div>
+      <div class="sup-list">
+        <div class="sup-row"><span class="body">How to play?</span><span class="caption">></span></div>
+        <div class="sup-row"><span class="body">Coins & purchases</span><span class="caption">></span></div>
+        <div class="sup-row"><span class="body">Cloud save issues</span><span class="caption">></span></div>
+        <div class="sup-row"><span class="body">Report a bug</span><span class="caption">></span></div>
+      </div>
+      <div class="card sup-form">
+        <div class="subtitle" style="margin-bottom:10px">Send Feedback</div>
+        <textarea class="sup-input" placeholder="Tell us what happened..."></textarea>
+        <div class="btn btn-primary w-full mt-12">Submit</div>
+      </div>
+    `);
+  </script>
+</div>
+</body>
+</html>

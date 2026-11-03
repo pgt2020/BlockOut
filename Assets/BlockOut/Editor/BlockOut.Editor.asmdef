@@ -1,0 +1,30 @@
+{
+    "name": "BlockOut.Editor",
+    "rootNamespace": "BlockOut.Editor",
+    "references": [
+        "BlockOut.Core",
+        "BlockOut.Contracts",
+        "BlockOut.Rendering",
+        "BlockOut.Infrastructure.Ads",
+        "BlockOut.Infrastructure.Persistence",
+        "BlockOut.Infrastructure.Configuration",
+        "BlockOut.Infrastructure.Resources",
+        "BlockOut.Infrastructure.Audio",
+        "BlockOut.Infrastructure.Analytics",
+        "BlockOut.Gameplay",
+        "BlockOut.UI",
+        "BlockOut.Bootstrap",
+        "Unity.ugui"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

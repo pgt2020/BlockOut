@@ -1,0 +1,13 @@
+﻿region_id,global_level,chapter,level_in_chapter,grid_col,grid_row,pixel_x,pixel_y,pixel_w,pixel_h,source_canvas,level_id,content_status
+region_01,1,1,1,0,0,0,0,270,360,1080x1080,blockout_tutorial_01,bundled
+region_02,2,1,2,1,0,270,0,270,360,1080x1080,blockout_tutorial_02,bundled
+region_03,3,1,3,2,0,540,0,270,360,1080x1080,gen_placeholder_003,generated_placeholder
+region_04,4,1,4,3,0,810,0,270,360,1080x1080,gen_placeholder_004,generated_placeholder
+region_05,5,1,5,0,1,0,360,270,360,1080x1080,gen_placeholder_005,generated_placeholder
+region_06,6,1,6,1,1,270,360,270,360,1080x1080,gen_placeholder_006,generated_placeholder
+region_07,7,1,7,2,1,540,360,270,360,1080x1080,gen_placeholder_007,generated_placeholder
+region_08,8,1,8,3,1,810,360,270,360,1080x1080,gen_placeholder_008,generated_placeholder
+region_09,9,1,9,0,2,0,720,270,360,1080x1080,gen_placeholder_009,generated_placeholder
+region_10,10,1,10,1,2,270,720,270,360,1080x1080,gen_placeholder_010,generated_placeholder
+region_11,11,1,11,2,2,540,720,270,360,1080x1080,gen_placeholder_011,generated_placeholder
+region_12,12,1,12,3,2,810,720,270,360,1080x1080,gen_placeholder_012,generated_placeholder

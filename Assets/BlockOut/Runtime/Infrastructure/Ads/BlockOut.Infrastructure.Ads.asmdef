@@ -1,0 +1,14 @@
+{
+    "name": "BlockOut.Infrastructure.Ads",
+    "rootNamespace": "BlockOut.Infrastructure.Ads",
+    "references": ["BlockOut.Core", "BlockOut.Contracts"],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

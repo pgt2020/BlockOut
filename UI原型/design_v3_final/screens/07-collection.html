@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Collection · C方案星形糖果可爱风</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .col-header { position: absolute; top: 58px; left: 0; right: 0; text-align: center; }
+  .col-list { position: absolute; top: 110px; left: 16px; right: 16px; bottom: 76px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
+  .chapter-row { padding: 16px; }
+  .chapter-row-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .chapter-thumbs { display: flex; gap: 10px; margin-top: 12px; }
+  .chapter-thumb { width: 54px; height: 54px; border-radius: 14px; background: var(--bg-soft); border: 1px solid var(--line-base); display: flex; align-items: center; justify-content: center; font-size: 24px; }
+  .chapter-thumb.lock { background: var(--bg-panel); border-style: dashed; font-size: 16px; color: var(--ink-tertiary); }
+</style>
+</head>
+<body>
+<div class="screen" id="screen">
+  <script src="../assets/scripts.js"></script>
+  <script>
+    const s = document.getElementById('screen');
+    BO.initBackground(s, {decoCount:4});
+    const chapters = [
+      {name:'Candy Star', progress:40, thumbs:['🧁','🍬','🍭','🔒']},
+      {name:'Fruit Party', progress:0, thumbs:['🔒','🔒','🔒','🔒'], lock:true},
+      {name:'Pet Park', progress:0, thumbs:['🔒','🔒','🔒','🔒'], lock:true}
+    ];
+    s.insertAdjacentHTML('beforeend', `
+      <div class="col-header">
+        <div class="title">Collection</div>
+        <div class="caption">Unlock beautiful pictures</div>
+      </div>
+      <div class="col-list" id="list"></div>
+    `);
+    const list = document.getElementById('list');
+    chapters.forEach(ch=>{
+      const el = document.createElement('div');
+      el.className = 'card chapter-row'+(ch.lock?' card-lock':'');
+      el.innerHTML = `
+        <div class="chapter-row-top">
+          <span class="subtitle" style="color:${ch.lock?'var(--ink-tertiary)':'var(--brand-coral)'}">${ch.name}</span>
+          <span class="caption">${ch.progress}%</span>
+        </div>
+        <div class="progress"><div class="progress-fill" style="width:${ch.progress}%"></div></div>
+        <div class="chapter-thumbs">
+          ${ch.thumbs.map(t=>`<div class="chapter-thumb ${t==='🔒'?'lock':''}">${t}</div>`).join('')}
+        </div>
+      `;
+      list.appendChild(el);
+    });
+    BO.renderBanner(s);
+  </script>
+</div>
+</body>
+</html>

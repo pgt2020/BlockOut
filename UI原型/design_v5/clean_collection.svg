@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 390 844" width="780" height="1688" role="img" aria-label="收藏页纯界面：章节摘要、章节列表、重复挑战关卡网格、底部导航">
+  <defs>
+    <linearGradient id="s14bg" x2="0" y2="1"><stop stop-color="#FFFAF4"/><stop offset="1" stop-color="#FFF1E3"/></linearGradient>
+    <linearGradient id="g14top" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#B5EBD5"/><stop offset="1" stop-color="#79D2B2"/></linearGradient>
+    <linearGradient id="g14cta" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#FF8B7E"/><stop offset="1" stop-color="#FF6B5C"/></linearGradient>
+    <radialGradient id="bm14"><stop stop-color="#62CFA7" stop-opacity=".14"/><stop offset="1" stop-color="#62CFA7" stop-opacity="0"/></radialGradient>
+    <symbol id="coin14" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" fill="#FFC53D" stroke="#E3A22E" stroke-width="1.4"/>
+      <circle cx="12" cy="12" r="6.5" fill="none" stroke="#FFE9B0" stroke-width="1.4"/>
+      <path d="M12 7l1.6 3.4 3.4 1.6-3.4 1.6L12 17l-1.6-3.4L7 12l3.4-1.6z" fill="#E3A22E"/>
+    </symbol>
+    <symbol id="lock14" viewBox="0 0 24 24">
+      <rect x="5" y="10.5" width="14" height="10" rx="2.5"/>
+      <path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" fill="none"/>
+    </symbol>
+    <symbol id="back14" viewBox="0 0 24 24"><path d="M15 4l-8 8 8 8" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="home14" viewBox="0 0 24 24"><path d="M12 3.2l9 7.6h-2.6v9.4H5.6v-9.4H3z"/></symbol>
+    <symbol id="book14" viewBox="0 0 24 24"><path d="M4 4.6h6.2A2.8 2.8 0 0 1 12 6.8v13a2.4 2.4 0 0 0-1.8-1.4H4zm16 0h-6.2A2.8 2.8 0 0 0 12 6.8v13a2.4 2.4 0 0 1 1.8-1.4H20z"/></symbol>
+    <symbol id="bag14" viewBox="0 0 24 24"><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8h1.8l1.2 12H5.5L6.7 8z"/></symbol>
+    <symbol id="imgfail14" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke-width="1.8"/>
+      <path d="M3 16l5-5 4 4 3-3 6 6" fill="none" stroke-width="1.6"/>
+      <path d="M13 4l4 5h-4z" stroke-width="1.4"/>
+    </symbol>
+    <style>
+      text{font-family:'Source Han Sans CN','Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif}
+      .cap14{font-size:11px;font-weight:900;fill:#553B36}
+      .ds14{font-size:8.5px;fill:#8A6E62}
+      .nt14{font-size:8.5px;fill:#553B36}
+    </style>
+  </defs>
+  <g transform="translate(0,60)">
+    <circle cx="50" cy="120" r="150" fill="url(#bm14)"/>
+    <circle cx="46" cy="50" r="22" fill="#FFFFFF" stroke="#F0DCCB" stroke-width="1.5"/>
+    <use href="#back14" x="37" y="41" width="18" height="18" stroke="#553B36" fill="none"/>
+    <text x="195" y="56" text-anchor="middle" font-size="16" font-weight="900" fill="#553B36">收藏</text>
+    <rect x="244" y="33" width="92" height="24" rx="12" fill="#FFF1E3" stroke="#F0DCCB" stroke-width="1"/>
+    <use href="#coin14" x="252" y="36" width="18" height="18"/>
+    <text x="275" y="49" font-size="10" font-weight="900" fill="#553B36">300</text>
+
+    <rect x="24" y="84" width="342" height="148" rx="24" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="2"/>
+    <rect x="36" y="96" width="120" height="124" rx="12" fill="#FFFFFF" stroke="#E8CDBB" stroke-width="1"/>
+    <clipPath id="clipTh14"><rect x="36" y="96" width="120" height="124" rx="12"/></clipPath>
+    <image x="36" y="96" width="120" height="124" preserveAspectRatio="xMidYMid slice"
+           xlink:href="assets/r03_120x124.png" clip-path="url(#clipTh14)"/>
+    <rect x="36" y="96" width="120" height="124" rx="12" fill="#FFF7EF" opacity=".22"/>
+    <text x="168" y="114" font-size="12" font-weight="900" fill="#553B36">第一章 · 甜点星球</text>
+    <rect x="168" y="126" width="180" height="10" rx="5" fill="#F5E6D8"/>
+    <rect x="168" y="126" width="45" height="10" rx="5" fill="#FF7568"/>
+    <text x="168" y="154" font-size="9" font-weight="700" fill="#553B36">拼片 3/12 · 还差 9 片</text>
+    <rect x="168" y="164" width="120" height="30" rx="15" fill="#E7D7C8"/>
+    <text x="228" y="183" text-anchor="middle" font-size="9" font-weight="900" fill="#8A6E62">集齐12片后查看</text>
+    <text x="168" y="212" font-size="6.5" fill="#8A6E62">集齐12片后开放完整作品</text>
+    <text x="168" y="226" font-size="6.5" fill="#8A6E62">可在下方重复挑战已通关关卡</text>
+
+    <text x="24" y="256" font-size="11" font-weight="900" fill="#553B36">章节</text>
+    <rect x="24" y="266" width="342" height="72" rx="16" fill="#FFFDF8" stroke="#3BB98E" stroke-width="1.5"/>
+    <rect x="36" y="276" width="52" height="52" rx="10" fill="#FFFFFF" stroke="#E8CDBB" stroke-width="1"/>
+    <circle cx="62" cy="296" r="9" fill="url(#g14top)"/>
+    <circle cx="62" cy="316" r="7" fill="#FF7568"/>
+    <text x="100" y="298" font-size="11" font-weight="800" fill="#553B36">第一章 · 甜点星球</text>
+    <text x="100" y="316" font-size="8.5" fill="#8A6E62">3/12 · 进行中</text>
+    <path d="M348 296l6 6-6 6" fill="none" stroke="#B9A79B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="24" y="346" width="342" height="72" rx="16" fill="#F3ECE4" stroke="#E5D5C6" stroke-width="1.5"/>
+    <rect x="36" y="356" width="52" height="52" rx="10" fill="#EBD9C6"/>
+    <use href="#lock14" x="55" y="371" width="16" height="16" fill="#B9A79B" stroke="#B9A79B" stroke-width="1.6"/>
+    <text x="100" y="378" font-size="11" font-weight="800" fill="#8A7568">第二章</text>
+    <text x="100" y="396" font-size="8.5" fill="#8A6E62">通关第一章 12/12 后开放</text>
+    <rect x="24" y="426" width="342" height="72" rx="16" fill="#F3ECE4" stroke="#E5D5C6" stroke-width="1.5"/>
+    <rect x="36" y="436" width="52" height="52" rx="10" fill="#EBD9C6"/>
+    <use href="#lock14" x="55" y="451" width="16" height="16" fill="#B9A79B" stroke="#B9A79B" stroke-width="1.6"/>
+    <text x="100" y="458" font-size="11" font-weight="800" fill="#8A7568">第三章</text>
+    <text x="100" y="476" font-size="8.5" fill="#8A6E62">新章节准备中 · 不可进入</text>
+
+    <rect x="24" y="512" width="342" height="140" rx="16" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="2"/>
+    <text x="36" y="536" font-size="11" font-weight="900" fill="#553B36">重复挑战 · 第一章</text>
+    <g>
+      <rect x="109" y="548" width="26" height="26" rx="8" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1.2"/>
+      <path d="M116 561l4 4 7-8" fill="none" stroke="#2E7C5B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="145" y="548" width="26" height="26" rx="8" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1.2"/>
+      <path d="M152 561l4 4 7-8" fill="none" stroke="#2E7C5B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="181" y="548" width="26" height="26" rx="8" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1.2"/>
+      <path d="M188 561l4 4 7-8" fill="none" stroke="#2E7C5B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="217" y="548" width="26" height="26" rx="8" fill="#FFFFFF" stroke="#FF7568" stroke-width="2"/>
+      <text x="230" y="565" text-anchor="middle" font-size="9" font-weight="900" fill="#FF7568">4</text>
+      <rect x="253" y="548" width="26" height="26" rx="8" fill="#F3ECE4" stroke="#E5D5C6" stroke-width="1"/>
+      <use href="#lock14" x="259" y="554" width="14" height="14" fill="#C9B8AC"/>
+      <rect x="289" y="548" width="26" height="26" rx="8" fill="#F3ECE4" stroke="#E5D5C6" stroke-width="1"/>
+      <use href="#lock14" x="295" y="554" width="14" height="14" fill="#C9B8AC"/>
+      <rect x="109" y="582" width="26" height="26" rx="8" fill="#F3ECE4" stroke="#E5D5C6" stroke-width="1"/>
+      <use href="#lock14" x="115" y="588" width="14" height="14" fill="#C9B8AC"/>
+      <rect x="145" y="582" width="26" height="26" rx="8" fill="#F3ECE4" stroke="#E5D5C6" stroke-width="1"/>
+      <use href="#lock14" x="151" y="588" width="14" height="14" fill="#C9B8AC"/>
+      <rect x="181" y="582" width="26" height="26" rx="8" fill="#F3ECE4" stroke="#E5D5C6" stroke-width="1"/>
+      <use href="#lock14" x="187" y="588" width="14" height="14" fill="#C9B8AC"/>
+      <rect x="217" y="582" width="26" height="26" rx="8" fill="#F3ECE4" stroke="#E5D5C6" stroke-width="1"/>
+      <use href="#lock14" x="223" y="588" width="14" height="14" fill="#C9B8AC"/>
+      <rect x="253" y="582" width="26" height="26" rx="8" fill="#F3ECE4" stroke="#E5D5C6" stroke-width="1"/>
+      <use href="#lock14" x="259" y="588" width="14" height="14" fill="#C9B8AC"/>
+      <rect x="289" y="582" width="26" height="26" rx="8" fill="#F3ECE4" stroke="#E5D5C6" stroke-width="1"/>
+      <use href="#lock14" x="295" y="588" width="14" height="14" fill="#C9B8AC"/>
+    </g>
+    <text x="36" y="632" font-size="7" fill="#8A6E62">重玩已通关关卡可获得金币，拼片不会重复解锁；未通关关卡锁定</text>
+
+    <rect x="24" y="700" width="342" height="64" rx="22" fill="#FFFFFF" stroke="#F0DCCB" stroke-width="2"/>
+    <use href="#home14" x="85" y="716" width="20" height="20" fill="#B9A79B"/>
+    <text x="95" y="752" text-anchor="middle" font-size="9" font-weight="800" fill="#8A7568">首页</text>
+    <use href="#book14" x="195" y="716" width="20" height="20" fill="#FF6B5C"/>
+    <text x="205" y="752" text-anchor="middle" font-size="9" font-weight="800" fill="#FF6B5C">图鉴</text>
+    <use href="#bag14" x="305" y="716" width="20" height="20" fill="#B9A79B"/>
+    <text x="315" y="752" text-anchor="middle" font-size="9" font-weight="800" fill="#8A7568">商店</text>
+  </g>
+</svg>

@@ -1,0 +1,17 @@
+{
+    "name": "BlockOut.Infrastructure.Configuration",
+    "rootNamespace": "BlockOut.Infrastructure.Configuration",
+    "references": [
+        "BlockOut.Core",
+        "BlockOut.Contracts"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

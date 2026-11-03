@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Season Pass · C方案星形糖果可爱风</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .sp-header { position: absolute; top: 52px; left: 16px; right: 16px; text-align: center; }
+  .sp-progress { margin: 14px 20px 0; padding: 16px; position: absolute; top: 110px; left: 0; right: 0; }
+  .sp-levels { position: absolute; top: 210px; left: 16px; right: 16px; bottom: 76px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+  .sp-row { display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 16px; background: var(--bg-card); border: 1px solid var(--line-base); }
+  .sp-row.current { background: rgba(255,170,128,0.1); border-color: var(--brand-peach); }
+  .sp-lvl { width: 32px; text-align: center; font-weight: 900; }
+  .sp-reward { flex: 1; display: flex; align-items: center; gap: 8px; }
+  .sp-premium { width: 90px; text-align: center; background: linear-gradient(180deg,var(--brand-lavender),#A88FEF); color:#fff; border-radius: 12px; padding: 8px 0; font-weight: 800; font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="screen" id="screen">
+  <script src="../assets/scripts.js"></script>
+  <script>
+    const s = document.getElementById('screen');
+    BO.initBackground(s, {decoCount:4});
+    s.insertAdjacentHTML('beforeend', `
+      <div class="sp-header">
+        <div class="title">Season Pass</div>
+        <div class="caption">Season 1 · Candy Cosmos</div>
+      </div>
+      <div class="card sp-progress">
+        <div class="progress-top" style="display:flex;justify-content:space-between;margin-bottom:10px;">
+          <span class="subtitle">Level 4</span>
+          <span class="caption">240 / 300 XP</span>
+        </div>
+        <div class="progress"><div class="progress-fill" style="width:80%"></div></div>
+      </div>
+      <div class="sp-levels">
+        <div class="sp-row current">
+          <div class="sp-lvl">4</div>
+          <div class="sp-reward"><span style="font-size:22px">🪙</span> 100 coins</div>
+          <div class="sp-premium">+ Skin</div>
+        </div>
+        <div class="sp-row">
+          <div class="sp-lvl">5</div>
+          <div class="sp-reward"><span style="font-size:22px">💡</span> 1 Hint</div>
+          <div class="sp-premium">+ 3 Hints</div>
+        </div>
+        <div class="sp-row">
+          <div class="sp-lvl">6</div>
+          <div class="sp-reward"><span style="font-size:22px">🪙</span> 150 coins</div>
+          <div class="sp-premium">+ Avatar</div>
+        </div>
+        <div class="sp-row">
+          <div class="sp-lvl">7</div>
+          <div class="sp-reward"><span style="font-size:22px">⭐</span> Season Frame</div>
+          <div class="sp-premium">+ Exclusive</div>
+        </div>
+      </div>
+    `);
+    BO.renderBanner(s);
+  </script>
+</div>
+</body>
+</html>

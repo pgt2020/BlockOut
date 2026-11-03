@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 950" role="img" aria-label="BlockOut six by six board with six pieces A to F and one arrow per piece">
+  <defs>
+    <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#fffaf4"/><stop offset="1" stop-color="#fff0e5"/></linearGradient>
+    <filter id="shadow" x="-25%" y="-25%" width="150%" height="160%"><feDropShadow dx="0" dy="8" stdDeviation="5" flood-color="#674138" flood-opacity=".18"/></filter>
+    <filter id="greenGlow" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="0" stdDeviation="9" flood-color="#44d7a1" flood-opacity=".85"/></filter>
+    <style>
+      .title{font:700 34px Arial,sans-serif;fill:#553b36}.sub{font:18px Arial,sans-serif;fill:#80675f}
+      .grid{fill:none;stroke:#e9cfc0;stroke-width:2;stroke-dasharray:4 9}.piece{stroke:#ffffff;stroke-width:5;stroke-linejoin:round;filter:url(#shadow)}
+      .blocked{stroke:#f26370;stroke-width:8}.movable{stroke:#40c99b;stroke-width:8;filter:url(#greenGlow)}
+      .arrow{font:700 54px Arial,sans-serif;text-anchor:middle;dominant-baseline:middle;fill:#fffefa;stroke:#684b45;stroke-width:1;paint-order:stroke fill}
+      .id{font:700 20px Arial,sans-serif;fill:#624841}.legend{font:20px Arial,sans-serif;fill:#553b36}
+    </style>
+  </defs>
+  <rect width="800" height="950" fill="url(#bg)"/>
+  <text class="title" x="80" y="72">BlockOut · Gameplay drawing reference</text>
+  <text class="sub" x="80" y="107">6 × 6 teaching board · six pieces · exactly one arrow per piece</text>
+  <rect x="90" y="120" width="620" height="620" rx="25" fill="#fffaf6" stroke="#d8bbaa" stroke-width="5"/>
+  <path class="grid" d="M200 130 V730 M300 130 V730 M400 130 V730 M500 130 V730 M600 130 V730 M100 230 H700 M100 330 H700 M100 430 H700 M100 530 H700 M100 630 H700"/>
+  <path class="piece blocked" fill="#f5bd84" d="M200 230 H300 V330 H400 V430 H200 Z"/>
+  <path class="piece movable" fill="#8adbc0" d="M500 230 H600 V430 H500 Z"/>
+  <path class="piece" fill="#b9a4e8" d="M100 530 H400 V630 H100 Z"/>
+  <path class="piece" fill="#f6a4ba" d="M400 430 H500 V530 H600 V430 H700 V630 H400 Z"/>
+  <path class="piece" fill="#f7d36c" d="M100 230 H200 V330 H100 Z"/>
+  <path class="piece" fill="#92bbef" d="M300 130 H400 V330 H300 Z"/>
+  <text class="arrow" x="350" y="380">→</text>
+  <text class="arrow" x="550" y="280">↑</text>
+  <text class="arrow" x="250" y="580">←</text>
+  <text class="arrow" x="550" y="580">↓</text>
+  <text class="arrow" x="150" y="280">↑</text>
+  <text class="arrow" x="350" y="180">→</text>
+  <text class="id" x="212" y="260">A</text><text class="id" x="510" y="410">B</text>
+  <text class="id" x="111" y="560">C</text><text class="id" x="411" y="610">D</text>
+  <text class="id" x="111" y="260">E</text><text class="id" x="311" y="300">F</text>
+  <text class="legend" x="100" y="790">Green outline: B can fly upward</text>
+  <text class="legend" x="100" y="826">Red outline: A is blocked</text>
+  <text class="sub" x="100" y="885">A–F labels are for review only. Remove them from the final game UI.</text>
+</svg>

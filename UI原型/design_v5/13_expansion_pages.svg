@@ -1,0 +1,336 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 2400" width="780" height="4800" role="img" aria-label="v5 扩展页规范稿：结算首次与重复通关、收藏三态、设置、商店六状态、重开与退出确认框">
+  <!-- ============================================================
+       BlockOut · v5 扩展页规范稿（关键帧）  2026-10-15 复审修订
+       完整手机页面见 14（收藏）/ 15（商店）/ 16（设置）/ 17（章末结算）
+       本稿 = 关键帧与规则；所有 symbol 引用均显式 width/height（防溢出）
+       修订：商店补 未解锁/购买中/成功/失败；设置移除非首发入口；
+             删除「金币不足去商店」引导（商店只卖道具，首发不提供）
+  ============================================================ -->
+  <defs>
+    <linearGradient id="s13bg" x2="0" y2="1"><stop stop-color="#FFFAF4"/><stop offset="1" stop-color="#FFF1E3"/></linearGradient>
+    <linearGradient id="g13top" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#B5EBD5"/><stop offset="1" stop-color="#79D2B2"/></linearGradient>
+    <linearGradient id="g13cup" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#FAE49B"/><stop offset="1" stop-color="#F2C957"/></linearGradient>
+    <linearGradient id="g13cta" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#FF8B7E"/><stop offset="1" stop-color="#FF6B5C"/></linearGradient>
+    <symbol id="coin13" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" fill="#FFC53D" stroke="#E3A22E" stroke-width="1.4"/>
+      <circle cx="12" cy="12" r="6.5" fill="none" stroke="#FFE9B0" stroke-width="1.4"/>
+      <path d="M12 7l1.6 3.4 3.4 1.6-3.4 1.6L12 17l-1.6-3.4L7 12l3.4-1.6z" fill="#E3A22E"/>
+    </symbol>
+    <symbol id="lock13" viewBox="0 0 24 24">
+      <rect x="5" y="10.5" width="14" height="10" rx="2.5"/>
+      <path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" fill="none"/>
+    </symbol>
+    <symbol id="star13" viewBox="0 0 24 24">
+      <path d="M12 1l2.6 7.4L22 9.6l-5.8 5.3 1.6 7.5L12 18.4 6.2 22.4l1.6-7.5L2 9.6l7.4-1.2z"/>
+    </symbol>
+    <symbol id="bulb13" viewBox="0 0 24 24">
+      <path d="M12 3a6 6 0 0 1 3.4 10.9c-.7.5-1 1.2-1 2.1h-4.8c0-.9-.3-1.6-1-2.1A6 6 0 0 1 12 3z"/>
+      <path d="M9.8 18.5h4.4" fill="none"/>
+    </symbol>
+    <symbol id="hammer13" viewBox="0 0 24 24">
+      <path d="M14.5 3.5l6 6-2.5 2.5-6-6z"/>
+      <path d="M13 7l-8.5 8.5c-1 1-1 2.6 0 3.5s2.6 1 3.5 0L16.5 11" fill="none"/>
+    </symbol>
+    <symbol id="wand13" viewBox="0 0 24 24">
+      <path d="M5 19L15.5 8.5" fill="none"/>
+      <path d="M16.5 3.5l1.2 2.8 2.8 1.2-2.8 1.2-1.2 2.8-1.2-2.8-2.8-1.2 2.8-1.2z"/>
+      <path d="M19.5 14l.8 1.7 1.7.8-1.7.8-.8 1.7-.8-1.7-1.7-.8 1.7-.8z"/>
+    </symbol>
+    <style>
+      text{font-family:'Source Han Sans CN','Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif}
+      .h13{font-size:17px;font-weight:900;fill:#553B36}
+      .sub13{font-size:9.5px;fill:#8A6E62}
+      .sec13{font-size:12px;font-weight:900;fill:#FF7568}
+      .ds13{font-size:8.5px;fill:#8A6E62}
+      .nt13{font-size:8.5px;fill:#553B36}
+      .btnw13{font-size:11px;font-weight:800;fill:#FFFFFF}
+    </style>
+  </defs>
+
+  <rect width="390" height="2400" fill="url(#s13bg)"/>
+
+  <!-- 标题 -->
+  <text class="h13" x="195" y="30" text-anchor="middle">v5 扩展页规范稿（关键帧）</text>
+  <text class="sub13" x="195" y="48" text-anchor="middle">完整页面：14 收藏 · 15 商店 · 16 设置 · 17 章末结算；素材见 11 号清单</text>
+
+  <!-- ================= 1 · 结算 · 首次通关 ================= -->
+  <rect x="12" y="64" width="366" height="22" rx="11" fill="#FFFFFF" opacity=".7"/>
+  <text class="sec13" x="26" y="79">1 · 关卡结算 · 首次通关（一关解锁一个拼片区域）</text>
+
+  <rect x="0" y="94" width="390" height="360" fill="#674138" opacity=".3"/>
+  <g transform="translate(55,94)">
+    <rect width="280" height="330" rx="24" fill="#FFFDF8"/>
+    <text x="140" y="32" text-anchor="middle" font-size="16" font-weight="900" fill="#553B36">新拼片解锁</text>
+    <text x="140" y="48" text-anchor="middle" font-size="8" fill="#8A6E62">第一章 · 第 4 关</text>
+    <!-- 拼片区域揭晓 -->
+    <rect x="30" y="58" width="220" height="96" rx="12" fill="#FFFFFF" stroke="#F0DCCB" stroke-width="1.5"/>
+    <circle cx="140" cy="104" r="24" fill="url(#g13top)" stroke="#FFFFFF" stroke-width="2.5"/>
+    <circle cx="140" cy="80" r="7" fill="#F45F70" stroke="#FFFFFF" stroke-width="1.5"/>
+    <circle cx="112" cy="124" r="18" fill="#FF7568" stroke="#FFFFFF" stroke-width="2"/>
+    <circle cx="168" cy="124" r="18" fill="#EBD9C6" stroke="#FFFFFF" stroke-width="2"/>
+    <path d="M120 138h40l-5 14q-1 4-6 4h-18q-5 0-6-4z" fill="#EBD9C6" stroke="#FFFFFF" stroke-width="2"/>
+    <rect x="106" y="66" width="68" height="54" rx="6" fill="none" stroke="#3BB98E" stroke-width="1.6" stroke-dasharray="4 3"/>
+    <use href="#star13" x="166" y="58" width="12" height="12" fill="#FFC53D"/>
+    <text x="140" y="148" text-anchor="middle" font-size="7" fill="#2E7C5B">第 4 关拼片区域已揭晓</text>
+    <!-- 金币奖励 -->
+    <use href="#coin13" x="106" y="162" width="16" height="16"/>
+    <text x="128" y="174" font-size="8" font-weight="700" fill="#553B36">首次通关 · 获得 40 金币</text>
+    <!-- 按钮 -->
+    <rect x="24" y="192" width="232" height="38" rx="19" fill="url(#g13cta)"/>
+    <text x="140" y="216" text-anchor="middle" class="btnw13">下一关</text>
+    <rect x="24" y="238" width="112" height="34" rx="17" fill="#FFFFFF" stroke="#E8CDBB" stroke-width="1.5"/>
+    <text x="80" y="259" text-anchor="middle" font-size="10" font-weight="800" fill="#553B36">重玩本关</text>
+    <rect x="144" y="238" width="112" height="34" rx="17" fill="#FFFFFF" stroke="#E8CDBB" stroke-width="1.5"/>
+    <text x="200" y="259" text-anchor="middle" font-size="10" font-weight="800" fill="#553B36">查看收藏</text>
+    <text x="140" y="294" text-anchor="middle" font-size="7" fill="#8A6E62">12 区域依次点亮揭晓；重复通关不重复解锁拼片</text>
+    <text x="140" y="308" text-anchor="middle" font-size="7" fill="#8A6E62">第 12 关通关走章末结算，入口结构一致</text>
+  </g>
+  <text class="nt13" x="195" y="472" text-anchor="middle">章节大图按 12 个区域逐步揭晓（一关一区域）；失败占位图全章共用 1 张</text>
+  <text class="ds13" x="195" y="484" text-anchor="middle">入口：游戏页通关；出口：下一关 / 重玩 / 查看收藏 / 自动返回首页（可配置）</text>
+
+  <!-- ================= 2 · 结算 · 重复通关 ================= -->
+  <rect x="12" y="506" width="366" height="22" rx="11" fill="#FFFFFF" opacity=".7"/>
+  <text class="sec13" x="26" y="521">2 · 关卡结算 · 重复通关（拼片不重复解锁）</text>
+
+  <rect x="0" y="536" width="390" height="250" fill="#674138" opacity=".3"/>
+  <g transform="translate(55,536)">
+    <rect width="280" height="230" rx="24" fill="#FFFDF8"/>
+    <text x="140" y="32" text-anchor="middle" font-size="15" font-weight="900" fill="#553B36">关卡完成</text>
+    <text x="140" y="50" text-anchor="middle" font-size="8" fill="#8A6E62">第一章 · 第 4 关</text>
+    <circle cx="140" cy="92" r="22" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1.5"/>
+    <path d="M132 92l6 6 12-13" fill="none" stroke="#2E7C5B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="140" y="134" text-anchor="middle" font-size="8" font-weight="700" fill="#2E7C5B">拼片已收录，不重复解锁</text>
+    <use href="#coin13" x="106" y="146" width="16" height="16"/>
+    <text x="128" y="158" font-size="8" font-weight="700" fill="#553B36">重复通关 · 获得 40 金币</text>
+    <rect x="24" y="176" width="112" height="34" rx="17" fill="#FFFFFF" stroke="#E8CDBB" stroke-width="1.5"/>
+    <text x="80" y="197" text-anchor="middle" font-size="10" font-weight="800" fill="#553B36">重玩本关</text>
+    <rect x="144" y="176" width="112" height="34" rx="17" fill="#FFFFFF" stroke="#E8CDBB" stroke-width="1.5"/>
+    <text x="200" y="197" text-anchor="middle" font-size="10" font-weight="800" fill="#553B36">返回首页</text>
+  </g>
+  <text class="ds13" x="195" y="806" text-anchor="middle">满章后重复挑战入口：收藏页关卡网格 + 首页 CTA 次级行（重玩可获得金币，拼片不重复解锁）</text>
+
+  <!-- ================= 3 · 收藏 / 图鉴 三态 ================= -->
+  <rect x="12" y="828" width="366" height="22" rx="11" fill="#FFFFFF" opacity=".7"/>
+  <text class="sec13" x="26" y="843">3 · 收藏 / 图鉴 三态（完整页面与网格尺寸见 14 号稿）</text>
+
+  <!-- 3a 锁定 -->
+  <g transform="translate(12,858)">
+    <rect width="118" height="360" rx="14" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="1.5"/>
+    <text x="59" y="20" text-anchor="middle" font-size="9" font-weight="900" fill="#553B36">① 锁定</text>
+    <rect x="10" y="30" width="98" height="120" rx="10" fill="#FFFFFF" stroke="#E8CDBB" stroke-width="1"/>
+    <circle cx="59" cy="76" r="15" fill="#EBD9C6"/>
+    <circle cx="42" cy="102" r="16" fill="#EBD9C6"/>
+    <circle cx="76" cy="102" r="16" fill="#EBD9C6"/>
+    <path d="M36 114h46l-6 18q-1 5-9 5h-16q-8 0-9-5z" fill="#EBD9C6"/>
+    <rect x="10" y="30" width="98" height="120" rx="10" fill="#FFF7EF" opacity=".35"/>
+    <use href="#lock13" x="45" y="62" width="28" height="28" fill="#B9A79B" stroke="#B9A79B" stroke-width="1.6"/>
+    <text x="59" y="172" text-anchor="middle" font-size="8.5" font-weight="800" fill="#8A7568">未解锁</text>
+    <text x="59" y="188" text-anchor="middle" font-size="7" fill="#8A6E62">整章剪影 + 薄雾</text>
+    <text x="59" y="204" text-anchor="middle" font-size="7" fill="#8A6E62">入口禁用不可点</text>
+    <rect x="20" y="222" width="78" height="20" rx="10" fill="#F3ECE4" stroke="#E5D5C6" stroke-width="1"/>
+    <text x="59" y="235" text-anchor="middle" font-size="7" font-weight="800" fill="#8A7568">入口禁用</text>
+    <text x="59" y="262" text-anchor="middle" font-size="6.5" fill="#8A6E62">章节列表卡 312×132</text>
+    <text x="59" y="276" text-anchor="middle" font-size="6.5" fill="#8A6E62">左右 24 · 卡间距 12</text>
+    <text x="59" y="290" text-anchor="middle" font-size="6.5" fill="#8A6E62">大图入口不渲染</text>
+    <text x="59" y="330" text-anchor="middle" font-size="6.5" fill="#8A6E62">素材：11 §1 章节图集</text>
+  </g>
+
+  <!-- 3b 部分解锁 -->
+  <g transform="translate(136,858)">
+    <rect width="118" height="360" rx="14" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="1.5"/>
+    <text x="59" y="20" text-anchor="middle" font-size="9" font-weight="900" fill="#553B36">② 部分解锁</text>
+    <rect x="10" y="30" width="98" height="120" rx="10" fill="#FFFFFF" stroke="#E8CDBB" stroke-width="1"/>
+    <circle cx="59" cy="66" r="7" fill="#F45F70" stroke="#FFFFFF" stroke-width="1.5"/>
+    <circle cx="59" cy="84" r="15" fill="url(#g13top)" stroke="#FFFFFF" stroke-width="2"/>
+    <circle cx="40" cy="106" r="15" fill="#FF7568" stroke="#FFFFFF" stroke-width="2"/>
+    <circle cx="78" cy="106" r="15" fill="#EBD9C6" stroke="#FFFFFF" stroke-width="2"/>
+    <path d="M38 116h42l-5 16q-1 4-8 4h-16q-7 0-8-4z" fill="#EBD9C6" stroke="#FFFFFF" stroke-width="2"/>
+    <rect x="10" y="30" width="98" height="120" rx="10" fill="#FFF7EF" opacity=".3"/>
+    <rect x="66" y="34" width="38" height="12" rx="6" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1"/>
+    <text x="85" y="43" text-anchor="middle" font-size="6.5" font-weight="900" fill="#2E7C5B">3/12</text>
+    <text x="59" y="172" text-anchor="middle" font-size="8.5" font-weight="800" fill="#553B36">部分解锁</text>
+    <text x="59" y="188" text-anchor="middle" font-size="7" fill="#8A6E62">已揭晓区域可查看</text>
+    <text x="59" y="204" text-anchor="middle" font-size="7" fill="#8A6E62">未揭晓 = 剪影 + 薄雾</text>
+    <rect x="20" y="222" width="78" height="20" rx="10" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1"/>
+    <text x="59" y="235" text-anchor="middle" font-size="7" font-weight="800" fill="#2E7C5B">还差 9 片</text>
+    <text x="59" y="262" text-anchor="middle" font-size="6.5" fill="#8A6E62">大图仅叠已揭晓区域</text>
+    <text x="59" y="276" text-anchor="middle" font-size="6.5" fill="#8A6E62">不泄露完整图（14）</text>
+    <text x="59" y="290" text-anchor="middle" font-size="6.5" fill="#8A6E62">与首页预览同规则</text>
+    <text x="59" y="330" text-anchor="middle" font-size="6.5" fill="#8A6E62">素材：11 §1 区域遮罩</text>
+  </g>
+
+  <!-- 3c 完整大图 -->
+  <g transform="translate(260,858)">
+    <rect width="118" height="360" rx="14" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="1.5"/>
+    <text x="59" y="20" text-anchor="middle" font-size="9" font-weight="900" fill="#553B36">③ 完整大图</text>
+    <rect x="10" y="30" width="98" height="120" rx="10" fill="#FFFFFF" stroke="#E8CDBB" stroke-width="1"/>
+    <circle cx="59" cy="66" r="7" fill="#F45F70" stroke="#FFFFFF" stroke-width="1.5"/>
+    <circle cx="59" cy="84" r="15" fill="url(#g13top)" stroke="#FFFFFF" stroke-width="2"/>
+    <circle cx="40" cy="106" r="15" fill="#FF7568" stroke="#FFFFFF" stroke-width="2"/>
+    <circle cx="78" cy="106" r="15" fill="#FF7568" stroke="#FFFFFF" stroke-width="2"/>
+    <path d="M38 116h42l-5 16q-1 4-8 4h-16q-7 0-8-4z" fill="url(#g13cup)" stroke="#FFFFFF" stroke-width="2"/>
+    <rect x="62" y="34" width="42" height="12" rx="6" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1"/>
+    <text x="83" y="43" text-anchor="middle" font-size="6.5" font-weight="900" fill="#2E7C5B">12/12</text>
+    <use href="#star13" x="82" y="80" width="10" height="10" fill="#FFC53D"/>
+    <text x="59" y="172" text-anchor="middle" font-size="8.5" font-weight="800" fill="#553B36">完整大图</text>
+    <rect x="24" y="184" width="70" height="22" rx="11" fill="url(#g13cta)"/>
+    <text x="59" y="198" text-anchor="middle" font-size="7.5" font-weight="900" fill="#FFFFFF">查看大图</text>
+    <text x="59" y="222" text-anchor="middle" font-size="7" fill="#8A6E62">全屏 + 双指缩放</text>
+    <text x="59" y="238" text-anchor="middle" font-size="7" fill="#8A6E62">关闭 / 返回按钮</text>
+    <text x="59" y="262" text-anchor="middle" font-size="6.5" fill="#8A6E62">12 区域全部点亮</text>
+    <text x="59" y="276" text-anchor="middle" font-size="6.5" fill="#8A6E62">CTA 切「进入下一章」</text>
+    <text x="59" y="330" text-anchor="middle" font-size="6.5" fill="#8A6E62">素材：11 §1 full 完整图</text>
+  </g>
+  <text class="ds13" x="195" y="1236" text-anchor="middle">图集结构 = 一张章节完整插画 + 12 个区域遮罩</text>
+  <text class="ds13" x="195" y="1248" text-anchor="middle">统一 1080×1080 画布，cover 裁切适配（见 11 §1.1）</text>
+
+  <!-- ================= 4 · 设置页 ================= -->
+  <rect x="12" y="1258" width="366" height="22" rx="11" fill="#FFFFFF" opacity=".7"/>
+  <text class="sec13" x="26" y="1273">4 · 设置页（完整页面见 16 号稿）</text>
+
+  <rect x="0" y="1288" width="390" height="280" fill="#674138" opacity=".3"/>
+  <g transform="translate(55,1288)">
+    <rect width="280" height="260" rx="24" fill="#FFFDF8"/>
+    <text x="140" y="30" text-anchor="middle" font-size="15" font-weight="900" fill="#553B36">设置</text>
+    <g font-size="10" font-weight="700" fill="#553B36">
+      <text x="24" y="66">音效</text>
+      <text x="24" y="102">音乐</text>
+      <text x="24" y="138">震动</text>
+      <text x="24" y="174">关于</text>
+    </g>
+    <g>
+      <rect x="212" y="55" width="34" height="19" rx="9.5" fill="#FF7568"/>
+      <circle cx="238" cy="64.5" r="7.5" fill="#FFFFFF"/>
+      <rect x="212" y="91" width="34" height="19" rx="9.5" fill="#FF7568"/>
+      <circle cx="238" cy="100.5" r="7.5" fill="#FFFFFF"/>
+      <rect x="212" y="127" width="34" height="19" rx="9.5" fill="#FF7568"/>
+      <circle cx="238" cy="136.5" r="7.5" fill="#FFFFFF"/>
+      <path d="M232 176l5 5 9-10" fill="none" stroke="#B9A79B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text x="140" y="212" text-anchor="middle" font-size="7" fill="#8A6E62">版本 v1.0.0 · 返回上一层</text>
+    <text x="140" y="238" text-anchor="middle" font-size="7" fill="#8A6E62">通知 / 恢复购买未纳入首发，不展示无效入口</text>
+  </g>
+  <text class="ds13" x="195" y="1588" text-anchor="middle">开关本地存档；从暂停层进入返回暂停层（保持暂停）；从首页进入返回首页</text>
+
+  <!-- ================= 5 · 商店 六状态 ================= -->
+  <rect x="12" y="1610" width="366" height="22" rx="11" fill="#FFFFFF" opacity=".7"/>
+  <text class="sec13" x="26" y="1625">5 · 商店 六状态（完整页面见 15 号稿；道具 300 金币）</text>
+
+  <!-- 5a 可购买 -->
+  <g transform="translate(12,1640)">
+    <rect width="118" height="132" rx="14" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="1.5"/>
+    <text x="59" y="18" text-anchor="middle" font-size="9" font-weight="900" fill="#553B36">可购买</text>
+    <rect x="10" y="28" width="98" height="56" rx="10" fill="#FFFFFF" stroke="#F0DCCB" stroke-width="1.2"/>
+    <circle cx="30" cy="56" r="14" fill="#FFF7EF" stroke="#F0DCCB" stroke-width="1"/>
+    <use href="#bulb13" x="22" y="48" width="16" height="16" fill="#553B36"/>
+    <text x="50" y="52" font-size="8" font-weight="800" fill="#553B36">提示 ×1</text>
+    <use href="#coin13" x="50" y="58" width="10" height="10"/>
+    <text x="62" y="67" font-size="7" font-weight="700" fill="#7A4A00">300 金币</text>
+    <rect x="80" y="44" width="22" height="18" rx="9" fill="url(#g13cta)"/>
+    <text x="91" y="56" text-anchor="middle" font-size="6.5" font-weight="900" fill="#FFFFFF">购买</text>
+    <text x="59" y="100" text-anchor="middle" font-size="6.5" fill="#8A6E62">成功：Toast + 余额 −300</text>
+    <text x="59" y="114" text-anchor="middle" font-size="6.5" fill="#8A6E62">库存徽标 +1（300ms 回弹）</text>
+  </g>
+  <!-- 5b 未解锁禁买 -->
+  <g transform="translate(136,1640)">
+    <rect width="118" height="132" rx="14" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="1.5"/>
+    <text x="59" y="18" text-anchor="middle" font-size="9" font-weight="900" fill="#553B36">未解锁</text>
+    <rect x="10" y="28" width="98" height="56" rx="10" fill="#FFFFFF" stroke="#F0DCCB" stroke-width="1.2"/>
+    <circle cx="30" cy="56" r="14" fill="#F3ECE4" stroke="#E5D5C6" stroke-width="1"/>
+    <use href="#bulb13" x="22" y="48" width="16" height="16" fill="#C9B8AC"/>
+    <text x="50" y="52" font-size="8" font-weight="800" fill="#8A7568">提示</text>
+    <use href="#lock13" x="88" y="34" width="14" height="14" fill="#8A6E62"/>
+    <rect x="80" y="44" width="22" height="18" rx="9" fill="#E5D5C6"/>
+    <text x="91" y="56" text-anchor="middle" font-size="6.5" font-weight="900" fill="#FFFDF8">禁买</text>
+    <text x="59" y="100" text-anchor="middle" font-size="6.5" fill="#8A6E62">显示等级条件，禁买</text>
+    <text x="59" y="114" text-anchor="middle" font-size="6.5" fill="#8A6E62">「第 7 关解锁」</text>
+  </g>
+  <!-- 5c 金币不足 -->
+  <g transform="translate(260,1640)">
+    <rect width="118" height="132" rx="14" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="1.5"/>
+    <text x="59" y="18" text-anchor="middle" font-size="9" font-weight="900" fill="#553B36">金币不足</text>
+    <rect x="10" y="28" width="98" height="56" rx="10" fill="#FFFFFF" stroke="#F0DCCB" stroke-width="1.2"/>
+    <circle cx="30" cy="56" r="14" fill="#FFF7EF" stroke="#F0DCCB" stroke-width="1"/>
+    <use href="#bulb13" x="22" y="48" width="16" height="16" fill="#553B36"/>
+    <text x="50" y="52" font-size="8" font-weight="800" fill="#553B36">提示 ×1</text>
+    <use href="#coin13" x="50" y="58" width="10" height="10"/>
+    <text x="62" y="67" font-size="7" font-weight="700" fill="#F45F70">300 金币</text>
+    <rect x="80" y="44" width="22" height="18" rx="9" fill="#E5D5C6"/>
+    <text x="91" y="56" text-anchor="middle" font-size="6.5" font-weight="900" fill="#FFFDF8">购买</text>
+    <text x="59" y="100" text-anchor="middle" font-size="6.5" fill="#8A6E62">按钮置灰 + Toast</text>
+    <text x="59" y="114" text-anchor="middle" font-size="6.5" fill="#8A6E62">不扣币 · 不发道具</text>
+  </g>
+  <!-- 5d 购买中 -->
+  <g transform="translate(12,1784)">
+    <rect width="118" height="120" rx="14" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="1.5"/>
+    <text x="59" y="18" text-anchor="middle" font-size="9" font-weight="900" fill="#553B36">购买中</text>
+    <rect x="10" y="28" width="98" height="56" rx="10" fill="#FFFFFF" stroke="#F0DCCB" stroke-width="1.2"/>
+    <circle cx="30" cy="56" r="14" fill="#FFF7EF" stroke="#F0DCCB" stroke-width="1"/>
+    <use href="#bulb13" x="22" y="48" width="16" height="16" fill="#553B36"/>
+    <text x="50" y="52" font-size="8" font-weight="800" fill="#553B36">提示 ×1</text>
+    <rect x="80" y="44" width="26" height="18" rx="9" fill="#FFB84D"/>
+    <text x="93" y="56" text-anchor="middle" font-size="6.5" font-weight="900" fill="#FFFFFF">…</text>
+    <text x="59" y="100" text-anchor="middle" font-size="6.5" fill="#8A6E62">请稍候</text>
+    <text x="59" y="114" text-anchor="middle" font-size="6.5" fill="#8A6E62">切勿重复点击</text>
+  </g>
+  <!-- 5e 购买成功 -->
+  <g transform="translate(136,1784)">
+    <rect width="118" height="120" rx="14" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="1.5"/>
+    <text x="59" y="18" text-anchor="middle" font-size="9" font-weight="900" fill="#553B36">购买成功</text>
+    <rect x="10" y="28" width="98" height="56" rx="10" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1.2"/>
+    <path d="M46 56l6 6 12-13" fill="none" stroke="#2E7C5B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="76" y="52" font-size="8" font-weight="800" fill="#2E7C5B">提示 +1</text>
+    <text x="76" y="66" font-size="7" fill="#2E7C5B">余额 −300</text>
+    <text x="59" y="100" text-anchor="middle" font-size="6.5" fill="#8A6E62">Toast「购买成功」</text>
+    <text x="59" y="114" text-anchor="middle" font-size="6.5" fill="#8A6E62">余额/库存即时刷新</text>
+  </g>
+  <!-- 5f 购买失败 -->
+  <g transform="translate(260,1784)">
+    <rect width="118" height="120" rx="14" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="1.5"/>
+    <text x="59" y="18" text-anchor="middle" font-size="9" font-weight="900" fill="#553B36">购买失败</text>
+    <rect x="10" y="28" width="98" height="56" rx="10" fill="#FFE9E6" stroke="#F45F70" stroke-width="1.2"/>
+    <path d="M46 48l10 10M56 48l-10 10" stroke="#F45F70" stroke-width="2.2" stroke-linecap="round"/>
+    <text x="76" y="52" font-size="8" font-weight="800" fill="#C7432F">购买失败</text>
+    <text x="76" y="66" font-size="7" fill="#C7432F">未扣币</text>
+    <text x="59" y="100" text-anchor="middle" font-size="6.5" fill="#8A6E62">Toast 说明原因</text>
+    <text x="59" y="114" text-anchor="middle" font-size="6.5" fill="#8A6E62">按钮回退 · 可重试</text>
+  </g>
+  <text class="ds13" x="195" y="1930" text-anchor="middle">购买为本地金币事务：成功扣币 + 库存 +1 并写入本地存档；失败不扣币、不发道具、按钮回退</text>
+  <text class="ds13" x="195" y="1942" text-anchor="middle">首发删除「金币不足 → 商店」引导（商店只卖道具）；金币不足仅 Toast 提示</text>
+
+  <!-- ================= 6 · 确认框 ================= -->
+  <rect x="12" y="1964" width="366" height="22" rx="11" fill="#FFFFFF" opacity=".7"/>
+  <text class="sec13" x="26" y="1979">6 · 二次确认框（重开 / 退出）</text>
+
+  <g transform="translate(12,1994)">
+    <rect width="366" height="104" rx="16" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="1.5"/>
+    <text x="20" y="26" font-size="12" font-weight="900" fill="#553B36">重开本关？</text>
+    <text x="20" y="46" font-size="7.5" fill="#8A6E62">棋盘 / 生命 / 计时 / 选择态重置，复活资格重新计算；</text>
+    <text x="20" y="60" font-size="7.5" fill="#8A6E62">已消耗的道具与已扣金币不返还</text>
+    <rect x="20" y="70" width="100" height="26" rx="13" fill="#FFFFFF" stroke="#E8CDBB" stroke-width="1.5"/>
+    <text x="70" y="86" text-anchor="middle" font-size="9.5" font-weight="800" fill="#553B36">取消</text>
+    <rect x="246" y="70" width="100" height="26" rx="13" fill="url(#g13cta)"/>
+    <text x="296" y="86" text-anchor="middle" font-size="9.5" font-weight="900" fill="#FFFFFF">确认重开</text>
+  </g>
+  <g transform="translate(12,2110)">
+    <rect width="366" height="104" rx="16" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="1.5"/>
+    <text x="20" y="26" font-size="12" font-weight="900" fill="#553B36">退出本关？</text>
+    <text x="20" y="46" font-size="7.5" fill="#8A6E62">本局进度不保留（方块回收、本局点亮复位）；</text>
+    <text x="20" y="60" font-size="7.5" fill="#8A6E62">已获得的拼片与金币保留</text>
+    <rect x="20" y="70" width="100" height="26" rx="13" fill="#FFFFFF" stroke="#E8CDBB" stroke-width="1.5"/>
+    <text x="70" y="86" text-anchor="middle" font-size="9.5" font-weight="800" fill="#553B36">取消</text>
+    <rect x="246" y="70" width="100" height="26" rx="13" fill="url(#g13cta)"/>
+    <text x="296" y="86" text-anchor="middle" font-size="9.5" font-weight="900" fill="#FFFFFF">确认退出</text>
+  </g>
+  <text class="ds13" x="195" y="2244" text-anchor="middle">确认框 200ms 上滑 + 淡入；遮罩 30% 暖棕；两个入口：暂停层 / 失败层</text>
+
+  <!-- ================= 规则备注 ================= -->
+  <rect x="12" y="2266" width="366" height="122" rx="14" fill="#FFFFFF" opacity=".75" stroke="#F0DCCB" stroke-width="1"/>
+  <text x="24" y="2286" font-size="9" font-weight="900" fill="#FF7568">扩展页统一规则</text>
+  <text class="ds13" x="24" y="2304">· 一律从 09 §0–§7 取 Token / 字体 / 圆角 / 阴影 / 动效，不允许自造新值</text>
+  <text class="ds13" x="24" y="2318">· 弹窗结构复用暂停层（280 宽 / 圆角 24 / 200ms 上滑）；金币一律 ic-coin</text>
+  <text class="ds13" x="24" y="2332">· 结算 / 收藏依赖章节图集素材（11 §1）；素材未就绪前用剪影 + 占位</text>
+  <text class="ds13" x="24" y="2346">· 商店购买为本地金币事务 + 单飞锁防重复扣币；广告位仅激励视频（原型 FakeAdProvider）</text>
+  <text class="ds13" x="24" y="2360">· 部分解锁时大图入口只叠已揭晓区域，未解锁区域不得预览完整图</text>
+  <text class="ds13" x="24" y="2374">· 结算 = 程序 LayoutFullPages 真实布局：卡铺满安全区、收藏/重玩并排、作品区随余高（本页弹窗仅为结构示意，终版见 clean_settlement / 17）</text>
+</svg>

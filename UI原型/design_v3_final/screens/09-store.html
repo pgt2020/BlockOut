@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Store · C方案星形糖果可爱风</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .store-header { position: absolute; top: 52px; left: 16px; right: 16px; display: flex; align-items: center; justify-content: space-between; }
+  .coin-pill { display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.8); border-radius: 20px; padding: 6px 12px; border: 1px solid var(--line-base); font-weight: 800; }
+  .store-list { position: absolute; top: 110px; left: 16px; right: 16px; bottom: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+  .store-card { display: flex; align-items: center; gap: 14px; padding: 14px; }
+  .store-icon { width: 56px; height: 56px; border-radius: 18px; background: var(--bg-soft); display: flex; align-items: center; justify-content: center; font-size: 28px; }
+  .store-info { flex: 1; }
+  .store-price { padding: 8px 14px; border-radius: 18px; background: var(--brand-lemon); color: var(--ink-primary); font-weight: 900; font-size: 12px; }
+  .featured { border: 2px solid var(--brand-peach); background: linear-gradient(180deg,#fff,var(--bg-soft)); }
+</style>
+</head>
+<body>
+<div class="screen" id="screen">
+  <script src="../assets/scripts.js"></script>
+  <script>
+    const s = document.getElementById('screen');
+    BO.initBackground(s, {decoCount:4});
+    s.insertAdjacentHTML('beforeend', `
+      <div class="store-header">
+        <div class="btn-icon small">←</div>
+        <div class="title">Store</div>
+        <div class="coin-pill">🪙 <span class="num">3,000</span></div>
+      </div>
+      <div class="store-list">
+        <div class="card store-card featured">
+          <div class="store-icon">🎁</div>
+          <div class="store-info">
+            <div class="subtitle">Starter Pack</div>
+            <div class="caption">1,000 coins + remove ads</div>
+          </div>
+          <div class="store-price">$0.99</div>
+        </div>
+        <div class="card store-card">
+          <div class="store-icon">🪙</div>
+          <div class="store-info">
+            <div class="subtitle">Coin Pile</div>
+            <div class="caption">2,500 coins</div>
+          </div>
+          <div class="store-price">$1.99</div>
+        </div>
+        <div class="card store-card">
+          <div class="store-icon">🚫</div>
+          <div class="store-info">
+            <div class="subtitle">Remove Ads</div>
+            <div class="caption">Permanent, no banners</div>
+          </div>
+          <div class="store-price">$2.99</div>
+        </div>
+        <div class="card store-card">
+          <div class="store-icon">👑</div>
+          <div class="store-info">
+            <div class="subtitle">VIP Subscription</div>
+            <div class="caption">Daily coins + exclusive themes</div>
+          </div>
+          <div class="store-price">$4.99/m</div>
+        </div>
+      </div>
+    `);
+  </script>
+</div>
+</body>
+</html>

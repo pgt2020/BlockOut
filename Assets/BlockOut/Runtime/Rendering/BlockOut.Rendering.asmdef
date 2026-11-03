@@ -1,0 +1,7 @@
+{
+    "name": "BlockOut.Rendering",
+    "rootNamespace": "BlockOut.UI",
+    "references": ["BlockOut.Core"],
+    "autoReferenced": true,
+    "noEngineReferences": false
+}

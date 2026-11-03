@@ -1,0 +1,265 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 1330" width="780" height="2660" role="img" aria-label="首页关键状态组图：新用户首次进入、章节已完成与新章节准备中、图片加载失败、小屏安全区适配">
+  <!-- ============================================================
+       BlockOut · 首页关键状态组图  v5 定稿（2026-10-15 复审修订）
+       A 新用户首次进入：开始第 1 关 / 拼片 0/12 / 预览卡整图剪影 / 初始 300 金币
+       B 章节已完成：12/12 完整作品 + CTA 进入下一章；第二章未发布 = 「新章节准备中」禁用态
+       C 图片加载失败：占位 + 重试，不阻塞开始游戏
+       D 小屏安全区：360×640 真实比例缩略（完整稿见 12_screen_adapt_360）
+         底部导航位于底部安全区上方，不重叠；中部预览卡按剩余高度压缩
+       每态给关键帧示意（缩略首页）+ 要点说明，不另画全屏高保真
+  ============================================================ -->
+  <defs>
+    <linearGradient id="s7bg" x2="0" y2="1"><stop stop-color="#FFFAF4"/><stop offset="1" stop-color="#FFF1E3"/></linearGradient>
+    <linearGradient id="g7top" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#B5EBD5"/><stop offset="1" stop-color="#79D2B2"/></linearGradient>
+    <linearGradient id="g7cup" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#FAE49B"/><stop offset="1" stop-color="#F2C957"/></linearGradient>
+    <linearGradient id="g7cta" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#FF8B7E"/><stop offset="1" stop-color="#FF6B5C"/></linearGradient>
+    <filter id="s7sh" x="-30%" y="-30%" width="160%" height="175%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#674138" flood-opacity=".18"/></filter>
+    <style>
+      text{font-family:'Source Han Sans CN','Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif}
+      .h7{font-size:17px;font-weight:900;fill:#553B36}
+      .sub7{font-size:9.5px;fill:#8A6E62}
+      .sec7{font-size:12px;font-weight:900;fill:#FF7568}
+      .pt7{font-size:8.5px;fill:#553B36}
+      .lb7{font-size:7.5px;fill:#8A6E62}
+    </style>
+  </defs>
+
+  <rect width="390" height="1330" fill="url(#s7bg)"/>
+
+  <!-- ================= 标题 ================= -->
+  <text class="h7" x="195" y="30" text-anchor="middle">首页 · 关键状态</text>
+  <text class="sub7" x="195" y="48" text-anchor="middle">缩略关键帧 + 要点说明；正式视觉以 06_home_default 为准</text>
+
+  <!-- ================= A · 新用户首次进入 ================= -->
+  <rect x="12" y="60" width="366" height="22" rx="11" fill="#FFFFFF" opacity=".7"/>
+  <text class="sec7" x="26" y="75">A · 新用户首次进入（无存档）</text>
+
+  <g transform="translate(12,90)">
+    <rect width="150" height="222" rx="14" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="1.5" filter="url(#s7sh)"/>
+    <rect x="10" y="10" width="16" height="16" rx="5" fill="url(#g7top)"/>
+    <rect x="30" y="13" width="30" height="5" rx="2.5" fill="#E8CDBB"/>
+    <rect x="104" y="11" width="36" height="13" rx="6.5" fill="#FFF1E3" stroke="#F0DCCB" stroke-width="1"/>
+    <circle cx="112" cy="17.5" r="4" fill="#FFC53D" stroke="#E3A22E" stroke-width=".8"/>
+    <text x="134" y="20.5" text-anchor="middle" font-size="7" font-weight="900" fill="#553B36">300</text>
+    <rect x="10" y="34" width="130" height="86" rx="10" fill="#FFFFFF" stroke="#F0DCCB" stroke-width="1"/>
+    <circle cx="70" cy="62" r="12" fill="#EBD9C6"/>
+    <circle cx="55" cy="82" r="13" fill="#EBD9C6"/>
+    <circle cx="85" cy="82" r="13" fill="#EBD9C6"/>
+    <path d="M48 92h44l-6 20q-1 5-9 5h-14q-8 0-9-5z" fill="#EBD9C6"/>
+    <rect x="10" y="34" width="130" height="86" rx="10" fill="#FFF7EF" opacity=".35"/>
+    <text x="75" y="84" text-anchor="middle" font-size="14" font-weight="900" fill="#8A7568">?</text>
+    <rect x="10" y="130" width="130" height="30" rx="10" fill="url(#g7cta)"/>
+    <text x="75" y="149" text-anchor="middle" font-size="9" font-weight="900" fill="#FFFFFF">开始第 1 关</text>
+    <rect x="10" y="170" width="130" height="5" rx="2.5" fill="#F5E6D8"/>
+    <g fill="#FFFDF8" stroke="#E8CDBB" stroke-width="1">
+      <circle cx="18" cy="188" r="3.4"/><circle cx="29.3" cy="188" r="3.4"/><circle cx="40.6" cy="188" r="3.4"/><circle cx="51.9" cy="188" r="3.4"/>
+      <circle cx="63.2" cy="188" r="3.4"/><circle cx="74.5" cy="188" r="3.4"/><circle cx="85.8" cy="188" r="3.4"/><circle cx="97.1" cy="188" r="3.4"/>
+      <circle cx="108.4" cy="188" r="3.4"/><circle cx="119.7" cy="188" r="3.4"/><circle cx="131" cy="188" r="3.4"/><circle cx="142.3" cy="188" r="3.4"/>
+    </g>
+    <rect x="10" y="200" width="26" height="14" rx="7" fill="#FFE9E6"/>
+    <text x="75" y="210" text-anchor="middle" font-size="6.5" fill="#8A6E62">拼片 0/12</text>
+    <rect x="10" y="204" width="130" height="12" rx="6" fill="#FFFFFF" stroke="#F0DCCB" stroke-width=".8"/>
+    <circle cx="45" cy="210" r="2.6" fill="#FF6B5C"/>
+    <circle cx="75" cy="210" r="2.6" fill="#B9A79B"/>
+    <circle cx="105" cy="210" r="2.6" fill="#B9A79B"/>
+  </g>
+  <g transform="translate(178,96)">
+    <text class="pt7" x="0" y="10">· CTA 文案为「开始第 1 关」，不用「继续」</text>
+    <text class="pt7" x="0" y="26">· 预览卡整图剪影 + 薄雾，无揭晓部件</text>
+    <text class="pt7" x="0" y="42">· 拼片 0/12：进度条为空、12 节点全未点亮</text>
+    <text class="pt7" x="0" y="58">· 金币显示持有数：新用户初始 300 金币；</text>
+    <text class="pt7" x="0" y="72">  首次进入不发赠送弹窗，避免打断</text>
+    <text class="pt7" x="0" y="88">· 初始道具：提示 3 / 锤子 1 / 魔法棒 0</text>
+    <text class="pt7" x="0" y="102">  （第 7 / 11 / 16 关依次解锁，见 04 工具条）</text>
+    <text class="pt7" x="0" y="118">· 新手引导首次进对局后由玩法内提示接管</text>
+    <text class="pt7" x="0" y="134">· 「查看收藏」为空态：图鉴页显示引导文案</text>
+  </g>
+
+  <!-- ================= B · 章节已完成 ================= -->
+  <rect x="12" y="330" width="366" height="22" rx="11" fill="#FFFFFF" opacity=".7"/>
+  <text class="sec7" x="26" y="345">B · 章节已完成（拼片 12/12）与「新章节准备中」</text>
+
+  <g transform="translate(12,360)">
+    <rect width="150" height="222" rx="14" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="1.5" filter="url(#s7sh)"/>
+    <rect x="10" y="10" width="16" height="16" rx="5" fill="url(#g7top)"/>
+    <rect x="30" y="13" width="30" height="5" rx="2.5" fill="#E8CDBB"/>
+    <rect x="104" y="11" width="36" height="13" rx="6.5" fill="#FFF1E3" stroke="#F0DCCB" stroke-width="1"/>
+    <circle cx="112" cy="17.5" r="4" fill="#FFC53D" stroke="#E3A22E" stroke-width=".8"/>
+    <text x="134" y="20.5" text-anchor="middle" font-size="7" font-weight="900" fill="#553B36">300</text>
+    <rect x="10" y="34" width="130" height="86" rx="10" fill="#FFFFFF" stroke="#F0DCCB" stroke-width="1"/>
+    <circle cx="70" cy="60" r="5" fill="#F45F70"/>
+    <circle cx="70" cy="72" r="12" fill="url(#g7top)" stroke="#FFFFFF" stroke-width="2"/>
+    <circle cx="55" cy="88" r="13" fill="#FF7568" stroke="#FFFFFF" stroke-width="2"/>
+    <circle cx="85" cy="88" r="13" fill="#FF7568" stroke="#FFFFFF" stroke-width="2"/>
+    <path d="M48 98h44l-6 20q-1 5-9 5h-14q-8 0-9-5z" fill="url(#g7cup)" stroke="#FFFFFF" stroke-width="2"/>
+    <rect x="45" y="95" width="50" height="8" rx="4" fill="url(#g7cup)" stroke="#FFFFFF" stroke-width="1.5"/>
+    <rect x="98" y="38" width="38" height="12" rx="6" fill="#DFF6EC" stroke="#62CFA7" stroke-width="1"/>
+    <text x="117" y="47" text-anchor="middle" font-size="6.5" font-weight="900" fill="#2E7C5B">12/12 ✓</text>
+    <path d="M124 62l1.6 3.4 3.4 1.6-3.4 1.6-1.6 3.4-1.6-3.4-3.4-1.6 3.4-1.6z" fill="#FFC53D"/>
+    <rect x="10" y="130" width="130" height="30" rx="10" fill="url(#g7cta)"/>
+    <text x="75" y="149" text-anchor="middle" font-size="9" font-weight="900" fill="#FFFFFF">进入下一章</text>
+    <rect x="10" y="170" width="130" height="5" rx="2.5" fill="#F5E6D8"/>
+    <rect x="10" y="170" width="130" height="5" rx="2.5" fill="#FF7568"/>
+    <g>
+      <circle cx="18" cy="188" r="3.4" fill="#FF7568"/><circle cx="29.3" cy="188" r="3.4" fill="#FF7568"/><circle cx="40.6" cy="188" r="3.4" fill="#FF7568"/>
+      <circle cx="51.9" cy="188" r="3.4" fill="#FF7568"/><circle cx="63.2" cy="188" r="3.4" fill="#FF7568"/><circle cx="74.5" cy="188" r="3.4" fill="#FF7568"/>
+      <circle cx="85.8" cy="188" r="3.4" fill="#FF7568"/><circle cx="97.1" cy="188" r="3.4" fill="#FF7568"/><circle cx="108.4" cy="188" r="3.4" fill="#FF7568"/>
+      <circle cx="119.7" cy="188" r="3.4" fill="#FF7568"/><circle cx="131" cy="188" r="3.4" fill="#FF7568"/><circle cx="142.3" cy="188" r="3.4" fill="#FF7568"/>
+    </g>
+    <rect x="10" y="200" width="26" height="14" rx="7" fill="#DFF6EC"/>
+    <text x="75" y="210" text-anchor="middle" font-size="6.5" fill="#8A6E62">拼片 12/12 已满</text>
+    <rect x="10" y="204" width="130" height="12" rx="6" fill="#FFFFFF" stroke="#F0DCCB" stroke-width=".8"/>
+    <circle cx="45" cy="210" r="2.6" fill="#FF6B5C"/>
+    <circle cx="75" cy="210" r="2.6" fill="#B9A79B"/>
+    <circle cx="105" cy="210" r="2.6" fill="#B9A79B"/>
+  </g>
+  <g transform="translate(178,366)">
+    <text class="pt7" x="0" y="10">· 进度条满格，12 节点全部点亮（末节点带 ✓）</text>
+    <text class="pt7" x="0" y="26">· CTA 切换为「进入下一章」；第二章未发布时</text>
+    <text class="pt7" x="0" y="40">  显示「新章节准备中」禁用态（见右下方关键帧）</text>
+    <text class="pt7" x="0" y="56">· 完整作品可点击查看大图，收入「查看收藏」</text>
+    <text class="pt7" x="0" y="72">· 满章后重复挑战入口保留（刷金币/道具），</text>
+    <text class="pt7" x="0" y="86">  位置在收藏页与本页 CTA 次级行</text>
+  </g>
+
+  <g transform="translate(178,466)">
+    <rect width="150" height="112" rx="14" fill="#FFFDF8" stroke="#B9A79B" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <text x="75" y="22" text-anchor="middle" font-size="8.5" font-weight="900" fill="#8A6E62">第二章 · 未发布</text>
+    <rect x="37" y="34" width="76" height="20" rx="10" fill="#F3ECE4" stroke="#E5D5C6" stroke-width="1"/>
+    <text x="75" y="47" text-anchor="middle" font-size="7.5" font-weight="800" fill="#8A7568">新章节准备中</text>
+    <rect x="25" y="64" width="100" height="22" rx="11" fill="#E5D5C6"/>
+    <text x="75" y="78" text-anchor="middle" font-size="7.5" font-weight="900" fill="#FFFDF8">入口禁用</text>
+    <text x="75" y="100" text-anchor="middle" font-size="6.5" fill="#8A6E62">第一章 12/12 后解锁 · 不开放空关卡</text>
+  </g>
+
+  <!-- ================= C · 图片加载失败 ================= -->
+  <rect x="12" y="600" width="366" height="22" rx="11" fill="#FFFFFF" opacity=".7"/>
+  <text class="sec7" x="26" y="615">C · 图片缺失 / 加载失败</text>
+
+  <g transform="translate(12,630)">
+    <rect width="150" height="222" rx="14" fill="#FFFDF8" stroke="#F0DCCB" stroke-width="1.5" filter="url(#s7sh)"/>
+    <rect x="10" y="10" width="16" height="16" rx="5" fill="url(#g7top)"/>
+    <rect x="30" y="13" width="30" height="5" rx="2.5" fill="#E8CDBB"/>
+    <rect x="104" y="11" width="36" height="13" rx="6.5" fill="#FFF1E3" stroke="#F0DCCB" stroke-width="1"/>
+    <circle cx="112" cy="17.5" r="4" fill="#FFC53D" stroke="#E3A22E" stroke-width=".8"/>
+    <text x="134" y="20.5" text-anchor="middle" font-size="7" font-weight="900" fill="#553B36">300</text>
+    <rect x="10" y="34" width="130" height="86" rx="10" fill="#FFF7EF" stroke="#E8CDBB" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <rect x="55" y="52" width="40" height="32" rx="5" fill="none" stroke="#B9A79B" stroke-width="1.6"/>
+    <path d="M59 78l10-12 7 8 5-5 10 9z" fill="#D9C7B8"/>
+    <path d="M74 48l-4 8h6l-4 8" fill="none" stroke="#FFB84D" stroke-width="1.8" stroke-linecap="round"/>
+    <text x="75" y="98" text-anchor="middle" font-size="7" font-weight="700" fill="#8A6E62">图片加载失败</text>
+    <rect x="52" y="104" width="46" height="12" rx="6" fill="#FFFFFF" stroke="#FF7568" stroke-width="1"/>
+    <text x="75" y="112.5" text-anchor="middle" font-size="6.5" font-weight="800" fill="#FF6B5C">重试</text>
+    <rect x="10" y="130" width="130" height="30" rx="10" fill="url(#g7cta)"/>
+    <text x="75" y="149" text-anchor="middle" font-size="9" font-weight="900" fill="#FFFFFF">继续第 4 关</text>
+    <rect x="10" y="170" width="76" height="5" rx="2.5" fill="#FF7568"/>
+    <rect x="10" y="170" width="130" height="5" rx="2.5" fill="#F5E6D8"/>
+    <g>
+      <circle cx="18" cy="188" r="3.4" fill="#FF7568"/><circle cx="29.3" cy="188" r="3.4" fill="#FF7568"/><circle cx="40.6" cy="188" r="3.4" fill="#FF7568"/>
+      <circle cx="51.9" cy="188" r="3.4" fill="#FFFDF8" stroke="#E8CDBB" stroke-width="1"/><circle cx="63.2" cy="188" r="3.4" fill="#FFFDF8" stroke="#E8CDBB" stroke-width="1"/>
+      <circle cx="74.5" cy="188" r="3.4" fill="#FFFDF8" stroke="#E8CDBB" stroke-width="1"/><circle cx="85.8" cy="188" r="3.4" fill="#FFFDF8" stroke="#E8CDBB" stroke-width="1"/>
+      <circle cx="97.1" cy="188" r="3.4" fill="#FFFDF8" stroke="#E8CDBB" stroke-width="1"/><circle cx="108.4" cy="188" r="3.4" fill="#FFFDF8" stroke="#E8CDBB" stroke-width="1"/>
+      <circle cx="119.7" cy="188" r="3.4" fill="#FFFDF8" stroke="#E8CDBB" stroke-width="1"/><circle cx="131" cy="188" r="3.4" fill="#FFFDF8" stroke="#E8CDBB" stroke-width="1"/>
+      <circle cx="142.3" cy="188" r="3.4" fill="#FFFDF8" stroke="#E8CDBB" stroke-width="1"/>
+    </g>
+    <rect x="10" y="204" width="130" height="12" rx="6" fill="#FFFFFF" stroke="#F0DCCB" stroke-width=".8"/>
+    <circle cx="45" cy="210" r="2.6" fill="#FF6B5C"/>
+    <circle cx="75" cy="210" r="2.6" fill="#B9A79B"/>
+    <circle cx="105" cy="210" r="2.6" fill="#B9A79B"/>
+  </g>
+  <g transform="translate(178,636)">
+    <text class="pt7" x="0" y="10">· 触发：章节图集 AssetBundle/远程下载失败</text>
+    <text class="pt7" x="0" y="26">· 不阻塞开始游戏：CTA 与底部导航保持可点，</text>
+    <text class="pt7" x="0" y="40">  对局内不显示底图，加载失败不影响进入关卡</text>
+    <text class="pt7" x="0" y="56">· 重试 2 次仍失败转「稍后再试」，不弹阻断窗</text>
+    <text class="pt7" x="0" y="72">· 失败态仅影响预览卡与收藏页，不影响关卡进度</text>
+    <text class="pt7" x="0" y="88">· 本稿冰淇淋为示意剪影，非正式商用素材（见</text>
+    <text class="pt7" x="0" y="102">  11_art_resource_list 正式素材清单）</text>
+  </g>
+
+  <!-- ================= D · 小屏安全区 ================= -->
+  <rect x="12" y="870" width="366" height="22" rx="11" fill="#FFFFFF" opacity=".7"/>
+  <text class="sec7" x="26" y="885">D · 小屏安全区适配（真实比例缩略；完整稿见 12_screen_adapt_360）</text>
+
+  <!-- 360x640 真实比例缩略框（176 x 312.9，等比 0.489） -->
+  <g transform="translate(18,914)">
+    <rect x="2" y="2" width="196" height="349" rx="18" fill="#FFFDF8" stroke="#B9A79B" stroke-width="1.4" stroke-dasharray="6 4"/>
+    <!-- 顶部安全区 -->
+    <rect x="2" y="2" width="196" height="12" rx="18" fill="#674138" opacity=".08"/>
+    <text x="100" y="11" text-anchor="middle" font-size="6.5" font-weight="700" fill="#8A6E62">顶部安全区 24px</text>
+    <!-- 顶部栏 -->
+    <rect x="8" y="18" width="14" height="14" rx="5" fill="url(#g7top)"/>
+    <rect x="26" y="21" width="26" height="5" rx="2.5" fill="#E8CDBB"/>
+    <rect x="146" y="17" width="30" height="12" rx="6" fill="#FFF1E3" stroke="#F0DCCB" stroke-width="1"/>
+    <circle cx="152" cy="23" r="3.4" fill="#FFC53D" stroke="#E3A22E" stroke-width=".7"/>
+    <text x="170" y="26" text-anchor="middle" font-size="6.5" font-weight="900" fill="#553B36">300</text>
+    <!-- 预览卡（小屏压缩 264→示意） -->
+    <rect x="10" y="40" width="180" height="128" rx="12" fill="#FFFFFF" stroke="#F0DCCB" stroke-width="1.2"/>
+    <circle cx="100" cy="82" r="15" fill="url(#g7top)" stroke="#FFFFFF" stroke-width="2"/>
+    <circle cx="100" cy="66" r="5.5" fill="#F45F70"/>
+    <circle cx="80" cy="106" r="14" fill="#FF7568" stroke="#FFFFFF" stroke-width="2"/>
+    <circle cx="120" cy="106" r="14" fill="#EBD9C6" stroke="#FFFFFF" stroke-width="2"/>
+    <path d="M70 120h60l-7 24q-1 6-11 6h-24q-10 0-11-6z" fill="url(#g7cup)" stroke="#FFFFFF" stroke-width="2"/>
+    <rect x="10" y="40" width="180" height="128" rx="12" fill="#FFF7EF" opacity=".22"/>
+    <g transform="translate(148,116) rotate(-8)">
+      <path d="M0 0H11V22H22V11H11Z" fill="#F0AC6E" stroke="#FFFFFF" stroke-width="1.5"/>
+      <path d="M15 15l5 0" stroke="#FFFEFA" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M19 12.5l4 2.5-4 2.5z" fill="#FFFEFA"/>
+    </g>
+    <g transform="translate(40,112) rotate(6)">
+      <path d="M0 0H11V22H0Z" fill="#79D2B2" stroke="#FFFFFF" stroke-width="1.5"/>
+      <path d="M5.5 5V14" stroke="#FFFEFA" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M3 9l2.5 4 2.5-4z" fill="#FFFEFA"/>
+    </g>
+    <!-- CTA（高 88 不压缩，示意 48） -->
+    <rect x="10" y="176" width="180" height="48" rx="12" fill="url(#g7cta)"/>
+    <text x="100" y="204" text-anchor="middle" font-size="10" font-weight="900" fill="#FFFFFF">继续第 4 关</text>
+    <!-- 进度 -->
+    <rect x="10" y="234" width="180" height="5" rx="2.5" fill="#F5E6D8"/>
+    <rect x="10" y="234" width="45" height="5" rx="2.5" fill="#FF7568"/>
+    <g>
+      <circle cx="21" cy="248" r="2.6" fill="#FF7568"/><circle cx="34" cy="248" r="2.6" fill="#FF7568"/><circle cx="47" cy="248" r="2.6" fill="#FF7568"/>
+      <circle cx="60" cy="248" r="2.6" fill="#FFFDF8" stroke="#E8CDBB" stroke-width=".8"/><circle cx="73" cy="248" r="2.6" fill="#FFFDF8" stroke="#E8CDBB" stroke-width=".8"/>
+      <circle cx="86" cy="248" r="2.6" fill="#FFFDF8" stroke="#E8CDBB" stroke-width=".8"/><circle cx="99" cy="248" r="2.6" fill="#FFFDF8" stroke="#E8CDBB" stroke-width=".8"/>
+      <circle cx="112" cy="248" r="2.6" fill="#FFFDF8" stroke="#E8CDBB" stroke-width=".8"/><circle cx="125" cy="248" r="2.6" fill="#FFFDF8" stroke="#E8CDBB" stroke-width=".8"/>
+      <circle cx="138" cy="248" r="2.6" fill="#FFFDF8" stroke="#E8CDBB" stroke-width=".8"/><circle cx="151" cy="248" r="2.6" fill="#FFFDF8" stroke="#E8CDBB" stroke-width=".8"/>
+      <circle cx="164" cy="248" r="2.6" fill="#FFFDF8" stroke="#E8CDBB" stroke-width=".8"/><circle cx="177" cy="248" r="2.6" fill="#FFFDF8" stroke="#E8CDBB" stroke-width=".8"/>
+    </g>
+    <!-- 底部导航（安全区上方，不重叠） -->
+    <rect x="10" y="262" width="180" height="26" rx="12" fill="#FFFFFF" stroke="#F0DCCB" stroke-width="1.2"/>
+    <circle cx="55" cy="272" r="2.8" fill="#FF6B5C"/>
+    <text x="55" y="284" text-anchor="middle" font-size="5.5" font-weight="800" fill="#FF6B5C">首页</text>
+    <circle cx="100" cy="272" r="2.8" fill="#B9A79B"/>
+    <text x="100" y="284" text-anchor="middle" font-size="5.5" font-weight="800" fill="#8A7568">图鉴</text>
+    <circle cx="145" cy="272" r="2.8" fill="#B9A79B"/>
+    <text x="145" y="284" text-anchor="middle" font-size="5.5" font-weight="800" fill="#8A7568">商店</text>
+    <!-- 底部安全区（导航不进入） -->
+    <rect x="2" y="296" width="196" height="55" fill="#674138" opacity=".08"/>
+    <text x="100" y="318" text-anchor="middle" font-size="6.5" font-weight="700" fill="#8A6E62">底部安全区 16–34px</text>
+    <text x="100" y="330" text-anchor="middle" font-size="6" fill="#8A6E62">导航止于安全区起点，不重叠</text>
+    <!-- 比例标注 -->
+    <text x="100" y="344" text-anchor="middle" font-size="6" font-weight="700" fill="#FF7568">360 × 640（等比 0.489）</text>
+  </g>
+
+  <!-- 右侧规则（短行防裁切） -->
+  <g transform="translate(232,922)">
+    <text class="pt7" x="0" y="10">· 基准 390×844</text>
+    <text class="pt7" x="0" y="24">· 最小适配 360×640</text>
+    <text class="pt7" x="0" y="38">· 真实比例完整稿</text>
+    <text class="pt7" x="0" y="52">  见 12_screen_adapt</text>
+    <text class="pt7" x="0" y="66">· 长屏 ≥390×932：</text>
+    <text class="pt7" x="0" y="80">  CTA/导航吸底留白</text>
+    <text class="pt7" x="0" y="94">· 左右边距 ≥24px</text>
+    <text class="pt7" x="0" y="108">· 触控目标 ≥44×44</text>
+    <text class="pt7" x="0" y="122">· 小屏压缩：</text>
+    <text class="pt7" x="0" y="136">  预览卡 264（640 高</text>
+    <text class="pt7" x="0" y="150">  时再压至 210）</text>
+    <text class="pt7" x="0" y="164">· 导航 64→56，</text>
+    <text class="pt7" x="0" y="178">  区块间距 24→16</text>
+    <text class="pt7" x="0" y="192">· CTA 高 88 不压缩</text>
+    <text class="pt7" x="0" y="206">· 底部组件一律</text>
+    <text class="pt7" x="0" y="220">  位于安全区上方</text>
+    <text class="pt7" x="0" y="234">· 12 节点均分</text>
+    <text class="pt7" x="0" y="248">  一行不换行</text>
+  </g>
+</svg>
