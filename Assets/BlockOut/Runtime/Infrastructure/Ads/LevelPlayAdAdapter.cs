@@ -1,6 +1,9 @@
 using System;
 using BlockOut.Contracts;
 
+// 允许独立的 EditMode 测试程序集驱动 SDK 内部回调，保持回调不对业务代码公开。
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("BlockOut.Tests.EditMode")]
+
 namespace BlockOut.Infrastructure.Ads
 {
     /// <summary>

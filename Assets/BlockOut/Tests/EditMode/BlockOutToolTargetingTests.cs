@@ -159,6 +159,7 @@ namespace BlockOut.Tests.EditMode
         {
             var adapter = new LevelPlayAdAdapter("key", "placement", false);
             adapter.Init();
+            adapter.OnAdLoaded();
             // 直接驱动内部事件（SDK 接入后由 IronSourceEvents 调用）
             int rewarded = 0;
             adapter.ShowRewarded("revive", AdShowCallbacks.Create(onRewarded: () => rewarded++));
@@ -174,6 +175,7 @@ namespace BlockOut.Tests.EditMode
         {
             var adapter = new LevelPlayAdAdapter("key", "placement", false);
             adapter.Init();
+            adapter.OnAdLoaded();
             bool rewarded = false, closed = false;
             adapter.ShowRewarded("revive", AdShowCallbacks.Create(
                 onRewarded: () => rewarded = true, onClosed: () => closed = true));
@@ -189,8 +191,11 @@ namespace BlockOut.Tests.EditMode
         {
             var adapter = new LevelPlayAdAdapter("key", "placement", false);
             adapter.Init();
+            adapter.OnAdLoaded();
             int firstReward = 0, secondReward = 0;
             adapter.ShowRewarded("revive", AdShowCallbacks.Create(onRewarded: () => firstReward++));
+            // 模拟 SDK 再次报告可用，让第二次展示通过就绪检查并替换旧请求。
+            adapter.OnAvailabilityChanged(true);
             adapter.ShowRewarded("revive", AdShowCallbacks.Create(onRewarded: () => secondReward++));
 
             adapter.OnAdRewarded();   // 只应作用于第二个请求
