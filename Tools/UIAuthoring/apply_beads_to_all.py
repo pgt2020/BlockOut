@@ -89,19 +89,19 @@ LIST_FIX = {
     ('BlockOutCollectionPage', 'CollectionCoinText'): dict(
         rect=(262, 26, 104, 40), bg=('pill', WHITE, 1),
         icon=('icon_coin', WHITE, (10, 7, 26, 26)),
-        text_color=INK, size=17, align=5),
+        text_color=INK, size=17, align=4),
     ('BlockOutStorePage', 'StoreCoinText'): dict(
         rect=(262, 26, 104, 40), bg=('pill', WHITE, 1),
         icon=('icon_coin', WHITE, (10, 7, 26, 26)),
-        text_color=INK, size=17, align=5),
+        text_color=INK, size=17, align=4),
     ('BlockOutCollectionPage', 'CollectionEmptyText'): dict(
         rect=(0, 0, 342, 56), bg=('pill', WHITE, 1),
         icon=('icon_lock', INK_SOFT, (14, 12, 32, 32)),
         text='还没有拼片\n完成关卡即可解锁完整作品',
         text_color=INK, size=13, align=4),
     ('BlockOutStorePage', 'StoreEmptyText'): dict(
-        rect=(24, 240, 342, 200), bg=('panel', CREAM, 1),
-        icon=('icon_bulb', (1, .58, .12, 1), (131, 8, 64, 64)),
+        rect=(24, 300, 342, 240), bg=('panel', CREAM, 1),
+        icon=('icon_bulb', (1, .58, .12, 1), (139, 24, 64, 64)),
         text='道具商店准备中\n完成关卡即可解锁道具礼包',
         text_color=INK, size=16, align=4),
     ('BlockOutCollectionPage', 'Cells'): dict(
@@ -109,6 +109,21 @@ LIST_FIX = {
     # 章节条目：金色珠子改成作品缩略封面，锁图标用深墨蓝重新染色
     ('ChapterItem', 'Thumbnail'): dict(image=('art_home', WHITE, 0, 1)),
     ('ChapterItem', 'LockIcon'): dict(image=('icon_lock', INK, 0, 1)),
+}
+
+# R9 栅格规范：设置页原来是 772 高的全屏卡，三个开关挤在上半部，
+# 中间留下近 250px 空白。改成 342×472 居中标准卡：行高 64/52，
+# 间距 16~24，底留白 24，与 444 高的弹窗卡片同一套节奏。
+GRID_FIX = {
+    'BlockOutSettingsPage': {
+        'Card': (24, 186, 342, 472),
+        'Heading': (16, 20, 310, 36),
+        'SettingsMusicSwitch': (24, 80, 294, 64),
+        'SettingsSoundSwitch': (24, 160, 294, 64),
+        'SettingsVibSwitch': (24, 240, 294, 64),
+        'SettingsAboutBtn': (24, 328, 294, 52),
+        'SettingsCloseBtn': (24, 396, 294, 52),
+    },
 }
 
 BUTTON_GUID = re.search(r'^guid: (\w+)', next(PACKAGE.rglob('Button.cs.meta')).read_text(
@@ -510,6 +525,18 @@ def reskin(path, stem):
             fd['m_FontSize'] = rule.get('size', 16)
             fd['m_Alignment'] = rule.get('align', 4)
 
+    # ---- R9 栅格规范落盘：只改 RectTransform 数值，不动节点名/字段/组件 ----
+    for cls, fid, _, d in docs:
+        if cls != 1:
+            continue
+        rule = GRID_FIX.get(stem, {}).get(d['m_Name'])
+        if not rule:
+            continue
+        rt = rt_by_go.get(fid)
+        x, y, w, h = rule
+        byid[rt][2]['m_AnchoredPosition'] = {'x': x, 'y': -y}
+        byid[rt][2]['m_SizeDelta'] = {'x': w, 'y': h}
+
     # 每个页面在 DesignSurface 下加一层散珠装饰，放到子节点最前面（最底层）
     surface_rt = None
     surface_go = None
@@ -619,6 +646,57 @@ def polish_typography():
     return changed
 
 
+# R10：底部导航选中态。备份里三个导航按钮颜色相同，换肤后一律渲染成
+# 「首页绿 + 其余白」，图鉴/商店页的选中态因此永远是错的。
+NAV_STATE = {
+    'BlockOutCollectionPage': (('CollectionNavHomeBtn',
+                                'CollectionNavCollectionBtn',
+                                'CollectionNavStoreBtn'), 1),
+    'BlockOutStorePage': (('StoreNavHomeBtn',
+                           'StoreNavCollectionBtn',
+                           'StoreNavStoreBtn'), 2),
+}
+
+
+def fix_nav_state():
+    changed = 0
+    for stem, (names, active) in NAV_STATE.items():
+        path = DEST / (stem + '.prefab')
+        docs = parse(path)
+        byid = {fid: (cls, name, d) for cls, fid, name, d in docs}
+        go_by_name = {d['m_Name']: fid for cls, fid, _, d in docs if cls == 1}
+        rt_by_go = {d['m_GameObject']['fileID']: fid
+                    for cls, fid, _, d in docs if cls == 224}
+        go_of_rt = {fid: d['m_GameObject']['fileID']
+                    for cls, fid, _, d in docs if cls == 224}
+
+        def comps(goid):
+            return [byid[c['component']['fileID']][2]
+                    for c in byid[goid][2].get('m_Component', [])
+                    if c['component']['fileID'] in byid]
+
+        for i, nm in enumerate(names):
+            goid = go_by_name.get(nm)
+            if goid is None:
+                continue
+            img = next((c for c in comps(goid) if 'm_Sprite' in c), None)
+            if img is not None:
+                img['m_Sprite'] = SPR['btn_green' if i == active else 'btn_white']
+                img['m_Color'] = rgba(WHITE)
+                img['m_Type'] = 1
+                changed += 1
+            rt = rt_by_go.get(goid)
+            for ch in byid[rt][2].get('m_Children', []) if rt in byid else []:
+                cgo = go_of_rt.get(ch['fileID'])
+                if cgo is None:
+                    continue
+                for t in comps(cgo):
+                    if 'm_Text' in t:
+                        t['m_Color'] = rgba(WHITE if i == active else INK)
+        dump(docs, path)
+    return changed
+
+
 def backup_all():
     BACKUP.mkdir(parents=True, exist_ok=True)
     files = []
@@ -659,3 +737,4 @@ if __name__ == '__main__':
               f'/ 孔板 {st["holes"]} / 散珠 {st["decor"]}')
     print('合计:', total, '| 覆盖', len(files), '个预制')
     print('字号规范: 抬升', polish_typography(), '处小于 12px 的文字（不使用伪粗体）')
+    print('导航选中态: 修正', fix_nav_state(), '处按钮外观')

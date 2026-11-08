@@ -242,10 +242,11 @@ def render(path):
         # 列表项单独预览也铺同一张夜空底，避免浅青底与整套深蓝紫体系割裂
         sky_path = next((p for p in GUID2FILE.values() if p.name == 'sky.png'), None)
         sky = Image.open(sky_path).convert('RGBA') if sky_path else None
-        canvas = Image.new('RGBA', (W, int(root_rect[3]) + 48), (59, 50, 131, 255))
+        # 画布统一到 390×844，卡片垂直居中；全览拼图里矮列表项不再像空位
+        canvas = Image.new('RGBA', (W, H), (59, 50, 131, 255))
         if sky:
-            canvas.alpha_composite(sky.crop((0, 0, W, min(sky.height, canvas.height))))
-        offset = (24, 24)
+            canvas.alpha_composite(sky.crop((0, 0, W, min(sky.height, H))))
+        offset = (24, max(24, (H - root_rect[3]) / 2))
     else:
         canvas = Image.new('RGBA', (W, H), (255, 255, 255, 255))
         offset = (0, 0)
@@ -360,21 +361,22 @@ def contact_sheet(paths):
     pad, title_h, cols = 12, 26, 5
     rows = math.ceil(len(paths) / cols)
     sheet = Image.new('RGB', (cols * (cw + pad) + pad,
-                              rows * (ch + title_h + pad) + pad), (238, 241, 250))
+                              rows * (ch + title_h + pad) + pad), (26, 24, 62))
     d = ImageDraw.Draw(sheet)
     font = ImageFont.truetype(str(FONT_PATH), 16)
     head = ImageFont.truetype(str(FONT_PATH), 20)
-    d.text((pad + 4, 2), 'BlockOut · 商业化 UI 逐轮验收', fill=(30, 40, 72), font=head)
+    d.text((pad + 4, 2), 'BlockOut · 商业化 UI 逐轮验收', fill=(228, 232, 255), font=head)
     for i, p in enumerate(paths):
         x = pad + (i % cols) * (cw + pad)
         y = pad + title_h + (i // cols) * (ch + title_h + pad)
+        d.rectangle((x, y, x + cw, y + ch), fill=(34, 31, 78))
         im = Image.open(p).convert('RGB')
         s = min(cw / im.width, ch / im.height)
         nw, nh = max(1, int(im.width * s)), max(1, int(im.height * s))
         thumb = im.resize((nw, nh), Image.LANCZOS)
         sheet.paste(thumb, (x + (cw - nw) // 2, y + (ch - nh) // 2))
         d.text((x + 4, y + ch + 4), CN.get(p.stem, p.stem),
-               fill=(40, 52, 88), font=font)
+               fill=(214, 220, 248), font=font)
     sheet.save(OUT / '00_全览.png')
     return OUT / '00_全览.png'
 

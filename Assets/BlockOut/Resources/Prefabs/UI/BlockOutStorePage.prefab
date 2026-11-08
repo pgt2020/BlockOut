@@ -1127,10 +1127,10 @@ RectTransform:
     y: 1
   m_AnchoredPosition:
     x: 24
-    y: -240
+    y: -300
   m_SizeDelta:
     x: 342
-    y: 200
+    y: 240
   m_Pivot:
     x: 0
     y: 1
@@ -1500,7 +1500,7 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 15
     m_MaxSize: 18
-    m_Alignment: 5
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1608,7 +1608,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: 69df4c88a1ef47aeafbfc1c36887badb
+    guid: fd2b3c60cb3e4106a97f6a8ce5763336
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -1718,9 +1718,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 1
-    g: 1
-    b: 1
+    r: 0.086
+    g: 0.137
+    b: 0.259
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -1964,7 +1964,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: fd2b3c60cb3e4106a97f6a8ce5763336
+    guid: 69df4c88a1ef47aeafbfc1c36887badb
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -2074,9 +2074,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.086
-    g: 0.137
-    b: 0.259
+    r: 1
+    g: 1
+    b: 1
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -2953,8 +2953,8 @@ RectTransform:
     x: 0
     y: 1
   m_AnchoredPosition:
-    x: 131
-    y: -8
+    x: 139
+    y: -24
   m_SizeDelta:
     x: 64
     y: 64
