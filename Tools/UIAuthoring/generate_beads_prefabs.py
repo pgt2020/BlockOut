@@ -132,109 +132,91 @@ def _draw_bead(d, cx, cy, r):
           25, 155, fill=(80, 105, 130, 80), width=max(1, int(r * .10)))
 
 
-def _holes(d, box, step=26, color=(196, 222, 233, 150)):
+def _holes(d, box, step=30, color=(205, 230, 240, 95)):
     x0, y0, x1, y1 = box
     x, y = x0 + step, y0 + step
     while x < x1 - 6:
         while y < y1 - 6:
-            d.ellipse((x - 3, y - 3, x + 3, y + 3), fill=color)
+            d.ellipse((x - 2, y - 2, x + 2, y + 2), fill=color)
             y += step
         x += step
         y = y0 + step
 
 
 def _grid_board(size=336, cols=6, rows=6):
-    """6×6 浅蓝格线 + 每格淡珠孔：运行时真实棋子的底纹。"""
+    """6×6 极淡格线：运行时真实棋子的底纹，不抢方块。"""
     im = Image.new('RGBA', (size, size), (0, 0, 0, 0))
     d = ImageDraw.Draw(im)
     step = size / cols
-    d.rounded_rectangle((0, 0, size - 1, size - 1), radius=28,
-                        fill=(232, 246, 250, 255))
+    d.rounded_rectangle((0, 0, size - 1, size - 1), radius=20,
+                        fill=(238, 248, 251, 255))
     for i in range(1, cols):
         x = i * step
-        d.line([(x, 8), (x, size - 8)], fill=(203, 230, 240, 110), width=2)
+        d.line([(x, 10), (x, size - 10)], fill=(205, 230, 240, 70), width=1)
     for j in range(1, rows):
         y = j * step
-        d.line([(8, y), (size - 8, y)], fill=(203, 230, 240, 110), width=2)
+        d.line([(10, y), (size - 10, y)], fill=(205, 230, 240, 70), width=1)
     for i in range(cols):
         for j in range(rows):
             cx, cy = (i + .5) * step, (j + .5) * step
-            d.ellipse((cx - 4, cy - 4, cx + 4, cy + 4), fill=(196, 224, 235, 190))
+            d.ellipse((cx - 3, cy - 3, cx + 3, cy + 3), fill=(200, 226, 238, 110))
     return im
 
 
-def _rounded_panel(size, radius, tint=(255, 255, 255, 238), holes=True, tilt=0):
-    """半透明白色拼豆板：圆角 + 孔点网格 + 柔和投影；tilt 为倾斜角度。"""
+def _rounded_panel(size, radius, tint=(255, 255, 255, 246), holes=True, tilt=0):
+    """标准圆角白卡：单一轮廓 + 细描边 + 极淡孔点，无错位投影、不倾斜。"""
     w, h = size
-    canvas = Image.new('RGBA', (w, h), (0, 0, 0, 0))
-    pad = int(min(w, h) * .07)
-    base = Image.new('RGBA', (w, h), (0, 0, 0, 0))
-    bd = ImageDraw.Draw(base)
-    rect = (pad, pad, w - pad, h - pad)
-    shadow = Image.new('RGBA', (w, h), (0, 0, 0, 0))
-    sd = ImageDraw.Draw(shadow)
-    sd.rounded_rectangle((rect[0] + 5, rect[1] + 10, rect[2] + 5, rect[3] + 10),
-                         radius=radius, fill=(60, 110, 135, 70))
-    shadow = shadow.filter(ImageFilter.GaussianBlur(12))
-    canvas.alpha_composite(shadow)
-    bd.rounded_rectangle(rect, radius=radius, fill=tint,
-                         outline=(255, 255, 255, 255), width=3)
-    if holes:
-        _holes(bd, (rect[0] + 8, rect[1] + 8, rect[2] - 8, rect[3] - 8))
-    if tilt:
-        base = base.rotate(tilt, resample=Image.BICUBIC, expand=False)
-        canvas.alpha_composite(base)
-    else:
-        canvas.alpha_composite(base)
-    return canvas
-
-
-def _button(w, h, top, bottom, edge, radius=26):
-    """立体圆角按钮，9-slice 用；上亮下暗 + 底部厚边 + 顶部高光。"""
     im = Image.new('RGBA', (w, h), (0, 0, 0, 0))
     d = ImageDraw.Draw(im)
-    d.rounded_rectangle((3, 5, w - 4, h - 3), radius=radius, fill=edge)
+    d.rounded_rectangle((0, 0, w - 1, h - 1), radius=radius, fill=tint,
+                        outline=(206, 229, 238, 255), width=2)
+    if holes:
+        _holes(d, (8, 8, w - 8, h - 8))
+    return im
+
+
+def _button(w, h, top, bottom, edge, radius=8):
+    """规整圆角按钮：单一轮廓、轻微上下渐变、细描边、底部一条贴边深色线。
+    无错位厚底、无弧线高光、无白色高光条；圆角半径与九宫格边界一致，任意高度都不切角。"""
+    im = Image.new('RGBA', (w, h), (0, 0, 0, 0))
     body = Image.new('RGBA', (w, h), (0, 0, 0, 0))
     bd = ImageDraw.Draw(body)
-    for y in range(2, h - 7):
-        t = y / max(1, h - 9)
-        bd.line([(3, y), (w - 4, y)], fill=_lerp(top, bottom, t) + (255,))
+    for y in range(h):
+        t = y / max(1, h - 1)
+        bd.line([(0, y), (w, y)], fill=_lerp(top, bottom, t) + (255,))
     mask = Image.new('L', (w, h), 0)
-    ImageDraw.Draw(mask).rounded_rectangle((3, 2, w - 4, h - 8), radius=radius, fill=255)
+    ImageDraw.Draw(mask).rounded_rectangle((0, 0, w - 1, h - 1), radius=radius, fill=255)
     im.paste(body, (0, 0), mask)
-    d.rounded_rectangle((3, 2, w - 4, h - 8), radius=radius, outline=(255, 255, 255, 70), width=2)
-    # 顶部只留一条薄高光；太厚会在 9-slice 拉伸后压住按钮文字
-    d.rounded_rectangle((18, 5, w - 18, int(h * .16)), radius=int(radius * .35),
-                        fill=(255, 255, 255, 48))
+    d = ImageDraw.Draw(im)
+    d.rounded_rectangle((0, 0, w - 1, h - 1), radius=radius, outline=edge + (255,), width=2)
+    d.line([(radius, h - 3), (w - radius, h - 3)], fill=edge + (255,), width=2)
     return im
 
 
-def _pill(w, h, fill=(255, 255, 255, 246), edge=(214, 232, 238, 255)):
+def _pill(w, h, fill=(255, 255, 255, 250), edge=(206, 229, 238, 255)):
+    """规整胶囊/信息条：纯白圆角矩形 + 细描边，无高光条、无错层阴影。"""
     im = Image.new('RGBA', (w, h), (0, 0, 0, 0))
     d = ImageDraw.Draw(im)
-    r = h // 2
-    d.rounded_rectangle((2, 5, w - 3, h - 2), radius=r, fill=(80, 130, 150, 55))
-    d.rounded_rectangle((2, 2, w - 3, h - 6), radius=r, fill=fill, outline=edge, width=2)
-    d.rounded_rectangle((14, 6, w - 14, int(h * .34)), radius=r // 3, fill=(255, 255, 255, 120))
+    d.rounded_rectangle((0, 0, w - 1, h - 1), radius=8, fill=fill,
+                        outline=edge, width=2)
     return im
 
 
-def _slice_panel(size=160, radius=28):
-    """专为九宫格准备的纯白圆角面板：圆角区正好落在 border(30) 内，拉伸不会切角。"""
+def _slice_panel(size=160, radius=8):
+    """九宫格专用白卡：圆角半径与 border 一致，拉伸不会切角。"""
     im = Image.new('RGBA', (size, size), (0, 0, 0, 0))
     d = ImageDraw.Draw(im)
-    d.rounded_rectangle((2, 2, size - 3, size - 3), radius=radius,
-                        fill=(255, 255, 255, 244), outline=(222, 238, 244, 255), width=2)
+    d.rounded_rectangle((0, 0, size - 1, size - 1), radius=radius,
+                        fill=(255, 255, 255, 248), outline=(206, 229, 238, 255), width=2)
     return im
 
 
 def _circle_button(size=128):
+    """标准圆形按钮：单一轮廓 + 细描边，无椭圆高光与偏移阴影。"""
     im = Image.new('RGBA', (size, size), (0, 0, 0, 0))
     d = ImageDraw.Draw(im)
-    d.ellipse((6, 12, size - 6, size - 2), fill=(70, 120, 150, 60))
-    d.ellipse((6, 5, size - 6, size - 11), fill=(255, 255, 255, 250),
-              outline=(226, 240, 244, 255), width=3)
-    d.ellipse((24, 16, size - 24, int(size * .44)), fill=(255, 255, 255, 170))
+    d.ellipse((2, 2, size - 3, size - 3), fill=(255, 255, 255, 250),
+              outline=(206, 229, 238, 255), width=3)
     return im
 
 
@@ -289,27 +271,13 @@ def _icon(name, size=96):
 
 
 def _decor(w=390, h=844):
-    """全屏散落珠子装饰，确定性排布。"""
+    """背景只留极淡孔点纹理。散落彩珠会压在 HUD、棋盘和工具槽上，全部去掉。"""
     im = Image.new('RGBA', (w, h), (0, 0, 0, 0))
-    pts = [(32, 210, 11), (372, 232, 9), (22, 396, 8), (366, 420, 12),
-           (10, 530, 8), (352, 548, 8), (18, 658, 7), (374, 676, 9),
-           (60, 118, 6), (330, 132, 7), (28, 762, 8), (362, 764, 7),
-           (110, 46, 6), (286, 62, 6), (16, 300, 6), (378, 316, 6)]
-    rgb = [(255, 138, 74), (255, 196, 61), (250, 110, 158), (108, 204, 102),
-           (66, 204, 219), (97, 140, 242), (174, 122, 224)]
-    layer = Image.new('RGBA', (w, h), (0, 0, 0, 0))
-    for i, (x, y, r) in enumerate(pts):
-        bead = Image.new('RGBA', (r * 2 + 8, r * 2 + 8), (0, 0, 0, 0))
-        _draw_bead(ImageDraw.Draw(bead), r + 4, r + 4, r)
-        tint = Image.new('RGBA', bead.size, rgb[i % len(rgb)] + (255,))
-        bead = ImageChopsMultiply(bead, tint)
-        layer.alpha_composite(bead, (int(x - r - 4), int(y - r - 4)))
-    # 淡孔点
-    d = ImageDraw.Draw(layer)
-    for x in range(14, w, 42):
-        for y in range(24, h, 42):
-            d.ellipse((x - 1, y - 1, x + 1, y + 1), fill=(255, 255, 255, 70))
-    return layer
+    d = ImageDraw.Draw(im)
+    for x in range(18, w, 44):
+        for y in range(24, h, 44):
+            d.ellipse((x - 1, y - 1, x + 1, y + 1), fill=(255, 255, 255, 45))
+    return im
 
 
 def ImageChopsMultiply(a, b):
@@ -357,17 +325,18 @@ def build_sprites():
     SR('bead', bead)
 
     SR('sky', _sky_gradient(390, 844))
-    SR('plate_tilt', _rounded_panel((512, 512), 62, tilt=-8))
-    SR('plate', _rounded_panel((512, 512), 54, holes=True))
-    SR('plate_soft', _rounded_panel((256, 256), 36, tint=(246, 253, 255, 232), holes=False), 36)
-    SR('btn_green', _button(160, 84, (139, 232, 107), (72, 184, 74), (32, 118, 54)), 26)
-    SR('btn_pink', _button(160, 84, (255, 150, 183), (244, 86, 138), (196, 56, 106)), 26)
-    SR('btn_white', _button(160, 84, (255, 255, 255), (238, 248, 250), (198, 222, 230)), 26)
-    SR('pill', _pill(160, 64), 32)
-    SR('panel', _slice_panel(), 30)
+    # 圆角半径必须 <= 九宫格 border，否则切片会把角拉成斜角（上一版工具卡的菱形即由此而来）
+    SR('plate_tilt', _rounded_panel((512, 512), 24))
+    SR('plate', _rounded_panel((512, 512), 24))
+    SR('plate_soft', _rounded_panel((256, 256), 8, tint=(248, 253, 255, 244), holes=False), 8)
+    SR('btn_green', _button(160, 80, (139, 232, 107), (96, 202, 96), (48, 140, 68)), 8)
+    SR('btn_pink', _button(160, 80, (255, 158, 188), (246, 108, 152), (196, 66, 110)), 8)
+    SR('btn_white', _button(160, 80, (255, 255, 255), (244, 250, 252), (196, 222, 232)), 8)
+    SR('pill', _pill(160, 64), 8)
+    SR('panel', _slice_panel(), 8)
     SR('circle', _circle_button(128))
     holes = Image.new('RGBA', (28, 28), (0, 0, 0, 0))
-    ImageDraw.Draw(holes).ellipse((12, 12, 16, 16), fill=(196, 222, 233, 165))
+    ImageDraw.Draw(holes).ellipse((13, 13, 16, 16), fill=(205, 230, 240, 95))
     SR('holes', holes)
     for n in ['gear', 'pause', 'close', 'heart', 'coin', 'bulb', 'hammer', 'wand', 'lock']:
         SR('icon_' + n, _icon(n))
@@ -628,10 +597,10 @@ def make_home():
     p = Page('BlockOutHomePage', 'BlockOutHomeView')
 
     # 顶栏：设置 / 标题 / 金币
-    setn, _, _ = p.btn('HomeSettingsBtn', '设置', (24, 28, 52, 52), p.surface,
+    setn, _, _ = p.btn('HomeSettingsBtn', '', (24, 28, 52, 52), p.surface,
                        SPR['circle'], txt=INK, size=10,
-                       text_box=(6, 30, 40, 18))
-    icon(p, 'gear', (14, 6, 24, 24), setn)
+                       text_box=(0, 0, 52, 52))
+    icon(p, 'gear', (14, 14, 24, 24), setn)
     p.label('Logo', 'BlockOut', (24, 92, 342, 46), size=34, color=INK)
     p.node('LogoSub', (24, 138, 342, 24)).text('箭头方块消除', 13, INK_SOFT, 4)
 
@@ -695,12 +664,12 @@ def make_home():
 
     cta, _, tid = p.btn('HomeCtaButton', '开始游戏', (24, 686, 342, 62), p.surface,
                         SPR['btn_green'], color=WHITE, txt=WHITE, size=23,
-                        text_box=(20, 4, 302, 36))
+                        text_box=(20, 8, 302, 28))
     p.fields['HomeCtaTitle'] = ref(tid)
-    p.label('HomeCtaSub', '第 07 关', (20, 40, 302, 18), cta, 12, WHITE)
-    p.btn('HomeCtaSecondary', '玩法说明', (79, 752, 232, 22), p.surface,
-          SPR['btn_white'], color=(1, 1, 1, 0), txt=INK_SOFT, size=11,
-          text_box=(0, 0, 232, 22))
+    p.label('HomeCtaSub', '第 07 关', (20, 38, 302, 18), cta, 12, WHITE)
+    p.btn('HomeCtaSecondary', '玩法说明', (79, 752, 232, 26), p.surface,
+          SPR['btn_white'], txt=INK_SOFT, size=11,
+          text_box=(0, 0, 232, 26))
 
     # 底部导航
     nav = p.node('BottomNav', (24, 780, 342, 56))
@@ -718,87 +687,87 @@ def make_home():
 def make_board():
     p = Page('BlockOutGameHud', 'BlockOutBoardPageView')
 
-    # 顶栏
-    pause, _, _ = p.btn('BoardPauseBtn', '暂停', (24, 26, 48, 48), p.surface,
+    # 顶栏：暂停只留图标（圆形按钮里再塞文字会挤成两行），标题/心/计时互不重叠
+    pause, _, _ = p.btn('BoardPauseBtn', '', (24, 24, 44, 44), p.surface,
                         SPR['circle'], txt=INK, size=9,
-                        text_box=(4, 30, 40, 16))
-    icon(p, 'pause', (14, 7, 20, 22), pause)
-    p.label('BoardLevelTitle', '第 1 章 · 第 07 关', (82, 24, 220, 30), size=20, color=INK)
-    p.label('BoardLevelSub', '沿箭头方向移除方块', (82, 54, 220, 20), size=11, color=INK_SOFT)
+                        text_box=(0, 0, 44, 44))
+    icon(p, 'pause', (12, 10, 20, 24), pause)
+    p.label('BoardLevelTitle', '第 1 章 · 第 07 关', (78, 22, 210, 30), size=19, color=INK, align=3)
+    p.label('BoardLevelSub', '沿箭头方向移除方块', (78, 52, 170, 20), size=11, color=INK_SOFT, align=3)
 
     hearts = []
-    hr = p.node('Hearts', (312, 34, 72, 26))
+    hr = p.node('Hearts', (300, 26, 72, 26))
     for i in range(3):
         n, cid = p.image('Heart' + str(i), (i * 25, 0, 23, 23), hr,
                          PINK, SPR['icon_heart'])
         hearts.append(ref(cid))
     p.fields['BoardHearts'] = hearts
 
-    timer = p.node('Timer', (262, 62, 104, 28))
+    timer = p.node('Timer', (296, 56, 70, 24))
     timer.img(WHITE, SPR['pill'], sliced=True)
     p.fields['BoardTimerPill'] = ref(timer.rt)
-    p.label('BoardTimerText', '02:00', (6, 0, 92, 28), timer, 13, INK)
+    p.label('BoardTimerText', '02:00', (4, 0, 62, 24), timer, 12, INK)
 
-    # 剩余块数胶囊
+    # 剩余块数胶囊：文字与连击标签各占一段，留出 12px 右边距
     pill = p.node('RemainingPill', (24, 90, 342, 44))
     pill.img(WHITE, SPR['pill'], sliced=True)
-    icon(p, 'coin', (12, 9, 26, 26), pill)
-    p.label('BoardRemainingText', '剩余 06 块', (46, 6, 200, 32), pill,
+    icon(p, 'coin', (12, 10, 24, 24), pill)
+    p.label('BoardRemainingText', '剩余 06 块', (44, 6, 170, 32), pill,
             size=16, color=INK, align=3)
-    combo = p.node('ComboTag', (242, 8, 92, 28), pill)
+    combo = p.node('ComboTag', (236, 8, 94, 28), pill)
     combo.img(GOLD, SPR['pill'], sliced=True)
-    p.label('ComboText', '连击 ×3', (2, 2, 88, 24), combo, 11, WHITE, 4)
+    p.label('ComboText', '连击 ×3', (2, 2, 90, 24), combo, 11, WHITE, 4)
 
     # 常驻拼装条（视觉版，12 颗珠子）
     p.node('AssemblyLabel', (24, 142, 200, 20)).text('拼片 6/12', 11, INK_SOFT, 3)
     bead_row(p, 'AssemblyBar', (24, 164, 342, 20), p.surface, active=6, size=20)
 
-    # 棋盘：BoardArea 自己带 6×6 珠格底板；运行时 boardGo 挂在它下面，
-    # SetAsFirstSibling 后棋子才不会被白色面板盖住（上一版层级是反的）。
-    panel = p.node('BoardPanel', (18, 200, 354, 28))
-    p.node('BoardPanelTitle', (30, 204, 180, 20)).text('对局棋盘', 11, INK_SOFT, 3)
-    p.node('BoardPanelSub', (196, 204, 162, 20)).text('第 1 章 · 第 07 关', 11, INK_SOFT, 5)
-    area = p.node('BoardArea', (18, 232, 354, 354))
+    # 棋盘：BoardArea 自带极淡 6×6 底板；运行时 boardGo 挂在它下面，
+    # SetAsFirstSibling 后棋子才不会被面板盖住。
+    p.node('BoardPanel', (18, 194, 354, 24))
+    p.node('BoardPanelTitle', (30, 194, 180, 24)).text('对局棋盘', 11, INK_SOFT, 3)
+    p.node('BoardPanelSub', (198, 194, 162, 24)).text('第 1 章 · 第 07 关', 11, INK_SOFT, 5)
+    area = p.node('BoardArea', (18, 222, 354, 354))
     area.img(WHITE, SPR['grid'])
     p.fields['BoardArea'] = ref(area.rt)
-    demo = p.node('BoardDemoArt', (30, 244, 330, 330), p.surface, active=False)
+    demo = p.node('BoardDemoArt', (30, 234, 330, 330), p.surface, active=False)
     demo.img(WHITE, SPR['art_board'])
 
-    hint = p.node('HintPill', (24, 598, 342, 34))
-    hint.img((1, 1, 1, .62), SPR['pill'], sliced=True)
-    p.label('BoardHintPill', '轻点整块方块，沿箭头方向飞出', (8, 2, 326, 30), hint,
+    hint = p.node('HintPill', (24, 586, 342, 32))
+    hint.img((1, 1, 1, .72), SPR['pill'], sliced=True)
+    p.label('BoardHintPill', '轻点整块方块，沿箭头方向飞出', (8, 2, 326, 28), hint,
             size=12, color=INK, align=4)
 
-    # 三个工具槽：首个高亮可用，后两个灰态锁定（对齐画布稿）
+    # 三个工具槽：规整白卡，图标/名称/条件三段居中，角标收在卡片内
     tools = [('HintSlot', '提示', 'bulb', '×3 可用'),
-             ('HammerSlot', '锤子', 'hammer', '第 11 关'),
-             ('MagicSlot', '魔法棒', 'wand', '第 16 关')]
+             ('HammerSlot', '锤子', 'hammer', '第 11 关解锁'),
+             ('MagicSlot', '魔法棒', 'wand', '第 16 关解锁')]
     for i, (key, title, ic, cond) in enumerate(tools):
-        root = p.node(key, (24 + i * 116, 642, 110, 106))
-        root.img((0.92, 1, 0.93, 1) if i == 0 else (0.90, 0.94, 0.96, 1),
-                 SPR['plate_soft'])
+        root = p.node(key, (24 + i * 116, 628, 110, 100))
+        root.img((0.94, 1, 0.95, 1) if i == 0 else (0.95, 0.97, 0.99, 1),
+                 SPR['plate_soft'], sliced=True)
         slot = {'Rect': ref(root.rt), 'Button': ref(root.button())}
-        _, cid = p.image('Icon', (37, 10, 36, 36), root,
-                         ICON_TINT[ic] if i == 0 else (0.62, 0.70, 0.76, 1),
+        _, cid = p.image('Icon', (37, 8, 36, 36), root,
+                         ICON_TINT[ic] if i == 0 else (0.50, 0.60, 0.68, 1),
                          SPR['icon_' + ic])
         slot['Icon'] = ref(cid)
-        badge = p.node('CountBadge', (78, 6, 26, 22), root, active=(i == 0))
+        badge = p.node('CountBadge', (74, 8, 28, 20), root, active=(i == 0))
         badge.img(GOLD, SPR['pill'], sliced=True)
         slot['CountBadge'] = ref(badge.go)
-        _, cid = p.label('Count', '×3' if i == 0 else '0', (0, 0, 26, 22), badge,
+        _, cid = p.label('Count', '×3' if i == 0 else '0', (0, 0, 28, 20), badge,
                          10, WHITE)
         slot['CountText'] = ref(cid)
-        lock, _ = p.image('LockBadge', (78, 6, 26, 22), root, INK_SOFT, SPR['icon_lock'])
+        lock, _ = p.image('LockBadge', (78, 8, 24, 20), root, INK_SOFT, SPR['icon_lock'])
         lock.active = (i > 0)   # 与 CountBadge 互斥，运行时由 RefreshToolSlot 切换
         slot['LockBadge'] = ref(lock.go)
-        _, cid = p.label('NameText', title, (4, 50, 102, 24), root, 13,
+        _, cid = p.label('NameText', title, (4, 48, 102, 24), root, 13,
                          INK if i == 0 else INK_SOFT)
         slot['NameText'] = ref(cid)
-        _, cid = p.label('CondText', cond, (4, 76, 102, 22), root, 10, INK_SOFT)
+        _, cid = p.label('CondText', cond, (4, 74, 102, 18), root, 10, INK_SOFT)
         slot['CondText'] = ref(cid)
         p.fields[key] = slot
 
-    p.node('Footer', (24, 768, 342, 20)).text('第一章 · 生命模式', 10, INK_SOFT, 4)
+    p.node('Footer', (24, 744, 342, 22)).text('第一章 · 生命模式', 11, INK_SOFT, 4)
     return p.save()
 
 
@@ -847,7 +816,7 @@ def make_settlement():
     p.label('SettleRewardText', '通关奖励 · 难度 2 · 可翻倍', (118, 12, 146, 38), reward,
             11, INK, 3)
     dbl = p.node('SettleDoubleDecor', (266, 13, 92, 36), reward)
-    dbl.img(WHITE, SPR['btn_pink'])
+    dbl.img(WHITE, SPR['btn_pink'], sliced=True)
     Node(p, 'Text', dbl, (0, 0, 92, 36)).text('翻倍 +30', 12, WHITE, 4)
 
     p.node('SettleStats', (24, 656, 342, 20)).text('用时 01:42 · 最高连击 ×3 · 错误 0 次',
@@ -857,9 +826,9 @@ def make_settlement():
     for i, (key, title) in enumerate([('SettleReplayBtn', '重玩'),
                                       ('SettleHomeBtn', '返回首页'),
                                       ('SettleCollectionBtn', '查看收藏')]):
-        p.btn(key, title, (20 + i * 117, 762, 110, 28), p.surface,
-              SPR['btn_white'], color=(1, 1, 1, 0), txt=INK_SOFT, size=12,
-              text_box=(0, 0, 110, 28))
+        p.btn(key, title, (20 + i * 117, 760, 110, 32), p.surface,
+              SPR['btn_white'], txt=INK_SOFT, size=12,
+              text_box=(0, 0, 110, 32))
     return p.save()
 
 

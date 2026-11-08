@@ -3887,10 +3887,10 @@ RectTransform:
     y: 1
   m_AnchoredPosition:
     x: 20
-    y: -762
+    y: -760
   m_SizeDelta:
     x: 110
-    y: 28
+    y: 32
   m_Pivot:
     x: 0
     y: 1
@@ -3957,7 +3957,7 @@ RectTransform:
     y: 0
   m_SizeDelta:
     x: 110
-    y: 28
+    y: 32
   m_Pivot:
     x: 0
     y: 1
@@ -4030,10 +4030,10 @@ RectTransform:
     y: 1
   m_AnchoredPosition:
     x: 137
-    y: -762
+    y: -760
   m_SizeDelta:
     x: 110
-    y: 28
+    y: 32
   m_Pivot:
     x: 0
     y: 1
@@ -4100,7 +4100,7 @@ RectTransform:
     y: 0
   m_SizeDelta:
     x: 110
-    y: 28
+    y: 32
   m_Pivot:
     x: 0
     y: 1
@@ -4173,10 +4173,10 @@ RectTransform:
     y: 1
   m_AnchoredPosition:
     x: 254
-    y: -762
+    y: -760
   m_SizeDelta:
     x: 110
-    y: 28
+    y: 32
   m_Pivot:
     x: 0
     y: 1
@@ -4243,7 +4243,7 @@ RectTransform:
     y: 0
   m_SizeDelta:
     x: 110
-    y: 28
+    y: 32
   m_Pivot:
     x: 0
     y: 1
@@ -7044,7 +7044,7 @@ MonoBehaviour:
     fileID: 21300000
     guid: ef6763bf02fa44dfbbf717a3c05efd37
     type: 3
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
@@ -7383,7 +7383,7 @@ MonoBehaviour:
     r: 1
     g: 1
     b: 1
-    a: 0
+    a: 1
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -7561,7 +7561,7 @@ MonoBehaviour:
     r: 1
     g: 1
     b: 1
-    a: 0
+    a: 1
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -7739,7 +7739,7 @@ MonoBehaviour:
     r: 1
     g: 1
     b: 1
-    a: 0
+    a: 1
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:

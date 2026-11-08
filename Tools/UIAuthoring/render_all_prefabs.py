@@ -1,9 +1,12 @@
-"""从 prefab YAML 直接渲染设计态预览图（不启动 Unity）。
+"""从 prefab YAML 直接渲染预览图（不启动 Unity）。
 
-用于逐屏核对风格：把 RectTransform 层级按锚点还原成 390×844 画布，绘制 Image
-（支持 9-slice / Tiled / Filled / PreserveAspect / m_Color 染色）与 Text（思源黑体）。
-运行：python3 Tools/UIAuthoring/render_all_prefabs.py
-输出：UI原型/beads_full/*.png
+两种模式：
+  默认（真实态）：严格按 m_IsActive 渲染，默认禁用的设计演示层不出现，
+                 与 Play Mode 的 UI 框架一致（运行时棋子由代码生成，静态图不显示）。
+  --design     ：额外画出 BoardDemoArt 设计态演示层，供与画布稿比对。
+
+运行：python3 Tools/UIAuthoring/render_all_prefabs.py [--design]
+输出：UI原型/beads_final/*.png（真实态）/ UI原型/beads_design/*.png（设计态）
 """
 from pathlib import Path
 import re, yaml, math
@@ -11,7 +14,11 @@ from PIL import Image, ImageDraw, ImageFont, ImageChops
 
 ROOT = Path(__file__).resolve().parents[2]
 UI = ROOT / 'Assets/BlockOut/Resources/Prefabs/UI'
-OUT = ROOT / 'UI原型' / 'beads_full'
+import sys
+OUT = ROOT / 'UI原型' / 'beads_final'
+DESIGN_VIEW = '--design' in sys.argv
+if DESIGN_VIEW:
+    OUT = ROOT / 'UI原型' / 'beads_design'
 FONT_PATH = ROOT / 'Assets/Resources/Fonts/SourceHanSansCN-Regular.otf'
 W, H = 390, 844
 
@@ -252,8 +259,8 @@ def render(path):
         go_fid = go_by_rt.get(rt_fid)
         go = byid.get(go_fid)
         # 三屏的 BoardDemoArt 是默认禁用的「设计态演示层」，预览时照样画出来，
-        # 方便和画布设计稿逐屏比对（Play Mode 里它不会出现）。
-        show = go[2]['m_Name'] == 'BoardDemoArt'
+        # 只有 --design 模式才画默认禁用的演示层；真实态严格按 m_IsActive。
+        show = DESIGN_VIEW and go[2]['m_Name'] == 'BoardDemoArt'
         if not go or (not go[2].get('m_IsActive', 1) and not show):
             return
         r = rect_of(rt[2], parent)

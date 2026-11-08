@@ -177,9 +177,9 @@ def classify(name, stem, c, is_btn, spr_file, typ, is_root):
         return None                                   # 遮罩 / 透明容器，保持
     if is_root and stem in ITEMS:
         # 列表项根节点是「一张卡」，即使挂了 Button 也不能套按钮贴图。
-        # ChapterItem 是 342×72 的横条，用胶囊底避免圆角面板的阴影被压扁成尖角。
+        # ChapterItem 是 342×72 的横条，同样用九宫格白卡，圆角不随宽度拉伸变形。
         if stem == 'ChapterItem':
-            return {'sp': 'pill', 'color': WHITE, 'type': 0, 'preserve': 0,
+            return {'sp': 'pill', 'color': WHITE, 'type': 1, 'preserve': 0,
                     'holes': True}
         return {'sp': 'plate_soft', 'color': WHITE, 'type': 1,
                 'preserve': 0, 'holes': True}
@@ -358,13 +358,8 @@ def reskin(path, stem):
                             int(im.get('m_Type', 0)), is_root)
             if rule is None:
                 continue
-            # 按钮贴图高 84、九宫格上下各 26，目标高度若小于 72 会把中段挤没、
-            # 两端拉出尖角。矮按钮 / 矮卡片改用 Simple 整图拉伸，圆角与厚底边仍保留。
-            small_button = (rule['sp'] in ('btn_green', 'btn_white', 'btn_pink')
-                            and 0 < h < 72)
-            small_card = rule['sp'] == 'plate_soft' and 0 < h <= 84
-            if rule['type'] == 1 and (small_button or small_card):
-                rule['type'] = 0
+            # 新控件贴图圆角半径与九宫格边界都是 8px，任意高度切片都规整，
+            # 不再需要「矮按钮改 Simple 拉伸」的兜底。
             im['m_Sprite'] = SPR[rule['sp']]
             im['m_Color'] = rgba(rule['color'])
             im['m_Type'] = rule['type']

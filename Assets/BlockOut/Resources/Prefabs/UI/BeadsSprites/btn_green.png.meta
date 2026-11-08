@@ -19,10 +19,10 @@ TextureImporter:
     x: 0.5
     y: 0.5
   spriteBorder:
-    x: 26
-    y: 26
-    z: 26
-    w: 26
+    x: 8
+    y: 8
+    z: 8
+    w: 8
   textureSettings:
     serializedVersion: 2
     filterMode: 1

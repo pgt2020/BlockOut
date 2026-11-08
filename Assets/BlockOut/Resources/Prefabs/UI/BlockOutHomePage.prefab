@@ -369,11 +369,11 @@ RectTransform:
     x: 0
     y: 1
   m_AnchoredPosition:
-    x: 6
-    y: -30
+    x: 0
+    y: 0
   m_SizeDelta:
-    x: 40
-    y: 18
+    x: 52
+    y: 52
   m_Pivot:
     x: 0
     y: 1
@@ -437,7 +437,7 @@ RectTransform:
     y: 1
   m_AnchoredPosition:
     x: 14
-    y: -6
+    y: -14
   m_SizeDelta:
     x: 24
     y: 24
@@ -5057,10 +5057,10 @@ RectTransform:
     y: 1
   m_AnchoredPosition:
     x: 20
-    y: -4
+    y: -8
   m_SizeDelta:
     x: 302
-    y: 36
+    y: 28
   m_Pivot:
     x: 0
     y: 1
@@ -5124,7 +5124,7 @@ RectTransform:
     y: 1
   m_AnchoredPosition:
     x: 20
-    y: -40
+    y: -38
   m_SizeDelta:
     x: 302
     y: 18
@@ -5203,7 +5203,7 @@ RectTransform:
     y: -752
   m_SizeDelta:
     x: 232
-    y: 22
+    y: 26
   m_Pivot:
     x: 0
     y: 1
@@ -5270,7 +5270,7 @@ RectTransform:
     y: 0
   m_SizeDelta:
     x: 232
-    y: 22
+    y: 26
   m_Pivot:
     x: 0
     y: 1
@@ -6087,7 +6087,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u8BBE\u7F6E"
+  m_Text: ''
 --- !u!222 &100023
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10224,7 +10224,7 @@ MonoBehaviour:
     r: 1
     g: 1
     b: 1
-    a: 0
+    a: 1
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
