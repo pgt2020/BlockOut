@@ -6413,11 +6413,11 @@ MonoBehaviour:
       fileID: 12800000
       guid: fd593325a489afb46b970fe4942877e4
       type: 3
-    m_FontSize: 12
+    m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 8
-    m_MaxSize: 12
+    m_MinSize: 10
+    m_MaxSize: 14
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1

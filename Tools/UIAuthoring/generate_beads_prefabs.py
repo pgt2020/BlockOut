@@ -184,6 +184,70 @@ def _brand_art(w=390, h=260):
     return im
 
 
+def _popup_art(w=284, h=96):
+    """弹窗内容层：一组橙色珠子方块 → 白色箭头 → 飞出的彩珠。
+    用玩法图形填掉弹窗中段的大块米白留白，同时强化「沿箭头飞出」的玩法记忆。"""
+    im = Image.new('RGBA', (w, h), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    for x in range(10, w, 20):
+        for y in range(10, h, 20):
+            d.ellipse((x - 1, y - 1, x + 1, y + 1), fill=(196, 206, 232, 120))
+
+    def bead(cx, cy, r, rgb):
+        d.ellipse((cx - r + 1, cy - r + r * .13, cx + r + 1, cy + r + r * .13),
+                  fill=(70, 86, 120, 45))
+        steps = max(8, int(r / 2))
+        for i in range(steps):
+            t = i / steps
+            inset = r * t * .92
+            k = 1.0 - .26 * t
+            d.ellipse((cx - r + inset, cy - r + inset, cx + r - inset, cy + r - inset),
+                      fill=tuple(int(v * k) for v in rgb) + (255,))
+        d.ellipse((cx - r, cy - r, cx + r, cy + r),
+                  outline=tuple(int(v * .72) for v in rgb) + (255,), width=2)
+        d.ellipse((cx - r * .62, cy - r * .70, cx - r * .02, cy - r * .28),
+                  fill=(255, 255, 255, 165))
+        hr = r * .22
+        d.ellipse((cx - hr - 1, cy - hr - 1, cx + hr + 1, cy + hr + 1),
+                  fill=(255, 255, 255, 215))
+
+    orange = (255, 150, 60)
+    for row in range(2):
+        for col in range(2):
+            bead(46 + col * 30, 32 + row * 30, 13, orange)
+
+    # 中间引导箭头：深蓝描边 + 白色箭身，指向右侧飞出方向
+    ax, ay = 128, 48
+    d.line([(ax, ay), (ax + 52, ay)], fill=(68, 78, 140, 90), width=2)
+    d.polygon([(ax + 18, ay - 14), (ax + 46, ay), (ax + 18, ay + 14)],
+              fill=(62, 74, 138, 255))
+    d.polygon([(ax + 22, ay - 10), (ax + 42, ay), (ax + 22, ay + 10)],
+              fill=(255, 255, 255, 255))
+
+    palette = [(255, 198, 70), (246, 96, 150), (76, 196, 220),
+               (128, 206, 110), (152, 118, 220)]
+    spots = [(212, 28, 11), (238, 52, 9), (220, 68, 10), (256, 30, 8), (264, 70, 7)]
+    for (cx, cy, r), rgb in zip(spots, palette):
+        bead(cx, cy, r, rgb)
+    return im
+
+
+def _about_art(size=96):
+    """关于弹窗的作品徽章：金边白卡 + 完整作品珠阵缩略图。"""
+    im = Image.new('RGBA', (size, size), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    d.rounded_rectangle((0, 0, size - 1, size - 1), radius=18,
+                        fill=(255, 255, 255, 255),
+                        outline=(255, 206, 90, 255), width=3)
+    art = Image.open(ROOT / 'generated-images' / 'beads_home_plate.png').convert('RGBA')
+    art = art.crop((38, 12, 310, 284)).resize((size - 12, size - 12), Image.LANCZOS)
+    mask = Image.new('L', (size - 12, size - 12), 0)
+    ImageDraw.Draw(mask).rounded_rectangle((0, 0, size - 13, size - 13),
+                                           radius=14, fill=255)
+    im.paste(art, (6, 6), mask)
+    return im
+
+
 def _slots_grid(w=318, h=96, cols=6, rows=2):
     """重复挑战格的静态槽位：运行时格子由代码实例化，这层是常驻底衬，
     让未加载时也不出现一整块空白米卡，且与运行时绿色关卡珠不冲突。"""
@@ -205,22 +269,24 @@ def _slots_grid(w=318, h=96, cols=6, rows=2):
 
 
 def _grid_board(size=336, cols=6, rows=6):
-    """亮色棋盘底板：深底上形成唯一的高亮焦点，格线克制、交点用珠孔点。」"""
+    """亮色珠孔板：6×6 独立圆角格位（不是 Excel 式纵横表格线）。
+    运行时真实棋子盖在格位之上，底纹保持极淡，不抢方块。"""
     im = Image.new('RGBA', (size, size), (0, 0, 0, 0))
     d = ImageDraw.Draw(im)
-    step = size / cols
     d.rounded_rectangle((0, 0, size - 1, size - 1), radius=22,
                         fill=GRID_FILL, outline=GRID_EDGE, width=3)
-    for i in range(1, cols):
-        x = i * step
-        d.line([(x, 12), (x, size - 12)], fill=GRID_LINE, width=2)
-    for j in range(1, rows):
-        y = j * step
-        d.line([(12, y), (size - 12, y)], fill=GRID_LINE, width=2)
+    step = size / cols
+    pad = 4
     for i in range(cols):
         for j in range(rows):
-            cx, cy = (i + .5) * step, (j + .5) * step
-            d.ellipse((cx - 3, cy - 3, cx + 3, cy + 3), fill=(186, 204, 240, 190))
+            x0, y0 = i * step + pad, j * step + pad
+            x1, y1 = (i + 1) * step - pad, (j + 1) * step - pad
+            d.rounded_rectangle((x0, y0, x1, y1), radius=9,
+                                fill=(232, 237, 252, 255),
+                                outline=(204, 215, 240, 255), width=2)
+            cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
+            d.ellipse((cx - 4, cy - 4, cx + 4, cy + 4),
+                      fill=(190, 204, 234, 200))
     return im
 
 
@@ -456,6 +522,8 @@ def build_sprites():
     SR('grid', _grid_board())
     SR('slots', _slots_grid())
     SR('brand', _brand_art())
+    SR('popup_art', _popup_art())
+    SR('about_art', _about_art())
     SR('decor', _decor())
 
 
@@ -737,8 +805,8 @@ def make_home():
     p.btn('HomeRetryBtn', '重试', (99, 112, 120, 44), fail, SPR['btn_white'],
           txt=INK, size=15)
     p.label('HomeRetryExhausted', '稍后再试', (79, 168, 160, 24), fail, 12, INK_SOFT)
-    tag, _ = p.label('HomePlaceholderTag', '已收集作品', (16, 292, 130, 20), card,
-                     11, INK_SOFT)
+    tag, _ = p.label('HomePlaceholderTag', '作品预览', (16, 290, 130, 22), card,
+                     13, INK_SOFT)
     p.fields['HomePlaceholderTag'] = ref(tag.go)
     badge = p.node('PieceBadgePill', (252, 8, 86, 30), card)
     badge.img(WHITE, SPR['pill'], sliced=True)
@@ -921,7 +989,7 @@ def make_settlement():
     got.img(GREEN, SPR['pill'], sliced=True)
     Node(p, 'Text', got, (0, 0, 96, 30)).text('已入图鉴', 12, INK, 4)
     p.label('SettlePieceText', '获得新拼片', (14, 288, 220, 22), card,
-            12, INK_SOFT, 3)
+            14, INK_SOFT, 3)
 
     # 拼装进度：与游戏页同一套胶囊语言
     assembly = p.node('AssemblyCard', (20, 544, 350, 44), p.surface)

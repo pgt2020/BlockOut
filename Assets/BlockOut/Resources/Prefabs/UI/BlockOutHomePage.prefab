@@ -3003,10 +3003,10 @@ RectTransform:
     y: 1
   m_AnchoredPosition:
     x: 16
-    y: -292
+    y: -290
   m_SizeDelta:
     x: 130
-    y: 20
+    y: 22
   m_Pivot:
     x: 0
     y: 1
@@ -7824,18 +7824,18 @@ MonoBehaviour:
       fileID: 12800000
       guid: fd593325a489afb46b970fe4942877e4
       type: 3
-    m_FontSize: 12
+    m_FontSize: 13
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 12
-    m_MaxSize: 12
+    m_MinSize: 9
+    m_MaxSize: 13
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5DF2\u6536\u96C6\u4F5C\u54C1"
+  m_Text: "\u4F5C\u54C1\u9884\u89C8"
 --- !u!222 &100179
 CanvasRenderer:
   m_ObjectHideFlags: 0

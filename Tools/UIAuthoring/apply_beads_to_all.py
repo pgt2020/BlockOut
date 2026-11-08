@@ -79,7 +79,14 @@ BADGE_ICON = {
     'BlockOutFailPopup': ('icon_heart', PINK),
     'BlockOutConfirmPopup': ('icon_gear', INK),
     'BlockOutGuidePopup': ('icon_bulb', (1, .58, .12, 1)),
-    'BlockOutAboutPopup': ('icon_coin', WHITE),
+    'BlockOutAboutPopup': ('icon_coin', INK),
+}
+# R11 弹窗内容插画：确认 / 玩法说明用「珠块→箭头→飞出」示意图，
+# 关于用作品金边缩略图，填掉卡片中段 100px+ 的米白空板。
+POPUP_ART = {
+    'BlockOutConfirmPopup': ('popup_art', (29, 76, 284, 96)),
+    'BlockOutGuidePopup': ('popup_art', (29, 76, 284, 96)),
+    'BlockOutAboutPopup': ('about_art', (123, 76, 96, 96)),
 }
 # 列表页静态态改造：金币胶囊、规整空态卡、格子孔板。
 # 装饰全部挂在原本就由 Controller 控制显隐的 GO 上（StoreEmptyText /
@@ -124,6 +131,17 @@ GRID_FIX = {
         'SettingsAboutBtn': (24, 328, 294, 52),
         'SettingsCloseBtn': (24, 396, 294, 52),
     },
+    # 弹窗插画占 76~172，文案统一从 180 起，按钮组保持 310 起
+    'BlockOutConfirmPopup': {
+        'ConfirmTitle': (24, 180, 294, 32),
+        'ConfirmBody': (24, 218, 294, 48),
+    },
+    'BlockOutGuidePopup': {
+        'GuideBodyText': (24, 180, 294, 96),
+    },
+    'BlockOutAboutPopup': {
+        'Description': (24, 184, 294, 72),
+    },
 }
 
 BUTTON_GUID = re.search(r'^guid: (\w+)', next(PACKAGE.rglob('Button.cs.meta')).read_text(
@@ -164,7 +182,8 @@ def sprite(name):
 SPR = {n: sprite(n) for n in [
     'sky', 'decor', 'holes', 'panel', 'plate', 'plate_soft', 'pill', 'circle',
     'bead', 'btn_green', 'btn_pink', 'btn_white', 'art_home', 'art_board',
-    'art_settle', 'grid', 'slots', 'brand'] + ['icon_' + n for n in sorted(ICON_NAMES)]}
+    'art_settle', 'grid', 'slots', 'brand', 'popup_art', 'about_art'] + \
+    ['icon_' + n for n in sorted(ICON_NAMES)]}
 
 # 旧贴图 guid -> 名字，用于识别图标
 GUID2SPRITE = {}
@@ -587,6 +606,21 @@ def reskin(path, stem):
                 if doc[0] == 224 and doc[1] == bi[1]:
                     doc[3].setdefault('m_Children', []).append(ref(ii[1]))
             byid[card_rt][2].setdefault('m_Children', []).append(ref(bi[1]))
+            stats['decor'] += 1
+
+    # R11 弹窗内容插画：纯装饰节点挂在 Card 下，不参与任何字段绑定
+    art_rule = POPUP_ART.get(stem)
+    if art_rule and surface_rt is not None:
+        sp, (ax, ay, aw, ah) = art_rule
+        card_rt = next((rt_by_go.get(fid) for cls, fid, _, d in docs
+                        if cls == 1 and d['m_Name'] == 'Card'), None)
+        if card_rt is not None:
+            ids = [next_id + k for k in range(4)]
+            next_id += 4
+            extra += new_decor_node(*ids, 'BeadsPopupArt', sp, WHITE, 0,
+                                    card_rt, stretch=False, box=(0, 0, aw, ah),
+                                    pos=(ax, ay))
+            byid[card_rt][2].setdefault('m_Children', []).append(ref(ids[1]))
             stats['decor'] += 1
 
     # 加载页品牌层：金环作品徽章 + 12 颗拼片珠，中间透明带避开标题
