@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080" role="img" aria-label="第一章章节图集干净几何母版（无标注，供美术切分 full/preview/silhouette 对齐）">
+  <rect x="1" y="1" width="1078" height="1078" fill="none" stroke="#E8CDBB" stroke-width="3"/>
+  <rect x="0" y="0" width="270" height="360" fill="#FFF7EF" opacity=".0"/>
+  <rect x="270" y="0" width="270" height="360" fill="#FFF1E3" opacity=".0"/>
+  <rect x="540" y="0" width="270" height="360" fill="#FFF7EF" opacity=".0"/>
+  <rect x="810" y="0" width="270" height="360" fill="#FFF1E3" opacity=".0"/>
+  <rect x="0" y="360" width="270" height="360" fill="#FFF7EF" opacity=".0"/>
+  <rect x="270" y="360" width="270" height="360" fill="#FFF1E3" opacity=".0"/>
+  <rect x="540" y="360" width="270" height="360" fill="#FFF7EF" opacity=".0"/>
+  <rect x="810" y="360" width="270" height="360" fill="#FFF1E3" opacity=".0"/>
+  <rect x="0" y="720" width="270" height="360" fill="#FFF7EF" opacity=".0"/>
+  <rect x="270" y="720" width="270" height="360" fill="#FFF1E3" opacity=".0"/>
+  <rect x="540" y="720" width="270" height="360" fill="#FFF7EF" opacity=".0"/>
+  <rect x="810" y="720" width="270" height="360" fill="#FFF1E3" opacity=".0"/>
+  <g fill="none" stroke="#E8CDBB" stroke-width="1.5">
+    <rect x="0" y="0" width="270" height="360"/>
+    <rect x="270" y="0" width="270" height="360"/>
+    <rect x="540" y="0" width="270" height="360"/>
+    <rect x="810" y="0" width="270" height="360"/>
+    <rect x="0" y="360" width="270" height="360"/>
+    <rect x="270" y="360" width="270" height="360"/>
+    <rect x="540" y="360" width="270" height="360"/>
+    <rect x="810" y="360" width="270" height="360"/>
+    <rect x="0" y="720" width="270" height="360"/>
+    <rect x="270" y="720" width="270" height="360"/>
+    <rect x="540" y="720" width="270" height="360"/>
+    <rect x="810" y="720" width="270" height="360"/>
+  </g>
+</svg>

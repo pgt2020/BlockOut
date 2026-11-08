@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>BlockOut UI 预览入口</title>
+    <style>
+      body {
+        font-family: "PingFang SC", sans-serif;
+        max-width: 480px;
+        margin: 24px auto;
+        padding: 0 16px;
+        line-height: 1.6;
+        color: #4a3728;
+      }
+      h1 { font-size: 20px; }
+      a { color: #1b6b5a; }
+      .warn {
+        background: #fff8e6;
+        border: 1px solid #e6d9b8;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 13px;
+        margin: 16px 0;
+      }
+      ol { font-size: 14px; }
+    </style>
+  </head>
+  <body>
+    <h1>玩法对齐 UI 预览</h1>
+    <div class="warn">
+      <strong>重要：</strong>同类竞品参考图里的「心形单格」不是 BlockOut。我们是
+      <strong>异形多格块</strong>（见 <a href="game.html">对局页</a>）。
+    </div>
+    <p>
+      请用 HTTP 打开（端口 <strong>8800</strong>），或双击 <code>打开预览.command</code>。<br />
+      图片在 <code>assets/</code> 内（此前用 <code>../design_v5</code> 会 404，所以界面空白）。
+    </p>
+    <ol>
+      <li><a href="game.html">对局</a> — <code>04_game_default</code> 六块异形</li>
+      <li><a href="home.html">首页</a> — <code>clean_home</code></li>
+      <li><a href="settlement.html">结算</a> — <code>clean_settlement</code></li>
+    </ol>
+    <p><a href="DESIGN_SPEC.md">DESIGN_SPEC.md</a></p>
+  </body>
+</html>

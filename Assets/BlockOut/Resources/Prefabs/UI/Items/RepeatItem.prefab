@@ -235,7 +235,7 @@ GameObject:
   m_Layer: 5
   m_Name: Mark
   m_TagString: Untagged
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &100015
 RectTransform:
   m_ObjectHideFlags: 0
@@ -302,7 +302,7 @@ GameObject:
   m_Layer: 5
   m_Name: Locked
   m_TagString: Untagged
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &100019
 RectTransform:
   m_ObjectHideFlags: 0
@@ -502,9 +502,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.66
-    g: 0.86
-    b: 0.76
+    r: 0.35
+    g: 0.78
+    b: 0.38
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -513,10 +513,10 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: e962cae895ab461b88951dfd848ac4c6
+    guid: fc79cec0c3674906a7f94f2bea74746d
     type: 3
-  m_Type: 1
-  m_PreserveAspect: 0
+  m_Type: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 0
   m_FillAmount: 1
@@ -558,9 +558,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.32
-    g: 0.22
-    b: 0.18
+    r: 1
+    g: 1
+    b: 1
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -615,9 +615,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.32
-    g: 0.22
-    b: 0.18
+    r: 1
+    g: 0.76
+    b: 0.24
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -626,10 +626,10 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: 5b44f60ea78744fcb28bd2b4d6948436
+    guid: fc79cec0c3674906a7f94f2bea74746d
     type: 3
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 0
   m_FillAmount: 1
@@ -671,9 +671,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 1
-    g: 1
-    b: 1
+    r: 0.42
+    g: 0.59
+    b: 0.67
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -682,7 +682,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: 3c703448d2fc4ebfa64f9cf6f362e3a6
+    guid: b7ccf04b0b964eb59ffb613ea4175246
     type: 3
   m_Type: 0
   m_PreserveAspect: 1
