@@ -673,8 +673,8 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.36
-    g: 0.58
+    r: 0.28
+    g: 0.5
     b: 0.9
     a: 1
   m_RaycastTarget: 0
@@ -729,9 +729,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.42
-    g: 0.59
-    b: 0.67
+    r: 0.34
+    g: 0.39
+    b: 0.53
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -785,9 +785,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.106
-    g: 0.294
-    b: 0.42
+    r: 0.086
+    g: 0.137
+    b: 0.259
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -842,9 +842,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.106
-    g: 0.294
-    b: 0.42
+    r: 0.086
+    g: 0.137
+    b: 0.259
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -899,9 +899,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.106
-    g: 0.294
-    b: 0.42
+    r: 0.086
+    g: 0.137
+    b: 0.259
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1

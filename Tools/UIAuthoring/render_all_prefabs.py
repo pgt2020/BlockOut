@@ -183,6 +183,7 @@ def draw_text(canvas, d, rect):
             return ImageFont.load_default()
 
     f = font(size)
+    bold = bool(int(fd.get('m_FontStyle', 0)) & 1)
     probe = ImageDraw.Draw(canvas)
     longest = max((probe.textlength(t, font=f) for t in lines), default=0)
     if longest > w and w > 0:
@@ -207,7 +208,8 @@ def draw_text(canvas, d, rect):
             tx = x + w - tw - 2
         else:
             tx = x + 2
-        ld.text((tx, ty), line, font=f, fill=c)
+        ld.text((tx, ty), line, font=f, fill=c,
+                 stroke_width=1 if bold else 0, stroke_fill=c)
         ty += lh
     canvas.alpha_composite(layer)
 
@@ -237,7 +239,12 @@ def render(path):
         rt['m_AnchoredPosition'] = {'x': 0, 'y': 0}
     root_rect = rect_of(byid[root_rt][2], base)
     if is_item:
-        canvas = Image.new('RGBA', (W, int(root_rect[3]) + 48), (232, 246, 248, 255))
+        # 列表项单独预览也铺同一张夜空底，避免浅青底与整套深蓝紫体系割裂
+        sky_path = next((p for p in GUID2FILE.values() if p.name == 'sky.png'), None)
+        sky = Image.open(sky_path).convert('RGBA') if sky_path else None
+        canvas = Image.new('RGBA', (W, int(root_rect[3]) + 48), (59, 50, 131, 255))
+        if sky:
+            canvas.alpha_composite(sky.crop((0, 0, W, min(sky.height, canvas.height))))
         offset = (24, 24)
     else:
         canvas = Image.new('RGBA', (W, H), (255, 255, 255, 255))
@@ -266,9 +273,11 @@ def render(path):
         r = rect_of(rt[2], parent)
         x, y, w, h = (r[0] + shift[0], r[1] + shift[1], r[2], r[3])
         if w < 1 or h < 1:
-            # ScrollRect 的 Content 在静态 YAML 里高度为 0，运行时由布局组件撑开
             if go[2]['m_Name'] == 'Content':
-                h = max(1, parent[3])
+                # ScrollRect 的 Content 在静态 YAML 里高度为 0，运行时由
+                # VerticalLayoutGroup + ContentSizeFitter 撑开，且锚点贴父容器顶部。
+                # 之前按父高的一半居中，会把整块内容推到屏幕中间，造成上半屏空白。
+                x, y, w, h = parent[0], parent[1], parent[2], parent[3]
             else:
                 return
         sx, sy = x - origin[0], y - origin[1]
@@ -308,6 +317,9 @@ def render(path):
             crt = byid.get(ch)
             if not crt:
                 continue
+            ch_go = go_by_rt.get(ch)
+            if ch_go and not byid[ch_go][2].get('m_IsActive', 1):
+                continue          # Unity LayoutGroup 不计入未激活子节点
             if has_vlg:
                 cr = rect_of(crt[2], (x, y, w, h))
                 ch_h = max(cr[3], 24)
@@ -328,8 +340,54 @@ def ref_zero():
     return {'fileID': 0}
 
 
+CN = {
+    'BlockOutHomePage': '01_首页', 'BlockOutGameHud': '02_游戏页',
+    'BlockOutSettlementPage': '03_结算页', 'BlockOutCollectionPage': '04_图鉴',
+    'BlockOutStorePage': '05_商店', 'BlockOutSettingsPage': '06_设置',
+    'BlockOutPausePopup': '07_暂停', 'BlockOutFailPopup': '08_失败',
+    'BlockOutConfirmPopup': '09_确认', 'BlockOutGuidePopup': '10_玩法说明',
+    'BlockOutAboutPopup': '11_关于', 'BlockOutLoadingPage': '12_加载页',
+    'ChapterItem': '13_章节条目', 'RepeatItem': '14_重复挑战格',
+    'StoreHint': '15_商店商品项', 'StoreHammer': '16_商店·锤子',
+    'StoreMagic': '17_商店·魔法棒',
+}
+
+
+def contact_sheet(paths):
+    """把全部单屏拼成一张带中文标题的全览，供每轮人工验收。"""
+    scale = .5
+    cw, ch = int(W * scale), int(H * scale)
+    pad, title_h, cols = 12, 26, 5
+    rows = math.ceil(len(paths) / cols)
+    sheet = Image.new('RGB', (cols * (cw + pad) + pad,
+                              rows * (ch + title_h + pad) + pad), (238, 241, 250))
+    d = ImageDraw.Draw(sheet)
+    font = ImageFont.truetype(str(FONT_PATH), 16)
+    head = ImageFont.truetype(str(FONT_PATH), 20)
+    d.text((pad + 4, 2), 'BlockOut · 商业化 UI 逐轮验收', fill=(30, 40, 72), font=head)
+    for i, p in enumerate(paths):
+        x = pad + (i % cols) * (cw + pad)
+        y = pad + title_h + (i // cols) * (ch + title_h + pad)
+        im = Image.open(p).convert('RGB')
+        s = min(cw / im.width, ch / im.height)
+        nw, nh = max(1, int(im.width * s)), max(1, int(im.height * s))
+        thumb = im.resize((nw, nh), Image.LANCZOS)
+        sheet.paste(thumb, (x + (cw - nw) // 2, y + (ch - nh) // 2))
+        d.text((x + 4, y + ch + 4), CN.get(p.stem, p.stem),
+               fill=(40, 52, 88), font=font)
+    sheet.save(OUT / '00_全览.png')
+    return OUT / '00_全览.png'
+
+
 if __name__ == '__main__':
-    for p in sorted(UI.rglob('*.prefab')):
-        if p.stem == 'BlockOutPopupLayer':
-            continue
-        print('预览:', render(p))
+    outs = []
+    prefabs = [p for p in UI.rglob('*.prefab')
+            if p.stem != 'BlockOutPopupLayer']
+    prefabs.sort(key=lambda p: CN.get(p.stem, 'zz' + p.stem))
+    for p in prefabs:
+        out = render(p)
+        outs.append(out)
+        if p.stem in CN:
+            Image.open(out).convert('RGB').save(OUT / (CN[p.stem] + '.png'))
+        print('预览:', out)
+    print('全览:', contact_sheet(outs))

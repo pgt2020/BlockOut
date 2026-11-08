@@ -502,9 +502,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.35
-    g: 0.78
-    b: 0.38
+    r: 0.29
+    g: 0.79
+    b: 0.36
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -615,8 +615,8 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 1
-    g: 0.76
+    r: 1.0
+    g: 0.79
     b: 0.24
     a: 1
   m_RaycastTarget: 0
@@ -671,9 +671,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.42
-    g: 0.59
-    b: 0.67
+    r: 0.34
+    g: 0.39
+    b: 0.53
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1

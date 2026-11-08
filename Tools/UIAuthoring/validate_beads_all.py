@@ -19,7 +19,8 @@ VIEWS = ROOT / 'Assets/BlockOut/Runtime/UI/Views'
 BACKUP_MAIN = Path(__file__).parent / 'backup' / 'original'
 BACKUP_REST = Path(__file__).parent / 'backup' / 'original_rest'
 MAIN_THREE = {'BlockOutHomePage', 'BlockOutGameHud', 'BlockOutSettlementPage'}
-NEW_NODES = {'BeadsDecor', 'BeadsHoles'}
+NEW_NODES = {'BeadsDecor', 'BeadsHoles', 'BeadsBadge', 'BeadsBadgeIcon',
+              'BeadsListIcon', 'BeadsBrand'}
 # 主屏由 generate_beads_prefabs.py 全量重生成，节点增删属预期，只校验绑定与引用
 SKIP_NAME_DIFF = MAIN_THREE
 

@@ -24,28 +24,40 @@ PACKAGE = next((ROOT / 'Library/PackageCache').glob('com.unity.ugui@*'))
 FONT = None
 SPR = {}
 
-# ---- 设计 token（取自画布「珠子」方向，均为项目内可复用的 UI 控件色） ----
-SKY = [(0.0, (126, 216, 240)), (0.36, (168, 232, 242)),
-       (0.68, (216, 245, 228)), (1.0, (255, 243, 214))]
-INK = (0.106, 0.294, 0.420, 1)        # #1B4B6B
-INK_SOFT = (0.42, 0.59, 0.67, 1)
+# ---- 商业化色板 v2：深蓝紫夜空 + 奶油白卡 + 高饱和糖果控件 ----
+# SKY 为 PIL 用的 0~255 色标；其余为 Unity m_Color 用的 0~1 线性值。
+# apply_beads_to_all.py 直接 import 本模块的颜色常量，保证 17 屏同源。
+SKY = [(0.0, (24, 34, 92)), (0.30, (42, 44, 118)),
+       (0.62, (72, 56, 148)), (0.86, (104, 68, 162)), (1.0, (128, 84, 168))]
+INK = (0.086, 0.137, 0.259, 1)        # #16233F 卡片内主文字
+INK_SOFT = (0.34, 0.39, 0.53, 1)     # 卡片内次要文字（R8 提高对比度）
+ON_BG = (0.965, 0.980, 1.0, 1)       # 深背景上的主文字
+ON_BG_SOFT = (0.73, 0.77, 0.93, 1)   # 深背景上的次要文字
+CREAM = (1.0, 0.988, 0.960, 1)       # 奶油白卡片
 WHITE = (1, 1, 1, 1)
-GREEN = (0.35, 0.78, 0.38, 1)
-GREEN_DARK = (0.16, 0.55, 0.28, 1)
-PINK = (0.96, 0.34, 0.55, 1)
-GOLD = (1.0, 0.76, 0.24, 1)
+GREEN = (0.29, 0.79, 0.36, 1)
+GREEN_DARK = (0.09, 0.42, 0.23, 1)
+PINK = (0.98, 0.35, 0.52, 1)
+GOLD = (1.0, 0.79, 0.24, 1)
 BEAD_COLORS = [
-    (1.0, 0.55, 0.30, 1), (1.0, 0.76, 0.24, 1), (0.98, 0.42, 0.62, 1),
-    (0.42, 0.80, 0.40, 1), (0.26, 0.80, 0.86, 1), (0.38, 0.55, 0.95, 1),
-    (0.68, 0.48, 0.88, 1), (0.30, 0.68, 0.85, 1), (0.96, 0.68, 0.30, 1),
-    (0.55, 0.85, 0.55, 1), (0.45, 0.72, 0.98, 1), (0.98, 0.52, 0.45, 1),
+    (1.0, 0.44, 0.28, 1), (1.0, 0.76, 0.20, 1), (0.98, 0.32, 0.58, 1),
+    (0.32, 0.82, 0.38, 1), (0.16, 0.78, 0.86, 1), (0.34, 0.52, 0.98, 1),
+    (0.70, 0.44, 0.94, 1), (0.24, 0.64, 0.94, 1), (1.0, 0.60, 0.24, 1),
+    (0.52, 0.87, 0.50, 1), (0.42, 0.70, 1.0, 1), (0.98, 0.46, 0.40, 1),
 ]
-BEAD_OFF = (0.83, 0.89, 0.91, 1)
-# 白色图标贴图落在白色圆底上必须染色才可见；金币本身是彩色，保持原色
-ICON_TINT = {'gear': INK_SOFT, 'pause': INK_SOFT, 'close': INK_SOFT,
-             'lock': INK_SOFT, 'heart': PINK, 'coin': WHITE,
-             'bulb': (1.0, 0.64, 0.22, 1), 'hammer': (0.36, 0.58, 0.90, 1),
-             'wand': (0.68, 0.48, 0.88, 1)}
+BEAD_OFF = (0.58, 0.63, 0.80, 1)
+# 深色图标贴图落在白色圆底上必须染色才可见；金币本身是彩色，保持原色
+ICON_TINT = {'gear': INK, 'pause': INK, 'close': INK_SOFT, 'lock': INK_SOFT,
+             'heart': PINK, 'coin': WHITE,
+             'bulb': (1.0, 0.58, 0.12, 1), 'hammer': (0.28, 0.50, 0.90, 1),
+             'wand': (0.66, 0.42, 0.92, 1)}
+# 卡片与描边的 PIL 色（R1 起统一，后续轮次只在此处调）
+CARD_FILL = (255, 253, 246, 252)
+CARD_EDGE = (188, 198, 230, 255)
+CARD_SHADOW = (88, 98, 150, 70)
+GRID_FILL = (246, 250, 255, 255)
+GRID_EDGE = (176, 192, 232, 255)
+GRID_LINE = (206, 220, 246, 160)
 
 
 class NoAliasDumper(yaml.SafeDumper):
@@ -94,6 +106,7 @@ def _lerp(a, b, t):
 
 
 def _sky_gradient(w, h):
+    """深蓝紫夜空：纵向渐变 + 三团柔光晕，给白卡和糖果色控件一个足够暗的舞台。"""
     im = Image.new('RGB', (w, h))
     d = ImageDraw.Draw(im)
     for y in range(h):
@@ -103,7 +116,14 @@ def _sky_gradient(w, h):
                 k = (t - SKY[i][0]) / (SKY[i + 1][0] - SKY[i][0])
                 d.line([(0, y), (w, y)], fill=_lerp(SKY[i][1], SKY[i + 1][1], k))
                 break
-    return im.convert('RGBA')
+    im = im.convert('RGBA')
+    glow = Image.new('RGBA', (w, h), (0, 0, 0, 0))
+    g = ImageDraw.Draw(glow)
+    g.ellipse((-w * .42, -h * .20, w * .72, h * .32), fill=(58, 148, 224, 105))
+    g.ellipse((w * .48, h * .04, w * 1.52, h * .56), fill=(186, 92, 210, 78))
+    g.ellipse((-w * .28, h * .70, w * 1.05, h * 1.24), fill=(255, 126, 164, 62))
+    im = Image.alpha_composite(im, glow.filter(ImageFilter.GaussianBlur(w * .16)))
+    return im
 
 
 def _draw_bead(d, cx, cy, r):
@@ -132,7 +152,7 @@ def _draw_bead(d, cx, cy, r):
           25, 155, fill=(80, 105, 130, 80), width=max(1, int(r * .10)))
 
 
-def _holes(d, box, step=30, color=(205, 230, 240, 95)):
+def _holes(d, box, step=30, color=(196, 212, 240, 80)):
     x0, y0, x1, y1 = box
     x, y = x0 + step, y0 + step
     while x < x1 - 6:
@@ -143,80 +163,152 @@ def _holes(d, box, step=30, color=(205, 230, 240, 95)):
         y = y0 + step
 
 
-def _grid_board(size=336, cols=6, rows=6):
-    """6×6 极淡格线：运行时真实棋子的底纹，不抢方块。"""
-    im = Image.new('RGBA', (size, size), (0, 0, 0, 0))
+def _brand_art(w=390, h=260):
+    """加载页品牌层：金环作品徽章 + 12 颗拼片进度珠。
+    中间留透明带，不会遮住原有的中文标题与「加载中」。"""
+    im = Image.new('RGBA', (w, h), (0, 0, 0, 0))
     d = ImageDraw.Draw(im)
-    step = size / cols
-    d.rounded_rectangle((0, 0, size - 1, size - 1), radius=20,
-                        fill=(238, 248, 251, 255))
-    for i in range(1, cols):
-        x = i * step
-        d.line([(x, 10), (x, size - 10)], fill=(205, 230, 240, 70), width=1)
-    for j in range(1, rows):
-        y = j * step
-        d.line([(10, y), (size - 10, y)], fill=(205, 230, 240, 70), width=1)
-    for i in range(cols):
-        for j in range(rows):
-            cx, cy = (i + .5) * step, (j + .5) * step
-            d.ellipse((cx - 3, cy - 3, cx + 3, cy + 3), fill=(200, 226, 238, 110))
+    cx = w // 2
+    d.ellipse((cx - 52, 2, cx + 52, 106), fill=(255, 214, 110, 255),
+              outline=(186, 130, 40, 255), width=3)
+    d.ellipse((cx - 44, 10, cx + 44, 98), fill=(44, 40, 96, 255))
+    art = Image.open(ROOT / 'generated-images' / 'beads_home_plate.png').convert('RGBA')
+    art = art.crop((38, 12, 310, 284)).resize((76, 76), Image.LANCZOS)
+    im.alpha_composite(art, (cx - 38, 16))
+    for i in range(12):
+        c = BEAD_COLORS[i] if i < 6 else BEAD_OFF
+        rgb = tuple(int(v * 255) for v in c[:3])
+        x = 63 + i * 22
+        d.ellipse((x, 226, x + 18, 244), fill=rgb + (255,),
+                  outline=(255, 255, 255, 190), width=2)
     return im
 
 
-def _rounded_panel(size, radius, tint=(255, 255, 255, 246), holes=True, tilt=0):
-    """标准圆角白卡：单一轮廓 + 细描边 + 极淡孔点，无错位投影、不倾斜。"""
+def _slots_grid(w=318, h=96, cols=6, rows=2):
+    """重复挑战格的静态槽位：运行时格子由代码实例化，这层是常驻底衬，
+    让未加载时也不出现一整块空白米卡，且与运行时绿色关卡珠不冲突。"""
+    im = Image.new('RGBA', (w, h), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    pad = 6
+    cw = (w - pad * (cols + 1)) / cols
+    ch = (h - pad * (rows + 1)) / rows
+    for r in range(rows):
+        for c in range(cols):
+            x, y = pad + c * (cw + pad), pad + r * (ch + pad)
+            d.rounded_rectangle((x, y, x + cw, y + ch), radius=10,
+                                fill=(228, 231, 247, 255),
+                                outline=(186, 196, 228, 255), width=2)
+            d.ellipse((x + cw / 2 - 3, y + ch / 2 - 3,
+                       x + cw / 2 + 3, y + ch / 2 + 3),
+                      fill=(176, 188, 220, 190))
+    return im
+
+
+def _grid_board(size=336, cols=6, rows=6):
+    """亮色棋盘底板：深底上形成唯一的高亮焦点，格线克制、交点用珠孔点。」"""
+    im = Image.new('RGBA', (size, size), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    step = size / cols
+    d.rounded_rectangle((0, 0, size - 1, size - 1), radius=22,
+                        fill=GRID_FILL, outline=GRID_EDGE, width=3)
+    for i in range(1, cols):
+        x = i * step
+        d.line([(x, 12), (x, size - 12)], fill=GRID_LINE, width=2)
+    for j in range(1, rows):
+        y = j * step
+        d.line([(12, y), (size - 12, y)], fill=GRID_LINE, width=2)
+    for i in range(cols):
+        for j in range(rows):
+            cx, cy = (i + .5) * step, (j + .5) * step
+            d.ellipse((cx - 3, cy - 3, cx + 3, cy + 3), fill=(186, 204, 240, 190))
+    return im
+
+
+def _rounded_panel(size, radius, tint=CARD_FILL, holes=True, tilt=0):
+    """奶油白卡：柔和底部压边 + 细冷灰描边 + 顶部一道内高光。"""
     w, h = size
     im = Image.new('RGBA', (w, h), (0, 0, 0, 0))
     d = ImageDraw.Draw(im)
-    d.rounded_rectangle((0, 0, w - 1, h - 1), radius=radius, fill=tint,
-                        outline=(206, 229, 238, 255), width=2)
+    d.rounded_rectangle((0, 4, w - 1, h - 1), radius=radius, fill=CARD_SHADOW)
+    d.rounded_rectangle((0, 0, w - 1, h - 4), radius=radius, fill=tint,
+                        outline=CARD_EDGE, width=2)
+    d.line([(radius + 4, 3), (w - radius - 4, 3)], fill=(255, 255, 255, 210), width=2)
     if holes:
-        _holes(d, (8, 8, w - 8, h - 8))
+        _holes(d, (8, 8, w - 8, h - 12))
     return im
 
 
 def _button(w, h, top, bottom, edge, radius=8):
-    """规整圆角按钮：单一轮廓、轻微上下渐变、细描边、底部一条贴边深色线。
-    无错位厚底、无弧线高光、无白色高光条；圆角半径与九宫格边界一致，任意高度都不切角。"""
+    """糖果立体按钮：一体成型的厚底 + 上下渐变 + 柔和高光 + 亮描边。
+    厚底与主体共用同一个圆角轮廓（不做错位叠层），九宫格拉伸后任意高度都规整。"""
     im = Image.new('RGBA', (w, h), (0, 0, 0, 0))
-    body = Image.new('RGBA', (w, h), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    # 1) 深色厚底：比主体下移 6px，形成可按的「厚度」
+    d.rounded_rectangle((0, 6, w - 1, h - 1), radius=radius,
+                        fill=_lerp(edge, (0, 0, 0), .12) + (255,))
+    # 2) 主体：纵向渐变
+    body = Image.new('RGBA', (w, h - 6), (0, 0, 0, 0))
     bd = ImageDraw.Draw(body)
-    for y in range(h):
-        t = y / max(1, h - 1)
+    for y in range(h - 6):
+        t = y / max(1, h - 7)
         bd.line([(0, y), (w, y)], fill=_lerp(top, bottom, t) + (255,))
-    mask = Image.new('L', (w, h), 0)
-    ImageDraw.Draw(mask).rounded_rectangle((0, 0, w - 1, h - 1), radius=radius, fill=255)
+    # 3) 上半部柔和高光：白色由 32% 平滑衰减到 0，不做硬边高光条
+    gloss = Image.new('RGBA', (w, h - 6), (0, 0, 0, 0))
+    gd = ImageDraw.Draw(gloss)
+    for y in range(int((h - 6) * .52)):
+        a = int(78 * (1 - y / max(1, (h - 6) * .52)))
+        gd.line([(0, y), (w, y)], fill=(255, 255, 255, a))
+    body = Image.alpha_composite(body, gloss)
+    mask = Image.new('L', (w, h - 6), 0)
+    ImageDraw.Draw(mask).rounded_rectangle((0, 0, w - 1, h - 7), radius=radius, fill=255)
     im.paste(body, (0, 0), mask)
     d = ImageDraw.Draw(im)
-    d.rounded_rectangle((0, 0, w - 1, h - 1), radius=radius, outline=edge + (255,), width=2)
-    d.line([(radius, h - 3), (w - radius, h - 3)], fill=edge + (255,), width=2)
+    # 4) 亮描边 + 顶部一道细亮线，强化立体边缘
+    d.rounded_rectangle((1, 1, w - 2, h - 8), radius=radius,
+                        outline=_lerp(top, (255, 255, 255), .48) + (235,), width=2)
+    d.line([(radius + 3, 2), (w - radius - 3, 2)],
+           fill=(255, 255, 255, 150), width=2)
     return im
 
 
-def _pill(w, h, fill=(255, 255, 255, 250), edge=(206, 229, 238, 255)):
-    """规整胶囊/信息条：纯白圆角矩形 + 细描边，无高光条、无错层阴影。"""
+def _pill(w, h, fill=CARD_FILL, edge=CARD_EDGE):
+    """奶油白胶囊：细描边 + 底部一道压边，先统一底色，立体化留到 R2。"""
     im = Image.new('RGBA', (w, h), (0, 0, 0, 0))
     d = ImageDraw.Draw(im)
-    d.rounded_rectangle((0, 0, w - 1, h - 1), radius=8, fill=fill,
+    d.rounded_rectangle((0, 3, w - 1, h - 1), radius=8, fill=CARD_SHADOW)
+    d.rounded_rectangle((0, 0, w - 1, h - 3), radius=8, fill=fill,
                         outline=edge, width=2)
     return im
 
 
 def _slice_panel(size=160, radius=8):
-    """九宫格专用白卡：圆角半径与 border 一致，拉伸不会切角。"""
+    """九宫格白卡：顶部 8px 品牌色带（金→绿），圆角与 border 一致，拉伸不变形。"""
     im = Image.new('RGBA', (size, size), (0, 0, 0, 0))
     d = ImageDraw.Draw(im)
-    d.rounded_rectangle((0, 0, size - 1, size - 1), radius=radius,
-                        fill=(255, 255, 255, 248), outline=(206, 229, 238, 255), width=2)
+    d.rounded_rectangle((0, 4, size - 1, size - 1), radius=radius, fill=CARD_SHADOW)
+    d.rounded_rectangle((0, 0, size - 1, size - 4), radius=radius,
+                        fill=CARD_FILL, outline=CARD_EDGE, width=2)
+    band = Image.new('RGBA', (size, 8), (0, 0, 0, 0))
+    bd = ImageDraw.Draw(band)
+    for x in range(size):
+        bd.line([(x, 0), (x, 7)],
+                fill=_lerp((255, 201, 74), (76, 206, 120), x / (size - 1)) + (255,))
+    corner = Image.new('L', (size, size), 0)
+    ImageDraw.Draw(corner).rounded_rectangle((0, 0, size - 1, size - 4),
+                                             radius=radius, fill=255)
+    im.paste(band, (0, 0), corner.crop((0, 0, size, 8)))
+    d.line([(radius + 4, 10), (size - radius - 4, 10)],
+           fill=(255, 255, 255, 190), width=1)
     return im
 
 
 def _circle_button(size=128):
-    """标准圆形按钮：单一轮廓 + 细描边，无椭圆高光与偏移阴影。"""
+    """圆形按钮：奶油白底 + 冷灰描边 + 底部一圈压边。"""
     im = Image.new('RGBA', (size, size), (0, 0, 0, 0))
     d = ImageDraw.Draw(im)
-    d.ellipse((2, 2, size - 3, size - 3), fill=(255, 255, 255, 250),
-              outline=(206, 229, 238, 255), width=3)
+    d.ellipse((2, 5, size - 3, size - 2), fill=CARD_SHADOW)
+    d.ellipse((2, 2, size - 3, size - 6), fill=CARD_FILL,
+              outline=CARD_EDGE, width=3)
     return im
 
 
@@ -271,12 +363,19 @@ def _icon(name, size=96):
 
 
 def _decor(w=390, h=844):
-    """背景只留极淡孔点纹理。散落彩珠会压在 HUD、棋盘和工具槽上，全部去掉。"""
+    """夜空星点 + 边缘极淡彩珠光斑。装饰层在所有内容之下，不抢可读性。"""
+    import random
+    rnd = random.Random(42)
     im = Image.new('RGBA', (w, h), (0, 0, 0, 0))
     d = ImageDraw.Draw(im)
-    for x in range(18, w, 44):
-        for y in range(24, h, 44):
-            d.ellipse((x - 1, y - 1, x + 1, y + 1), fill=(255, 255, 255, 45))
+    for _ in range(110):
+        x, y = rnd.randrange(8, w - 8), rnd.randrange(8, h - 8)
+        r = rnd.choice((1, 1, 1, 2, 2, 3))
+        a = rnd.choice((26, 38, 52, 70))
+        d.ellipse((x - r, y - r, x + r, y + r), fill=(255, 255, 255, a))
+    for x, y, r, c in [(-14, 118, 52, (86, 170, 240)), (374, 246, 42, (206, 108, 226)),
+                       (36, 690, 46, (255, 156, 120)), (352, 742, 58, (108, 220, 190))]:
+        d.ellipse((x - r, y - r, x + r, y + r), fill=c + (34,))
     return im
 
 
@@ -328,28 +427,35 @@ def build_sprites():
     # 圆角半径必须 <= 九宫格 border，否则切片会把角拉成斜角（上一版工具卡的菱形即由此而来）
     SR('plate_tilt', _rounded_panel((512, 512), 24))
     SR('plate', _rounded_panel((512, 512), 24))
-    SR('plate_soft', _rounded_panel((256, 256), 8, tint=(248, 253, 255, 244), holes=False), 8)
-    SR('btn_green', _button(160, 80, (139, 232, 107), (96, 202, 96), (48, 140, 68)), 8)
-    SR('btn_pink', _button(160, 80, (255, 158, 188), (246, 108, 152), (196, 66, 110)), 8)
-    SR('btn_white', _button(160, 80, (255, 255, 255), (244, 250, 252), (196, 222, 232)), 8)
+    SR('plate_soft', _rounded_panel((256, 256), 8, tint=CARD_FILL, holes=False), 8)
+    SR('btn_green', _button(160, 80, (146, 244, 132), (52, 190, 92), (20, 116, 60)), 8)
+    SR('btn_pink', _button(160, 80, (255, 160, 190), (242, 82, 136), (158, 38, 90)), 8)
+    SR('btn_white', _button(160, 80, (255, 255, 255), (236, 238, 230), (170, 182, 214)), 8)
     SR('pill', _pill(160, 64), 8)
     SR('panel', _slice_panel(), 8)
     SR('circle', _circle_button(128))
     holes = Image.new('RGBA', (28, 28), (0, 0, 0, 0))
-    ImageDraw.Draw(holes).ellipse((13, 13, 16, 16), fill=(205, 230, 240, 95))
+    ImageDraw.Draw(holes).ellipse((13, 13, 16, 16), fill=(196, 212, 240, 80))
     SR('holes', holes)
     for n in ['gear', 'pause', 'close', 'heart', 'coin', 'bulb', 'hammer', 'wand', 'lock']:
         SR('icon_' + n, _icon(n))
     # 画布设计稿的主体珠阵图：首页糖果树 / 游戏页六组异形珠块 / 结算页完整作品。
     # 第二版直接用原图，不再用灰色占位珠重画，保证预制与画布稿一致。
+    crops = {'art_home': (38, 12, 310, 284), 'art_settle': (12, 8, 344, 232)}
     for key, src in [('art_home', 'beads_home_plate.png'),
                      ('art_board', 'beads_board.png'),
                      ('art_settle', 'beads_settle_plate.png')]:
         f = ROOT / 'generated-images' / src
         if not f.exists():
             raise FileNotFoundError('缺少设计稿珠阵原图: ' + str(f))
-        SR(key, Image.open(f).convert('RGBA'))
+        im = Image.open(f).convert('RGBA')
+        if key in crops:
+            im = im.crop(crops[key]).resize((350, 300 if key == 'art_home' else 240),
+                                            Image.LANCZOS)
+        SR(key, im)
     SR('grid', _grid_board())
+    SR('slots', _slots_grid())
+    SR('brand', _brand_art())
     SR('decor', _decor())
 
 
@@ -596,241 +702,259 @@ def bead_row(page, name, box, parent, active=6, size=20):
 def make_home():
     p = Page('BlockOutHomePage', 'BlockOutHomeView')
 
-    # 顶栏：设置 / 标题 / 金币
-    setn, _, _ = p.btn('HomeSettingsBtn', '', (24, 28, 52, 52), p.surface,
+    # 顶栏：设置 / 金币；主标题全中文，不再用英文描述
+    setn, _, _ = p.btn('HomeSettingsBtn', '', (20, 24, 48, 48), p.surface,
                        SPR['circle'], txt=INK, size=10,
-                       text_box=(0, 0, 52, 52))
-    icon(p, 'gear', (14, 14, 24, 24), setn)
-    p.label('Logo', 'BlockOut', (24, 92, 342, 46), size=34, color=INK)
-    p.node('LogoSub', (24, 138, 342, 24)).text('箭头方块消除', 13, INK_SOFT, 4)
-
-    coin = p.node('CoinPill', (270, 28, 96, 44), p.surface)
+                       text_box=(0, 0, 48, 48))
+    icon(p, 'gear', (12, 12, 24, 24), setn)
+    coin = p.node('CoinPill', (266, 26, 100, 44), p.surface)
     coin.img(WHITE, SPR['pill'], sliced=True)
-    icon(p, 'coin', (8, 8, 28, 28), coin)
-    p.label('HomeCoinText', '300', (38, 6, 52, 32), coin, size=15, color=INK, align=3)
+    icon(p, 'coin', (9, 9, 27, 27), coin)
+    p.label('HomeCoinText', '300', (40, 6, 54, 32), coin, size=17, color=INK, align=3)
 
-    # 倾斜拼豆板 + 画布稿的彩色糖果树珠阵（不再用灰色占位珠重画）
-    card = p.node('PreviewCard', (24, 174, 342, 318))
+    p.label('Logo', '箭头方块消除', (20, 88, 350, 44), size=27, color=ON_BG, align=4)
+    p.node('LogoSub', (20, 132, 350, 22)).text('第 07 关 · 生命模式', 13, ON_BG_SOFT, 4)
+
+    # 主视觉卡：作品珠阵放大到接近满卡
+    card = p.node('PreviewCard', (20, 166, 350, 322))
     card.img(WHITE, SPR['plate_tilt'])
     p.fields['HomePreviewCard'] = ref(card.rt)
-    dec = p.node('HomeArtDecor', (16, 18, 310, 268), card)
+    dec = p.node('HomeArtDecor', (10, 12, 330, 282), card)
     dec.img(WHITE, SPR['art_home'])
-    vp, art = p.art('HomeArtViewport', 'HomeRegionArts', (26, 24, 290, 250), card,
+    vp, art = p.art('HomeArtViewport', 'HomeRegionArts', (16, 16, 318, 272), card,
                     flat=True)
     locks = []
     for i in range(12):
         lk = Node(p, 'Lock_' + str(i), art,
-                  (i % 4 * 290 / 4 + 28, i // 4 * 250 / 3 + 28, 22, 22))
+                  (i % 4 * 318 / 4 + 26, i // 4 * 272 / 3 + 26, 22, 22))
         lk.img(INK_SOFT, SPR['icon_lock'], preserve=True)
-        lk.active = False          # 首页展示已收集作品，静态不显示锁
+        lk.active = False
         locks.append(ref(lk.go))
     p.fields['HomeRegionLocks'] = locks
-    fail = p.node('FailBox', (26, 24, 290, 250), card, active=False)
-    fail.img((1, 1, 1, .82), SPR['plate_soft'])
+    fail = p.node('FailBox', (16, 16, 318, 272), card, active=False)
+    fail.img((1, 1, 1, .86), SPR['plate_soft'])
     p.fields['HomeFailBox'] = ref(fail.go)
-    p.btn('HomeRetryBtn', '重试', (85, 96, 120, 44), fail, SPR['btn_white'],
+    p.btn('HomeRetryBtn', '重试', (99, 112, 120, 44), fail, SPR['btn_white'],
           txt=INK, size=15)
-    p.label('HomeRetryExhausted', '稍后再试', (65, 150, 160, 24), fail, 12, INK_SOFT)
-    tag, _ = p.label('HomePlaceholderTag', '作品预览', (110, 278, 122, 24), card, 12, INK_SOFT)
+    p.label('HomeRetryExhausted', '稍后再试', (79, 168, 160, 24), fail, 12, INK_SOFT)
+    tag, _ = p.label('HomePlaceholderTag', '已收集作品', (16, 292, 130, 20), card,
+                     11, INK_SOFT)
     p.fields['HomePlaceholderTag'] = ref(tag.go)
-    badge = p.node('PieceBadgePill', (246, 4, 84, 28), card)
+    badge = p.node('PieceBadgePill', (252, 8, 86, 30), card)
     badge.img(WHITE, SPR['pill'], sliced=True)
-    p.label('HomePieceBadge', '6/12', (4, 2, 76, 24), badge, 12, INK, 4)
+    p.label('HomePieceBadge', '6/12', (4, 2, 78, 26), badge, 13, INK, 4)
 
-    # 章节 / 进度 / 拼片：演示态数值沿用画布稿，运行时由 Controller 覆盖
-    p.label('HomeChapterTitle', '第一章', (24, 502, 220, 26), size=17, color=INK, align=3)
-    p.btn('HomeCollectionLink', '查看图鉴', (272, 500, 94, 34), p.surface,
-          SPR['pill'], txt=INK, size=12, text_box=(4, 2, 86, 30))
-    p.label('HomePieceText', '拼片 6/12', (24, 532, 342, 24), size=12, color=INK_SOFT, align=3)
-    p.image('HomeProgressFill', (24, 562, 171, 12), p.surface,
+    # 章节进度整合进一张白卡，信息不再散落在背景上
+    chapter = p.node('ChapterCard', (20, 502, 350, 138))
+    chapter.img(WHITE, SPR['plate_soft'], sliced=True)
+    p.label('HomeChapterTitle', '第一章 · 拼图进度', (16, 10, 220, 28), chapter,
+            size=17, color=INK, align=3)
+    p.btn('HomeCollectionLink', '查看图鉴', (246, 10, 92, 30), chapter,
+          SPR['pill'], txt=INK, size=12, text_box=(2, 2, 88, 26))
+    p.label('HomePieceText', '拼片 6/12', (16, 42, 220, 22), chapter,
+            size=12, color=INK_SOFT, align=3)
+    track = p.node('ProgressTrack', (16, 66, 318, 18), chapter)
+    track.img((.86, .88, .94, 1), SPR['pill'], sliced=True)
+    p.image('HomeProgressFill', (16, 66, 159, 18), chapter,
             GREEN, SPR['pill'], filled=True)
     nodes = []
     for i in range(12):
-        n, cid = p.image('Node_' + str(i), (24 + i * 29, 582, 20, 20), p.surface,
+        n, cid = p.image('Node_' + str(i), (16 + i * 26.5, 90, 20, 20), chapter,
                          BEAD_COLORS[i % 12] if i < 6 else BEAD_OFF, SPR['bead'])
         nodes.append(ref(cid))
     p.fields['HomeNodes'] = nodes
 
-    # 三个圆形快捷入口：视觉沿用设计稿，文案只用项目已有功能名
-    for i, (title, tint) in enumerate([('图鉴', BEAD_COLORS[0]),
-                                       ('商店', BEAD_COLORS[3]),
-                                       ('设置', BEAD_COLORS[5])]):
-        cx = 42 + i * 116
-        ring = p.node('HomeQuick_' + str(i), (cx, 606, 62, 56))
-        ring.img(WHITE, SPR['circle'])
-        b = p.node('QuickBead', (13, 4, 36, 36), ring)
-        b.img(tint, SPR['bead'], preserve=True)
-        p.node('QuickLabel', (cx - 8, 664, 78, 20)).text(title, 11, INK_SOFT, 4)
-
-    cta, _, tid = p.btn('HomeCtaButton', '开始游戏', (24, 686, 342, 62), p.surface,
-                        SPR['btn_green'], color=WHITE, txt=WHITE, size=23,
-                        text_box=(20, 8, 302, 28))
+    # 唯一的主行动按钮；玩法说明降级为次要文字入口
+    cta, _, tid = p.btn('HomeCtaButton', '开始游戏', (20, 656, 350, 66), p.surface,
+                        SPR['btn_green'], color=WHITE, txt=WHITE, size=24,
+                        text_box=(20, 8, 310, 30))
     p.fields['HomeCtaTitle'] = ref(tid)
-    p.label('HomeCtaSub', '第 07 关', (20, 38, 302, 18), cta, 12, WHITE)
-    p.btn('HomeCtaSecondary', '玩法说明', (79, 752, 232, 26), p.surface,
-          SPR['btn_white'], txt=INK_SOFT, size=11,
-          text_box=(0, 0, 232, 26))
+    p.label('HomeCtaSub', '第 07 关 · 继续挑战', (20, 40, 310, 18), cta, 12, WHITE)
+    p.btn('HomeCtaSecondary', '玩法说明', (115, 730, 160, 28), p.surface,
+          SPR['pill'], color=(1, 1, 1, .001), txt=ON_BG_SOFT, size=13,
+          text_box=(0, 0, 160, 28))
 
-    # 底部导航
-    nav = p.node('BottomNav', (24, 780, 342, 56))
-    nav.img(WHITE, SPR['pill'], sliced=True)
+    # 底部导航：深色磨砂底 + 绿色选中态，去掉重复的三个圆形入口
+    nav = p.node('BottomNav', (20, 772, 350, 56))
+    nav.img((.18, .16, .34, .82), SPR['pill'], sliced=True)
     for i, (key, title) in enumerate([('NavHomeBtn', '首页'),
                                       ('NavCollectionBtn', '图鉴'),
                                       ('NavStoreBtn', '商店')]):
-        sp = SPR['btn_green'] if i == 0 else SPR['btn_white']
-        p.btn(key, title, (6 + i * 110, 3, 104, 48), nav, sp,
-              txt=WHITE if i == 0 else INK, size=14,
-              text_box=(2, 2, 100, 44))
+        box = (6 + i * 113, 4, 106, 48)
+        if i == 0:
+            p.btn(key, title, box, nav, SPR['btn_green'], txt=WHITE, size=15,
+                  text_box=(2, 2, 102, 44))
+        else:
+            p.btn(key, title, box, nav, SPR['pill'], color=(1, 1, 1, .001),
+                  txt=ON_BG_SOFT, size=15, text_box=(2, 2, 102, 44))
     return p.save()
-
 
 def make_board():
     p = Page('BlockOutGameHud', 'BlockOutBoardPageView')
 
-    # 顶栏：暂停只留图标（圆形按钮里再塞文字会挤成两行），标题/心/计时互不重叠
-    pause, _, _ = p.btn('BoardPauseBtn', '', (24, 24, 44, 44), p.surface,
+    # 顶栏：暂停 / 关卡胶囊 / 三心 / 计时，一条水平信息带
+    pause, _, _ = p.btn('BoardPauseBtn', '', (20, 20, 44, 44), p.surface,
                         SPR['circle'], txt=INK, size=9,
                         text_box=(0, 0, 44, 44))
     icon(p, 'pause', (12, 10, 20, 24), pause)
-    p.label('BoardLevelTitle', '第 1 章 · 第 07 关', (78, 22, 210, 30), size=19, color=INK, align=3)
-    p.label('BoardLevelSub', '沿箭头方向移除方块', (78, 52, 170, 20), size=11, color=INK_SOFT, align=3)
+    level = p.node('LevelPill', (72, 20, 150, 44), p.surface)
+    level.img(WHITE, SPR['pill'], sliced=True)
+    p.label('BoardLevelTitle', '第 07 关', (10, 3, 130, 24), level,
+            size=17, color=INK, align=3)
+    p.label('BoardLevelSub', '第一章 · 生命模式', (10, 26, 130, 16), level,
+            size=10, color=INK_SOFT, align=3)
 
     hearts = []
-    hr = p.node('Hearts', (300, 26, 72, 26))
+    hr = p.node('Hearts', (228, 24, 66, 24))
     for i in range(3):
-        n, cid = p.image('Heart' + str(i), (i * 25, 0, 23, 23), hr,
+        n, cid = p.image('Heart' + str(i), (i * 22, 0, 22, 22), hr,
                          PINK, SPR['icon_heart'])
         hearts.append(ref(cid))
     p.fields['BoardHearts'] = hearts
 
-    timer = p.node('Timer', (296, 56, 70, 24))
+    timer = p.node('Timer', (300, 20, 70, 44))
     timer.img(WHITE, SPR['pill'], sliced=True)
     p.fields['BoardTimerPill'] = ref(timer.rt)
-    p.label('BoardTimerText', '02:00', (4, 0, 62, 24), timer, 12, INK)
+    p.label('BoardTimerText', '02:00', (4, 4, 62, 36), timer, 14, INK)
 
-    # 剩余块数胶囊：文字与连击标签各占一段，留出 12px 右边距
-    pill = p.node('RemainingPill', (24, 90, 342, 44))
+    # 第二带：剩余块数 + 连击，唯一一处行动目标
+    pill = p.node('RemainingPill', (20, 76, 350, 44))
     pill.img(WHITE, SPR['pill'], sliced=True)
-    icon(p, 'coin', (12, 10, 24, 24), pill)
-    p.label('BoardRemainingText', '剩余 06 块', (44, 6, 170, 32), pill,
-            size=16, color=INK, align=3)
-    combo = p.node('ComboTag', (236, 8, 94, 28), pill)
+    dot = p.node('RemainingDot', (12, 12, 20, 20), pill)
+    dot.img(GREEN, SPR['bead'], preserve=True)
+    p.label('BoardRemainingText', '剩余 06 块', (42, 6, 170, 32), pill,
+            size=17, color=INK, align=3)
+    combo = p.node('ComboTag', (248, 8, 90, 28), pill)
     combo.img(GOLD, SPR['pill'], sliced=True)
-    p.label('ComboText', '连击 ×3', (2, 2, 90, 24), combo, 11, WHITE, 4)
+    p.label('ComboText', '连击 ×3', (2, 2, 86, 24), combo, 12, INK, 4)
 
-    # 常驻拼装条（视觉版，12 颗珠子）
-    p.node('AssemblyLabel', (24, 142, 200, 20)).text('拼片 6/12', 11, INK_SOFT, 3)
-    bead_row(p, 'AssemblyBar', (24, 164, 342, 20), p.surface, active=6, size=20)
+    # 第三带：常驻拼装进度，收进一张胶囊，不再散落四行小字
+    assembly = p.node('AssemblyCard', (20, 128, 350, 44), p.surface)
+    assembly.img((1, 1, 1, .92), SPR['pill'], sliced=True)
+    p.node('AssemblyLabel', (14, 3, 160, 16), assembly).text('本章拼片 6/12',
+                                                             10, INK_SOFT, 3)
+    bead_row(p, 'AssemblyBar', (14, 20, 322, 18), assembly, active=6, size=18)
 
-    # 棋盘：BoardArea 自带极淡 6×6 底板；运行时 boardGo 挂在它下面，
-    # SetAsFirstSibling 后棋子才不会被面板盖住。
-    p.node('BoardPanel', (18, 194, 354, 24))
-    p.node('BoardPanelTitle', (30, 194, 180, 24)).text('对局棋盘', 11, INK_SOFT, 3)
-    p.node('BoardPanelSub', (198, 194, 162, 24)).text('第 1 章 · 第 07 关', 11, INK_SOFT, 5)
-    area = p.node('BoardArea', (18, 222, 354, 354))
+    # 棋盘：深底上唯一的高亮区域，占据视觉中心
+    area = p.node('BoardArea', (16, 180, 358, 358))
     area.img(WHITE, SPR['grid'])
     p.fields['BoardArea'] = ref(area.rt)
-    demo = p.node('BoardDemoArt', (30, 234, 330, 330), p.surface, active=False)
+    demo = p.node('BoardDemoArt', (28, 192, 334, 334), p.surface, active=False)
     demo.img(WHITE, SPR['art_board'])
 
-    hint = p.node('HintPill', (24, 586, 342, 32))
-    hint.img((1, 1, 1, .72), SPR['pill'], sliced=True)
-    p.label('BoardHintPill', '轻点整块方块，沿箭头方向飞出', (8, 2, 326, 28), hint,
-            size=12, color=INK, align=4)
+    hint = p.node('HintPill', (20, 548, 350, 34))
+    hint.img((1, 1, 1, .88), SPR['pill'], sliced=True)
+    p.label('BoardHintPill', '轻点整块方块，沿箭头方向飞出', (8, 2, 334, 30), hint,
+            size=13, color=INK, align=4)
 
-    # 三个工具槽：规整白卡，图标/名称/条件三段居中，角标收在卡片内
+    # 工具槽：更大的图标、更清楚的名称与解锁条件
     tools = [('HintSlot', '提示', 'bulb', '×3 可用'),
              ('HammerSlot', '锤子', 'hammer', '第 11 关解锁'),
              ('MagicSlot', '魔法棒', 'wand', '第 16 关解锁')]
     for i, (key, title, ic, cond) in enumerate(tools):
-        root = p.node(key, (24 + i * 116, 628, 110, 100))
-        root.img((0.94, 1, 0.95, 1) if i == 0 else (0.95, 0.97, 0.99, 1),
+        root = p.node(key, (20 + i * 117, 610, 110, 112))
+        root.img((.95, 1, .96, 1) if i == 0 else (.96, .97, 1, 1),
                  SPR['plate_soft'], sliced=True)
         slot = {'Rect': ref(root.rt), 'Button': ref(root.button())}
-        _, cid = p.image('Icon', (37, 8, 36, 36), root,
-                         ICON_TINT[ic] if i == 0 else (0.50, 0.60, 0.68, 1),
+        _, cid = p.image('Icon', (35, 10, 40, 40), root,
+                         ICON_TINT[ic] if i == 0 else (.46, .54, .66, 1),
                          SPR['icon_' + ic])
         slot['Icon'] = ref(cid)
-        badge = p.node('CountBadge', (74, 8, 28, 20), root, active=(i == 0))
+        badge = p.node('CountBadge', (72, 10, 30, 22), root, active=(i == 0))
         badge.img(GOLD, SPR['pill'], sliced=True)
         slot['CountBadge'] = ref(badge.go)
-        _, cid = p.label('Count', '×3' if i == 0 else '0', (0, 0, 28, 20), badge,
-                         10, WHITE)
+        _, cid = p.label('Count', '×3' if i == 0 else '0', (0, 0, 30, 22), badge,
+                         11, INK)
         slot['CountText'] = ref(cid)
-        lock, _ = p.image('LockBadge', (78, 8, 24, 20), root, INK_SOFT, SPR['icon_lock'])
-        lock.active = (i > 0)   # 与 CountBadge 互斥，运行时由 RefreshToolSlot 切换
+        lock, _ = p.image('LockBadge', (78, 12, 26, 22), root, INK_SOFT,
+                          SPR['icon_lock'])
+        lock.active = (i > 0)
         slot['LockBadge'] = ref(lock.go)
-        _, cid = p.label('NameText', title, (4, 48, 102, 24), root, 13,
+        _, cid = p.label('NameText', title, (4, 54, 102, 26), root, 14,
                          INK if i == 0 else INK_SOFT)
         slot['NameText'] = ref(cid)
-        _, cid = p.label('CondText', cond, (4, 74, 102, 18), root, 10, INK_SOFT)
+        _, cid = p.label('CondText', cond, (4, 82, 102, 20), root, 11, INK_SOFT)
         slot['CondText'] = ref(cid)
         p.fields[key] = slot
 
-    p.node('Footer', (24, 744, 342, 22)).text('第一章 · 生命模式', 11, INK_SOFT, 4)
+    p.node('Footer', (20, 738, 350, 22)).text('第一章 · 生命模式', 11, ON_BG_SOFT, 4)
     return p.save()
-
 
 def make_settlement():
     p = Page('BlockOutSettlementPage', 'BlockOutSettlementView')
-    p.node('ChapterTag', (24, 34, 220, 22)).text('第 07 关 · 已通关', 12, INK, 3)
-    close = p.node('SettleCloseDecor', (314, 28, 52, 52))
+    p.node('ChapterTag', (20, 22, 220, 22)).text('第 07 关 · 已通关', 12, ON_BG_SOFT, 3)
+    close = p.node('SettleCloseDecor', (318, 20, 52, 52))
     close.img(WHITE, SPR['circle'])
     icon(p, 'close', (14, 14, 24, 24), close)
-    p.label('SettleTitleText', '关卡完成', (24, 70, 342, 48), size=30, color=INK, align=4)
-    p.node('SettleSub', (24, 120, 342, 22)).text('清空全部方块 · 新作品已解锁', 12, INK_SOFT, 4)
 
-    # 白卡：中央直接铺画布设计稿的完整彩色珠阵作品
-    card = p.node('Card', (20, 150, 350, 360))
+    # 庆祝焦点：金色奖章 + 大标题，先给情绪再给信息
+    medal = p.node('WinMedal', (151, 48, 88, 88))
+    medal.img(GOLD, SPR['circle'])
+    inner = p.node('MedalInner', (6, 6, 76, 76), medal)
+    inner.img((.20, .17, .40, 1), SPR['circle'])
+    icon(p, 'coin', (14, 14, 48, 48), inner)
+    p.label('SettleTitleText', '关卡完成', (20, 138, 350, 46),
+            size=32, color=ON_BG, align=4)
+    p.node('SettleSub', (20, 184, 350, 22)).text('清空全部方块 · 新作品已解锁',
+                                                 12, ON_BG_SOFT, 4)
+
+    # 作品卡：揭晓的完整珠阵占满主视觉
+    card = p.node('Card', (20, 214, 350, 320))
     card.img(WHITE, SPR['panel'], sliced=True)
-    holes = p.node('HolesLayer', (10, 10, 330, 340), card)
+    holes = p.node('HolesLayer', (10, 10, 330, 300), card)
     set_type(p, holes.img(WHITE, SPR['holes']), 2)
 
-    tag = p.node('NewUnlockTag', (12, 12, 76, 28), card)
-    tag.img((0.96, 0.35, 0.45, 1), SPR['pill'], sliced=True)
-    Node(p, 'Text', tag, (0, 0, 76, 28)).text('新解锁', 12, WHITE, 4)
+    tag = p.node('NewUnlockTag', (14, 12, 82, 30), card)
+    tag.img((.96, .30, .44, 1), SPR['pill'], sliced=True)
+    Node(p, 'Text', tag, (0, 0, 82, 30)).text('新解锁', 13, WHITE, 4)
 
-    dec = p.node('SettleArtDecor', (12, 46, 326, 224), card)
-    dec.img(WHITE, SPR['art_settle'])
-    p.art('SettleRevealRoot', 'SettleRevealRegions', (12, 46, 326, 224), card,
+    dec = p.node('SettleArtDecor', (12, 48, 326, 198), card)
+    dec.img(WHITE, SPR['art_settle'], preserve=True)
+    p.art('SettleRevealRoot', 'SettleRevealRegions', (12, 48, 326, 198), card,
           flat=True)
-    _, cid = p.image('SettleLevelImage', (12, 46, 326, 224), card,
+    _, cid = p.image('SettleLevelImage', (12, 48, 326, 198), card,
                      WHITE, SPR['plate_soft'])
     disable(p, cid)
 
-    p.label('SettleNoteText', '作品已收藏', (12, 276, 200, 24), card, 13, INK, 3)
-    got = p.node('InCollectionTag', (238, 274, 96, 30), card)
+    p.label('SettleNoteText', '作品已收藏', (14, 256, 180, 26), card, 14, INK, 3)
+    got = p.node('InCollectionTag', (238, 254, 96, 30), card)
     got.img(GREEN, SPR['pill'], sliced=True)
-    Node(p, 'Text', got, (0, 0, 96, 30)).text('已入图鉴', 11, WHITE, 4)
-    p.label('SettlePieceText', '获得新拼片', (12, 312, 200, 22), card, 12, INK_SOFT, 3)
+    Node(p, 'Text', got, (0, 0, 96, 30)).text('已入图鉴', 12, INK, 4)
+    p.label('SettlePieceText', '获得新拼片', (14, 288, 220, 22), card,
+            12, INK_SOFT, 3)
 
-    p.node('AssemblyLabel', (24, 524, 200, 20)).text('本章拼片 07/12', 11, INK_SOFT, 3)
-    p.node('AssemblyRemain', (214, 524, 152, 20)).text('还差 5 片完成本章', 10, INK_SOFT, 5)
-    bead_row(p, 'AssemblyBar', (24, 548, 342, 22), p.surface, active=7, size=22)
+    # 拼装进度：与游戏页同一套胶囊语言
+    assembly = p.node('AssemblyCard', (20, 544, 350, 44), p.surface)
+    assembly.img((1, 1, 1, .92), SPR['pill'], sliced=True)
+    p.node('AssemblyLabel', (14, 3, 170, 16), assembly).text('本章拼片 07/12',
+                                                             10, INK_SOFT, 3)
+    p.node('AssemblyRemain', (210, 3, 126, 16), assembly).text('还差 5 片',
+                                                                10, INK_SOFT, 5)
+    bead_row(p, 'AssemblyBar', (14, 20, 322, 18), assembly, active=7, size=18)
 
-    # 奖励胶囊：+30 / 通关奖励 / 翻倍
-    reward = p.node('RewardPill', (20, 584, 350, 62))
-    reward.img(WHITE, SPR['pill'], sliced=True)
-    icon(p, 'coin', (12, 16, 30, 30), reward)
-    p.node('RewardAmount', (48, 8, 70, 44), reward).text('+30', 24, (0.95, 0.62, 0.14, 1), 3)
-    p.label('SettleRewardText', '通关奖励 · 难度 2 · 可翻倍', (118, 12, 146, 38), reward,
-            11, INK, 3)
-    dbl = p.node('SettleDoubleDecor', (266, 13, 92, 36), reward)
+    # 奖励卡：金币数字放大，翻倍作为次级强调
+    reward = p.node('RewardPill', (20, 598, 350, 72))
+    reward.img((1, .97, .88, 1), SPR['plate_soft'], sliced=True)
+    icon(p, 'coin', (14, 20, 34, 34), reward)
+    p.node('RewardAmount', (54, 10, 96, 50), reward).text('+30', 30,
+                                                          (.90, .55, .08, 1), 3)
+    p.label('SettleRewardText', '通关奖励 · 可翻倍', (152, 12, 118, 30), reward,
+            12, INK, 3)
+    dbl = p.node('SettleDoubleDecor', (268, 16, 70, 40), reward)
     dbl.img(WHITE, SPR['btn_pink'], sliced=True)
-    Node(p, 'Text', dbl, (0, 0, 92, 36)).text('翻倍 +30', 12, WHITE, 4)
+    Node(p, 'Text', dbl, (0, 0, 70, 40)).text('翻倍', 14, WHITE, 4)
 
-    p.node('SettleStats', (24, 656, 342, 20)).text('用时 01:42 · 最高连击 ×3 · 错误 0 次',
-                                                   10, INK_SOFT, 4)
-    p.btn('SettleNextBtn', '下一关 · 第 08 关', (20, 686, 350, 64), p.surface,
-          SPR['btn_green'], txt=WHITE, size=20)
+    p.node('SettleStats', (20, 678, 350, 20)).text('用时 01:42 · 最高连击 ×3 · 错误 0 次',
+                                                   11, ON_BG_SOFT, 4)
+    p.btn('SettleNextBtn', '下一关 · 第 08 关', (20, 706, 350, 64), p.surface,
+          SPR['btn_green'], txt=WHITE, size=21)
     for i, (key, title) in enumerate([('SettleReplayBtn', '重玩'),
                                       ('SettleHomeBtn', '返回首页'),
                                       ('SettleCollectionBtn', '查看收藏')]):
-        p.btn(key, title, (20 + i * 117, 760, 110, 32), p.surface,
-              SPR['btn_white'], txt=INK_SOFT, size=12,
+        p.btn(key, title, (20 + i * 117, 780, 110, 32), p.surface,
+              SPR['pill'], color=(1, 1, 1, .001), txt=ON_BG_SOFT, size=12,
               text_box=(0, 0, 110, 32))
     return p.save()
-
 
 # ---------------------------------------------------------------- 入口
 def backup():
