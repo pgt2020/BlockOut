@@ -89,6 +89,28 @@ namespace BlockOut.UI
         private readonly Dictionary<BlockOutScreenId, GameObject> screens = new Dictionary<BlockOutScreenId, GameObject>();
         private readonly Dictionary<string, GameObject> layers = new Dictionary<string, GameObject>();
         private BlockOutScreenId currentScreen;
+
+        // ---------- 参考图 1:1 还原层 ----------
+        private static readonly Dictionary<BlockOutScreenId, string> ScreenSkinMap =
+            new Dictionary<BlockOutScreenId, string>
+            {
+                { BlockOutScreenId.Loading,    "s1" },
+                { BlockOutScreenId.Home,       "s2" },
+                { BlockOutScreenId.Collection, "s3" },
+                { BlockOutScreenId.Board,      "s4" },
+                { BlockOutScreenId.Store,      "s7" },
+            };
+        private static readonly Dictionary<string, string> LayerSkinMap =
+            new Dictionary<string, string>
+            {
+                { "SettlementLayer", "s5" },
+                { "FailLayer",       "s6" },
+            };
+        private readonly Dictionary<string, BlockOutReferenceSkin> referenceSkins =
+            new Dictionary<string, BlockOutReferenceSkin>();
+        private float nextSkinSync;
+        // s8 每日 / s9 地图在现有业务 Prefab 里没有对应页面，按需打开的独立还原页
+        private GameObject standaloneReferenceSkin;
         private BlockOutLayoutMetrics metrics;
         /// <summary>当前布局度量（安全区 + 断点 + 组件尺寸），供控制器换算封面容器尺寸等。</summary>
         public BlockOutLayoutMetrics Metrics => metrics;
@@ -370,6 +392,7 @@ namespace BlockOut.UI
                     go.GetComponent<BlockOutUIViewBase>().ApplyTo(this);
                     layers[key]=go; go.SetActive(false);
                 }
+                AttachReferenceSkins();
                 BuildDynamicLists(); BuildToast();
                 metrics=canvasGo.GetComponent<BlockOutLayoutMetrics>();
                 metrics.Attach(canvasGo.GetComponent<RectTransform>());
@@ -400,6 +423,139 @@ namespace BlockOut.UI
         {
             if(canvasGo==null) return;
             foreach(var layout in canvasGo.GetComponentsInChildren<BlockOutPageLayout>(true)) layout.Apply();
+        }
+
+        // ============================================================
+        // 参考图 1:1 还原层：默认接线 / 热区转发 / 动态字段镜像
+        // 视觉层置顶覆盖业务页面，但所有元件 raycastTarget=0，
+        // 点击由 Hotspot_* 透明热区转发到业务 Button，业务绑定一行不改。
+        // ============================================================
+
+        private static readonly HashSet<string> ScreenSkinIds = new HashSet<string>(ScreenSkinMap.Values);
+
+        private void AttachReferenceSkins()
+        {
+            // screen 类插在最后一个页面之后、所有弹层之前：盖住页面，不盖弹层
+            int insertAt = 0;
+            foreach (var s in screens.Values)
+                if (s != null) insertAt = Mathf.Max(insertAt, s.transform.GetSiblingIndex() + 1);
+
+            foreach (var kv in ScreenSkinMap)
+            {
+                var go = BlockOutUIPrefabRegistry.AttachReferenceSkin(kv.Value, canvasGo.transform);
+                if (go == null)
+                {
+                    Debug.LogWarning("[BlockOut][UI] 还原层资源缺失: " + kv.Value);
+                    continue;
+                }
+                go.transform.SetSiblingIndex(insertAt++);
+                var skin = go.GetComponent<BlockOutReferenceSkin>();
+                if (skin != null)
+                {
+                    referenceSkins[kv.Value] = skin;
+                    BindSkinHotspots(kv.Value, skin);
+                }
+                go.SetActive(false);
+            }
+            // layer 类挂在对应弹层内，随 ShowLayer / HideLayer 自动开关
+            foreach (var kv in LayerSkinMap)
+            {
+                GameObject layer;
+                if (!layers.TryGetValue(kv.Key, out layer) || layer == null) continue;
+                var go = BlockOutUIPrefabRegistry.AttachReferenceSkin(kv.Value, layer.transform);
+                if (go == null) continue;
+                var skin = go.GetComponent<BlockOutReferenceSkin>();
+                if (skin != null)
+                {
+                    referenceSkins[kv.Value] = skin;
+                    BindSkinHotspots(kv.Value, skin);
+                }
+            }
+            SyncReferenceSkins();
+        }
+
+        private void BindSkinHotspots(string sid, BlockOutReferenceSkin skin)
+        {
+            switch (sid)
+            {
+                case "s2":
+                    skin.Bind("HomeCtaButton", HomeCtaButton);
+                    skin.Bind("HomeSettingsBtn", HomeSettingsBtn);
+                    skin.Bind("HomeCollectionLink", HomeCollectionLink);
+                    skin.Bind("NavStoreBtn", NavStoreBtn);
+                    break;
+                case "s3":
+                    skin.Bind("CollectionBackBtn", CollectionBackBtn);
+                    break;
+                case "s4":
+                    skin.Bind("BoardPauseBtn", BoardPauseBtn);
+                    if (HintSlot != null) skin.Bind("HintSlot.Button", HintSlot.Button);
+                    if (HammerSlot != null) skin.Bind("HammerSlot.Button", HammerSlot.Button);
+                    if (MagicSlot != null) skin.Bind("MagicSlot.Button", MagicSlot.Button);
+                    break;
+                case "s5":
+                    skin.Bind("SettleNextBtn", SettleNextBtn);
+                    skin.Bind("SettleHomeBtn", SettleHomeBtn);
+                    break;
+                case "s6":
+                    skin.Bind("FailReviveBtn", FailReviveBtn);
+                    skin.Bind("FailRestartBtn", FailRestartBtn);
+                    skin.Bind("FailQuitBtn", FailQuitBtn);
+                    break;
+            }
+        }
+
+        /// <summary>把业务层真实数值镜像到还原层 Text，避免切图里烧死的静态数字。</summary>
+        private void SyncReferenceSkins()
+        {
+            BlockOutReferenceSkin s;
+            if (referenceSkins.TryGetValue("s2", out s) && s != null && HomeCoinText != null)
+                s.SetText("coins", HomeCoinText.text);
+
+            if (referenceSkins.TryGetValue("s4", out s) && s != null)
+            {
+                if (BoardLevelTitle != null) s.SetText("level", ShortLevel(BoardLevelTitle.text));
+                if (HintSlot != null && HintSlot.CountText != null)
+                    s.SetText("hint_count", Digits(HintSlot.CountText.text));
+                if (HammerSlot != null && HammerSlot.CountText != null)
+                    s.SetText("hammer_count", Digits(HammerSlot.CountText.text));
+                if (MagicSlot != null && MagicSlot.CountText != null)
+                    s.SetText("bomb_count", Digits(MagicSlot.CountText.text));
+                if (BoardHearts != null)
+                {
+                    int lives = 0;
+                    for (int i = 0; i < BoardHearts.Length; i++)
+                        if (BoardHearts[i] != null && BoardHearts[i].sprite != null &&
+                            BoardHearts[i].sprite.name == "heart") lives++;
+                    s.SetHearts(lives);
+                }
+                s.BindInteractable("HintSlot.Button", HintSlot != null && HintSlot.Button != null && HintSlot.Button.interactable);
+                s.BindInteractable("HammerSlot.Button", HammerSlot != null && HammerSlot.Button != null && HammerSlot.Button.interactable);
+                s.BindInteractable("MagicSlot.Button", MagicSlot != null && MagicSlot.Button != null && MagicSlot.Button.interactable);
+            }
+        }
+
+        private static string ShortLevel(string s)
+        {
+            if (string.IsNullOrEmpty(s)) return null;
+            int i = s.LastIndexOf(" · ", StringComparison.Ordinal);
+            return i >= 0 ? s.Substring(i + 3) : s;
+        }
+
+        private static string Digits(string s)
+        {
+            if (string.IsNullOrEmpty(s)) return null;
+            var sb = new System.Text.StringBuilder();
+            foreach (var c in s) if (c >= '0' && c <= '9') sb.Append(c);
+            return sb.Length > 0 ? sb.ToString() : null;
+        }
+
+        private void LateUpdate()
+        {
+            if (referenceSkins.Count == 0) return;
+            if (Time.unscaledTime < nextSkinSync) return;
+            nextSkinSync = Time.unscaledTime + 0.1f;
+            SyncReferenceSkins();
         }
 
         private bool settlementContain;
@@ -459,16 +615,61 @@ namespace BlockOut.UI
 
         public void ShowScreen(BlockOutScreenId id)
         {
+            HideReferenceStandalone();
             foreach (var kv in screens)
                 if (kv.Value != null) kv.Value.SetActive(kv.Key == id);
+            string wantSkin;
+            ScreenSkinMap.TryGetValue(id, out wantSkin);
+            foreach (var kv in referenceSkins)
+                if (ScreenSkinIds.Contains(kv.Key) && kv.Value != null)
+                    kv.Value.gameObject.SetActive(kv.Key == wantSkin);
             if (id == BlockOutScreenId.Board) HideAllBoardLayers();
             currentScreen = id;
+            SyncReferenceSkins();
             // Toast 位置：游戏页位于工具条上方，其余页面位于底部导航上方
             SetToastBottomOffset(id == BlockOutScreenId.Board ? 116f : 90f);
             if (OnScreenChanged != null) OnScreenChanged(id);
         }
 
         public BlockOutScreenId CurrentScreen => currentScreen;
+
+        /// <summary>
+        /// 打开独立还原页（s8 每日挑战 / s9 章节地图）。这两屏在现有业务 Prefab 中
+        /// 没有对应页面，故不进 ScreenSkinMap，改为显式按需挂载到当前 Canvas 并置顶；
+        /// 不切换业务页面，关闭后回到原界面。切屏时自动关闭。
+        /// </summary>
+        public bool ShowReferenceStandalone(string screenId)
+        {
+            if (canvasGo == null) return false;
+            if (screenId != "s8" && screenId != "s9") return false;
+            HideReferenceStandalone();
+            var go = BlockOutUIPrefabRegistry.AttachReferenceSkin(screenId, canvasGo.transform);
+            if (go == null) return false;
+            go.transform.SetAsLastSibling();
+            standaloneReferenceSkin = go;
+            return true;
+        }
+
+        public void HideReferenceStandalone()
+        {
+            if (standaloneReferenceSkin == null) return;
+            UnityEngine.Object.Destroy(standaloneReferenceSkin);
+            standaloneReferenceSkin = null;
+        }
+
+        public bool HasStandaloneReferenceSkin => standaloneReferenceSkin != null;
+
+        /// <summary>
+        /// 业务侧覆盖还原层任意动态字段。progress / reward / ticket 在设计稿里是
+        /// 示例值（60% / +60 / 3），按 1:1 还原口径默认保留原图数值；业务若拿到
+        /// 真实数据，调用本方法即可覆盖，不必改 Prefab 或切图。
+        /// </summary>
+        public void SetReferenceText(string key, string value)
+        {
+            if (string.IsNullOrEmpty(key)) return;
+            foreach (var kv in referenceSkins)
+                if (kv.Value != null) kv.Value.SetText(key, value);
+        }
 
         /// <summary>按枚举取屏幕 GameObject（控制器据此定位动态构建的子节点，如章节行）。</summary>
         public GameObject GetScreenGO(BlockOutScreenId id)

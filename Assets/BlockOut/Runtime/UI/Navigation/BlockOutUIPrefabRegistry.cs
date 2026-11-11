@@ -74,6 +74,65 @@ namespace BlockOut.UI
         public static bool Has(BlockOutScreenId screen) { return Load(screen) != null; }
         public static bool HasLayer(string layer) { return LoadLayer(layer) != null; }
 
+        // ---- 参考图 1:1 还原层 -------------------------------------------------
+        // 由 Tools/UIAuthoring/apply_reference_skin.py 依据 reference_layout.json 生成。
+        // 它是独立可选视觉层，不替换上面的业务 Prefab，避免破坏 View / Controller 绑定。
+        public const string ReferenceSkinRoot = "Prefabs/UI/Reference/";
+
+        private static readonly string[] ReferenceSkinNames =
+        {
+            "ReferenceS1_Loading", "ReferenceS2_Level", "ReferenceS3_Gallery",
+            "ReferenceS4_Game", "ReferenceS5_Complete", "ReferenceS6_Fail",
+            "ReferenceS7_Skin", "ReferenceS8_Daily", "ReferenceS9_Map"
+        };
+
+        /// <summary>按参考图屏号（s1..s9）取还原层资源名。</summary>
+        public static string ReferenceSkinName(string screenId)
+        {
+            if (string.IsNullOrEmpty(screenId) || screenId.Length != 2 || screenId[0] != 's') return null;
+            int index = screenId[1] - '1';
+            if (index < 0 || index >= ReferenceSkinNames.Length) return null;
+            return ReferenceSkinRoot + ReferenceSkinNames[index];
+        }
+
+        private static readonly Dictionary<string, GameObject> referenceCache =
+            new Dictionary<string, GameObject>();
+
+        /// <summary>加载可选还原层；资源不存在时返回 null，不影响原有界面初始化。</summary>
+        public static GameObject LoadReferenceSkin(string screenId)
+        {
+            if (referenceCache.TryGetValue(screenId, out var hit)) return hit;
+            string name = ReferenceSkinName(screenId);
+            if (name == null) return null;
+            var prefab = Resources.Load<GameObject>(name);
+            if (prefab != null) referenceCache[screenId] = prefab;
+            return prefab;
+        }
+
+        /// <summary>
+        /// 把还原层叠加到指定父节点并置顶。
+        /// 视觉层所有元件 raycastTarget=0，只有 Hotspot_* 热区吃点击并转发到业务 Button，
+        /// 因此置顶不会破坏原有交互；业务 View / Controller 绑定保持原样。
+        /// screen 类挂在 Canvas 下（位于页面之后、弹层之前），layer 类挂在对应弹层内。
+        /// </summary>
+        public static GameObject AttachReferenceSkin(string screenId, Transform parent)
+        {
+            var prefab = LoadReferenceSkin(screenId);
+            if (prefab == null || parent == null) return null;
+            var go = UnityEngine.Object.Instantiate(prefab, parent, false);
+            go.name = prefab.name;
+            var rt = go.transform as RectTransform;
+            if (rt != null)
+            {
+                rt.anchorMin = Vector2.zero;
+                rt.anchorMax = Vector2.one;
+                rt.offsetMin = Vector2.zero;
+                rt.offsetMax = Vector2.zero;
+            }
+            go.transform.SetAsLastSibling();
+            return go;
+        }
+
         /// <summary>是否为“完整 Prefab”（带 View 组件，由烘焙器产出）。旧骨架返回 false。</summary>
         public static bool IsFullPrefab(GameObject prefab)
         {
@@ -138,6 +197,7 @@ namespace BlockOut.UI
         {
             cache.Clear();
             layerCache.Clear();
+            referenceCache.Clear();
         }
     }
 }

@@ -1,0 +1,558 @@
+{
+ "grid": {
+  "x": 28,
+  "y": 128,
+  "size": 32,
+  "cols": 10,
+  "rows": 8,
+  "gap": 0
+ },
+ "assets": {
+  "base": "tilekit/tile_base.png",
+  "base_hd": "tilekit/tile_base@4x.png",
+  "arrow": "tilekit/arrow_up.png",
+  "arrow_hd": "tilekit/arrow_up@4x.png",
+  "cross": "tilekit/arrow_cross.png",
+  "cross_hd": "tilekit/arrow_cross@4x.png"
+ },
+ "palette": {
+  "green": [
+   139,
+   193,
+   91
+  ],
+  "yellow": [
+   246,
+   186,
+   74
+  ],
+  "blue": [
+   97,
+   161,
+   220
+  ],
+  "pink": [
+   247,
+   143,
+   147
+  ],
+  "charcoal": [
+   104,
+   92,
+   76
+  ],
+  "cream": [
+   233,
+   217,
+   198
+  ]
+ },
+ "rotation": {
+  "up": 0,
+  "right": 90,
+  "down": 180,
+  "left": 270,
+  "cross": 0,
+  "none": 0
+ },
+ "board": [
+  [
+   {
+    "r": 0,
+    "c": 0,
+    "color": null,
+    "dir": "none"
+   },
+   {
+    "r": 0,
+    "c": 1,
+    "color": null,
+    "dir": "none"
+   },
+   {
+    "r": 0,
+    "c": 2,
+    "color": "green",
+    "dir": "up"
+   },
+   {
+    "r": 0,
+    "c": 3,
+    "color": null,
+    "dir": "none"
+   },
+   {
+    "r": 0,
+    "c": 4,
+    "color": null,
+    "dir": "none"
+   },
+   {
+    "r": 0,
+    "c": 5,
+    "color": null,
+    "dir": "none"
+   },
+   {
+    "r": 0,
+    "c": 6,
+    "color": "green",
+    "dir": "up"
+   },
+   {
+    "r": 0,
+    "c": 7,
+    "color": "yellow",
+    "dir": "right"
+   },
+   {
+    "r": 0,
+    "c": 8,
+    "color": null,
+    "dir": "none"
+   },
+   {
+    "r": 0,
+    "c": 9,
+    "color": null,
+    "dir": "none"
+   }
+  ],
+  [
+   {
+    "r": 1,
+    "c": 0,
+    "color": null,
+    "dir": "none"
+   },
+   {
+    "r": 1,
+    "c": 1,
+    "color": "green",
+    "dir": "up"
+   },
+   {
+    "r": 1,
+    "c": 2,
+    "color": "yellow",
+    "dir": "cross"
+   },
+   {
+    "r": 1,
+    "c": 3,
+    "color": "green",
+    "dir": "up"
+   },
+   {
+    "r": 1,
+    "c": 4,
+    "color": null,
+    "dir": "none"
+   },
+   {
+    "r": 1,
+    "c": 5,
+    "color": "green",
+    "dir": "up"
+   },
+   {
+    "r": 1,
+    "c": 6,
+    "color": "yellow",
+    "dir": "right"
+   },
+   {
+    "r": 1,
+    "c": 7,
+    "color": "yellow",
+    "dir": "right"
+   },
+   {
+    "r": 1,
+    "c": 8,
+    "color": "green",
+    "dir": "up"
+   },
+   {
+    "r": 1,
+    "c": 9,
+    "color": null,
+    "dir": "none"
+   }
+  ],
+  [
+   {
+    "r": 2,
+    "c": 0,
+    "color": "blue",
+    "dir": "down"
+   },
+   {
+    "r": 2,
+    "c": 1,
+    "color": "yellow",
+    "dir": "cross"
+   },
+   {
+    "r": 2,
+    "c": 2,
+    "color": "yellow",
+    "dir": "right"
+   },
+   {
+    "r": 2,
+    "c": 3,
+    "color": "yellow",
+    "dir": "up"
+   },
+   {
+    "r": 2,
+    "c": 4,
+    "color": "green",
+    "dir": "up"
+   },
+   {
+    "r": 2,
+    "c": 5,
+    "color": "pink",
+    "dir": "left"
+   },
+   {
+    "r": 2,
+    "c": 6,
+    "color": "yellow",
+    "dir": "right"
+   },
+   {
+    "r": 2,
+    "c": 7,
+    "color": "yellow",
+    "dir": "right"
+   },
+   {
+    "r": 2,
+    "c": 8,
+    "color": "blue",
+    "dir": "down"
+   },
+   {
+    "r": 2,
+    "c": 9,
+    "color": null,
+    "dir": "none"
+   }
+  ],
+  [
+   {
+    "r": 3,
+    "c": 0,
+    "color": "pink",
+    "dir": "left"
+   },
+   {
+    "r": 3,
+    "c": 1,
+    "color": "yellow",
+    "dir": "right"
+   },
+   {
+    "r": 3,
+    "c": 2,
+    "color": "yellow",
+    "dir": "up"
+   },
+   {
+    "r": 3,
+    "c": 3,
+    "color": "charcoal",
+    "dir": "up"
+   },
+   {
+    "r": 3,
+    "c": 4,
+    "color": "cream",
+    "dir": "up"
+   },
+   {
+    "r": 3,
+    "c": 5,
+    "color": "cream",
+    "dir": "up"
+   },
+   {
+    "r": 3,
+    "c": 6,
+    "color": "charcoal",
+    "dir": "up"
+   },
+   {
+    "r": 3,
+    "c": 7,
+    "color": "yellow",
+    "dir": "up"
+   },
+   {
+    "r": 3,
+    "c": 8,
+    "color": "yellow",
+    "dir": "right"
+   },
+   {
+    "r": 3,
+    "c": 9,
+    "color": "yellow",
+    "dir": "right"
+   }
+  ],
+  [
+   {
+    "r": 4,
+    "c": 0,
+    "color": "pink",
+    "dir": "left"
+   },
+   {
+    "r": 4,
+    "c": 1,
+    "color": "yellow",
+    "dir": "up"
+   },
+   {
+    "r": 4,
+    "c": 2,
+    "color": "charcoal",
+    "dir": "up"
+   },
+   {
+    "r": 4,
+    "c": 3,
+    "color": "cream",
+    "dir": "up"
+   },
+   {
+    "r": 4,
+    "c": 4,
+    "color": "cream",
+    "dir": "up"
+   },
+   {
+    "r": 4,
+    "c": 5,
+    "color": "cream",
+    "dir": "up"
+   },
+   {
+    "r": 4,
+    "c": 6,
+    "color": "cream",
+    "dir": "up"
+   },
+   {
+    "r": 4,
+    "c": 7,
+    "color": "charcoal",
+    "dir": "up"
+   },
+   {
+    "r": 4,
+    "c": 8,
+    "color": "yellow",
+    "dir": "right"
+   },
+   {
+    "r": 4,
+    "c": 9,
+    "color": "yellow",
+    "dir": "right"
+   }
+  ],
+  [
+   {
+    "r": 5,
+    "c": 0,
+    "color": "blue",
+    "dir": "down"
+   },
+   {
+    "r": 5,
+    "c": 1,
+    "color": "yellow",
+    "dir": "up"
+   },
+   {
+    "r": 5,
+    "c": 2,
+    "color": "cream",
+    "dir": "down"
+   },
+   {
+    "r": 5,
+    "c": 3,
+    "color": "cream",
+    "dir": "up"
+   },
+   {
+    "r": 5,
+    "c": 4,
+    "color": "cream",
+    "dir": "up"
+   },
+   {
+    "r": 5,
+    "c": 5,
+    "color": "cream",
+    "dir": "up"
+   },
+   {
+    "r": 5,
+    "c": 6,
+    "color": "cream",
+    "dir": "up"
+   },
+   {
+    "r": 5,
+    "c": 7,
+    "color": "cream",
+    "dir": "cross"
+   },
+   {
+    "r": 5,
+    "c": 8,
+    "color": "yellow",
+    "dir": "up"
+   },
+   {
+    "r": 5,
+    "c": 9,
+    "color": "yellow",
+    "dir": "right"
+   }
+  ],
+  [
+   {
+    "r": 6,
+    "c": 0,
+    "color": null,
+    "dir": "none"
+   },
+   {
+    "r": 6,
+    "c": 1,
+    "color": "blue",
+    "dir": "down"
+   },
+   {
+    "r": 6,
+    "c": 2,
+    "color": "blue",
+    "dir": "down"
+   },
+   {
+    "r": 6,
+    "c": 3,
+    "color": "blue",
+    "dir": "down"
+   },
+   {
+    "r": 6,
+    "c": 4,
+    "color": "cream",
+    "dir": "up"
+   },
+   {
+    "r": 6,
+    "c": 5,
+    "color": "cream",
+    "dir": "up"
+   },
+   {
+    "r": 6,
+    "c": 6,
+    "color": "green",
+    "dir": "up"
+   },
+   {
+    "r": 6,
+    "c": 7,
+    "color": "pink",
+    "dir": "left"
+   },
+   {
+    "r": 6,
+    "c": 8,
+    "color": "pink",
+    "dir": "left"
+   },
+   {
+    "r": 6,
+    "c": 9,
+    "color": null,
+    "dir": "none"
+   }
+  ],
+  [
+   {
+    "r": 7,
+    "c": 0,
+    "color": null,
+    "dir": "none"
+   },
+   {
+    "r": 7,
+    "c": 1,
+    "color": null,
+    "dir": "none"
+   },
+   {
+    "r": 7,
+    "c": 2,
+    "color": null,
+    "dir": "none"
+   },
+   {
+    "r": 7,
+    "c": 3,
+    "color": "blue",
+    "dir": "down"
+   },
+   {
+    "r": 7,
+    "c": 4,
+    "color": "cream",
+    "dir": "up"
+   },
+   {
+    "r": 7,
+    "c": 5,
+    "color": "green",
+    "dir": "up"
+   },
+   {
+    "r": 7,
+    "c": 6,
+    "color": "blue",
+    "dir": "down"
+   },
+   {
+    "r": 7,
+    "c": 7,
+    "color": null,
+    "dir": "none"
+   },
+   {
+    "r": 7,
+    "c": 8,
+    "color": null,
+    "dir": "none"
+   },
+   {
+    "r": 7,
+    "c": 9,
+    "color": null,
+    "dir": "none"
+   }
+  ]
+ ],
+ "note": "颜色由 Image.color / CSS tint 乘中性灰度底实现；方向由旋转实现；禁止逐格切实例图。",
+ "reference_grid_note": "参考图实测 X步长≈32.3 / Y步长≈30.4（非等比缩放），只用于读语义，不用于切图或渲染。"
+}

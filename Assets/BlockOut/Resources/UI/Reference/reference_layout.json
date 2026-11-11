@@ -1,0 +1,1660 @@
+{
+ "source": "用户参考图 9 屏 · 元件 bbox 唯一真源（禁止设计改写）",
+ "canvas_note": "坐标原点左上、单位 px；Unity 侧按每屏 size 作为 DesignSize 等比适配",
+ "sprite_dirs": {
+  "assets": "sprites",
+  "bg": "bg",
+  "tilekit": "tiles"
+ },
+ "screens": {
+  "s1": {
+   "size": [
+    325,
+    478
+   ],
+   "bg": "s1_final.png",
+   "items": [
+    {
+     "name": "logo",
+     "cat": "icon",
+     "file": "s1_logo.png",
+     "x": 87,
+     "y": 105,
+     "w": 178,
+     "h": 126,
+     "layer": "ui"
+    },
+    {
+     "name": "title_art",
+     "cat": "artword",
+     "file": "s1_title_art.png",
+     "x": 73,
+     "y": 223,
+     "w": 208,
+     "h": 76,
+     "layer": "ui"
+    },
+    {
+     "name": "subtitle",
+     "cat": "text",
+     "file": "s1_subtitle.png",
+     "x": 109,
+     "y": 303,
+     "w": 128,
+     "h": 38,
+     "layer": "ui"
+    },
+    {
+     "name": "progress",
+     "cat": "bar",
+     "file": "s1_progress.png",
+     "x": 47,
+     "y": 399,
+     "w": 226,
+     "h": 48,
+     "layer": "ui"
+    }
+   ]
+  },
+  "s2": {
+   "size": [
+    325,
+    478
+   ],
+   "bg": "s2_final.png",
+   "items": [
+    {
+     "name": "coin_bar",
+     "cat": "hud",
+     "file": "s2_coin_bar.png",
+     "x": 3,
+     "y": 7,
+     "w": 114,
+     "h": 42,
+     "layer": "ui"
+    },
+    {
+     "name": "level_plate",
+     "cat": "plate",
+     "file": "s2_level_plate.png",
+     "x": 97,
+     "y": 45,
+     "w": 134,
+     "h": 50,
+     "layer": "ui"
+    },
+    {
+     "name": "settings",
+     "cat": "button",
+     "file": "s2_settings.png",
+     "x": 259,
+     "y": 1,
+     "w": 62,
+     "h": 62,
+     "layer": "ui"
+    },
+    {
+     "name": "board",
+     "cat": "panel",
+     "file": "s2_board.png",
+     "x": 59,
+     "y": 91,
+     "w": 202,
+     "h": 236,
+     "layer": "ui"
+    },
+    {
+     "name": "entry_gallery",
+     "cat": "button",
+     "file": "s2_entry_gallery.png",
+     "x": 0,
+     "y": 195,
+     "w": 63,
+     "h": 78,
+     "layer": "ui"
+    },
+    {
+     "name": "entry_skin",
+     "cat": "button",
+     "file": "s2_entry_skin.png",
+     "x": 0,
+     "y": 275,
+     "w": 63,
+     "h": 78,
+     "layer": "ui"
+    },
+    {
+     "name": "entry_daily",
+     "cat": "button",
+     "file": "s2_entry_daily.png",
+     "x": 255,
+     "y": 195,
+     "w": 70,
+     "h": 78,
+     "layer": "ui"
+    },
+    {
+     "name": "entry_achieve",
+     "cat": "button",
+     "file": "s2_entry_achieve.png",
+     "x": 255,
+     "y": 275,
+     "w": 70,
+     "h": 78,
+     "layer": "ui"
+    },
+    {
+     "name": "btn_start",
+     "cat": "button",
+     "file": "s2_btn_start.png",
+     "x": 53,
+     "y": 341,
+     "w": 216,
+     "h": 84,
+     "layer": "ui"
+    }
+   ]
+  },
+  "s3": {
+   "size": [
+    325,
+    478
+   ],
+   "bg": "s3_final.png",
+   "items": [
+    {
+     "name": "back",
+     "cat": "button",
+     "file": "s3_back.png",
+     "x": 4,
+     "y": 8,
+     "w": 44,
+     "h": 46,
+     "layer": "ui"
+    },
+    {
+     "name": "title",
+     "cat": "text",
+     "file": "s3_title.png",
+     "x": 143,
+     "y": 5,
+     "w": 58,
+     "h": 42,
+     "layer": "ui"
+    },
+    {
+     "name": "card_01",
+     "cat": "card",
+     "file": "s3_card_01.png",
+     "x": 6,
+     "y": 54,
+     "w": 102,
+     "h": 120,
+     "layer": "ui"
+    },
+    {
+     "name": "card_02",
+     "cat": "card",
+     "file": "s3_card_02.png",
+     "x": 111,
+     "y": 54,
+     "w": 102,
+     "h": 120,
+     "layer": "ui"
+    },
+    {
+     "name": "card_03",
+     "cat": "card",
+     "file": "s3_card_03.png",
+     "x": 216,
+     "y": 54,
+     "w": 102,
+     "h": 120,
+     "layer": "ui"
+    },
+    {
+     "name": "card_04",
+     "cat": "card",
+     "file": "s3_card_04.png",
+     "x": 6,
+     "y": 174,
+     "w": 102,
+     "h": 120,
+     "layer": "ui"
+    },
+    {
+     "name": "card_05",
+     "cat": "card",
+     "file": "s3_card_05.png",
+     "x": 111,
+     "y": 174,
+     "w": 102,
+     "h": 120,
+     "layer": "ui"
+    },
+    {
+     "name": "card_06",
+     "cat": "card",
+     "file": "s3_card_06.png",
+     "x": 216,
+     "y": 174,
+     "w": 102,
+     "h": 120,
+     "layer": "ui"
+    },
+    {
+     "name": "card_07",
+     "cat": "card",
+     "file": "s3_card_07.png",
+     "x": 6,
+     "y": 294,
+     "w": 102,
+     "h": 120,
+     "layer": "ui"
+    },
+    {
+     "name": "card_08",
+     "cat": "card",
+     "file": "s3_card_08.png",
+     "x": 111,
+     "y": 294,
+     "w": 102,
+     "h": 120,
+     "layer": "ui"
+    },
+    {
+     "name": "card_09",
+     "cat": "card",
+     "file": "s3_card_09.png",
+     "x": 216,
+     "y": 294,
+     "w": 102,
+     "h": 120,
+     "layer": "ui"
+    },
+    {
+     "name": "card_10",
+     "cat": "card",
+     "file": "s3_card_10.png",
+     "x": 6,
+     "y": 414,
+     "w": 102,
+     "h": 64,
+     "layer": "ui"
+    },
+    {
+     "name": "card_11",
+     "cat": "card",
+     "file": "s3_card_11.png",
+     "x": 111,
+     "y": 414,
+     "w": 102,
+     "h": 64,
+     "layer": "ui"
+    },
+    {
+     "name": "card_12",
+     "cat": "card",
+     "file": "s3_card_12.png",
+     "x": 216,
+     "y": 414,
+     "w": 102,
+     "h": 64,
+     "layer": "ui"
+    }
+   ]
+  },
+  "s4": {
+   "size": [
+    325,
+    478
+   ],
+   "bg": "s4_final.png",
+   "items": [
+    {
+     "name": "back",
+     "cat": "button",
+     "file": "s4_back.png",
+     "x": 7,
+     "y": 5,
+     "w": 52,
+     "h": 52,
+     "layer": "ui"
+    },
+    {
+     "name": "title",
+     "cat": "text",
+     "file": "s4_title.png",
+     "x": 141,
+     "y": 7,
+     "w": 78,
+     "h": 38,
+     "layer": "ui"
+    },
+    {
+     "name": "hearts",
+     "cat": "hud",
+     "file": "s4_hearts.png",
+     "x": 125,
+     "y": 43,
+     "w": 116,
+     "h": 34,
+     "layer": "ui"
+    },
+    {
+     "name": "pause",
+     "cat": "button",
+     "file": "s4_pause.png",
+     "x": 291,
+     "y": 1,
+     "w": 34,
+     "h": 50,
+     "layer": "ui"
+    },
+    {
+     "name": "progress",
+     "cat": "bar",
+     "file": "s4_progress.png",
+     "x": 33,
+     "y": 75,
+     "w": 246,
+     "h": 24,
+     "layer": "ui"
+    },
+    {
+     "name": "prop_hint",
+     "cat": "button",
+     "file": "s4_prop_hint.png",
+     "x": 13,
+     "y": 391,
+     "w": 104,
+     "h": 84,
+     "layer": "ui"
+    },
+    {
+     "name": "prop_hammer",
+     "cat": "button",
+     "file": "s4_prop_hammer.png",
+     "x": 131,
+     "y": 391,
+     "w": 104,
+     "h": 84,
+     "layer": "ui"
+    },
+    {
+     "name": "prop_bomb",
+     "cat": "button",
+     "file": "s4_prop_bomb.png",
+     "x": 243,
+     "y": 391,
+     "w": 82,
+     "h": 84,
+     "layer": "ui"
+    }
+   ]
+  },
+  "s5": {
+   "size": [
+    325,
+    478
+   ],
+   "bg": "s5_final.png",
+   "items": [
+    {
+     "name": "bunting",
+     "cat": "decor",
+     "file": "s5_bunting.png",
+     "x": 0,
+     "y": 0,
+     "w": 325,
+     "h": 65,
+     "layer": "ui"
+    },
+    {
+     "name": "banner_complete",
+     "cat": "banner",
+     "file": "s5_banner_complete.png",
+     "x": 69,
+     "y": 13,
+     "w": 190,
+     "h": 80,
+     "layer": "ui"
+    },
+    {
+     "name": "frame_art",
+     "cat": "panel",
+     "file": "s5_frame_art.png",
+     "x": 53,
+     "y": 83,
+     "w": 222,
+     "h": 206,
+     "layer": "ui"
+    },
+    {
+     "name": "coin_reward",
+     "cat": "hud",
+     "file": "s5_coin_reward.png",
+     "x": 123,
+     "y": 281,
+     "w": 82,
+     "h": 38,
+     "layer": "ui"
+    },
+    {
+     "name": "task_panel",
+     "cat": "panel",
+     "file": "s5_task_panel.png",
+     "x": 11,
+     "y": 313,
+     "w": 302,
+     "h": 64,
+     "layer": "ui"
+    },
+    {
+     "name": "btn_next",
+     "cat": "button",
+     "file": "s5_btn_next.png",
+     "x": 15,
+     "y": 377,
+     "w": 144,
+     "h": 60,
+     "layer": "ui"
+    },
+    {
+     "name": "btn_home",
+     "cat": "button",
+     "file": "s5_btn_home.png",
+     "x": 167,
+     "y": 377,
+     "w": 140,
+     "h": 60,
+     "layer": "ui"
+    }
+   ]
+  },
+  "s6": {
+   "size": [
+    325,
+    478
+   ],
+   "bg": "s6_final.png",
+   "items": [
+    {
+     "name": "dialog",
+     "cat": "backdrop",
+     "file": "s6_dialog_plate.png",
+     "x": 35,
+     "y": 73,
+     "w": 250,
+     "h": 332,
+     "layer": "bg"
+    },
+    {
+     "name": "close",
+     "cat": "button",
+     "file": "s6_close.png",
+     "x": 245,
+     "y": 83,
+     "w": 34,
+     "h": 32,
+     "layer": "ui"
+    },
+    {
+     "name": "heart_broken",
+     "cat": "icon",
+     "file": "s6_heart_broken.png",
+     "x": 101,
+     "y": 135,
+     "w": 114,
+     "h": 90,
+     "layer": "ui"
+    },
+    {
+     "name": "btn_revive",
+     "cat": "button",
+     "file": "s6_btn_revive.png",
+     "x": 45,
+     "y": 247,
+     "w": 222,
+     "h": 56,
+     "layer": "ui"
+    },
+    {
+     "name": "btn_restart",
+     "cat": "button",
+     "file": "s6_btn_restart.png",
+     "x": 45,
+     "y": 303,
+     "w": 222,
+     "h": 48,
+     "layer": "ui"
+    },
+    {
+     "name": "btn_home",
+     "cat": "button",
+     "file": "s6_btn_home.png",
+     "x": 45,
+     "y": 353,
+     "w": 222,
+     "h": 40,
+     "layer": "ui"
+    },
+    {
+     "name": "bottom_bar",
+     "cat": "panel",
+     "file": "s6_bottom_bar.png",
+     "x": 9,
+     "y": 395,
+     "w": 316,
+     "h": 80,
+     "layer": "ui"
+    }
+   ]
+  },
+  "s7": {
+   "size": [
+    325,
+    478
+   ],
+   "bg": "s7_final.png",
+   "items": [
+    {
+     "name": "back",
+     "cat": "button",
+     "file": "s7_back.png",
+     "x": 3,
+     "y": 0,
+     "w": 44,
+     "h": 43,
+     "layer": "ui"
+    },
+    {
+     "name": "title",
+     "cat": "text",
+     "file": "s7_title.png",
+     "x": 125,
+     "y": 3,
+     "w": 66,
+     "h": 40,
+     "layer": "ui"
+    },
+    {
+     "name": "tab_bar",
+     "cat": "tabs",
+     "file": "s7_tab_bar.png",
+     "x": 21,
+     "y": 37,
+     "w": 262,
+     "h": 40,
+     "layer": "ui"
+    },
+    {
+     "name": "more_label",
+     "cat": "text",
+     "file": "s7_more_label.png",
+     "x": 9,
+     "y": 299,
+     "w": 104,
+     "h": 34,
+     "layer": "ui"
+    },
+    {
+     "name": "skin_01",
+     "cat": "card",
+     "file": "s7_skin_01.png",
+     "x": 7,
+     "y": 85,
+     "w": 76,
+     "h": 98,
+     "layer": "ui"
+    },
+    {
+     "name": "skin_02",
+     "cat": "card",
+     "file": "s7_skin_02.png",
+     "x": 84,
+     "y": 85,
+     "w": 76,
+     "h": 98,
+     "layer": "ui"
+    },
+    {
+     "name": "skin_03",
+     "cat": "card",
+     "file": "s7_skin_03.png",
+     "x": 161,
+     "y": 85,
+     "w": 76,
+     "h": 98,
+     "layer": "ui"
+    },
+    {
+     "name": "skin_04",
+     "cat": "card",
+     "file": "s7_skin_04.png",
+     "x": 238,
+     "y": 85,
+     "w": 76,
+     "h": 98,
+     "layer": "ui"
+    },
+    {
+     "name": "skin_05",
+     "cat": "card",
+     "file": "s7_skin_05.png",
+     "x": 7,
+     "y": 187,
+     "w": 76,
+     "h": 98,
+     "layer": "ui"
+    },
+    {
+     "name": "skin_06",
+     "cat": "card",
+     "file": "s7_skin_06.png",
+     "x": 84,
+     "y": 187,
+     "w": 76,
+     "h": 98,
+     "layer": "ui"
+    },
+    {
+     "name": "skin_07",
+     "cat": "card",
+     "file": "s7_skin_07.png",
+     "x": 161,
+     "y": 187,
+     "w": 76,
+     "h": 98,
+     "layer": "ui"
+    },
+    {
+     "name": "skin_08",
+     "cat": "card",
+     "file": "s7_skin_08.png",
+     "x": 238,
+     "y": 187,
+     "w": 76,
+     "h": 98,
+     "layer": "ui"
+    },
+    {
+     "name": "skin_09",
+     "cat": "card",
+     "file": "s7_skin_09.png",
+     "x": 7,
+     "y": 327,
+     "w": 76,
+     "h": 98,
+     "layer": "ui"
+    },
+    {
+     "name": "skin_10",
+     "cat": "card",
+     "file": "s7_skin_10.png",
+     "x": 84,
+     "y": 327,
+     "w": 76,
+     "h": 98,
+     "layer": "ui"
+    },
+    {
+     "name": "skin_11",
+     "cat": "card",
+     "file": "s7_skin_11.png",
+     "x": 161,
+     "y": 327,
+     "w": 76,
+     "h": 98,
+     "layer": "ui"
+    },
+    {
+     "name": "skin_12",
+     "cat": "card",
+     "file": "s7_skin_12.png",
+     "x": 238,
+     "y": 327,
+     "w": 76,
+     "h": 98,
+     "layer": "ui"
+    }
+   ]
+  },
+  "s8": {
+   "size": [
+    325,
+    478
+   ],
+   "bg": "s8_final.png",
+   "items": [
+    {
+     "name": "back",
+     "cat": "button",
+     "file": "s8_back.png",
+     "x": 7,
+     "y": 1,
+     "w": 48,
+     "h": 48,
+     "layer": "ui"
+    },
+    {
+     "name": "tab_bar",
+     "cat": "tabs",
+     "file": "s8_tab_bar.png",
+     "x": 75,
+     "y": 5,
+     "w": 200,
+     "h": 44,
+     "layer": "ui"
+    },
+    {
+     "name": "daily_panel",
+     "cat": "backdrop",
+     "file": "s8_daily_panel_plate.png",
+     "x": 7,
+     "y": 51,
+     "w": 318,
+     "h": 148,
+     "layer": "bg"
+    },
+    {
+     "name": "daily_title",
+     "cat": "text",
+     "file": "s8_daily_title.png",
+     "x": 23,
+     "y": 57,
+     "w": 88,
+     "h": 32,
+     "layer": "ui"
+    },
+    {
+     "name": "daily_hint",
+     "cat": "text",
+     "file": "s8_daily_hint.png",
+     "x": 57,
+     "y": 165,
+     "w": 236,
+     "h": 28,
+     "layer": "ui"
+    },
+    {
+     "name": "ach_title",
+     "cat": "text",
+     "file": "s8_ach_title.png",
+     "x": 15,
+     "y": 197,
+     "w": 94,
+     "h": 28,
+     "layer": "ui"
+    },
+    {
+     "name": "sign_1",
+     "cat": "card",
+     "file": "s8_sign_1.png",
+     "x": 25,
+     "y": 91,
+     "w": 44,
+     "h": 76,
+     "layer": "ui"
+    },
+    {
+     "name": "sign_2",
+     "cat": "card",
+     "file": "s8_sign_2.png",
+     "x": 67,
+     "y": 91,
+     "w": 44,
+     "h": 76,
+     "layer": "ui"
+    },
+    {
+     "name": "sign_3",
+     "cat": "card",
+     "file": "s8_sign_3.png",
+     "x": 109,
+     "y": 91,
+     "w": 44,
+     "h": 76,
+     "layer": "ui"
+    },
+    {
+     "name": "sign_4",
+     "cat": "card",
+     "file": "s8_sign_4.png",
+     "x": 151,
+     "y": 91,
+     "w": 44,
+     "h": 76,
+     "layer": "ui"
+    },
+    {
+     "name": "sign_5",
+     "cat": "card",
+     "file": "s8_sign_5.png",
+     "x": 193,
+     "y": 91,
+     "w": 44,
+     "h": 76,
+     "layer": "ui"
+    },
+    {
+     "name": "sign_6",
+     "cat": "card",
+     "file": "s8_sign_6.png",
+     "x": 235,
+     "y": 91,
+     "w": 44,
+     "h": 76,
+     "layer": "ui"
+    },
+    {
+     "name": "sign_7",
+     "cat": "card",
+     "file": "s8_sign_7.png",
+     "x": 277,
+     "y": 91,
+     "w": 44,
+     "h": 76,
+     "layer": "ui"
+    },
+    {
+     "name": "ach_1",
+     "cat": "card",
+     "file": "s8_ach_1.png",
+     "x": 7,
+     "y": 223,
+     "w": 318,
+     "h": 64,
+     "layer": "ui"
+    },
+    {
+     "name": "ach_2",
+     "cat": "card",
+     "file": "s8_ach_2.png",
+     "x": 7,
+     "y": 286,
+     "w": 318,
+     "h": 64,
+     "layer": "ui"
+    },
+    {
+     "name": "ach_3",
+     "cat": "card",
+     "file": "s8_ach_3.png",
+     "x": 7,
+     "y": 349,
+     "w": 318,
+     "h": 64,
+     "layer": "ui"
+    },
+    {
+     "name": "ach_4",
+     "cat": "card",
+     "file": "s8_ach_4.png",
+     "x": 7,
+     "y": 412,
+     "w": 318,
+     "h": 64,
+     "layer": "ui"
+    }
+   ]
+  },
+  "s9": {
+   "size": [
+    470,
+    836
+   ],
+   "bg": "s9_final.png",
+   "items": [
+    {
+     "name": "settings",
+     "cat": "button",
+     "file": "s9_settings.png",
+     "x": 5,
+     "y": 13,
+     "w": 78,
+     "h": 74,
+     "layer": "ui"
+    },
+    {
+     "name": "ticket_bar",
+     "cat": "hud",
+     "file": "s9_ticket_bar.png",
+     "x": 329,
+     "y": 23,
+     "w": 134,
+     "h": 64,
+     "layer": "ui"
+    },
+    {
+     "name": "node_40",
+     "cat": "node",
+     "file": "s9_node_40.png",
+     "x": 193,
+     "y": 13,
+     "w": 84,
+     "h": 88,
+     "layer": "ui"
+    },
+    {
+     "name": "node_39",
+     "cat": "node",
+     "file": "s9_node_39.png",
+     "x": 193,
+     "y": 133,
+     "w": 84,
+     "h": 84,
+     "layer": "ui"
+    },
+    {
+     "name": "node_38",
+     "cat": "node",
+     "file": "s9_node_38.png",
+     "x": 193,
+     "y": 247,
+     "w": 84,
+     "h": 86,
+     "layer": "ui"
+    },
+    {
+     "name": "node_37",
+     "cat": "node",
+     "file": "s9_node_37.png",
+     "x": 179,
+     "y": 359,
+     "w": 112,
+     "h": 116,
+     "layer": "ui"
+    },
+    {
+     "name": "node_36",
+     "cat": "node",
+     "file": "s9_node_36.png",
+     "x": 97,
+     "y": 483,
+     "w": 74,
+     "h": 78,
+     "layer": "ui"
+    },
+    {
+     "name": "node_challenge",
+     "cat": "node",
+     "file": "s9_node_challenge.png",
+     "x": 295,
+     "y": 483,
+     "w": 76,
+     "h": 78,
+     "layer": "ui"
+    },
+    {
+     "name": "hero",
+     "cat": "icon",
+     "file": "s9_hero.png",
+     "x": 195,
+     "y": 475,
+     "w": 80,
+     "h": 84,
+     "layer": "ui"
+    },
+    {
+     "name": "btn_task",
+     "cat": "button",
+     "file": "s9_btn_task.png",
+     "x": 369,
+     "y": 117,
+     "w": 94,
+     "h": 104,
+     "layer": "ui"
+    },
+    {
+     "name": "btn_achieve",
+     "cat": "button",
+     "file": "s9_btn_achieve.png",
+     "x": 369,
+     "y": 227,
+     "w": 94,
+     "h": 104,
+     "layer": "ui"
+    },
+    {
+     "name": "bubble",
+     "cat": "plate",
+     "file": "s9_bubble.png",
+     "x": 275,
+     "y": 349,
+     "w": 90,
+     "h": 46,
+     "layer": "ui"
+    },
+    {
+     "name": "btn_level",
+     "cat": "button",
+     "file": "s9_btn_level.png",
+     "x": 97,
+     "y": 587,
+     "w": 276,
+     "h": 106,
+     "layer": "ui"
+    },
+    {
+     "name": "start_hint",
+     "cat": "text",
+     "file": "s9_start_hint.png",
+     "x": 149,
+     "y": 701,
+     "w": 172,
+     "h": 26,
+     "layer": "ui"
+    },
+    {
+     "name": "nav_bar",
+     "cat": "backdrop",
+     "file": "s9_nav_bar_plate.png",
+     "x": 15,
+     "y": 725,
+     "w": 440,
+     "h": 110,
+     "layer": "bg"
+    },
+    {
+     "name": "nav_1",
+     "cat": "button",
+     "file": "s9_nav_1.png",
+     "x": 29,
+     "y": 741,
+     "w": 110,
+     "h": 86,
+     "layer": "ui"
+    },
+    {
+     "name": "nav_2",
+     "cat": "button",
+     "file": "s9_nav_2.png",
+     "x": 141,
+     "y": 737,
+     "w": 110,
+     "h": 90,
+     "layer": "ui"
+    },
+    {
+     "name": "nav_3",
+     "cat": "button",
+     "file": "s9_nav_3.png",
+     "x": 253,
+     "y": 737,
+     "w": 108,
+     "h": 90,
+     "layer": "ui"
+    },
+    {
+     "name": "nav_4",
+     "cat": "button",
+     "file": "s9_nav_4.png",
+     "x": 363,
+     "y": 737,
+     "w": 90,
+     "h": 90,
+     "layer": "ui"
+    }
+   ]
+  }
+ },
+ "tilekit": {
+  "grid": {
+   "x": 28,
+   "y": 128,
+   "size": 32,
+   "cols": 10,
+   "rows": 8,
+   "gap": 0
+  },
+  "assets": {
+   "base": "tilekit/tile_base.png",
+   "base_hd": "tilekit/tile_base@4x.png",
+   "arrow": "tilekit/arrow_up.png",
+   "arrow_hd": "tilekit/arrow_up@4x.png",
+   "cross": "tilekit/arrow_cross.png",
+   "cross_hd": "tilekit/arrow_cross@4x.png"
+  },
+  "palette": {
+   "green": [
+    139,
+    193,
+    91
+   ],
+   "yellow": [
+    246,
+    186,
+    74
+   ],
+   "blue": [
+    97,
+    161,
+    220
+   ],
+   "pink": [
+    247,
+    143,
+    147
+   ],
+   "charcoal": [
+    104,
+    92,
+    76
+   ],
+   "cream": [
+    233,
+    217,
+    198
+   ]
+  },
+  "rotation": {
+   "up": 0,
+   "right": 90,
+   "down": 180,
+   "left": 270,
+   "cross": 0,
+   "none": 0
+  },
+  "board": [
+   [
+    {
+     "r": 0,
+     "c": 0,
+     "color": null,
+     "dir": "none"
+    },
+    {
+     "r": 0,
+     "c": 1,
+     "color": null,
+     "dir": "none"
+    },
+    {
+     "r": 0,
+     "c": 2,
+     "color": "green",
+     "dir": "up"
+    },
+    {
+     "r": 0,
+     "c": 3,
+     "color": null,
+     "dir": "none"
+    },
+    {
+     "r": 0,
+     "c": 4,
+     "color": null,
+     "dir": "none"
+    },
+    {
+     "r": 0,
+     "c": 5,
+     "color": null,
+     "dir": "none"
+    },
+    {
+     "r": 0,
+     "c": 6,
+     "color": "green",
+     "dir": "up"
+    },
+    {
+     "r": 0,
+     "c": 7,
+     "color": "yellow",
+     "dir": "right"
+    },
+    {
+     "r": 0,
+     "c": 8,
+     "color": null,
+     "dir": "none"
+    },
+    {
+     "r": 0,
+     "c": 9,
+     "color": null,
+     "dir": "none"
+    }
+   ],
+   [
+    {
+     "r": 1,
+     "c": 0,
+     "color": null,
+     "dir": "none"
+    },
+    {
+     "r": 1,
+     "c": 1,
+     "color": "green",
+     "dir": "up"
+    },
+    {
+     "r": 1,
+     "c": 2,
+     "color": "yellow",
+     "dir": "cross"
+    },
+    {
+     "r": 1,
+     "c": 3,
+     "color": "green",
+     "dir": "up"
+    },
+    {
+     "r": 1,
+     "c": 4,
+     "color": null,
+     "dir": "none"
+    },
+    {
+     "r": 1,
+     "c": 5,
+     "color": "green",
+     "dir": "up"
+    },
+    {
+     "r": 1,
+     "c": 6,
+     "color": "yellow",
+     "dir": "right"
+    },
+    {
+     "r": 1,
+     "c": 7,
+     "color": "yellow",
+     "dir": "right"
+    },
+    {
+     "r": 1,
+     "c": 8,
+     "color": "green",
+     "dir": "up"
+    },
+    {
+     "r": 1,
+     "c": 9,
+     "color": null,
+     "dir": "none"
+    }
+   ],
+   [
+    {
+     "r": 2,
+     "c": 0,
+     "color": "blue",
+     "dir": "down"
+    },
+    {
+     "r": 2,
+     "c": 1,
+     "color": "yellow",
+     "dir": "cross"
+    },
+    {
+     "r": 2,
+     "c": 2,
+     "color": "yellow",
+     "dir": "right"
+    },
+    {
+     "r": 2,
+     "c": 3,
+     "color": "yellow",
+     "dir": "up"
+    },
+    {
+     "r": 2,
+     "c": 4,
+     "color": "green",
+     "dir": "up"
+    },
+    {
+     "r": 2,
+     "c": 5,
+     "color": "pink",
+     "dir": "left"
+    },
+    {
+     "r": 2,
+     "c": 6,
+     "color": "yellow",
+     "dir": "right"
+    },
+    {
+     "r": 2,
+     "c": 7,
+     "color": "yellow",
+     "dir": "right"
+    },
+    {
+     "r": 2,
+     "c": 8,
+     "color": "blue",
+     "dir": "down"
+    },
+    {
+     "r": 2,
+     "c": 9,
+     "color": null,
+     "dir": "none"
+    }
+   ],
+   [
+    {
+     "r": 3,
+     "c": 0,
+     "color": "pink",
+     "dir": "left"
+    },
+    {
+     "r": 3,
+     "c": 1,
+     "color": "yellow",
+     "dir": "right"
+    },
+    {
+     "r": 3,
+     "c": 2,
+     "color": "yellow",
+     "dir": "up"
+    },
+    {
+     "r": 3,
+     "c": 3,
+     "color": "charcoal",
+     "dir": "up"
+    },
+    {
+     "r": 3,
+     "c": 4,
+     "color": "cream",
+     "dir": "up"
+    },
+    {
+     "r": 3,
+     "c": 5,
+     "color": "cream",
+     "dir": "up"
+    },
+    {
+     "r": 3,
+     "c": 6,
+     "color": "charcoal",
+     "dir": "up"
+    },
+    {
+     "r": 3,
+     "c": 7,
+     "color": "yellow",
+     "dir": "up"
+    },
+    {
+     "r": 3,
+     "c": 8,
+     "color": "yellow",
+     "dir": "right"
+    },
+    {
+     "r": 3,
+     "c": 9,
+     "color": "yellow",
+     "dir": "right"
+    }
+   ],
+   [
+    {
+     "r": 4,
+     "c": 0,
+     "color": "pink",
+     "dir": "left"
+    },
+    {
+     "r": 4,
+     "c": 1,
+     "color": "yellow",
+     "dir": "up"
+    },
+    {
+     "r": 4,
+     "c": 2,
+     "color": "charcoal",
+     "dir": "up"
+    },
+    {
+     "r": 4,
+     "c": 3,
+     "color": "cream",
+     "dir": "up"
+    },
+    {
+     "r": 4,
+     "c": 4,
+     "color": "cream",
+     "dir": "up"
+    },
+    {
+     "r": 4,
+     "c": 5,
+     "color": "cream",
+     "dir": "up"
+    },
+    {
+     "r": 4,
+     "c": 6,
+     "color": "cream",
+     "dir": "up"
+    },
+    {
+     "r": 4,
+     "c": 7,
+     "color": "charcoal",
+     "dir": "up"
+    },
+    {
+     "r": 4,
+     "c": 8,
+     "color": "yellow",
+     "dir": "right"
+    },
+    {
+     "r": 4,
+     "c": 9,
+     "color": "yellow",
+     "dir": "right"
+    }
+   ],
+   [
+    {
+     "r": 5,
+     "c": 0,
+     "color": "blue",
+     "dir": "down"
+    },
+    {
+     "r": 5,
+     "c": 1,
+     "color": "yellow",
+     "dir": "up"
+    },
+    {
+     "r": 5,
+     "c": 2,
+     "color": "cream",
+     "dir": "down"
+    },
+    {
+     "r": 5,
+     "c": 3,
+     "color": "cream",
+     "dir": "up"
+    },
+    {
+     "r": 5,
+     "c": 4,
+     "color": "cream",
+     "dir": "up"
+    },
+    {
+     "r": 5,
+     "c": 5,
+     "color": "cream",
+     "dir": "up"
+    },
+    {
+     "r": 5,
+     "c": 6,
+     "color": "cream",
+     "dir": "up"
+    },
+    {
+     "r": 5,
+     "c": 7,
+     "color": "cream",
+     "dir": "cross"
+    },
+    {
+     "r": 5,
+     "c": 8,
+     "color": "yellow",
+     "dir": "up"
+    },
+    {
+     "r": 5,
+     "c": 9,
+     "color": "yellow",
+     "dir": "right"
+    }
+   ],
+   [
+    {
+     "r": 6,
+     "c": 0,
+     "color": null,
+     "dir": "none"
+    },
+    {
+     "r": 6,
+     "c": 1,
+     "color": "blue",
+     "dir": "down"
+    },
+    {
+     "r": 6,
+     "c": 2,
+     "color": "blue",
+     "dir": "down"
+    },
+    {
+     "r": 6,
+     "c": 3,
+     "color": "blue",
+     "dir": "down"
+    },
+    {
+     "r": 6,
+     "c": 4,
+     "color": "cream",
+     "dir": "up"
+    },
+    {
+     "r": 6,
+     "c": 5,
+     "color": "cream",
+     "dir": "up"
+    },
+    {
+     "r": 6,
+     "c": 6,
+     "color": "green",
+     "dir": "up"
+    },
+    {
+     "r": 6,
+     "c": 7,
+     "color": "pink",
+     "dir": "left"
+    },
+    {
+     "r": 6,
+     "c": 8,
+     "color": "pink",
+     "dir": "left"
+    },
+    {
+     "r": 6,
+     "c": 9,
+     "color": null,
+     "dir": "none"
+    }
+   ],
+   [
+    {
+     "r": 7,
+     "c": 0,
+     "color": null,
+     "dir": "none"
+    },
+    {
+     "r": 7,
+     "c": 1,
+     "color": null,
+     "dir": "none"
+    },
+    {
+     "r": 7,
+     "c": 2,
+     "color": null,
+     "dir": "none"
+    },
+    {
+     "r": 7,
+     "c": 3,
+     "color": "blue",
+     "dir": "down"
+    },
+    {
+     "r": 7,
+     "c": 4,
+     "color": "cream",
+     "dir": "up"
+    },
+    {
+     "r": 7,
+     "c": 5,
+     "color": "green",
+     "dir": "up"
+    },
+    {
+     "r": 7,
+     "c": 6,
+     "color": "blue",
+     "dir": "down"
+    },
+    {
+     "r": 7,
+     "c": 7,
+     "color": null,
+     "dir": "none"
+    },
+    {
+     "r": 7,
+     "c": 8,
+     "color": null,
+     "dir": "none"
+    },
+    {
+     "r": 7,
+     "c": 9,
+     "color": null,
+     "dir": "none"
+    }
+   ]
+  ],
+  "note": "颜色由 Image.color / CSS tint 乘中性灰度底实现；方向由旋转实现；禁止逐格切实例图。",
+  "reference_grid_note": "参考图实测 X步长≈32.3 / Y步长≈30.4（非等比缩放），只用于读语义，不用于切图或渲染。"
+ }
+}

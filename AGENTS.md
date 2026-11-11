@@ -1,13 +1,13 @@
 # BlockOut 协作规则
 
-## 双端同步提交
+## BlockOut 仅同步 GitHub（2026-11-11 更新）
 
-- 用户要求今后提交或上传 BlockOut 更新时，必须同时提交并推送到以下两个目标：
-  - Gitee：`https://gitee.com/pgangtao/merge-game.git`，`master` 分支，项目位于 `BlockOut/`。
-  - GitHub：`https://github.com/pgt2020/BlockOut.git`，`main` 分支，项目位于仓库根目录。
-- 使用各自独立的克隆目录，保留两端已有历史，不修改主仓库 origin，不强制推送。同步相同的源码、资源、配置、工具和文档，并处理本次明确删除的文件；不要混入其他项目。
-- 不上传 Unity 缓存、本地用户设置、工具 bin/obj、临时测试报告或凭据。保留工具源码及其项目文件。
-- 提交信息及面向用户的变更说明默认使用中文。完成后核对两端远程分支并报告各自提交哈希；若仅一端成功，明确报告另一端失败原因，不得宣称全部完成。
+- 唯一提交与推送目标：`https://github.com/pgt2020/BlockOut.git`，`main` 分支，项目内容放仓库根目录。
+- 不再提交到 Gitee。主仓库中的本地 `BlockOut/` 保留但取消跟踪并忽略；不要强制添加。
+- 本地开发目录：`E:/UnityProject/MutiplayGame/BlockOut`；独立 GitHub 克隆：`E:/UnityProject/BlockOut-GitHub`。
+- 同步前获取 GitHub 最新提交，保留已有历史与远程独有修改；不强制推送，不修改主仓库 origin。
+- 同步源码、资源及 `.meta`、Packages、ProjectSettings、工具源码与文档，包括明确删除的文件；不上传 Unity 缓存、本地用户设置、bin/obj、临时测试报告或凭据。
+- 提交信息和变更说明使用中文，完成后核对 GitHub main 并报告提交哈希。
 
 ## Unity 验证偏好
 

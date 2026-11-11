@@ -1,0 +1,301 @@
+{
+ "note": "用户参考图 9 屏的运行时绑定真源。禁止设计改写：box 均为元件图内像素坐标，位置由 reference_layout.json 的 bbox 换算。 | 动态字段 source 说明：runtime=由 SyncReferenceSkins 每 0.1s 镜像业务真实值；design_default=设计稿示例值(progress 60% / reward +60 / ticket 3)，按 1:1 还原口径保留，业务可用 UIManager.SetReferenceText(key,value) 随时覆盖。",
+ "screen_map": {
+  "s1": {
+   "kind": "screen",
+   "id": "Loading"
+  },
+  "s2": {
+   "kind": "screen",
+   "id": "Home"
+  },
+  "s3": {
+   "kind": "screen",
+   "id": "Collection"
+  },
+  "s4": {
+   "kind": "screen",
+   "id": "Board"
+  },
+  "s7": {
+   "kind": "screen",
+   "id": "Store"
+  },
+  "s5": {
+   "kind": "layer",
+   "id": "SettlementLayer"
+  },
+  "s6": {
+   "kind": "layer",
+   "id": "FailLayer"
+  },
+  "s8": {
+   "kind": "standalone",
+   "id": ""
+  },
+  "s9": {
+   "kind": "standalone",
+   "id": ""
+  }
+ },
+ "screens": {
+  "s1": {
+   "hotspots": [],
+   "texts": [
+    {
+     "key": "progress",
+     "item": "progress",
+     "box": [
+      84,
+      10,
+      62,
+      27
+     ],
+     "text": "60%",
+     "size": 15,
+     "color": "#FFFFFF",
+     "source": "design_default"
+    }
+   ]
+  },
+  "s2": {
+   "hotspots": [
+    {
+     "item": "btn_start",
+     "bind": "HomeCtaButton"
+    },
+    {
+     "item": "settings",
+     "bind": "HomeSettingsBtn"
+    },
+    {
+     "item": "entry_gallery",
+     "bind": "HomeCollectionLink"
+    },
+    {
+     "item": "entry_skin",
+     "bind": "NavStoreBtn"
+    }
+   ],
+   "texts": [
+    {
+     "key": "coins",
+     "item": "coin_bar",
+     "box": [
+      36,
+      8,
+      58,
+      27
+     ],
+     "text": "1280",
+     "size": 18,
+     "color": "#5C3A24",
+     "source": "runtime"
+    },
+    {
+     "key": "level",
+     "item": "level_plate",
+     "box": [
+      20,
+      7,
+      94,
+      36
+     ],
+     "text": "第 1 关",
+     "size": 21,
+     "color": "#5C3A24",
+     "source": "runtime"
+    }
+   ]
+  },
+  "s3": {
+   "hotspots": [
+    {
+     "item": "back",
+     "bind": "CollectionBackBtn"
+    }
+   ],
+   "texts": []
+  },
+  "s4": {
+   "passthrough": {
+    "rect": [
+     28,
+     128,
+     297,
+     256
+    ],
+    "bg_out": "s4_hud.png",
+    "exclude_tiles": true
+   },
+   "hotspots": [
+    {
+     "item": "pause",
+     "bind": "BoardPauseBtn"
+    },
+    {
+     "item": "prop_hint",
+     "bind": "HintSlot.Button"
+    },
+    {
+     "item": "prop_hammer",
+     "bind": "HammerSlot.Button"
+    },
+    {
+     "item": "prop_bomb",
+     "bind": "MagicSlot.Button"
+    }
+   ],
+   "hearts": {
+    "item": "hearts",
+    "count": 4,
+    "on": "heart_on.png",
+    "off": "heart_off.png"
+   },
+   "texts": [
+    {
+     "key": "level",
+     "item": "title",
+     "box": [
+      0,
+      1,
+      78,
+      34
+     ],
+     "text": "第 1 关",
+     "size": 19,
+     "color": "#5C3A24",
+     "source": "runtime"
+    },
+    {
+     "key": "hint_count",
+     "item": "prop_hint",
+     "box": [
+      76,
+      1,
+      26,
+      25
+     ],
+     "text": "3",
+     "size": 15,
+     "color": "#FFFFFF",
+     "source": "runtime"
+    },
+    {
+     "key": "hammer_count",
+     "item": "prop_hammer",
+     "box": [
+      76,
+      1,
+      26,
+      25
+     ],
+     "text": "2",
+     "size": 15,
+     "color": "#FFFFFF",
+     "source": "runtime"
+    },
+    {
+     "key": "bomb_count",
+     "item": "prop_bomb",
+     "box": [
+      58,
+      1,
+      22,
+      24
+     ],
+     "text": "1",
+     "size": 15,
+     "color": "#FFFFFF",
+     "source": "runtime"
+    }
+   ]
+  },
+  "s5": {
+   "hotspots": [
+    {
+     "item": "btn_next",
+     "bind": "SettleNextBtn"
+    },
+    {
+     "item": "btn_home",
+     "bind": "SettleHomeBtn"
+    }
+   ],
+   "texts": [
+    {
+     "key": "reward",
+     "item": "coin_reward",
+     "box": [
+      32,
+      5,
+      46,
+      28
+     ],
+     "text": "+60",
+     "size": 20,
+     "color": "#5C3A24",
+     "source": "design_default"
+    }
+   ]
+  },
+  "s6": {
+   "hotspots": [
+    {
+     "item": "btn_revive",
+     "bind": "FailReviveBtn"
+    },
+    {
+     "item": "btn_restart",
+     "bind": "FailRestartBtn"
+    },
+    {
+     "item": "btn_home",
+     "bind": "FailQuitBtn"
+    }
+   ],
+   "texts": []
+  },
+  "s7": {
+   "hotspots": [],
+   "texts": []
+  },
+  "s8": {
+   "hotspots": [],
+   "texts": []
+  },
+  "s9": {
+   "hotspots": [],
+   "texts": [
+    {
+     "key": "ticket",
+     "item": "ticket_bar",
+     "box": [
+      58,
+      13,
+      34,
+      36
+     ],
+     "text": "3",
+     "size": 26,
+     "color": "#5C3A24",
+     "source": "design_default"
+    },
+    {
+     "key": "level",
+     "item": "node_37",
+     "box": [
+      12,
+      24,
+      88,
+      64
+     ],
+     "text": "37",
+     "size": 44,
+     "color": "#FFFFFF",
+     "source": "runtime"
+    }
+   ]
+  }
+ }
+}

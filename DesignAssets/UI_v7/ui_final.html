@@ -1,0 +1,463 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8">
+<title>点击画廊 · v7 参数化生成 UI（9 屏）</title><style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#fff;overflow:hidden}
+.screen{position:absolute;left:0;top:0;width:325px;height:478px;overflow:hidden;display:none;background:#f9eed9}
+.screen.map{width:470px;height:836px}
+.screen.on{display:block}
+.bg{position:absolute;left:0;top:0;display:block}
+.ui{position:absolute;display:block;cursor:pointer;transition:transform .09s ease,filter .09s ease}
+.ui:active{transform:scale(.965);filter:brightness(.94)}
+.ui[data-cat=panel],.ui[data-cat=decor],.ui[data-cat=artword]{cursor:default}
+.ui[data-cat=panel]:active,.ui[data-cat=decor]:active,.ui[data-cat=artword]:active{transform:none;filter:none}
+.tile{position:absolute;width:32px;height:32px;cursor:pointer;filter:brightness(1.10)}
+.tile:active{transform:scale(.965)}
+.tile .tc{position:absolute;inset:0}
+.tile .tl{position:absolute;inset:0;width:100%;height:100%;mix-blend-mode:multiply}
+.tile .ta{position:absolute;left:17%;top:17%;width:66%;height:66%;transform-origin:50% 50%;pointer-events:none}
+.ui.sel{outline:2px solid rgba(230,80,60,.8);outline-offset:-2px}
+#hint{position:fixed;left:8px;bottom:6px;font:12px/1.4 "Microsoft YaHei",sans-serif;color:#7a6048;
+ background:rgba(255,248,232,.9);padding:4px 8px;border-radius:6px;display:none}
+</style></head><body>
+<div class="screen" id="s1"><img class="bg" src="bg/s1_final.png">
+<img class="ui" data-cat="icon" data-name="logo" src="assets/s1_logo.png" style="left:87px;top:105px;width:178px;height:126px" alt="logo">
+<img class="ui" data-cat="artword" data-name="title_art" src="assets/s1_title_art.png" style="left:73px;top:223px;width:208px;height:76px" alt="title_art">
+<img class="ui" data-cat="text" data-name="subtitle" src="assets/s1_subtitle.png" style="left:109px;top:303px;width:128px;height:38px" alt="subtitle">
+<img class="ui" data-cat="bar" data-name="progress" src="assets/s1_progress.png" style="left:47px;top:399px;width:226px;height:48px" alt="progress">
+</div>
+<div class="screen" id="s2"><img class="bg" src="bg/s2_final.png">
+<img class="ui" data-cat="hud" data-name="coin_bar" src="assets/s2_coin_bar.png" style="left:3px;top:7px;width:114px;height:42px" alt="coin_bar">
+<img class="ui" data-cat="plate" data-name="level_plate" src="assets/s2_level_plate.png" style="left:97px;top:45px;width:134px;height:50px" alt="level_plate">
+<img class="ui" data-cat="button" data-name="settings" src="assets/s2_settings.png" style="left:259px;top:1px;width:62px;height:62px" alt="settings">
+<img class="ui" data-cat="panel" data-name="board" src="assets/s2_board.png" style="left:59px;top:91px;width:202px;height:236px" alt="board">
+<img class="ui" data-cat="button" data-name="entry_gallery" src="assets/s2_entry_gallery.png" style="left:0px;top:195px;width:63px;height:78px" alt="entry_gallery">
+<img class="ui" data-cat="button" data-name="entry_skin" src="assets/s2_entry_skin.png" style="left:0px;top:275px;width:63px;height:78px" alt="entry_skin">
+<img class="ui" data-cat="button" data-name="entry_daily" src="assets/s2_entry_daily.png" style="left:255px;top:195px;width:70px;height:78px" alt="entry_daily">
+<img class="ui" data-cat="button" data-name="entry_achieve" src="assets/s2_entry_achieve.png" style="left:255px;top:275px;width:70px;height:78px" alt="entry_achieve">
+<img class="ui" data-cat="button" data-name="btn_start" src="assets/s2_btn_start.png" style="left:53px;top:341px;width:216px;height:84px" alt="btn_start">
+</div>
+<div class="screen" id="s3"><img class="bg" src="bg/s3_final.png">
+<img class="ui" data-cat="button" data-name="back" src="assets/s3_back.png" style="left:4px;top:8px;width:44px;height:46px" alt="back">
+<img class="ui" data-cat="text" data-name="title" src="assets/s3_title.png" style="left:143px;top:5px;width:58px;height:42px" alt="title">
+<img class="ui" data-cat="card" data-name="card_01" src="assets/s3_card_01.png" style="left:6px;top:54px;width:102px;height:120px" alt="card_01">
+<img class="ui" data-cat="card" data-name="card_02" src="assets/s3_card_02.png" style="left:111px;top:54px;width:102px;height:120px" alt="card_02">
+<img class="ui" data-cat="card" data-name="card_03" src="assets/s3_card_03.png" style="left:216px;top:54px;width:102px;height:120px" alt="card_03">
+<img class="ui" data-cat="card" data-name="card_04" src="assets/s3_card_04.png" style="left:6px;top:174px;width:102px;height:120px" alt="card_04">
+<img class="ui" data-cat="card" data-name="card_05" src="assets/s3_card_05.png" style="left:111px;top:174px;width:102px;height:120px" alt="card_05">
+<img class="ui" data-cat="card" data-name="card_06" src="assets/s3_card_06.png" style="left:216px;top:174px;width:102px;height:120px" alt="card_06">
+<img class="ui" data-cat="card" data-name="card_07" src="assets/s3_card_07.png" style="left:6px;top:294px;width:102px;height:120px" alt="card_07">
+<img class="ui" data-cat="card" data-name="card_08" src="assets/s3_card_08.png" style="left:111px;top:294px;width:102px;height:120px" alt="card_08">
+<img class="ui" data-cat="card" data-name="card_09" src="assets/s3_card_09.png" style="left:216px;top:294px;width:102px;height:120px" alt="card_09">
+<img class="ui" data-cat="card" data-name="card_10" src="assets/s3_card_10.png" style="left:6px;top:414px;width:102px;height:64px" alt="card_10">
+<img class="ui" data-cat="card" data-name="card_11" src="assets/s3_card_11.png" style="left:111px;top:414px;width:102px;height:64px" alt="card_11">
+<img class="ui" data-cat="card" data-name="card_12" src="assets/s3_card_12.png" style="left:216px;top:414px;width:102px;height:64px" alt="card_12">
+</div>
+<div class="screen" id="s4"><img class="bg" src="bg/s4_final.png">
+<img class="ui" data-cat="button" data-name="back" src="assets/s4_back.png" style="left:7px;top:5px;width:52px;height:52px" alt="back">
+<img class="ui" data-cat="text" data-name="title" src="assets/s4_title.png" style="left:141px;top:7px;width:78px;height:38px" alt="title">
+<img class="ui" data-cat="hud" data-name="hearts" src="assets/s4_hearts.png" style="left:125px;top:43px;width:116px;height:34px" alt="hearts">
+<img class="ui" data-cat="button" data-name="pause" src="assets/s4_pause.png" style="left:291px;top:1px;width:34px;height:50px" alt="pause">
+<img class="ui" data-cat="bar" data-name="progress" src="assets/s4_progress.png" style="left:33px;top:75px;width:246px;height:24px" alt="progress">
+<img class="ui" data-cat="button" data-name="prop_hint" src="assets/s4_prop_hint.png" style="left:13px;top:391px;width:104px;height:84px" alt="prop_hint">
+<img class="ui" data-cat="button" data-name="prop_hammer" src="assets/s4_prop_hammer.png" style="left:131px;top:391px;width:104px;height:84px" alt="prop_hammer">
+<img class="ui" data-cat="button" data-name="prop_bomb" src="assets/s4_prop_bomb.png" style="left:243px;top:391px;width:82px;height:84px" alt="prop_bomb">
+<img class="bg" src="bg/s4_dots.png" style="left:28px;top:128px">
+<div class="ui tile" data-cat="tile" data-name="tile_r0c2_green_up" style="left:92px;top:128px">
+<div class="tc" style="background:#8BC15B"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r0c6_green_up" style="left:220px;top:128px">
+<div class="tc" style="background:#8BC15B"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r0c7_yellow_right" style="left:252px;top:128px">
+<div class="tc" style="background:#F6BA4A"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(90deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r1c1_green_up" style="left:60px;top:160px">
+<div class="tc" style="background:#8BC15B"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r1c2_yellow_cross" style="left:92px;top:160px">
+<div class="tc" style="background:#F6BA4A"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_cross.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r1c3_green_up" style="left:124px;top:160px">
+<div class="tc" style="background:#8BC15B"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r1c5_green_up" style="left:188px;top:160px">
+<div class="tc" style="background:#8BC15B"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r1c6_yellow_right" style="left:220px;top:160px">
+<div class="tc" style="background:#F6BA4A"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(90deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r1c7_yellow_right" style="left:252px;top:160px">
+<div class="tc" style="background:#F6BA4A"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(90deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r1c8_green_up" style="left:284px;top:160px">
+<div class="tc" style="background:#8BC15B"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r2c0_blue_down" style="left:28px;top:192px">
+<div class="tc" style="background:#61A1DC"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(180deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r2c1_yellow_cross" style="left:60px;top:192px">
+<div class="tc" style="background:#F6BA4A"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_cross.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r2c2_yellow_right" style="left:92px;top:192px">
+<div class="tc" style="background:#F6BA4A"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(90deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r2c3_yellow_up" style="left:124px;top:192px">
+<div class="tc" style="background:#F6BA4A"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r2c4_green_up" style="left:156px;top:192px">
+<div class="tc" style="background:#8BC15B"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r2c5_pink_left" style="left:188px;top:192px">
+<div class="tc" style="background:#F78F93"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(270deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r2c6_yellow_right" style="left:220px;top:192px">
+<div class="tc" style="background:#F6BA4A"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(90deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r2c7_yellow_right" style="left:252px;top:192px">
+<div class="tc" style="background:#F6BA4A"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(90deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r2c8_blue_down" style="left:284px;top:192px">
+<div class="tc" style="background:#61A1DC"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(180deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r3c0_pink_left" style="left:28px;top:224px">
+<div class="tc" style="background:#F78F93"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(270deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r3c1_yellow_right" style="left:60px;top:224px">
+<div class="tc" style="background:#F6BA4A"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(90deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r3c2_yellow_up" style="left:92px;top:224px">
+<div class="tc" style="background:#F6BA4A"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r3c3_charcoal_up" style="left:124px;top:224px">
+<div class="tc" style="background:#685C4C"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r3c4_cream_up" style="left:156px;top:224px">
+<div class="tc" style="background:#E9D9C6"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r3c5_cream_up" style="left:188px;top:224px">
+<div class="tc" style="background:#E9D9C6"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r3c6_charcoal_up" style="left:220px;top:224px">
+<div class="tc" style="background:#685C4C"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r3c7_yellow_up" style="left:252px;top:224px">
+<div class="tc" style="background:#F6BA4A"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r3c8_yellow_right" style="left:284px;top:224px">
+<div class="tc" style="background:#F6BA4A"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(90deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r3c9_yellow_right" style="left:316px;top:224px">
+<div class="tc" style="background:#F6BA4A"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(90deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r4c0_pink_left" style="left:28px;top:256px">
+<div class="tc" style="background:#F78F93"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(270deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r4c1_yellow_up" style="left:60px;top:256px">
+<div class="tc" style="background:#F6BA4A"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r4c2_charcoal_up" style="left:92px;top:256px">
+<div class="tc" style="background:#685C4C"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r4c3_cream_up" style="left:124px;top:256px">
+<div class="tc" style="background:#E9D9C6"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r4c4_cream_up" style="left:156px;top:256px">
+<div class="tc" style="background:#E9D9C6"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r4c5_cream_up" style="left:188px;top:256px">
+<div class="tc" style="background:#E9D9C6"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r4c6_cream_up" style="left:220px;top:256px">
+<div class="tc" style="background:#E9D9C6"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r4c7_charcoal_up" style="left:252px;top:256px">
+<div class="tc" style="background:#685C4C"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r4c8_yellow_right" style="left:284px;top:256px">
+<div class="tc" style="background:#F6BA4A"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(90deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r4c9_yellow_right" style="left:316px;top:256px">
+<div class="tc" style="background:#F6BA4A"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(90deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r5c0_blue_down" style="left:28px;top:288px">
+<div class="tc" style="background:#61A1DC"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(180deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r5c1_yellow_up" style="left:60px;top:288px">
+<div class="tc" style="background:#F6BA4A"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r5c2_cream_down" style="left:92px;top:288px">
+<div class="tc" style="background:#E9D9C6"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(180deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r5c3_cream_up" style="left:124px;top:288px">
+<div class="tc" style="background:#E9D9C6"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r5c4_cream_up" style="left:156px;top:288px">
+<div class="tc" style="background:#E9D9C6"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r5c5_cream_up" style="left:188px;top:288px">
+<div class="tc" style="background:#E9D9C6"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r5c6_cream_up" style="left:220px;top:288px">
+<div class="tc" style="background:#E9D9C6"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r5c7_cream_cross" style="left:252px;top:288px">
+<div class="tc" style="background:#E9D9C6"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_cross.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r5c8_yellow_up" style="left:284px;top:288px">
+<div class="tc" style="background:#F6BA4A"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r5c9_yellow_right" style="left:316px;top:288px">
+<div class="tc" style="background:#F6BA4A"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(90deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r6c1_blue_down" style="left:60px;top:320px">
+<div class="tc" style="background:#61A1DC"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(180deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r6c2_blue_down" style="left:92px;top:320px">
+<div class="tc" style="background:#61A1DC"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(180deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r6c3_blue_down" style="left:124px;top:320px">
+<div class="tc" style="background:#61A1DC"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(180deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r6c4_cream_up" style="left:156px;top:320px">
+<div class="tc" style="background:#E9D9C6"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r6c5_cream_up" style="left:188px;top:320px">
+<div class="tc" style="background:#E9D9C6"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r6c6_green_up" style="left:220px;top:320px">
+<div class="tc" style="background:#8BC15B"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r6c7_pink_left" style="left:252px;top:320px">
+<div class="tc" style="background:#F78F93"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(270deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r6c8_pink_left" style="left:284px;top:320px">
+<div class="tc" style="background:#F78F93"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(270deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r7c3_blue_down" style="left:124px;top:352px">
+<div class="tc" style="background:#61A1DC"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(180deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r7c4_cream_up" style="left:156px;top:352px">
+<div class="tc" style="background:#E9D9C6"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r7c5_green_up" style="left:188px;top:352px">
+<div class="tc" style="background:#8BC15B"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(0deg)">
+</div>
+<div class="ui tile" data-cat="tile" data-name="tile_r7c6_blue_down" style="left:220px;top:352px">
+<div class="tc" style="background:#61A1DC"></div>
+<img class="tl" src="tilekit/tile_base.png">
+<img class="ta" src="tilekit/arrow_up.png" style="transform:rotate(180deg)">
+</div>
+</div>
+<div class="screen" id="s5"><img class="bg" src="bg/s5_final.png">
+<img class="ui" data-cat="decor" data-name="bunting" src="assets/s5_bunting.png" style="left:0px;top:0px;width:325px;height:65px" alt="bunting">
+<img class="ui" data-cat="banner" data-name="banner_complete" src="assets/s5_banner_complete.png" style="left:69px;top:13px;width:190px;height:80px" alt="banner_complete">
+<img class="ui" data-cat="panel" data-name="frame_art" src="assets/s5_frame_art.png" style="left:53px;top:83px;width:222px;height:206px" alt="frame_art">
+<img class="ui" data-cat="hud" data-name="coin_reward" src="assets/s5_coin_reward.png" style="left:123px;top:281px;width:82px;height:38px" alt="coin_reward">
+<img class="ui" data-cat="panel" data-name="task_panel" src="assets/s5_task_panel.png" style="left:11px;top:313px;width:302px;height:64px" alt="task_panel">
+<img class="ui" data-cat="button" data-name="btn_next" src="assets/s5_btn_next.png" style="left:15px;top:377px;width:144px;height:60px" alt="btn_next">
+<img class="ui" data-cat="button" data-name="btn_home" src="assets/s5_btn_home.png" style="left:167px;top:377px;width:140px;height:60px" alt="btn_home">
+</div>
+<div class="screen" id="s6"><img class="bg" src="bg/s6_final.png">
+<img class="bg" data-cat="backdrop" data-name="dialog" src="bg/s6_dialog_plate.png" style="left:35px;top:73px;width:250px;height:332px" alt="dialog">
+<img class="ui" data-cat="button" data-name="close" src="assets/s6_close.png" style="left:245px;top:83px;width:34px;height:32px" alt="close">
+<img class="ui" data-cat="icon" data-name="heart_broken" src="assets/s6_heart_broken.png" style="left:101px;top:135px;width:114px;height:90px" alt="heart_broken">
+<img class="ui" data-cat="button" data-name="btn_revive" src="assets/s6_btn_revive.png" style="left:45px;top:247px;width:222px;height:56px" alt="btn_revive">
+<img class="ui" data-cat="button" data-name="btn_restart" src="assets/s6_btn_restart.png" style="left:45px;top:303px;width:222px;height:48px" alt="btn_restart">
+<img class="ui" data-cat="button" data-name="btn_home" src="assets/s6_btn_home.png" style="left:45px;top:353px;width:222px;height:40px" alt="btn_home">
+<img class="ui" data-cat="panel" data-name="bottom_bar" src="assets/s6_bottom_bar.png" style="left:9px;top:395px;width:316px;height:80px" alt="bottom_bar">
+</div>
+<div class="screen" id="s7"><img class="bg" src="bg/s7_final.png">
+<img class="ui" data-cat="button" data-name="back" src="assets/s7_back.png" style="left:3px;top:0px;width:44px;height:43px" alt="back">
+<img class="ui" data-cat="text" data-name="title" src="assets/s7_title.png" style="left:125px;top:3px;width:66px;height:40px" alt="title">
+<img class="ui" data-cat="tabs" data-name="tab_bar" src="assets/s7_tab_bar.png" style="left:21px;top:37px;width:262px;height:40px" alt="tab_bar">
+<img class="ui" data-cat="text" data-name="more_label" src="assets/s7_more_label.png" style="left:9px;top:299px;width:104px;height:34px" alt="more_label">
+<img class="ui" data-cat="card" data-name="skin_01" src="assets/s7_skin_01.png" style="left:7px;top:85px;width:76px;height:98px" alt="skin_01">
+<img class="ui" data-cat="card" data-name="skin_02" src="assets/s7_skin_02.png" style="left:84px;top:85px;width:76px;height:98px" alt="skin_02">
+<img class="ui" data-cat="card" data-name="skin_03" src="assets/s7_skin_03.png" style="left:161px;top:85px;width:76px;height:98px" alt="skin_03">
+<img class="ui" data-cat="card" data-name="skin_04" src="assets/s7_skin_04.png" style="left:238px;top:85px;width:76px;height:98px" alt="skin_04">
+<img class="ui" data-cat="card" data-name="skin_05" src="assets/s7_skin_05.png" style="left:7px;top:187px;width:76px;height:98px" alt="skin_05">
+<img class="ui" data-cat="card" data-name="skin_06" src="assets/s7_skin_06.png" style="left:84px;top:187px;width:76px;height:98px" alt="skin_06">
+<img class="ui" data-cat="card" data-name="skin_07" src="assets/s7_skin_07.png" style="left:161px;top:187px;width:76px;height:98px" alt="skin_07">
+<img class="ui" data-cat="card" data-name="skin_08" src="assets/s7_skin_08.png" style="left:238px;top:187px;width:76px;height:98px" alt="skin_08">
+<img class="ui" data-cat="card" data-name="skin_09" src="assets/s7_skin_09.png" style="left:7px;top:327px;width:76px;height:98px" alt="skin_09">
+<img class="ui" data-cat="card" data-name="skin_10" src="assets/s7_skin_10.png" style="left:84px;top:327px;width:76px;height:98px" alt="skin_10">
+<img class="ui" data-cat="card" data-name="skin_11" src="assets/s7_skin_11.png" style="left:161px;top:327px;width:76px;height:98px" alt="skin_11">
+<img class="ui" data-cat="card" data-name="skin_12" src="assets/s7_skin_12.png" style="left:238px;top:327px;width:76px;height:98px" alt="skin_12">
+</div>
+<div class="screen" id="s8"><img class="bg" src="bg/s8_final.png">
+<img class="ui" data-cat="button" data-name="back" src="assets/s8_back.png" style="left:7px;top:1px;width:48px;height:48px" alt="back">
+<img class="ui" data-cat="tabs" data-name="tab_bar" src="assets/s8_tab_bar.png" style="left:75px;top:5px;width:200px;height:44px" alt="tab_bar">
+<img class="bg" data-cat="backdrop" data-name="daily_panel" src="bg/s8_daily_panel_plate.png" style="left:7px;top:51px;width:318px;height:148px" alt="daily_panel">
+<img class="ui" data-cat="text" data-name="daily_title" src="assets/s8_daily_title.png" style="left:23px;top:57px;width:88px;height:32px" alt="daily_title">
+<img class="ui" data-cat="text" data-name="daily_hint" src="assets/s8_daily_hint.png" style="left:57px;top:165px;width:236px;height:28px" alt="daily_hint">
+<img class="ui" data-cat="text" data-name="ach_title" src="assets/s8_ach_title.png" style="left:15px;top:197px;width:94px;height:28px" alt="ach_title">
+<img class="ui" data-cat="card" data-name="sign_1" src="assets/s8_sign_1.png" style="left:25px;top:91px;width:44px;height:76px" alt="sign_1">
+<img class="ui" data-cat="card" data-name="sign_2" src="assets/s8_sign_2.png" style="left:67px;top:91px;width:44px;height:76px" alt="sign_2">
+<img class="ui" data-cat="card" data-name="sign_3" src="assets/s8_sign_3.png" style="left:109px;top:91px;width:44px;height:76px" alt="sign_3">
+<img class="ui" data-cat="card" data-name="sign_4" src="assets/s8_sign_4.png" style="left:151px;top:91px;width:44px;height:76px" alt="sign_4">
+<img class="ui" data-cat="card" data-name="sign_5" src="assets/s8_sign_5.png" style="left:193px;top:91px;width:44px;height:76px" alt="sign_5">
+<img class="ui" data-cat="card" data-name="sign_6" src="assets/s8_sign_6.png" style="left:235px;top:91px;width:44px;height:76px" alt="sign_6">
+<img class="ui" data-cat="card" data-name="sign_7" src="assets/s8_sign_7.png" style="left:277px;top:91px;width:44px;height:76px" alt="sign_7">
+<img class="ui" data-cat="card" data-name="ach_1" src="assets/s8_ach_1.png" style="left:7px;top:223px;width:318px;height:64px" alt="ach_1">
+<img class="ui" data-cat="card" data-name="ach_2" src="assets/s8_ach_2.png" style="left:7px;top:286px;width:318px;height:64px" alt="ach_2">
+<img class="ui" data-cat="card" data-name="ach_3" src="assets/s8_ach_3.png" style="left:7px;top:349px;width:318px;height:64px" alt="ach_3">
+<img class="ui" data-cat="card" data-name="ach_4" src="assets/s8_ach_4.png" style="left:7px;top:412px;width:318px;height:64px" alt="ach_4">
+</div>
+<div class="screen map" id="s9"><img class="bg" src="bg/s9_final.png">
+<img class="ui" data-cat="button" data-name="settings" src="assets/s9_settings.png" style="left:5px;top:13px;width:78px;height:74px" alt="settings">
+<img class="ui" data-cat="hud" data-name="ticket_bar" src="assets/s9_ticket_bar.png" style="left:329px;top:23px;width:134px;height:64px" alt="ticket_bar">
+<img class="ui" data-cat="node" data-name="node_40" src="assets/s9_node_40.png" style="left:193px;top:13px;width:84px;height:88px" alt="node_40">
+<img class="ui" data-cat="node" data-name="node_39" src="assets/s9_node_39.png" style="left:193px;top:133px;width:84px;height:84px" alt="node_39">
+<img class="ui" data-cat="node" data-name="node_38" src="assets/s9_node_38.png" style="left:193px;top:247px;width:84px;height:86px" alt="node_38">
+<img class="ui" data-cat="node" data-name="node_37" src="assets/s9_node_37.png" style="left:179px;top:359px;width:112px;height:116px" alt="node_37">
+<img class="ui" data-cat="node" data-name="node_36" src="assets/s9_node_36.png" style="left:97px;top:483px;width:74px;height:78px" alt="node_36">
+<img class="ui" data-cat="node" data-name="node_challenge" src="assets/s9_node_challenge.png" style="left:295px;top:483px;width:76px;height:78px" alt="node_challenge">
+<img class="ui" data-cat="icon" data-name="hero" src="assets/s9_hero.png" style="left:195px;top:475px;width:80px;height:84px" alt="hero">
+<img class="ui" data-cat="button" data-name="btn_task" src="assets/s9_btn_task.png" style="left:369px;top:117px;width:94px;height:104px" alt="btn_task">
+<img class="ui" data-cat="button" data-name="btn_achieve" src="assets/s9_btn_achieve.png" style="left:369px;top:227px;width:94px;height:104px" alt="btn_achieve">
+<img class="ui" data-cat="plate" data-name="bubble" src="assets/s9_bubble.png" style="left:275px;top:349px;width:90px;height:46px" alt="bubble">
+<img class="ui" data-cat="button" data-name="btn_level" src="assets/s9_btn_level.png" style="left:97px;top:587px;width:276px;height:106px" alt="btn_level">
+<img class="ui" data-cat="text" data-name="start_hint" src="assets/s9_start_hint.png" style="left:149px;top:701px;width:172px;height:26px" alt="start_hint">
+<img class="bg" data-cat="backdrop" data-name="nav_bar" src="bg/s9_nav_bar_plate.png" style="left:15px;top:725px;width:440px;height:110px" alt="nav_bar">
+<img class="ui" data-cat="button" data-name="nav_1" src="assets/s9_nav_1.png" style="left:29px;top:741px;width:110px;height:86px" alt="nav_1">
+<img class="ui" data-cat="button" data-name="nav_2" src="assets/s9_nav_2.png" style="left:141px;top:737px;width:110px;height:90px" alt="nav_2">
+<img class="ui" data-cat="button" data-name="nav_3" src="assets/s9_nav_3.png" style="left:253px;top:737px;width:108px;height:90px" alt="nav_3">
+<img class="ui" data-cat="button" data-name="nav_4" src="assets/s9_nav_4.png" style="left:363px;top:737px;width:90px;height:90px" alt="nav_4">
+</div>
+<div id="hint"></div><script>
+function show(){
+  var id=(location.hash||'#s1').slice(1);
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('on')});
+  var el=document.getElementById(id); if(el) el.classList.add('on');
+  var h=document.getElementById('hint');
+  h.style.display = location.search.indexOf('audit=1')>=0 ? 'block':'none';
+  h.textContent = id+' · 控件 '+el.querySelectorAll('.ui').length+' 个 · 点击控件可查看名称';
+}
+document.addEventListener('click',function(e){
+  var t=e.target.closest('.ui'); if(!t) return;
+  document.querySelectorAll('.ui.sel').forEach(function(x){x.classList.remove('sel')});
+  if(location.search.indexOf('audit=1')>=0){t.classList.add('sel');
+    document.getElementById('hint').textContent=t.dataset.name+' · '+t.dataset.cat;}
+});
+window.addEventListener('hashchange',show); show();
+</script></body></html>

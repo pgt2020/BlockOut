@@ -1,0 +1,1958 @@
+{
+ "s1": {
+  "size": [
+   325,
+   478
+  ],
+  "bg": "s1_final.png",
+  "items": [
+   {
+    "name": "logo",
+    "cat": "icon",
+    "file": "s1_logo.png",
+    "x": 87,
+    "y": 105,
+    "w": 178,
+    "h": 126,
+    "edge": {
+     "L": 1.3,
+     "R": 1.4,
+     "T": 1.2,
+     "B": 11.6
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "title_art",
+    "cat": "artword",
+    "file": "s1_title_art.png",
+    "x": 73,
+    "y": 223,
+    "w": 208,
+    "h": 76,
+    "edge": {
+     "L": 2.1,
+     "R": 1.2,
+     "T": 11.7,
+     "B": 0.6
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "subtitle",
+    "cat": "text",
+    "file": "s1_subtitle.png",
+    "x": 109,
+    "y": 303,
+    "w": 128,
+    "h": 38,
+    "edge": {
+     "L": 2.0,
+     "R": 0.8,
+     "T": 0.8,
+     "B": 0.5
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "progress",
+    "cat": "bar",
+    "file": "s1_progress.png",
+    "x": 47,
+    "y": 399,
+    "w": 226,
+    "h": 48,
+    "edge": {
+     "L": 1.8,
+     "R": 1.1,
+     "T": 6.0,
+     "B": 3.1
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   }
+  ]
+ },
+ "s2": {
+  "size": [
+   325,
+   478
+  ],
+  "bg": "s2_final.png",
+  "items": [
+   {
+    "name": "coin_bar",
+    "cat": "hud",
+    "file": "s2_coin_bar.png",
+    "x": 3,
+    "y": 7,
+    "w": 114,
+    "h": 42,
+    "edge": {
+     "L": 59.3,
+     "R": 1.5,
+     "T": 2.4,
+     "B": 3.9
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "level_plate",
+    "cat": "plate",
+    "file": "s2_level_plate.png",
+    "x": 97,
+    "y": 45,
+    "w": 134,
+    "h": 50,
+    "edge": {
+     "L": 6.2,
+     "R": 1.3,
+     "T": 2.3,
+     "B": 2.9
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "settings",
+    "cat": "button",
+    "file": "s2_settings.png",
+    "x": 259,
+    "y": 1,
+    "w": 62,
+    "h": 62,
+    "edge": {
+     "L": 0.2,
+     "R": 6.2,
+     "T": NaN,
+     "B": 1.8
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "board",
+    "cat": "panel",
+    "file": "s2_board.png",
+    "x": 59,
+    "y": 91,
+    "w": 202,
+    "h": 236,
+    "edge": {
+     "L": 14.2,
+     "R": 6.5,
+     "T": 6.3,
+     "B": 8.3
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "entry_gallery",
+    "cat": "button",
+    "file": "s2_entry_gallery.png",
+    "x": 0,
+    "y": 195,
+    "w": 63,
+    "h": 78,
+    "edge": {
+     "L": 0.0,
+     "R": 3.4,
+     "T": 3.7,
+     "B": 3.4
+    },
+    "touch": [
+     "L"
+    ],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "entry_skin",
+    "cat": "button",
+    "file": "s2_entry_skin.png",
+    "x": 0,
+    "y": 275,
+    "w": 63,
+    "h": 78,
+    "edge": {
+     "L": 0.0,
+     "R": 5.1,
+     "T": 3.6,
+     "B": 1.5
+    },
+    "touch": [
+     "L"
+    ],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "entry_daily",
+    "cat": "button",
+    "file": "s2_entry_daily.png",
+    "x": 255,
+    "y": 195,
+    "w": 70,
+    "h": 78,
+    "edge": {
+     "L": 24.0,
+     "R": 0.0,
+     "T": 1.9,
+     "B": 5.7
+    },
+    "touch": [
+     "R"
+    ],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "entry_achieve",
+    "cat": "button",
+    "file": "s2_entry_achieve.png",
+    "x": 255,
+    "y": 275,
+    "w": 70,
+    "h": 78,
+    "edge": {
+     "L": 18.7,
+     "R": 0.0,
+     "T": 6.1,
+     "B": 3.9
+    },
+    "touch": [
+     "R"
+    ],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "btn_start",
+    "cat": "button",
+    "file": "s2_btn_start.png",
+    "x": 53,
+    "y": 341,
+    "w": 216,
+    "h": 84,
+    "edge": {
+     "L": 2.0,
+     "R": 1.3,
+     "T": 2.5,
+     "B": 11.7
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   }
+  ]
+ },
+ "s3": {
+  "size": [
+   325,
+   478
+  ],
+  "bg": "s3_final.png",
+  "items": [
+   {
+    "name": "back",
+    "cat": "button",
+    "file": "s3_back.png",
+    "x": 4,
+    "y": 8,
+    "w": 44,
+    "h": 46,
+    "edge": {
+     "L": 3.6,
+     "R": 0.1,
+     "T": 1.4,
+     "B": 0.7
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "title",
+    "cat": "text",
+    "file": "s3_title.png",
+    "x": 143,
+    "y": 5,
+    "w": 58,
+    "h": 42,
+    "edge": {
+     "L": 0.0,
+     "R": 0.1,
+     "T": 0.2,
+     "B": 2.5
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "card_01",
+    "cat": "card",
+    "file": "s3_card_01.png",
+    "x": 6,
+    "y": 54,
+    "w": 102,
+    "h": 120,
+    "edge": {
+     "L": 2.0,
+     "R": 2.8,
+     "T": 1.0,
+     "B": 14.6
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "card_02",
+    "cat": "card",
+    "file": "s3_card_02.png",
+    "x": 111,
+    "y": 54,
+    "w": 102,
+    "h": 120,
+    "edge": {
+     "L": 2.8,
+     "R": 4.2,
+     "T": 1.3,
+     "B": 12.0
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "card_03",
+    "cat": "card",
+    "file": "s3_card_03.png",
+    "x": 216,
+    "y": 54,
+    "w": 102,
+    "h": 120,
+    "edge": {
+     "L": 4.2,
+     "R": 9.2,
+     "T": 0.8,
+     "B": 13.4
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "card_04",
+    "cat": "card",
+    "file": "s3_card_04.png",
+    "x": 6,
+    "y": 174,
+    "w": 102,
+    "h": 120,
+    "edge": {
+     "L": 3.3,
+     "R": 3.0,
+     "T": 3.5,
+     "B": 3.7
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "card_05",
+    "cat": "card",
+    "file": "s3_card_05.png",
+    "x": 111,
+    "y": 174,
+    "w": 102,
+    "h": 120,
+    "edge": {
+     "L": 3.0,
+     "R": 2.2,
+     "T": 3.1,
+     "B": 3.5
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "card_06",
+    "cat": "card",
+    "file": "s3_card_06.png",
+    "x": 216,
+    "y": 174,
+    "w": 102,
+    "h": 120,
+    "edge": {
+     "L": 2.2,
+     "R": 9.0,
+     "T": 4.1,
+     "B": 3.5
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "card_07",
+    "cat": "card",
+    "file": "s3_card_07.png",
+    "x": 6,
+    "y": 294,
+    "w": 102,
+    "h": 120,
+    "edge": {
+     "L": 2.8,
+     "R": 1.9,
+     "T": 3.6,
+     "B": 11.8
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "card_08",
+    "cat": "card",
+    "file": "s3_card_08.png",
+    "x": 111,
+    "y": 294,
+    "w": 102,
+    "h": 120,
+    "edge": {
+     "L": 1.9,
+     "R": 11.6,
+     "T": 3.2,
+     "B": 6.7
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "card_09",
+    "cat": "card",
+    "file": "s3_card_09.png",
+    "x": 216,
+    "y": 294,
+    "w": 102,
+    "h": 120,
+    "edge": {
+     "L": 11.6,
+     "R": 8.7,
+     "T": 2.6,
+     "B": 7.0
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "card_10",
+    "cat": "card",
+    "file": "s3_card_10.png",
+    "x": 6,
+    "y": 414,
+    "w": 102,
+    "h": 64,
+    "edge": {
+     "L": 3.7,
+     "R": 2.1,
+     "T": 2.2,
+     "B": 0.0
+    },
+    "touch": [
+     "B"
+    ],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "card_11",
+    "cat": "card",
+    "file": "s3_card_11.png",
+    "x": 111,
+    "y": 414,
+    "w": 102,
+    "h": 64,
+    "edge": {
+     "L": 2.1,
+     "R": 12.5,
+     "T": 11.0,
+     "B": 0.0
+    },
+    "touch": [
+     "B"
+    ],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "card_12",
+    "cat": "card",
+    "file": "s3_card_12.png",
+    "x": 216,
+    "y": 414,
+    "w": 102,
+    "h": 64,
+    "edge": {
+     "L": 12.5,
+     "R": 8.2,
+     "T": 5.0,
+     "B": 0.0
+    },
+    "touch": [
+     "B"
+    ],
+    "layer": "ui",
+    "children": []
+   }
+  ]
+ },
+ "s4": {
+  "size": [
+   325,
+   478
+  ],
+  "bg": "s4_final.png",
+  "items": [
+   {
+    "name": "back",
+    "cat": "button",
+    "file": "s4_back.png",
+    "x": 7,
+    "y": 5,
+    "w": 52,
+    "h": 52,
+    "edge": {
+     "L": 3.1,
+     "R": 0.0,
+     "T": 1.8,
+     "B": 0.2
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "title",
+    "cat": "text",
+    "file": "s4_title.png",
+    "x": 141,
+    "y": 7,
+    "w": 78,
+    "h": 38,
+    "edge": {
+     "L": 0.0,
+     "R": 0.0,
+     "T": 1.0,
+     "B": 0.5
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "hearts",
+    "cat": "hud",
+    "file": "s4_hearts.png",
+    "x": 125,
+    "y": 43,
+    "w": 116,
+    "h": 34,
+    "edge": {
+     "L": 0.9,
+     "R": 0.1,
+     "T": 0.7,
+     "B": 37.2
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "pause",
+    "cat": "button",
+    "file": "s4_pause.png",
+    "x": 291,
+    "y": 1,
+    "w": 34,
+    "h": 50,
+    "edge": {
+     "L": 0.0,
+     "R": 0.0,
+     "T": NaN,
+     "B": 0.0
+    },
+    "touch": [
+     "R"
+    ],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "progress",
+    "cat": "bar",
+    "file": "s4_progress.png",
+    "x": 33,
+    "y": 75,
+    "w": 246,
+    "h": 24,
+    "edge": {
+     "L": 0.4,
+     "R": 0.6,
+     "T": 2.0,
+     "B": 0.6
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "prop_hint",
+    "cat": "button",
+    "file": "s4_prop_hint.png",
+    "x": 13,
+    "y": 391,
+    "w": 104,
+    "h": 84,
+    "edge": {
+     "L": 0.5,
+     "R": 2.2,
+     "T": 14.8,
+     "B": 2.1
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "prop_hammer",
+    "cat": "button",
+    "file": "s4_prop_hammer.png",
+    "x": 131,
+    "y": 391,
+    "w": 104,
+    "h": 84,
+    "edge": {
+     "L": 0.1,
+     "R": 0.1,
+     "T": 15.9,
+     "B": 2.4
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "prop_bomb",
+    "cat": "button",
+    "file": "s4_prop_bomb.png",
+    "x": 243,
+    "y": 391,
+    "w": 82,
+    "h": 84,
+    "edge": {
+     "L": 0.1,
+     "R": 0.0,
+     "T": 15.1,
+     "B": 1.5
+    },
+    "touch": [
+     "R"
+    ],
+    "layer": "ui",
+    "children": []
+   }
+  ]
+ },
+ "s5": {
+  "size": [
+   325,
+   478
+  ],
+  "bg": "s5_final.png",
+  "items": [
+   {
+    "name": "bunting",
+    "cat": "decor",
+    "file": "s5_bunting.png",
+    "x": 0,
+    "y": 0,
+    "w": 325,
+    "h": 65,
+    "edge": {
+     "L": 0.0,
+     "R": 0.0,
+     "T": 0.0,
+     "B": 11.2
+    },
+    "touch": [
+     "L",
+     "R",
+     "T"
+    ],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "banner_complete",
+    "cat": "banner",
+    "file": "s5_banner_complete.png",
+    "x": 69,
+    "y": 13,
+    "w": 190,
+    "h": 80,
+    "edge": {
+     "L": 5.7,
+     "R": 3.1,
+     "T": 2.8,
+     "B": 4.9
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "frame_art",
+    "cat": "panel",
+    "file": "s5_frame_art.png",
+    "x": 53,
+    "y": 83,
+    "w": 222,
+    "h": 206,
+    "edge": {
+     "L": 2.4,
+     "R": 3.3,
+     "T": 11.0,
+     "B": 6.5
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "coin_reward",
+    "cat": "hud",
+    "file": "s5_coin_reward.png",
+    "x": 123,
+    "y": 281,
+    "w": 82,
+    "h": 38,
+    "edge": {
+     "L": 1.3,
+     "R": 0.2,
+     "T": 32.2,
+     "B": 1.4
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "task_panel",
+    "cat": "panel",
+    "file": "s5_task_panel.png",
+    "x": 11,
+    "y": 313,
+    "w": 302,
+    "h": 64,
+    "edge": {
+     "L": 0.1,
+     "R": 0.3,
+     "T": 3.7,
+     "B": 0.9
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "btn_next",
+    "cat": "button",
+    "file": "s5_btn_next.png",
+    "x": 15,
+    "y": 377,
+    "w": 144,
+    "h": 60,
+    "edge": {
+     "L": 0.4,
+     "R": 0.7,
+     "T": 0.7,
+     "B": 2.1
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "btn_home",
+    "cat": "button",
+    "file": "s5_btn_home.png",
+    "x": 167,
+    "y": 377,
+    "w": 140,
+    "h": 60,
+    "edge": {
+     "L": 0.6,
+     "R": 0.8,
+     "T": 0.6,
+     "B": 1.6
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   }
+  ]
+ },
+ "s6": {
+  "size": [
+   325,
+   478
+  ],
+  "bg": "s6_final.png",
+  "items": [
+   {
+    "name": "dialog",
+    "cat": "backdrop",
+    "file": "s6_dialog_plate.png",
+    "x": 35,
+    "y": 73,
+    "w": 250,
+    "h": 332,
+    "edge": {
+     "L": 1.9,
+     "R": 0.7,
+     "T": 1.6,
+     "B": 3.3
+    },
+    "touch": [],
+    "layer": "bg",
+    "children": [
+     "close",
+     "heart_broken",
+     "btn_revive",
+     "btn_restart",
+     "btn_home"
+    ]
+   },
+   {
+    "name": "close",
+    "cat": "button",
+    "file": "s6_close.png",
+    "x": 245,
+    "y": 83,
+    "w": 34,
+    "h": 32,
+    "edge": {
+     "L": 0.0,
+     "R": 2.0,
+     "T": 9.4,
+     "B": 1.2
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "heart_broken",
+    "cat": "icon",
+    "file": "s6_heart_broken.png",
+    "x": 101,
+    "y": 135,
+    "w": 114,
+    "h": 90,
+    "edge": {
+     "L": 1.6,
+     "R": 1.8,
+     "T": 0.8,
+     "B": 10.6
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "btn_revive",
+    "cat": "button",
+    "file": "s6_btn_revive.png",
+    "x": 45,
+    "y": 247,
+    "w": 222,
+    "h": 56,
+    "edge": {
+     "L": 9.7,
+     "R": 4.0,
+     "T": 1.8,
+     "B": 1.9
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "btn_restart",
+    "cat": "button",
+    "file": "s6_btn_restart.png",
+    "x": 45,
+    "y": 303,
+    "w": 222,
+    "h": 48,
+    "edge": {
+     "L": 9.5,
+     "R": 3.1,
+     "T": 11.2,
+     "B": 4.2
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "btn_home",
+    "cat": "button",
+    "file": "s6_btn_home.png",
+    "x": 45,
+    "y": 353,
+    "w": 222,
+    "h": 40,
+    "edge": {
+     "L": 13.1,
+     "R": 4.7,
+     "T": 5.8,
+     "B": 8.0
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "bottom_bar",
+    "cat": "panel",
+    "file": "s6_bottom_bar.png",
+    "x": 9,
+    "y": 395,
+    "w": 316,
+    "h": 80,
+    "edge": {
+     "L": 3.3,
+     "R": 0.0,
+     "T": 5.9,
+     "B": 1.7
+    },
+    "touch": [
+     "R"
+    ],
+    "layer": "ui",
+    "children": []
+   }
+  ]
+ },
+ "s7": {
+  "size": [
+   325,
+   478
+  ],
+  "bg": "s7_final.png",
+  "items": [
+   {
+    "name": "back",
+    "cat": "button",
+    "file": "s7_back.png",
+    "x": 3,
+    "y": 0,
+    "w": 44,
+    "h": 43,
+    "edge": {
+     "L": 5.5,
+     "R": 0.3,
+     "T": 0.0,
+     "B": 6.4
+    },
+    "touch": [
+     "T"
+    ],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "title",
+    "cat": "text",
+    "file": "s7_title.png",
+    "x": 125,
+    "y": 3,
+    "w": 66,
+    "h": 40,
+    "edge": {
+     "L": 0.8,
+     "R": 0.0,
+     "T": 2.8,
+     "B": 6.9
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "tab_bar",
+    "cat": "tabs",
+    "file": "s7_tab_bar.png",
+    "x": 21,
+    "y": 37,
+    "w": 262,
+    "h": 40,
+    "edge": {
+     "L": 0.5,
+     "R": 0.8,
+     "T": 2.8,
+     "B": 0.9
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "more_label",
+    "cat": "text",
+    "file": "s7_more_label.png",
+    "x": 9,
+    "y": 299,
+    "w": 104,
+    "h": 34,
+    "edge": {
+     "L": 0.9,
+     "R": 0.2,
+     "T": 1.6,
+     "B": 2.1
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "skin_01",
+    "cat": "card",
+    "file": "s7_skin_01.png",
+    "x": 7,
+    "y": 85,
+    "w": 76,
+    "h": 98,
+    "edge": {
+     "L": 3.9,
+     "R": 18.9,
+     "T": 5.3,
+     "B": 1.6
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "skin_02",
+    "cat": "card",
+    "file": "s7_skin_02.png",
+    "x": 84,
+    "y": 85,
+    "w": 76,
+    "h": 98,
+    "edge": {
+     "L": 3.1,
+     "R": 3.3,
+     "T": 2.1,
+     "B": 2.0
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "skin_03",
+    "cat": "card",
+    "file": "s7_skin_03.png",
+    "x": 161,
+    "y": 85,
+    "w": 76,
+    "h": 98,
+    "edge": {
+     "L": 2.0,
+     "R": 3.0,
+     "T": 1.3,
+     "B": 0.6
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "skin_04",
+    "cat": "card",
+    "file": "s7_skin_04.png",
+    "x": 238,
+    "y": 85,
+    "w": 76,
+    "h": 98,
+    "edge": {
+     "L": 2.2,
+     "R": 2.6,
+     "T": 0.9,
+     "B": 0.9
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "skin_05",
+    "cat": "card",
+    "file": "s7_skin_05.png",
+    "x": 7,
+    "y": 187,
+    "w": 76,
+    "h": 98,
+    "edge": {
+     "L": 2.4,
+     "R": 7.2,
+     "T": 1.4,
+     "B": 0.0
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "skin_06",
+    "cat": "card",
+    "file": "s7_skin_06.png",
+    "x": 84,
+    "y": 187,
+    "w": 76,
+    "h": 98,
+    "edge": {
+     "L": 7.0,
+     "R": 3.6,
+     "T": 2.7,
+     "B": 18.7
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "skin_07",
+    "cat": "card",
+    "file": "s7_skin_07.png",
+    "x": 161,
+    "y": 187,
+    "w": 76,
+    "h": 98,
+    "edge": {
+     "L": 2.3,
+     "R": 2.8,
+     "T": 0.8,
+     "B": 17.8
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "skin_08",
+    "cat": "card",
+    "file": "s7_skin_08.png",
+    "x": 238,
+    "y": 187,
+    "w": 76,
+    "h": 98,
+    "edge": {
+     "L": 2.2,
+     "R": 2.5,
+     "T": 1.5,
+     "B": 3.6
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "skin_09",
+    "cat": "card",
+    "file": "s7_skin_09.png",
+    "x": 7,
+    "y": 327,
+    "w": 76,
+    "h": 98,
+    "edge": {
+     "L": 2.0,
+     "R": 6.9,
+     "T": 20.3,
+     "B": 2.4
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "skin_10",
+    "cat": "card",
+    "file": "s7_skin_10.png",
+    "x": 84,
+    "y": 327,
+    "w": 76,
+    "h": 98,
+    "edge": {
+     "L": 7.2,
+     "R": 1.8,
+     "T": 0.0,
+     "B": 3.3
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "skin_11",
+    "cat": "card",
+    "file": "s7_skin_11.png",
+    "x": 161,
+    "y": 327,
+    "w": 76,
+    "h": 98,
+    "edge": {
+     "L": 1.2,
+     "R": 3.9,
+     "T": 0.3,
+     "B": 1.7
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "skin_12",
+    "cat": "card",
+    "file": "s7_skin_12.png",
+    "x": 238,
+    "y": 327,
+    "w": 76,
+    "h": 98,
+    "edge": {
+     "L": 2.2,
+     "R": 2.7,
+     "T": 0.1,
+     "B": 1.4
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   }
+  ]
+ },
+ "s8": {
+  "size": [
+   325,
+   478
+  ],
+  "bg": "s8_final.png",
+  "items": [
+   {
+    "name": "back",
+    "cat": "button",
+    "file": "s8_back.png",
+    "x": 7,
+    "y": 1,
+    "w": 48,
+    "h": 48,
+    "edge": {
+     "L": 1.7,
+     "R": 0.2,
+     "T": NaN,
+     "B": 1.1
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "tab_bar",
+    "cat": "tabs",
+    "file": "s8_tab_bar.png",
+    "x": 75,
+    "y": 5,
+    "w": 200,
+    "h": 44,
+    "edge": {
+     "L": 0.5,
+     "R": 0.0,
+     "T": 2.0,
+     "B": 2.2
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "daily_panel",
+    "cat": "backdrop",
+    "file": "s8_daily_panel_plate.png",
+    "x": 7,
+    "y": 51,
+    "w": 318,
+    "h": 148,
+    "edge": {
+     "L": 1.9,
+     "R": 0.0,
+     "T": 1.3,
+     "B": 1.0
+    },
+    "touch": [
+     "R"
+    ],
+    "layer": "bg",
+    "children": [
+     "daily_title",
+     "daily_hint",
+     "sign_1",
+     "sign_2",
+     "sign_3",
+     "sign_4",
+     "sign_5",
+     "sign_6",
+     "sign_7"
+    ]
+   },
+   {
+    "name": "daily_title",
+    "cat": "text",
+    "file": "s8_daily_title.png",
+    "x": 23,
+    "y": 57,
+    "w": 88,
+    "h": 32,
+    "edge": {
+     "L": 0.1,
+     "R": 0.3,
+     "T": 3.4,
+     "B": 2.4
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "daily_hint",
+    "cat": "text",
+    "file": "s8_daily_hint.png",
+    "x": 57,
+    "y": 165,
+    "w": 236,
+    "h": 28,
+    "edge": {
+     "L": 0.1,
+     "R": 0.1,
+     "T": 3.9,
+     "B": 11.9
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "ach_title",
+    "cat": "text",
+    "file": "s8_ach_title.png",
+    "x": 15,
+    "y": 197,
+    "w": 94,
+    "h": 28,
+    "edge": {
+     "L": 0.2,
+     "R": 0.0,
+     "T": 12.7,
+     "B": 2.5
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "sign_1",
+    "cat": "card",
+    "file": "s8_sign_1.png",
+    "x": 25,
+    "y": 91,
+    "w": 44,
+    "h": 76,
+    "edge": {
+     "L": 3.6,
+     "R": 1.9,
+     "T": 1.4,
+     "B": 4.6
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "sign_2",
+    "cat": "card",
+    "file": "s8_sign_2.png",
+    "x": 67,
+    "y": 91,
+    "w": 44,
+    "h": 76,
+    "edge": {
+     "L": 2.8,
+     "R": 2.1,
+     "T": 1.3,
+     "B": 2.2
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "sign_3",
+    "cat": "card",
+    "file": "s8_sign_3.png",
+    "x": 109,
+    "y": 91,
+    "w": 44,
+    "h": 76,
+    "edge": {
+     "L": 5.7,
+     "R": 6.8,
+     "T": 0.7,
+     "B": 2.7
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "sign_4",
+    "cat": "card",
+    "file": "s8_sign_4.png",
+    "x": 151,
+    "y": 91,
+    "w": 44,
+    "h": 76,
+    "edge": {
+     "L": 7.0,
+     "R": 5.7,
+     "T": 1.0,
+     "B": 2.3
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "sign_5",
+    "cat": "card",
+    "file": "s8_sign_5.png",
+    "x": 193,
+    "y": 91,
+    "w": 44,
+    "h": 76,
+    "edge": {
+     "L": 12.1,
+     "R": 12.9,
+     "T": 0.8,
+     "B": 5.2
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "sign_6",
+    "cat": "card",
+    "file": "s8_sign_6.png",
+    "x": 235,
+    "y": 91,
+    "w": 44,
+    "h": 76,
+    "edge": {
+     "L": 9.8,
+     "R": 10.6,
+     "T": 1.2,
+     "B": 4.8
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "sign_7",
+    "cat": "card",
+    "file": "s8_sign_7.png",
+    "x": 277,
+    "y": 91,
+    "w": 44,
+    "h": 76,
+    "edge": {
+     "L": 8.4,
+     "R": 8.1,
+     "T": 2.0,
+     "B": 5.9
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "ach_1",
+    "cat": "card",
+    "file": "s8_ach_1.png",
+    "x": 7,
+    "y": 223,
+    "w": 318,
+    "h": 64,
+    "edge": {
+     "L": 1.3,
+     "R": 0.0,
+     "T": 6.4,
+     "B": 4.3
+    },
+    "touch": [
+     "R"
+    ],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "ach_2",
+    "cat": "card",
+    "file": "s8_ach_2.png",
+    "x": 7,
+    "y": 286,
+    "w": 318,
+    "h": 64,
+    "edge": {
+     "L": 1.2,
+     "R": 0.0,
+     "T": 4.5,
+     "B": 4.1
+    },
+    "touch": [
+     "R"
+    ],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "ach_3",
+    "cat": "card",
+    "file": "s8_ach_3.png",
+    "x": 7,
+    "y": 349,
+    "w": 318,
+    "h": 64,
+    "edge": {
+     "L": 1.3,
+     "R": 0.0,
+     "T": 5.4,
+     "B": 5.9
+    },
+    "touch": [
+     "R"
+    ],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "ach_4",
+    "cat": "card",
+    "file": "s8_ach_4.png",
+    "x": 7,
+    "y": 412,
+    "w": 318,
+    "h": 64,
+    "edge": {
+     "L": 2.0,
+     "R": 0.0,
+     "T": 6.0,
+     "B": 1.6
+    },
+    "touch": [
+     "R"
+    ],
+    "layer": "ui",
+    "children": []
+   }
+  ]
+ },
+ "s9": {
+  "size": [
+   470,
+   836
+  ],
+  "bg": "s9_final.png",
+  "items": [
+   {
+    "name": "settings",
+    "cat": "button",
+    "file": "s9_settings.png",
+    "x": 5,
+    "y": 13,
+    "w": 78,
+    "h": 74,
+    "edge": {
+     "L": 1.2,
+     "R": 0.1,
+     "T": 0.2,
+     "B": 0.9
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "ticket_bar",
+    "cat": "hud",
+    "file": "s9_ticket_bar.png",
+    "x": 329,
+    "y": 23,
+    "w": 134,
+    "h": 64,
+    "edge": {
+     "L": 0.3,
+     "R": 0.9,
+     "T": 0.1,
+     "B": 1.2
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "node_40",
+    "cat": "node",
+    "file": "s9_node_40.png",
+    "x": 193,
+    "y": 13,
+    "w": 84,
+    "h": 88,
+    "edge": {
+     "L": 0.7,
+     "R": 0.6,
+     "T": 0.2,
+     "B": 4.2
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "node_39",
+    "cat": "node",
+    "file": "s9_node_39.png",
+    "x": 193,
+    "y": 133,
+    "w": 84,
+    "h": 84,
+    "edge": {
+     "L": 0.7,
+     "R": 0.7,
+     "T": 0.3,
+     "B": 2.1
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "node_38",
+    "cat": "node",
+    "file": "s9_node_38.png",
+    "x": 193,
+    "y": 247,
+    "w": 84,
+    "h": 86,
+    "edge": {
+     "L": 1.3,
+     "R": 1.0,
+     "T": 0.1,
+     "B": 3.4
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "node_37",
+    "cat": "node",
+    "file": "s9_node_37.png",
+    "x": 179,
+    "y": 359,
+    "w": 112,
+    "h": 116,
+    "edge": {
+     "L": 1.6,
+     "R": 4.7,
+     "T": 0.7,
+     "B": 4.1
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "node_36",
+    "cat": "node",
+    "file": "s9_node_36.png",
+    "x": 97,
+    "y": 483,
+    "w": 74,
+    "h": 78,
+    "edge": {
+     "L": 3.1,
+     "R": 2.3,
+     "T": 5.6,
+     "B": 6.2
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "node_challenge",
+    "cat": "node",
+    "file": "s9_node_challenge.png",
+    "x": 295,
+    "y": 483,
+    "w": 76,
+    "h": 78,
+    "edge": {
+     "L": 2.4,
+     "R": 5.2,
+     "T": 3.9,
+     "B": 8.1
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "hero",
+    "cat": "icon",
+    "file": "s9_hero.png",
+    "x": 195,
+    "y": 475,
+    "w": 80,
+    "h": 84,
+    "edge": {
+     "L": 2.1,
+     "R": 7.9,
+     "T": 4.3,
+     "B": 5.7
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "btn_task",
+    "cat": "button",
+    "file": "s9_btn_task.png",
+    "x": 369,
+    "y": 117,
+    "w": 94,
+    "h": 104,
+    "edge": {
+     "L": 1.2,
+     "R": 0.5,
+     "T": 1.1,
+     "B": 1.2
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "btn_achieve",
+    "cat": "button",
+    "file": "s9_btn_achieve.png",
+    "x": 369,
+    "y": 227,
+    "w": 94,
+    "h": 104,
+    "edge": {
+     "L": 1.1,
+     "R": 0.6,
+     "T": 0.3,
+     "B": 2.3
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "bubble",
+    "cat": "plate",
+    "file": "s9_bubble.png",
+    "x": 275,
+    "y": 349,
+    "w": 90,
+    "h": 46,
+    "edge": {
+     "L": 6.6,
+     "R": 0.6,
+     "T": 0.4,
+     "B": 1.0
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "btn_level",
+    "cat": "button",
+    "file": "s9_btn_level.png",
+    "x": 97,
+    "y": 587,
+    "w": 276,
+    "h": 106,
+    "edge": {
+     "L": 3.0,
+     "R": 3.0,
+     "T": 6.9,
+     "B": 6.5
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "start_hint",
+    "cat": "text",
+    "file": "s9_start_hint.png",
+    "x": 149,
+    "y": 701,
+    "w": 172,
+    "h": 26,
+    "edge": {
+     "L": 0.4,
+     "R": 0.4,
+     "T": 8.0,
+     "B": 2.5
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "nav_bar",
+    "cat": "backdrop",
+    "file": "s9_nav_bar_plate.png",
+    "x": 15,
+    "y": 725,
+    "w": 440,
+    "h": 110,
+    "edge": {
+     "L": 1.9,
+     "R": 1.5,
+     "T": 3.2,
+     "B": NaN
+    },
+    "touch": [],
+    "layer": "bg",
+    "children": [
+     "nav_1",
+     "nav_2",
+     "nav_3",
+     "nav_4"
+    ]
+   },
+   {
+    "name": "nav_1",
+    "cat": "button",
+    "file": "s9_nav_1.png",
+    "x": 29,
+    "y": 741,
+    "w": 110,
+    "h": 86,
+    "edge": {
+     "L": 15.7,
+     "R": 0.6,
+     "T": 8.8,
+     "B": 24.3
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "nav_2",
+    "cat": "button",
+    "file": "s9_nav_2.png",
+    "x": 141,
+    "y": 737,
+    "w": 110,
+    "h": 90,
+    "edge": {
+     "L": 0.9,
+     "R": 0.1,
+     "T": 1.7,
+     "B": 21.2
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "nav_3",
+    "cat": "button",
+    "file": "s9_nav_3.png",
+    "x": 253,
+    "y": 737,
+    "w": 108,
+    "h": 90,
+    "edge": {
+     "L": 0.0,
+     "R": 0.2,
+     "T": 1.6,
+     "B": 20.0
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   },
+   {
+    "name": "nav_4",
+    "cat": "button",
+    "file": "s9_nav_4.png",
+    "x": 363,
+    "y": 737,
+    "w": 90,
+    "h": 90,
+    "edge": {
+     "L": 0.2,
+     "R": 2.3,
+     "T": 7.0,
+     "B": 17.9
+    },
+    "touch": [],
+    "layer": "ui",
+    "children": []
+   }
+  ]
+ }
+}

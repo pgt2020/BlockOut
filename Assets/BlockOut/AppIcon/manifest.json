@@ -1,0 +1,13 @@
+{
+  "generated": true,
+  "platforms": {
+    "ios": 12,
+    "android": {
+      "densities": 5
+    },
+    "play_store": [
+      "play_store_512.png",
+      "feature_graphic_1024x500.png"
+    ]
+  }
+}

@@ -1,0 +1,102 @@
+[
+  {
+    "name": "ui_hover",
+    "label": "悬停",
+    "desc": "极轻的木质高点，默认关闭，验货条可开",
+    "dur": 0.1,
+    "size": 8864,
+    "peak": 0.72,
+    "rms": 0.2841,
+    "centroid_hz": 1560
+  },
+  {
+    "name": "ui_tap",
+    "label": "按钮点击",
+    "desc": "软木敲一下，暖、短、连点不糊",
+    "dur": 0.18,
+    "size": 15920,
+    "peak": 0.72,
+    "rms": 0.2949,
+    "centroid_hz": 789
+  },
+  {
+    "name": "ui_back",
+    "label": "返回",
+    "desc": "下行两音，方向感明确",
+    "dur": 0.295,
+    "size": 26062,
+    "peak": 0.72,
+    "rms": 0.2529,
+    "centroid_hz": 582
+  },
+  {
+    "name": "card_pick",
+    "label": "选卡",
+    "desc": "木琴单音带一点亮泛音",
+    "dur": 0.24,
+    "size": 21212,
+    "peak": 0.72,
+    "rms": 0.2951,
+    "centroid_hz": 875
+  },
+  {
+    "name": "tile_tap",
+    "label": "点方块",
+    "desc": "清脆短击，比按钮更硬一点",
+    "dur": 0.16,
+    "size": 14156,
+    "peak": 0.72,
+    "rms": 0.3062,
+    "centroid_hz": 1055
+  },
+  {
+    "name": "match",
+    "label": "消除",
+    "desc": "三音上行琶音，每点满 3 个方块触发",
+    "dur": 0.41,
+    "size": 36206,
+    "peak": 0.72,
+    "rms": 0.2018,
+    "centroid_hz": 761
+  },
+  {
+    "name": "combo",
+    "label": "连击",
+    "desc": "四级上行 + 长亮尾，每 9 个方块触发",
+    "dur": 0.612,
+    "size": 54022,
+    "peak": 0.72,
+    "rms": 0.1602,
+    "centroid_hz": 723
+  },
+  {
+    "name": "prop",
+    "label": "道具",
+    "desc": "短促上扫 + 木质落点，不刺耳",
+    "dur": 0.3,
+    "size": 26504,
+    "peak": 0.72,
+    "rms": 0.2094,
+    "centroid_hz": 797
+  },
+  {
+    "name": "win",
+    "label": "过关",
+    "desc": "大调琶音 + 稍长房间尾音",
+    "dur": 0.965,
+    "size": 85156,
+    "peak": 0.72,
+    "rms": 0.1811,
+    "centroid_hz": 739
+  },
+  {
+    "name": "lose",
+    "label": "失败",
+    "desc": "小三度下行 + 闷木噪，挫败但不刺",
+    "dur": 0.435,
+    "size": 38410,
+    "peak": 0.72,
+    "rms": 0.2218,
+    "centroid_hz": 470
+  }
+]
