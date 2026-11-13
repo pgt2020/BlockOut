@@ -95,8 +95,6 @@ namespace BlockOut.UI
             new Dictionary<BlockOutScreenId, string>
             {
                 { BlockOutScreenId.Loading,    "s1" },
-                { BlockOutScreenId.Home,       "s2" },
-                { BlockOutScreenId.Collection, "s3" },
                 { BlockOutScreenId.Board,      "s4" },
                 { BlockOutScreenId.Store,      "s7" },
             };
@@ -375,20 +373,16 @@ namespace BlockOut.UI
                 foreach(var id in BlockOutUIPrefabRegistry.DeliveredScreens())
                 {
                     var prefab=BlockOutUIPrefabRegistry.Load(id);
-                    var expected=BlockOutUIPrefabRegistry.ViewTypeForScreen(id);
-                    RequirePrefab(prefab,expected);
+                    RequireView(prefab,BlockOutUIPrefabRegistry.ViewTypeForScreen(id));
                     var go=Instantiate(prefab,canvasGo.transform,false);
-                    PrepareView(go,expected);
                     go.GetComponent<BlockOutUIViewBase>().ApplyTo(this);
                     screens[id]=go; go.SetActive(false);
                 }
                 foreach(var key in new[]{"PauseLayer","FailLayer","ConfirmLayer","SettlementLayer","SettingsLayer","AboutLayer","GuideLayer"})
                 {
                     var prefab=BlockOutUIPrefabRegistry.LoadLayer(key);
-                    var expected=BlockOutUIPrefabRegistry.ViewTypeForLayer(key);
-                    RequirePrefab(prefab,expected);
+                    RequireView(prefab,BlockOutUIPrefabRegistry.ViewTypeForLayer(key));
                     var go=Instantiate(prefab,canvasGo.transform,false);
-                    PrepareView(go,expected);
                     go.GetComponent<BlockOutUIViewBase>().ApplyTo(this);
                     layers[key]=go; go.SetActive(false);
                 }
@@ -401,22 +395,13 @@ namespace BlockOut.UI
             }
             catch { canvasGo.SetActive(false); throw; }
         }
-        /// <summary>只校验 Prefab 资产与根上的 View 组件存在；引用完整性放到实例上校验，避免污染资产对象。</summary>
-        private static void RequirePrefab(GameObject prefab,Type expected)
+        private static void RequireView(GameObject prefab,Type expected)
         {
             if(prefab==null || expected==null) throw new InvalidOperationException("缺少 UI Prefab 或 View 类型");
-            if(prefab.GetComponent(expected) as BlockOutUIViewBase==null)
-                throw new InvalidOperationException(prefab.name+" 缺少 "+expected.Name);
-        }
-        /// <summary>实例化后：先补回可能丢失的列表项引用，再做完整性校验。</summary>
-        private static void PrepareView(GameObject instance,Type expected)
-        {
-            var view=instance.GetComponent(expected) as BlockOutUIViewBase;
-            if(view==null) throw new InvalidOperationException(instance.name+" 缺少 "+expected.Name);
-            RestoreItemPrefabLinks(view);
+            var view=prefab.GetComponent(expected) as BlockOutUIViewBase;
+            if(view==null) throw new InvalidOperationException(prefab.name+" 缺少 "+expected.Name);
             string error;
-            if(!view.ValidateReferences(out error))
-                throw new InvalidOperationException(instance.name.Replace("(Clone)",string.Empty)+": "+error);
+            if(!view.ValidateReferences(out error)) throw new InvalidOperationException(prefab.name+": "+error);
         }
         private void OnDestroy() { if(metrics!=null) metrics.Changed-=Relayout; }
         public void Relayout()

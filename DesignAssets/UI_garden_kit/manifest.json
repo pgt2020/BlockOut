@@ -1,0 +1,434 @@
+[
+  {
+    "file": "background/bg_garden_1080x1920.png",
+    "type": "generated-background",
+    "size": [
+      1080,
+      1920
+    ],
+    "note": "生成的花园画廊底图（无 UI）"
+  },
+  {
+    "file": "background/bg_garden_2160x3840.png",
+    "type": "generated-background",
+    "size": [
+      2160,
+      3840
+    ],
+    "note": "2x 渲染"
+  },
+  {
+    "file": "background/bg_garden_941x1672.png",
+    "type": "generated-background",
+    "size": [
+      941,
+      1672
+    ],
+    "note": "与参考图同尺寸"
+  },
+  {
+    "file": "ui/btn_settings.png",
+    "type": "sliced",
+    "size": [
+      108,
+      108
+    ],
+    "source_box": [
+      50,
+      48,
+      158,
+      156
+    ],
+    "note": "圆形奶油底 + 齿轮"
+  },
+  {
+    "file": "ui/pill_currency.png",
+    "type": "sliced",
+    "size": [
+      254,
+      92
+    ],
+    "source_box": [
+      662,
+      58,
+      916,
+      150
+    ],
+    "note": "票券 + 数量 + 加号，复合胶囊"
+  },
+  {
+    "file": "ui/btn_task.png",
+    "type": "sliced",
+    "size": [
+      175,
+      200
+    ],
+    "source_box": [
+      735,
+      240,
+      910,
+      440
+    ],
+    "note": "任务按钮：圆盘 + 标签"
+  },
+  {
+    "file": "ui/btn_achievement.png",
+    "type": "sliced",
+    "size": [
+      175,
+      202
+    ],
+    "source_box": [
+      735,
+      483,
+      910,
+      685
+    ],
+    "note": "成就按钮：圆盘 + 标签"
+  },
+  {
+    "file": "ui/node_locked_40.png",
+    "type": "sliced",
+    "size": [
+      170,
+      175
+    ],
+    "source_box": [
+      395,
+      45,
+      565,
+      220
+    ],
+    "note": "灰锁节点（数字烘焙）"
+  },
+  {
+    "file": "ui/node_locked_39.png",
+    "type": "sliced",
+    "size": [
+      170,
+      160
+    ],
+    "source_box": [
+      395,
+      265,
+      565,
+      425
+    ],
+    "note": "灰锁节点（数字烘焙）"
+  },
+  {
+    "file": "ui/node_star_38.png",
+    "type": "sliced",
+    "size": [
+      176,
+      178
+    ],
+    "source_box": [
+      394,
+      504,
+      570,
+      682
+    ],
+    "note": "紫星节点（数字烘焙）"
+  },
+  {
+    "file": "ui/node_current_37.png",
+    "type": "sliced",
+    "size": [
+      210,
+      226
+    ],
+    "source_box": [
+      360,
+      732,
+      570,
+      958
+    ],
+    "note": "当前关卡绿节点 + 下指箭头"
+  },
+  {
+    "file": "ui/node_fail_36.png",
+    "type": "sliced",
+    "size": [
+      157,
+      157
+    ],
+    "source_box": [
+      193,
+      968,
+      350,
+      1125
+    ],
+    "note": "失败红节点 + 骷髅"
+  },
+  {
+    "file": "ui/node_challenge.png",
+    "type": "sliced",
+    "size": [
+      167,
+      157
+    ],
+    "source_box": [
+      588,
+      968,
+      755,
+      1125
+    ],
+    "note": "挑战红节点 + 骷髅"
+  },
+  {
+    "file": "ui/bubble_current.png",
+    "type": "sliced",
+    "size": [
+      147,
+      93
+    ],
+    "source_box": [
+      553,
+      692,
+      700,
+      785
+    ],
+    "note": "“当前关卡”气泡"
+  },
+  {
+    "file": "ui/mascot_arrow.png",
+    "type": "sliced",
+    "size": [
+      152,
+      136
+    ],
+    "source_box": [
+      378,
+      944,
+      530,
+      1080
+    ],
+    "note": "黄色方块角色 + 绿箭头，按轮廓遮罩"
+  },
+  {
+    "file": "ui/btn_primary.png",
+    "type": "sliced",
+    "size": [
+      546,
+      216
+    ],
+    "source_box": [
+      198,
+      1156,
+      744,
+      1372
+    ],
+    "note": "主按钮完整版（文字烘焙）"
+  },
+  {
+    "file": "ui/nav_bar.png",
+    "type": "sliced",
+    "size": [
+      844,
+      234
+    ],
+    "source_box": [
+      48,
+      1438,
+      892,
+      1672
+    ],
+    "note": "底部导航整条"
+  },
+  {
+    "file": "ui/tab_home.png",
+    "type": "sliced-opaque",
+    "size": [
+      184,
+      170
+    ],
+    "source_box": [
+      80,
+      1480,
+      264,
+      1650
+    ],
+    "note": "带导航奶油底，需与 nav_bar 同位置使用"
+  },
+  {
+    "file": "ui/tab_gallery.png",
+    "type": "sliced-opaque",
+    "size": [
+      184,
+      170
+    ],
+    "source_box": [
+      288,
+      1480,
+      472,
+      1650
+    ],
+    "note": "带导航奶油底，需与 nav_bar 同位置使用"
+  },
+  {
+    "file": "ui/tab_skin.png",
+    "type": "sliced-opaque",
+    "size": [
+      184,
+      170
+    ],
+    "source_box": [
+      496,
+      1480,
+      680,
+      1650
+    ],
+    "note": "带导航奶油底，需与 nav_bar 同位置使用"
+  },
+  {
+    "file": "ui/tab_daily.png",
+    "type": "sliced-opaque",
+    "size": [
+      184,
+      170
+    ],
+    "source_box": [
+      704,
+      1480,
+      888,
+      1650
+    ],
+    "note": "带导航奶油底，需与 nav_bar 同位置使用"
+  },
+  {
+    "file": "generated/node_base_locked.png",
+    "type": "generated",
+    "size": [
+      256,
+      256
+    ],
+    "note": "无文字节点底座，可叠加关卡数字"
+  },
+  {
+    "file": "generated/node_base_current.png",
+    "type": "generated",
+    "size": [
+      256,
+      256
+    ],
+    "note": "无文字节点底座，可叠加关卡数字"
+  },
+  {
+    "file": "generated/node_base_star.png",
+    "type": "generated",
+    "size": [
+      256,
+      256
+    ],
+    "note": "无文字节点底座，可叠加关卡数字"
+  },
+  {
+    "file": "generated/node_base_fail.png",
+    "type": "generated",
+    "size": [
+      256,
+      256
+    ],
+    "note": "无文字节点底座，可叠加关卡数字"
+  },
+  {
+    "file": "generated/node_base_challenge.png",
+    "type": "generated",
+    "size": [
+      256,
+      256
+    ],
+    "note": "无文字节点底座，可叠加关卡数字"
+  },
+  {
+    "file": "generated/btn_primary_empty.png",
+    "type": "generated",
+    "size": [
+      512,
+      200
+    ],
+    "note": "无文字主按钮，文字/图标另叠"
+  },
+  {
+    "file": "generated/nav_bar_empty.png",
+    "type": "generated",
+    "size": [
+      450,
+      125
+    ],
+    "note": "空导航条，tab 另叠"
+  },
+  {
+    "file": "generated/bubble_current_empty.png",
+    "type": "generated",
+    "size": [
+      220,
+      140
+    ],
+    "note": "空气泡，文字另叠"
+  },
+  {
+    "file": "generated/badge_lock.png",
+    "type": "generated",
+    "size": [
+      128,
+      128
+    ],
+    "note": "独立徽章"
+  },
+  {
+    "file": "generated/badge_star.png",
+    "type": "generated",
+    "size": [
+      128,
+      128
+    ],
+    "note": "独立徽章"
+  },
+  {
+    "file": "generated/badge_skull.png",
+    "type": "generated",
+    "size": [
+      128,
+      128
+    ],
+    "note": "独立徽章"
+  },
+  {
+    "file": "generated/badge_plus.png",
+    "type": "generated",
+    "size": [
+      128,
+      128
+    ],
+    "note": "简单徽章"
+  },
+  {
+    "file": "generated/badge_alert.png",
+    "type": "generated",
+    "size": [
+      128,
+      128
+    ],
+    "note": "简单徽章"
+  },
+  {
+    "file": "generated/path_vertical.png",
+    "type": "generated",
+    "size": [
+      96,
+      640
+    ],
+    "note": "可纵向/横向平铺的路径条"
+  },
+  {
+    "file": "generated/path_horizontal.png",
+    "type": "generated",
+    "size": [
+      320,
+      56
+    ],
+    "note": "可纵向/横向平铺的路径条"
+  }
+]

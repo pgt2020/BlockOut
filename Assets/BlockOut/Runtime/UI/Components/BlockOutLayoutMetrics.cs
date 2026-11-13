@@ -4,7 +4,7 @@ namespace BlockOut.UI
 {
     /// <summary>
     /// 画布布局度量：读取 Screen.safeArea，换算为画布单位（pt），
-    /// 按 09 §6 断点（390×844 基准 / 360×640 小屏 / ≥390×932 长屏）输出组件尺寸。
+    /// 按 Docs/DesignSystem.md 断点（390×844 基准 / 360×640 小屏 / ≥390×932 长屏）输出组件尺寸。
     /// 挂在 Canvas 根物体上，分辨率或安全区变化时触发 Changed 事件。
     /// </summary>
     public sealed class BlockOutLayoutMetrics : MonoBehaviour
@@ -84,10 +84,12 @@ namespace BlockOut.UI
         /// <summary>底部导航高：小屏 64→56 是唯一允许压缩的底部组件。</summary>
         public float NavHeight => IsSmallScreen ? 56f : 64f;
 
-        /// <summary>工具条高：固定 104，高度不随屏宽缩放（09 §6 唯一规则）。</summary>
+        /// <summary>工具条高：三道具全锁时 72，解锁任意道具后 104（v6 §4）。不随屏宽缩放。</summary>
         public float ToolbarHeight => 104f;
+        public float ToolbarHeightCompact => 72f;
+        public float ToolbarHeightFor(bool hasUnlockedTool) => hasUnlockedTool ? 104f : 72f;
 
-        /// <summary>CTA 高 88 不压缩（09 §6）。</summary>
+        /// <summary>CTA 高 88 不压缩（Docs/DesignSystem.md）。</summary>
         public float CtaHeight => 88f;
 
         /// <summary>预览卡高：按"扣掉安全区 + 顶栏 + CTA（含次级按钮）+ 进度卡 + 底部导航"后的**剩余高度**计算（P1-7）。
@@ -101,7 +103,7 @@ namespace BlockOut.UI
             return Mathf.Clamp(remain, 120f, IsSmallScreen ? 210f : 300f);
         }
 
-        /// <summary>游戏页棋盘边长 = 屏宽 − 36（09 §6 书面规则；04 视觉稿为 372，差异见交付说明）。</summary>
+        /// <summary>游戏页棋盘边长 = 屏宽 − 36（Docs/DesignSystem.md 书面规则；04 视觉稿为 372，差异见交付说明）。</summary>
         public float BoardSideByWidth => Mathf.Max(120f, CanvasWidth - 36f);
     }
 }

@@ -92,7 +92,7 @@ namespace BlockOut.UI
             for (int i = 0; i < HomeRegionArts.Length; i++)
             {
                 var art = HomeRegionArts[i];
-                var mist = BlockOutWidgets.Panel(art.transform, "Mist", new Color(1f, .97f, .94f, .35f));
+                var mist = BlockOutWidgets.Panel(art.transform, "Mist", BlockOutDesignTokens.WithAlpha(BlockOutDesignTokens.White, 0.25f));
                 mist.raycastTarget = false;
                 var lockImg = BlockOutWidgets.SpriteImage(art.transform, "LockDot", BlockOutIconFactory.LockIcon(),
                     UIAnchorPreset.MiddleCenter, 0, 0, 14, 12);
@@ -112,24 +112,24 @@ namespace BlockOut.UI
             failImg.type = Image.Type.Sliced;
             BlockOutWidgets.SpriteImage(HomeFailBox.transform, "BrokenIcon", BlockOutIconFactory.BrokenImageIcon(),
                 UIAnchorPreset.TopCenter, 0, 26, 40, 32).color = BlockOutDesignTokens.GrayLocked;
-            BlockOutWidgets.Label(HomeFailBox.transform, "FailText", "图片加载失败", 8, 700,
+            BlockOutWidgets.Label(HomeFailBox.transform, "FailText", "图片加载失败", 11, 700,
                 BlockOutDesignTokens.TextCocoa60, TextAnchor.MiddleCenter, UIAnchorPreset.TopCenter, 0, 64, 160, 12);
             HomeRetryBtn = BlockOutWidgets.SecondaryButton(HomeFailBox.transform, "RetryBtn", "重试", null,
                 UIAnchorPreset.TopCenter, 0, 84, 80, 24);
-            HomeRetryExhausted = BlockOutWidgets.Label(HomeFailBox.transform, "ExhaustedText", "稍后再试", 8, 400,
+            HomeRetryExhausted = BlockOutWidgets.Label(HomeFailBox.transform, "ExhaustedText", "稍后再试", 11, 400,
                 BlockOutDesignTokens.TextCocoa60, TextAnchor.MiddleCenter, UIAnchorPreset.TopCenter, 0, 88, 160, 12);
             HomeFailBox.SetActive(false);
 
             // 标题与拼片徽章（浮层：创建于插画区之后 = 绘制在上层）
-            BlockOutWidgets.Label(HomePreviewCard, "CardTitle", "第一章 · 作品预览", 8, 800,
+            BlockOutWidgets.Label(HomePreviewCard, "CardTitle", "第一章 · 作品预览", 11, 800,
                 BlockOutDesignTokens.TextCocoa60, TextAnchor.MiddleLeft, UIAnchorPreset.TopLeft, 18, 18, 160, 12);
             var pieceBadge = BlockOutWidgets.Pill(HomePreviewCard, "PieceBadge", 62, 20, BlockOutDesignTokens.CtaCoral,
                 BlockOutDesignTokens.CtaCoral, UIAnchorPreset.TopRight, -10, 12);
-            pieceBadge.GetComponent<Image>().color = new Color(1f, 0.914f, 0.902f); // #FFE9E6
-            HomePieceBadge = BlockOutWidgets.Label(pieceBadge, "Text", "拼片 0/12", 8, 900,
-                BlockOutDesignTokens.CtaCoralBottom, TextAnchor.MiddleCenter);
+            pieceBadge.GetComponent<Image>().color = BlockOutDesignTokens.ActionPrimary; // v6 #4A2F26
+            HomePieceBadge = BlockOutWidgets.Label(pieceBadge, "Text", "通关 0/12", 11, 900,
+                BlockOutDesignTokens.White, TextAnchor.MiddleCenter);   // v6: 深棕徽底必须配白字
 
-            HomePlaceholderTag = BlockOutWidgets.Label(HomePreviewCard, "PlaceholderTag", "作品预览", 7, 400,
+            HomePlaceholderTag = BlockOutWidgets.Label(HomePreviewCard, "PlaceholderTag", "作品预览", 11, 400,
                 BlockOutDesignTokens.TextCocoa60, TextAnchor.MiddleRight, UIAnchorPreset.BottomRight, -8, -6, 150, 10).gameObject;
             HomePlaceholderTag.SetActive(false);
 
@@ -151,13 +151,13 @@ namespace BlockOut.UI
             HomeChapterTitle = BlockOutWidgets.Label(prog, "ChapterTitle", "第一章 · 甜点星球",
                 BlockOutDesignTokens.FontCardTitle, 800, BlockOutDesignTokens.TextCocoa, TextAnchor.MiddleLeft,
                 UIAnchorPreset.TopLeft, 18, 16, 200, 14);
-            HomeCollectionLink = BlockOutWidgets.SecondaryButton(prog, "CollectionLink", "查看收藏", null,
+            HomeCollectionLink = BlockOutWidgets.SecondaryButton(prog, "CollectionLink", "查看关卡", null,
                 UIAnchorPreset.TopRight, -12, 12, 72, 18);
-            var barBg = BlockOutWidgets.Panel(prog, "BarBg", new Color(0.961f, 0.902f, 0.847f),
+            var barBg = BlockOutWidgets.Panel(prog, "BarBg", BlockOutDesignTokens.BgCreamDeep,
                 UIAnchorPreset.TopLeft, 18, 38, 306, 10);
-            barBg.sprite = BlockOutIconFactory.RoundedSlice(5f, new Color(0.961f, 0.902f, 0.847f), Color.clear, 0f, null);
+            barBg.sprite = BlockOutIconFactory.RoundedSlice(5f, BlockOutDesignTokens.BgCreamDeep, Color.clear, 0f, null);
             barBg.type = Image.Type.Sliced;
-            HomeProgressFill = BlockOutWidgets.Panel(prog, "BarFill", BlockOutDesignTokens.CtaCoral,
+            HomeProgressFill = BlockOutWidgets.Panel(prog, "BarFill", BlockOutDesignTokens.ActionPrimary,
                 UIAnchorPreset.TopLeft, 18, 38, 306, 10);
             HomeProgressFill.type = Image.Type.Filled;
             HomeProgressFill.fillMethod = Image.FillMethod.Horizontal;
@@ -171,7 +171,7 @@ namespace BlockOut.UI
                 node.sprite = BlockOutIconFactory.Circle(BlockOutDesignTokens.SurfaceCard, BlockOutDesignTokens.StrokeBoard, 1.5f);
                 HomeNodes[i] = node;
             }
-            HomePieceText = BlockOutWidgets.Label(prog, "PieceText", "拼片 0/12 · 还差 12 片解锁完整作品",
+            HomePieceText = BlockOutWidgets.Label(prog, "PieceText", "通关 0/12 · 还差 12 关完成本章",
                 BlockOutDesignTokens.FontCardSub, 400, BlockOutDesignTokens.TextCocoa60, TextAnchor.MiddleCenter,
                 UIAnchorPreset.TopCenter, 0, 94, 306, 12);
 
@@ -196,41 +196,7 @@ namespace BlockOut.UI
             return go;
         }
 
-        private void BuildDecoToys(Transform artRoot)
-        {
-            var art = new BlockOutChapterArtProvider();
-            float cw = 22f;
-            // 玩具块 B：双格竖条（薄荷）+ 向上箭头
-            var toyB = BlockOutWidgets.Panel(artRoot, "ToyB", Color.clear, UIAnchorPreset.TopLeft, 48, 120, cw, cw * 2);
-            var b0 = BlockOutWidgets.SpriteImage(toyB.transform, "Cell0", art.ToyCell(BlockOutDesignTokens.JellyBottom[1]),
-                UIAnchorPreset.TopLeft, 0, 0, cw, cw);
-            var b1 = BlockOutWidgets.SpriteImage(toyB.transform, "Cell1", art.ToyCell(BlockOutDesignTokens.JellyBottom[1]),
-                UIAnchorPreset.TopLeft, 0, cw, cw, cw);
-            BlockOutWidgets.SpriteImage(toyB.transform, "Arrow", BlockOutIconFactory.Arrow(Core.BlockOutDirection.Up),
-                UIAnchorPreset.TopLeft, cw * 0.28f, cw * 0.28f, cw * 0.45f, cw * 0.45f);
-            // 涟漪
-            var ripple = BlockOutWidgets.SpriteImage(artRoot, "Ripple", art.RippleSprite(),
-                UIAnchorPreset.TopLeft, 48 + cw * 0.5f - 14, 120 - 16, 28, 28);
-            ripple.color = new Color(1f, 1f, 1f, 0.85f);
-            // 玩具块 A：L 形三格（橙）+ 向右箭头
-            var toyA = BlockOutWidgets.Panel(artRoot, "ToyA", Color.clear, UIAnchorPreset.TopLeft, 196, 128, cw * 2, cw * 2);
-            BlockOutWidgets.SpriteImage(toyA.transform, "Cell0", art.ToyCell(BlockOutDesignTokens.JellyBottom[0]),
-                UIAnchorPreset.TopLeft, 0, 0, cw, cw);
-            BlockOutWidgets.SpriteImage(toyA.transform, "Cell1", art.ToyCell(BlockOutDesignTokens.JellyBottom[0]),
-                UIAnchorPreset.TopLeft, 0, cw, cw, cw);
-            BlockOutWidgets.SpriteImage(toyA.transform, "Cell2", art.ToyCell(BlockOutDesignTokens.JellyBottom[0]),
-                UIAnchorPreset.TopLeft, cw, cw, cw, cw);
-            BlockOutWidgets.SpriteImage(toyA.transform, "Arrow", BlockOutIconFactory.Arrow(Core.BlockOutDirection.Right),
-                UIAnchorPreset.TopLeft, cw * 1.28f, cw * 0.28f, cw * 0.45f, cw * 0.45f);
-            // 飞出轨迹（虚线点列）
-            for (int i = 0; i < 3; i++)
-            {
-                var dot = BlockOutWidgets.Panel(artRoot, "TrailDot_" + i, BlockOutDesignTokens.CtaCoral,
-                    UIAnchorPreset.TopLeft, 196 + cw * 2 + 6 + i * 9, 128 + cw * 1.6f - i * 4, 4, 4);
-                dot.sprite = BlockOutIconFactory.Circle(BlockOutDesignTokens.CtaCoral, Color.clear, 0f);
-                var c = dot.color; c.a = 0.8f - i * 0.22f; dot.color = c;
-            }
-        }
+        private void BuildDecoToys(Transform artRoot) { }
 
         private GameObject BuildBoardScreen()
         {
@@ -259,9 +225,9 @@ namespace BlockOut.UI
             }
             // 计时胶囊（倒计时模式专用）
             BoardTimerPill = BlockOutWidgets.Pill(hud.transform, "TimerPill", 64, 20, BlockOutDesignTokens.BgCreamDeep,
-                new Color(1f, 0.722f, 0.302f), UIAnchorPreset.TopRight, -70, 11);
-            BoardTimerText = BlockOutWidgets.Label(BoardTimerPill, "TimerText", "01:23", 9, 900,
-                new Color(0.910f, 0.604f, 0.169f), TextAnchor.MiddleCenter);
+                BlockOutDesignTokens.GoldCoin, UIAnchorPreset.TopRight, -70, 11);
+            BoardTimerText = BlockOutWidgets.Label(BoardTimerPill, "TimerText", "01:23", 11, 900,
+                BlockOutDesignTokens.GoldRim, TextAnchor.MiddleCenter);
             BoardTimerPill.gameObject.SetActive(false);
 
             // ---- 剩余块数胶囊 ----
@@ -284,19 +250,19 @@ namespace BlockOut.UI
             // ---- 棋盘区（正方形；BoardView 由 Bootstrapper 挂入） ----
             BlockOutWidgets.Place(go.transform, "BoardArea", UIAnchorPreset.MiddleCenter, 0, 0, 354, 354);
 
-            // ---- 操作提示 pill（09 §6：固定 220×26 居中，不缩放） ----
+            // ---- 操作提示 pill（Docs/DesignSystem.md：固定 220×26 居中，不缩放） ----
             var hintPill = BlockOutWidgets.Pill(go.transform, "HintPill", 220, 26, BlockOutDesignTokens.SurfaceCard,
                 BlockOutDesignTokens.StrokeWarm, UIAnchorPreset.TopCenter, 0, 0);
             BlockOutWidgets.SpriteImage(hintPill, "Bulb", BlockOutIconFactory.Bulb(),
-                UIAnchorPreset.MiddleLeft, 12, 0, 16, 16).color = new Color(1f, 0.722f, 0.302f);
+                UIAnchorPreset.MiddleLeft, 12, 0, 16, 16).color = BlockOutDesignTokens.GoldCoin;
             BoardHintPill = BlockOutWidgets.Label(hintPill, "HintText", "轻点整块方块，沿箭头方向飞出",
                 BlockOutDesignTokens.FontHintPill, 400, BlockOutDesignTokens.TextCocoa, TextAnchor.MiddleLeft,
                 UIAnchorPreset.Stretch);
             BoardHintPill.rectTransform.offsetMin = new Vector2(34, 0);
             BoardHintPill.rectTransform.offsetMax = new Vector2(-10, 0);
 
-            // ---- 底部工具条：提示 / 锤子 / 魔法棒（09 §5：342×104；槽位区左右各内缩 26） ----
-            var toolbar = BlockOutWidgets.Place(go.transform, "BottomToolbar", UIAnchorPreset.BottomLeft, 24, 28, 342, 104);
+            // ---- 底部工具条：提示 / 锤子 / 魔法棒（Docs/DesignSystem.md：342×104；槽位区左右各内缩 26） ----
+            var toolbar = BlockOutWidgets.Place(go.transform, "BottomToolbar", UIAnchorPreset.BottomLeft, 24, 28, 342, 72);
             var tbImg = toolbar.gameObject.AddComponent<Image>();
             tbImg.sprite = BlockOutIconFactory.RoundedSlice(26f, BlockOutDesignTokens.SurfaceCard,
                 BlockOutDesignTokens.StrokeWarm, 2f, null);
@@ -331,10 +297,10 @@ namespace BlockOut.UI
             slot.CountBadge = BlockOutWidgets.Panel(root, "CountBadge", BlockOutDesignTokens.CtaCoral,
                 UIAnchorPreset.TopCenter, 20.5f, 15.5f, 21, 21).gameObject;
             slot.CountBadge.GetComponent<Image>().sprite = BlockOutIconFactory.Circle(BlockOutDesignTokens.CtaCoral, Color.clear, 0f);
-            slot.CountText = BlockOutWidgets.Label(slot.CountBadge.transform, "Count", "0", 9, 900,
+            slot.CountText = BlockOutWidgets.Label(slot.CountBadge.transform, "Count", "0", 11, 900,
                 BlockOutDesignTokens.White, TextAnchor.MiddleCenter);
 
-            // 锁徽章（未解锁态）：#8A6E62 圆底 + 白色锁形（09 §5.2）
+            // 锁徽章（未解锁态）：#6E5449 圆底 + 白色锁形（Docs/DesignSystem.md）
             slot.LockBadge = BlockOutWidgets.Panel(root, "LockBadge", BlockOutDesignTokens.LockBadge,
                 UIAnchorPreset.TopCenter, 20.5f, 15.5f, 21, 21).gameObject;
             slot.LockBadge.GetComponent<Image>().sprite = BlockOutIconFactory.Circle(BlockOutDesignTokens.LockBadge, Color.clear, 0f);
@@ -373,7 +339,7 @@ namespace BlockOut.UI
                 UIAnchorPreset.TopCenter, 0, 146, 232, 38);
             PauseSettingsBtn = BlockOutWidgets.SecondaryButton(card, "SettingsBtn", "设置", null,
                 UIAnchorPreset.TopCenter, 0, 190, 232, 38);
-            BlockOutWidgets.Label(card, "FreezeNote", "暂停期间计时 / 动画 / 输入全部冻结", 8, 400,
+            BlockOutWidgets.Label(card, "FreezeNote", "暂停期间计时 / 动画 / 输入全部冻结", 11, 400,
                 BlockOutDesignTokens.TextCocoa60, TextAnchor.MiddleCenter, UIAnchorPreset.BottomCenter, 0, 10, 240, 12);
             layer.SetActive(false);
         }
@@ -386,7 +352,7 @@ namespace BlockOut.UI
             var card = BlockOutWidgets.Card(layer.transform, "Card", 280, 150).rectTransform;
             BlockOutWidgets.Label(card, "Title", "挑战失败", BlockOutDesignTokens.FontPopupTitle, 900,
                 BlockOutDesignTokens.TextCocoa, TextAnchor.MiddleCenter, UIAnchorPreset.TopCenter, 0, 14, 200, 20);
-            FailReasonText = BlockOutWidgets.Label(card, "ReasonText", "生命耗尽", 9, 400,
+            FailReasonText = BlockOutWidgets.Label(card, "ReasonText", "生命耗尽", 11, 400,
                 BlockOutDesignTokens.TextCocoa60, TextAnchor.MiddleCenter, UIAnchorPreset.TopCenter, 0, 36, 200, 12);
 
             // 复活主按钮：标签按资格切换（免费 / 激励广告 / 300 金币 / 加载中 / 置灰）；免费徽章仅免费态显示
@@ -399,14 +365,14 @@ namespace BlockOut.UI
                 UIAnchorPreset.TopRight, -8, -7, 34, 14).gameObject;
             FailFreeBadge.GetComponent<Image>().sprite = BlockOutIconFactory.RoundedSlice(7f, BlockOutDesignTokens.GoldCoin, Color.clear, 0f, null);
             FailFreeBadge.GetComponent<Image>().type = Image.Type.Sliced;
-            BlockOutWidgets.Label(FailFreeBadge.transform, "Text", "免费", 7, 900,
+            BlockOutWidgets.Label(FailFreeBadge.transform, "Text", "免费", 11, 900,
                 BlockOutDesignTokens.GoldText, TextAnchor.MiddleCenter);
             FailFreeBadge.SetActive(false);
             FailReviveLabel = FailReviveBtn.transform.Find("Title").GetComponent<Text>();
 
-            FailReviveNote = BlockOutWidgets.Label(card, "ReviveNote", "生命模式补 1 心 · 倒计时模式 +30 秒；单次挑战唯一一次复活", 7, 400,
+            FailReviveNote = BlockOutWidgets.Label(card, "ReviveNote", "生命模式补 1 心 · 倒计时模式 +30 秒；单次挑战唯一一次复活", 11, 400,
                 BlockOutDesignTokens.TextCocoa60, TextAnchor.MiddleCenter, UIAnchorPreset.TopCenter, 0, 94, 240, 11);
-            FailExhaustedNote = BlockOutWidgets.Label(card, "ExhaustedNote", "复活机会已用完，只能重开或退出本关", 7, 700,
+            FailExhaustedNote = BlockOutWidgets.Label(card, "ExhaustedNote", "复活机会已用完，只能重开或退出本关", 11, 700,
                 BlockOutDesignTokens.TextCocoa60, TextAnchor.MiddleCenter, UIAnchorPreset.TopCenter, 0, 94, 240, 11);
             FailExhaustedNote.gameObject.SetActive(false);
 
@@ -424,7 +390,7 @@ namespace BlockOut.UI
             var card = BlockOutWidgets.Card(layer.transform, "Card", 280, 158).rectTransform;
             ConfirmTitle = BlockOutWidgets.Label(card, "Title", "重开本关？", BlockOutDesignTokens.FontPopupTitle, 900,
                 BlockOutDesignTokens.TextCocoa, TextAnchor.MiddleCenter, UIAnchorPreset.TopCenter, 0, 16, 240, 20);
-            ConfirmBody = BlockOutWidgets.Label(card, "Body", string.Empty, 8, 400,
+            ConfirmBody = BlockOutWidgets.Label(card, "Body", string.Empty, 11, 400,
                 BlockOutDesignTokens.TextCocoa60, TextAnchor.MiddleCenter, UIAnchorPreset.TopCenter, 0, 44, 240, 36);
             ConfirmCancelBtn = BlockOutWidgets.SecondaryButton(card, "CancelBtn", "取消", null,
                 UIAnchorPreset.TopLeft, 20, 100, 100, 28);
@@ -474,9 +440,9 @@ namespace BlockOut.UI
             levelImgGo.transform.SetSiblingIndex(SettleRevealRoot.transform.GetSiblingIndex() + 1);   // 置于网格之上
             SettleLevelImage = liImg;
 
-            SettlePieceText = BlockOutWidgets.Label(card, "PieceText", "拼片 0/12", BlockOutDesignTokens.FontCardTitle, 800,
+            SettlePieceText = BlockOutWidgets.Label(card, "PieceText", "通关 0/12", BlockOutDesignTokens.FontCardTitle, 800,
                 BlockOutDesignTokens.MintText, TextAnchor.MiddleCenter, UIAnchorPreset.TopCenter, 0, 270, 260, 14);
-            SettleNoteText = BlockOutWidgets.Label(card, "NoteText", "本次新揭晓 1 片拼片", BlockOutDesignTokens.FontCardSub, 400,
+            SettleNoteText = BlockOutWidgets.Label(card, "NoteText", "本关进度已保存", BlockOutDesignTokens.FontCardSub, 400,
                 BlockOutDesignTokens.TextCocoa60, TextAnchor.MiddleCenter, UIAnchorPreset.TopCenter, 0, 318, 260, 12);
             var coinRow = BlockOutWidgets.Place(card, "CoinRow", UIAnchorPreset.TopCenter, 0, 292, 200, 24);
             BlockOutWidgets.SpriteImage(coinRow, "CoinIcon", BlockOutIconFactory.Coin(),
@@ -490,7 +456,7 @@ namespace BlockOut.UI
             BlockOutWidgets.ApplyAnchor(nr, UIAnchorPreset.TopCenter);
             nr.anchoredPosition = new Vector2(0, -340);
             nr.sizeDelta = new Vector2(260, 40);
-            SettleCollectionBtn = BlockOutWidgets.SecondaryButton(card, "CollectionBtn", "查看收藏", null,
+            SettleCollectionBtn = BlockOutWidgets.SecondaryButton(card, "CollectionBtn", "查看关卡", null,
                 UIAnchorPreset.TopCenter, 0, 388, 260, 32);
             SettleReplayBtn = BlockOutWidgets.SecondaryButton(card, "ReplayBtn", "重玩本关", null,
                 UIAnchorPreset.TopCenter, 0, 422, 260, 32);
@@ -535,7 +501,7 @@ namespace BlockOut.UI
             BlockOutWidgets.Label(card, "Title", "关于", BlockOutDesignTokens.FontPopupTitle, 900,
                 BlockOutDesignTokens.TextCocoa, TextAnchor.MiddleCenter, UIAnchorPreset.TopCenter, 0, 16, 240, 20);
             BlockOutWidgets.Label(card, "Body",
-                "BlockOut\n版本 " + Application.version + "\n\n沿箭头送出方块，收集拼片，\n逐步解锁章节作品。",
+                "BlockOut\n版本 " + Application.version + "\n\n沿箭头送出方块，挑战关卡，\n逐步完成更多关卡。",
                 BlockOutDesignTokens.FontCardSub, 400,
                 BlockOutDesignTokens.TextCocoa, TextAnchor.UpperCenter, UIAnchorPreset.TopCenter, 0, 48, 256, 200);
             AboutCloseBtn = BlockOutWidgets.SecondaryButton(card, "CloseBtn", "关闭", null,
@@ -602,7 +568,7 @@ namespace BlockOut.UI
             CollectionBackBtn = BlockOutWidgets.CircleIconButton(go.transform, "BackBtn",
                 BlockOutIconFactory.Arrow(Core.BlockOutDirection.Left), 36, null,
                 BlockOutDesignTokens.SurfaceCard, BlockOutDesignTokens.StrokeWarm);
-            BlockOutWidgets.Label(go.transform, "Title", "收藏", BlockOutDesignTokens.FontPopupTitle, 900,
+            BlockOutWidgets.Label(go.transform, "Title", "关卡", BlockOutDesignTokens.FontPopupTitle, 900,
                 BlockOutDesignTokens.TextCocoa, TextAnchor.MiddleCenter, UIAnchorPreset.TopCenter, 0, 36, 200, 26);
             var coinPill = BlockOutWidgets.Pill(go.transform, "CoinPill", 94, 30, BlockOutDesignTokens.SurfaceCard,
                 BlockOutDesignTokens.StrokeWarm, UIAnchorPreset.TopCenter, 0, 80);
@@ -625,18 +591,18 @@ namespace BlockOut.UI
             CollectionChapterText = BlockOutWidgets.Label(card, "ChapterText", "第一章 · 甜点星球",
                 BlockOutDesignTokens.FontCardTitle, 800, BlockOutDesignTokens.TextCocoa, TextAnchor.MiddleLeft,
                 UIAnchorPreset.TopLeft, 144, 18, 180, 14);
-            var progBg = BlockOutWidgets.Panel(card, "ProgBg", new Color(0.961f, 0.902f, 0.847f),
+            var progBg = BlockOutWidgets.Panel(card, "ProgBg", BlockOutDesignTokens.BgCreamDeep,
                 UIAnchorPreset.TopLeft, 144, 38, 180, 10);
-            progBg.sprite = BlockOutIconFactory.RoundedSlice(5f, new Color(0.961f, 0.902f, 0.847f), Color.clear, 0f, null);
+            progBg.sprite = BlockOutIconFactory.RoundedSlice(5f, BlockOutDesignTokens.BgCreamDeep, Color.clear, 0f, null);
             progBg.type = Image.Type.Sliced;
-            var progFill = BlockOutWidgets.Panel(card, "ProgFill", BlockOutDesignTokens.CtaCoral,
+            var progFill = BlockOutWidgets.Panel(card, "ProgFill", BlockOutDesignTokens.ActionPrimary,
                 UIAnchorPreset.TopLeft, 144, 38, 180, 10);
             progFill.type = Image.Type.Filled;
             progFill.fillMethod = Image.FillMethod.Horizontal;
             progFill.fillOrigin = (int)Image.OriginHorizontal.Left;
             progFill.fillAmount = 0f;
             CollectionProgressFill = progFill;
-            CollectionPieceText = BlockOutWidgets.Label(card, "PieceText", "拼片 0/12 · 还差 12 片",
+            CollectionPieceText = BlockOutWidgets.Label(card, "PieceText", "通关 0/12 · 还差 12 片",
                 BlockOutDesignTokens.FontCardSub, 700, BlockOutDesignTokens.TextCocoa, TextAnchor.MiddleLeft,
                 UIAnchorPreset.TopLeft, 144, 54, 180, 12);
             CollectionViewBigBtn = MakeCoralMiniButton(card, "ViewBigBtn", "查看大图", 144, 72, 120, 30);
@@ -652,7 +618,7 @@ namespace BlockOut.UI
             var retryBar = BlockOutWidgets.Place(go.transform, "RetryBar", UIAnchorPreset.TopLeft, 24, 246, 342, 40);
             CollectionRetryBar = retryBar;
             var rbImg = retryBar.gameObject.AddComponent<Image>();
-            rbImg.sprite = BlockOutIconFactory.RoundedSlice(12f, new Color(1f, 0.949f, 0.910f),
+            rbImg.sprite = BlockOutIconFactory.RoundedSlice(12f, BlockOutDesignTokens.GoldLight,
                 BlockOutDesignTokens.StrokeWarm, 1.5f, null);
             rbImg.type = Image.Type.Sliced;
             CollectionRetryText = BlockOutWidgets.Label(retryBar, "RetryText", "章节图加载失败 · 点此重试",
@@ -696,7 +662,7 @@ namespace BlockOut.UI
                 BlockOutWidgets.SpriteImage(cell, "Lock", BlockOutIconFactory.LockIcon(), UIAnchorPreset.MiddleCenter, 0, 0, 14, 14);
                 var lockImg = cell.Find("Lock") != null ? cell.Find("Lock").GetComponent<Image>() : null;
                 if (lockImg != null) lockImg.color = BlockOutDesignTokens.GrayLocked;
-                BlockOutWidgets.Label(cell, "Num", (i + 1).ToString(), 9, 900,
+                BlockOutWidgets.Label(cell, "Num", (i + 1).ToString(), 11, 900,
                     BlockOutDesignTokens.CtaCoralBottom, TextAnchor.MiddleCenter, UIAnchorPreset.MiddleCenter, 0, 0, 26, 26);
             }
             BlockOutWidgets.Label(repeatCard, "RepeatNote", "已通关关卡可重复进入（刷金币/道具）；未通关关卡锁定",
@@ -764,7 +730,7 @@ namespace BlockOut.UI
             background.raycastTarget = false;
             rootRt.gameObject.AddComponent<RectMask2D>();
             var artwork = BlockOutWidgets.Place(rootRt, "Artwork", UIAnchorPreset.MiddleCenter, 0, 0, w, w);
-            var images = new Image[BlockOutChapterArtProvider.RegionCount];
+            var images = new Image[12];
             for (int i = 0; i < images.Length; i++)
             {
                 images[i] = BlockOutWidgets.Panel(artwork, "Region_" + i, BlockOutDesignTokens.Silhouette,
@@ -783,7 +749,7 @@ namespace BlockOut.UI
             img.sprite = BlockOutIconFactory.RoundedSlice(16f, BlockOutDesignTokens.SurfaceCard,
                 unlocked ? BlockOutDesignTokens.MintFly : BlockOutDesignTokens.StrokeWarm, 1.5f, null);
             img.type = Image.Type.Sliced;
-            // 已发布章可点击切换收藏查看的章节（P2-10：章节行切换交互）
+            // 已发布章可点击切换关卡查看的章节（P2-10：章节行切换交互）
             if (unlocked)
             {
                 var rowBtn = row.gameObject.AddComponent<Button>();
@@ -817,6 +783,7 @@ namespace BlockOut.UI
             img.sprite = BlockOutIconFactory.RoundedSlice(Mathf.Min(h * 0.5f, 18f), BlockOutDesignTokens.CtaCoralBottom,
                 Color.clear, 0f, BlockOutDesignTokens.CtaCoralTop);
             img.type = Image.Type.Sliced;
+            img.color = BlockOutDesignTokens.ActionPrimary;   // v6：中性遮罩 + 深棕 tint，白字才可读
             var btn = rt.gameObject.AddComponent<Button>();
             btn.targetGraphic = img;
             btn.transition = Selectable.Transition.None;
@@ -926,7 +893,7 @@ namespace BlockOut.UI
             refs.IconImg = BlockOutWidgets.SpriteImage(card, "Icon", icon, UIAnchorPreset.TopLeft, 52, 28, 28, 28);
             refs.IconImg.color = BlockOutDesignTokens.TextCocoa;
 
-            // 锁徽章（未解锁态：#8A6E62 圆底 + 白色锁形）
+            // 锁徽章（未解锁态：#6E5449 圆底 + 白色锁形）
             var lockBadge = new GameObject("LockBadge", typeof(RectTransform), typeof(Image));
             lockBadge.transform.SetParent(card, false);
             var lrt = (RectTransform)lockBadge.transform;
@@ -947,7 +914,7 @@ namespace BlockOut.UI
             refs.DescText = BlockOutWidgets.Label(card, "Desc", desc, BlockOutDesignTokens.FontCardSub, 400,
                 BlockOutDesignTokens.TextCocoa60, TextAnchor.MiddleLeft, UIAnchorPreset.TopLeft, 102, 40, 160, 24);
             BlockOutWidgets.SpriteImage(card, "Coin", BlockOutIconFactory.Coin(), UIAnchorPreset.TopLeft, 102, 64, 14, 14);
-            refs.CoinText = BlockOutWidgets.Label(card, "CoinText", "300 金币", 10, 700,
+            refs.CoinText = BlockOutWidgets.Label(card, "CoinText", "300 金币", 11, 700,
                 BlockOutDesignTokens.GoldText, TextAnchor.MiddleLeft, UIAnchorPreset.TopLeft, 120, 62, 100, 16);
 
             // 购买按钮（72×36，rx18；左下 254 / 上 28）
@@ -956,6 +923,7 @@ namespace BlockOut.UI
             buyImg.sprite = BlockOutIconFactory.RoundedSlice(18f, BlockOutDesignTokens.CtaCoralBottom,
                 Color.clear, 0f, BlockOutDesignTokens.CtaCoralTop);
             buyImg.type = Image.Type.Sliced;
+            buyImg.color = BlockOutDesignTokens.ActionPrimary;   // v6: 白字必须有深底
             var buyBtn = buyRt.gameObject.AddComponent<Button>();
             buyBtn.targetGraphic = buyImg;
             buyBtn.transition = Selectable.Transition.None;
@@ -986,7 +954,7 @@ namespace BlockOut.UI
             float visual = Mathf.Min(26f, touchW - 8f);
             if (visual < 16f) visual = 16f;
 
-            for (int i = 0; i < BlockOutChapterArtProvider.RegionCount; i++)
+            for (int i = 0; i < 12; i++)
             {
                 int col = i % Cols, row = i / Cols;
                 float x = PadX + col * colPitch + (colPitch - touchW) * 0.5f;
@@ -1125,7 +1093,7 @@ namespace BlockOut.UI
                     card.anchoredPosition = Vector2.zero;
                 }
                 if (card == null) return;
-                float revealH = Mathf.Clamp(height - 330, 120, 360);
+                float revealH = Mathf.Clamp(height - 330, 160, 360);
                 SetTopCenter(card, "Title", 0, 16, width - 32, 28);
                 SetTopCenter(card, "PieceText", 0, 52, width - 32, 20);
                 SetTopLeft(card, "RevealRoot", 16, 84, width - 32, revealH);
@@ -1133,10 +1101,13 @@ namespace BlockOut.UI
                 float y = 84 + revealH;
                 SetTopCenter(card, "NoteText", 0, y + 10, width - 32, 18);
                 SetTopCenter(card, "CoinRow", 0, y + 34, 240, 24);
-                SetTopCenter(card, "NextBtn", 0, y + 72, width - 32, 48);
-                SetTopLeft(card, "CollectionBtn", 16, y + 132, (width - 44) / 2, 44);
-                SetTopLeft(card, "ReplayBtn", width / 2 + 6, y + 132, (width - 44) / 2, 44);
-                SetTopCenter(card, "HomeBtn", 0, y + 188, width - 32, 44);
+                // v6 §5.3：按钮组贴底，消除旧版底部约 1/4 空白。
+                // 揭晓区保持正方形 contain，图下方留白作为图片呼吸区，不拉伸变形。
+                float nextY = Mathf.Max(y + 72, height - 24f - 160f);
+                SetTopCenter(card, "NextBtn", 0, nextY, width - 32, 48);
+                SetTopLeft(card, "CollectionBtn", 16, nextY + 60, (width - 44) / 2, 44);
+                SetTopLeft(card, "ReplayBtn", width / 2 + 6, nextY + 60, (width - 44) / 2, 44);
+                SetTopCenter(card, "HomeBtn", 0, nextY + 116, width - 32, 44);
                 LayoutArtwork(SettleRevealRoot, settlementContain);
             }
         }
@@ -1209,11 +1180,11 @@ namespace BlockOut.UI
                 bool secondaryVisible = secondary != null && secondary.gameObject.activeSelf;
                 float secondaryH = 38f;
 
-                float navBottom = navBottomHome;                       // 09 §6：底部组件止于安全区上方
+                float navBottom = navBottomHome;                       // Docs/DesignSystem.md：底部组件止于安全区上方
                 float navTop = navTopHome;
                 float progH = progHHome;
 
-                // CTA：默认贴预览卡；长屏（09 §6）CTA/导航吸底、中部留白
+                // CTA：默认贴预览卡；长屏（Docs/DesignSystem.md）CTA/导航吸底、中部留白
                 float ctaY = cardY + cardH + (small ? 8f : 20f);
                 if (longScreen)
                 {
@@ -1265,7 +1236,7 @@ namespace BlockOut.UI
                 }
             }
 
-            // ---- Board（04 HUD + 09 §6：棋盘 W-36 居中 / 提示 pill 220×26 / 工具条 342×104 吸底） ----
+            // ---- Board（04 HUD + Docs/DesignSystem.md：棋盘 W-36 居中 / 提示 pill 220×26 / 工具条 342×104 吸底） ----
             GameObject board;
             if (screens.TryGetValue(BlockOutScreenId.Board, out board) && board != null)
             {
@@ -1277,9 +1248,9 @@ namespace BlockOut.UI
                 SetTopRight(hud, "TimerPill", R, T + 9, 64, 20);
                 SetTopRight(hud, "RemainingPill", R, T + 48, 110, 30);
 
-                float toolbarH = m.ToolbarHeight;          // 固定 104（09 §6）
+                float toolbarH = m.ToolbarHeightCompact;   // v6: 全锁态 72；解锁后由 HudController 切到 104          // 固定 104（Docs/DesignSystem.md）
                 float toolbarBottom = B;                   // 止于安全区上方
-                const float PillH = 26f;                   // 提示 pill 固定高（09 §6）
+                const float PillH = 26f;                   // 提示 pill 固定高（Docs/DesignSystem.md）
                 float boardTop = T + 116f;                 // HUD 第二行（剩余块胶囊）之下 38（04）
                 float boardBottomLimit = H - toolbarBottom - toolbarH - 12f - PillH - 12f;
                 float side = Mathf.Min(m.BoardSideByWidth, boardBottomLimit - boardTop);
@@ -1311,7 +1282,7 @@ namespace BlockOut.UI
                     toolbar.anchorMin = new Vector2(0, 0);
                     toolbar.anchorMax = new Vector2(0, 0);
                     toolbar.pivot = new Vector2(0, 0);
-                    toolbar.sizeDelta = new Vector2(cw, toolbarH);   // 09 §5：342×104（内容宽）
+                    toolbar.sizeDelta = new Vector2(cw, toolbarH);   // Docs/DesignSystem.md：342×104（内容宽）
                     toolbar.anchoredPosition = new Vector2(L, toolbarBottom);
                     var slots = toolbar.Find("Slots") as RectTransform;
                     if (slots != null)
@@ -1331,7 +1302,7 @@ namespace BlockOut.UI
                 ClampCardWidth(layers, "SettingsLayer", cw);
             }
 
-            // 收藏内容滚动，顶栏和底部导航固定；不压缩关卡触控面积。
+            // 关卡内容滚动，顶栏和底部导航固定；不压缩关卡触控面积。
             GameObject collection;
             if (screens.TryGetValue(BlockOutScreenId.Collection, out collection) && CollectionContent != null)
             {

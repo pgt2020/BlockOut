@@ -93,3 +93,7 @@ Tools/*/obj/
 **/obj/
 TestResult.xml
 TestResults/
+
+# Obj here contains authored Unity prefabs, not compiler output.
+!Assets/BlockOut/Resources/ArtOutPresentation/Reference/Bundles/Main/Prefabs/Obj/
+!Assets/BlockOut/Resources/ArtOutPresentation/Reference/Bundles/Main/Prefabs/Obj/**

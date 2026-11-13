@@ -27,8 +27,6 @@ namespace BlockOut.UI
         public BlockOutGameManager GM;
 
         // 章节插画（首页预览卡 / 收藏页共用；正式素材到位后仅替换资源路径）
-        internal readonly BlockOutChapterArtProvider artProvider = new BlockOutChapterArtProvider();
-        internal int loadedArtChapter = -1;
 
         // 设置层返回路径：null = 首页；"PauseLayer" = 暂停层（返回后仍暂停）
         internal string settingsReturn;
@@ -167,13 +165,7 @@ namespace BlockOut.UI
             }
         }
 
-        internal static void SetRegionImage(Image image, Sprite sprite)
-        {
-            if (image == null) return;
-            image.sprite = sprite;
-            image.color = sprite != null ? Color.white : BlockOutDesignTokens.Silhouette;
-            image.preserveAspect = false;
-        }
+
 
         internal void HandleToastShown() { GM.Settings.PlaySound("sfx_toast"); }
 
@@ -207,7 +199,6 @@ namespace BlockOut.UI
 
         internal void OnDestroy()
         {
-            artProvider.Dispose();
             if (UI != null)
             {
                 UI.OnScreenChanged -= HandleScreenChanged;
@@ -336,11 +327,7 @@ namespace BlockOut.UI
             Bind(UI.HomeCtaSecondary, () => EnterLevel(HomeChapterIndex * BlockOutContentConfig.LevelsPerChapter));
             Bind(UI.HomeSettingsBtn, () => Dialogs.OpenSettings(null));
             Bind(UI.HomeCollectionLink, () => { UI.ShowScreen(BlockOutScreenId.Collection); Collection.RefreshCollection(); });
-            Bind(UI.HomeRetryBtn, () =>
-            {
-                artProvider.Retry();
-                Home.RefreshHomeArt();
-            });
+
             Bind(UI.NavHomeBtn, () => Home.GoHome());
             Bind(UI.NavCollectionBtn, () => { UI.ShowScreen(BlockOutScreenId.Collection); Collection.RefreshCollection(); });
             Bind(UI.NavStoreBtn, () => { UI.ShowScreen(BlockOutScreenId.Store); Store.RefreshStore(); });
@@ -359,7 +346,7 @@ namespace BlockOut.UI
                 "棋盘、生命与计时将重置；已消耗的道具与金币不返还，复活资格随重开重置。",
                 () => { UI.HideAllBoardLayers(); GM.RestartLevel(); }));
             Bind(UI.PauseQuitBtn, () => Dialogs.AskConfirm("退出本关？",
-                "本局进度不保留；拼片、金币与道具库存保留。",
+                "本局进度不保留；通关记录、金币与道具库存保留。",
                 () => { UI.HideAllBoardLayers(); GM.GiveUp(); Home.GoHome(); }));
             Bind(UI.PauseSettingsBtn, () => Dialogs.OpenSettings("PauseLayer"));
 
@@ -369,7 +356,7 @@ namespace BlockOut.UI
                 "棋盘、生命与计时将重置；已消耗的道具与金币不返还，复活资格随重开重置。",
                 () => { UI.HideAllBoardLayers(); GM.RestartLevel(); }));
             Bind(UI.FailQuitBtn, () => Dialogs.AskConfirm("退出本关？",
-                "本局进度不保留；拼片、金币与道具库存保留。",
+                "本局进度不保留；通关记录、金币与道具库存保留。",
                 () => { UI.HideAllBoardLayers(); GM.GiveUp(); Home.GoHome(); }));
 
             // ---- 通用确认层 ----
@@ -403,7 +390,7 @@ namespace BlockOut.UI
             });
             Bind(UI.SettleCollectionBtn, () =>
             {
-                // 查看收藏：切到收藏页查看本章作品（返回路径由收藏页导航处理）
+                // 查看收藏：切到收藏页查看关卡进度（返回路径由收藏页导航处理）
                 UI.HideAllBoardLayers();
                 collectionChapter = GM.CurrentLevel.Chapter;
                 UI.ShowScreen(BlockOutScreenId.Collection);
@@ -474,13 +461,7 @@ namespace BlockOut.UI
             Bind(UI.CollectionNavHomeBtn, Home.GoHome);
             Bind(UI.CollectionNavCollectionBtn, () => { UI.ShowScreen(BlockOutScreenId.Collection); Collection.RefreshCollection(); });
             Bind(UI.CollectionNavStoreBtn, () => { UI.ShowScreen(BlockOutScreenId.Store); Store.RefreshStore(); });
-            Bind(UI.CollectionViewBigBtn, Collection.OpenBigView);
-            Bind(UI.CollectionBigCloseBtn, Collection.CloseBigView);
-            Bind(UI.CollectionRetryBtn, () =>
-            {
-                artProvider.Retry();
-                Collection.RefreshCollection();
-            });
+
 
             // ---- 新手引导（首次进入第 1 关弹出，关闭后写入存档） ----
             Bind(UI.GuideDismissBtn, () =>

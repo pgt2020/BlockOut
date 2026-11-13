@@ -41,7 +41,7 @@ namespace BlockOut.UI
         internal void SetProductVisual(StoreProductRefs p, bool unlocked, string desc, bool canBuy, bool buying)
         {
             if (p.CardImg != null)
-                p.CardImg.color = unlocked ? BlockOutDesignTokens.SurfaceCard : new Color(0.953f, 0.925f, 0.894f);
+                p.CardImg.color = unlocked ? BlockOutDesignTokens.SurfaceCard : BlockOutDesignTokens.BgCreamDeep;
             if (p.IconImg != null)
                 p.IconImg.color = unlocked ? Color.white : BlockOutDesignTokens.GrayIconLocked;
             if (p.LockBadge != null) p.LockBadge.SetActive(!unlocked);
@@ -54,7 +54,9 @@ namespace BlockOut.UI
             if (p.BuyBtn != null) p.BuyBtn.interactable = canBuy;
             if (p.BuyText != null) p.BuyText.text = !unlocked ? "禁买" : (buying ? "…" : "购买");
             if (p.BuyBtn != null && p.BuyBtn.targetGraphic is Image buyImg)
-                buyImg.color = canBuy ? Color.white : new Color(0.91f, 0.86f, 0.82f);
+                // v6：BuyText 是白字，可购买态必须保持深棕底，禁用态才降到锁定灰。
+                buyImg.color = canBuy ? BlockOutDesignTokens.ActionPrimary
+                                      : BlockOutDesignTokens.GrayIconLocked;
         }
         internal void OnStoreBuyClicked(int idx)
         {

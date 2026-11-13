@@ -13,8 +13,6 @@ namespace BlockOut.UI
         public UnityEngine.UI.Button SettleHomeBtn;
         public UnityEngine.UI.Text SettleTitleText;
         public UnityEngine.UI.Button SettleCollectionBtn;
-        public RectTransform SettleRevealRoot;
-        public UnityEngine.UI.Image[] SettleRevealRegions;
         public UnityEngine.UI.Image SettleLevelImage;
         public UnityEngine.UI.Text SettleNoteText;
     }

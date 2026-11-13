@@ -13,8 +13,8 @@ namespace BlockOut.UI
     }
 
     /// <summary>
-    /// 通用 UGUI 组件工厂：全部按 design_v5 Token 构建（无 emoji、无占位文本）。
-    /// 按钮/胶囊/Toast/弹窗框使用持久化 9-slice Sprite（09 §5.1）。
+    /// 通用 UGUI 组件工厂：按 Docs/DesignSystem.md v6 Token 构建（无 emoji、无占位文本）。
+    /// 按钮/胶囊/Toast/弹窗框使用持久化 9-slice Sprite（§4 组件库）。
     /// </summary>
     public static class BlockOutWidgets
     {
@@ -90,15 +90,15 @@ namespace BlockOut.UI
             return txt;
         }
 
-        /// <summary>主 CTA（珊瑚渐变 + 可选图标/副文案/右箭头）。</summary>
+        /// <summary>主 CTA（v6 巧克力棕实底 + 可选图标/副文案/右箭头）。</summary>
         public static Button CoralButton(Transform parent, string name, string title, string sub, Action onClick = null,
             Sprite icon = null, bool arrow = true)
         {
             var rt = Place(parent, name, UIAnchorPreset.TopLeft, 0, 0, 342, 88);
             var img = rt.gameObject.AddComponent<Image>();
-            img.sprite = BlockOutIconFactory.RoundedSlice(24f, BlockOutDesignTokens.CtaCoralBottom,
-                Color.clear, 0f, BlockOutDesignTokens.CtaCoralTop);
-            img.color=BlockOutDesignTokens.CtaCoralBottom;
+            img.sprite = BlockOutIconFactory.RoundedSlice(24f, BlockOutDesignTokens.ActionPrimary,
+                Color.clear, 0f, BlockOutDesignTokens.ActionHover);
+            img.color=BlockOutDesignTokens.ActionPrimary;
             img.type = Image.Type.Sliced;
             var btn = rt.gameObject.AddComponent<Button>();
             btn.targetGraphic = img;
@@ -112,7 +112,7 @@ namespace BlockOut.UI
                 iconBg.sprite = BlockOutIconFactory.RoundedSlice(14f, BlockOutDesignTokens.White, Color.clear, 0f, null);
                 iconBg.type = Image.Type.Sliced;
                 var iconImg = SpriteImage(rt, "Icon", icon, UIAnchorPreset.MiddleLeft, 30, 0, 28, 28);
-                iconImg.color = BlockOutDesignTokens.CtaCoralBottom;
+                iconImg.color = BlockOutDesignTokens.ActionPrimary;
                 textLeft = 82f;
             }
             var titleTxt = Label(rt, "Title", title, BlockOutDesignTokens.FontCtaTitle, 900, BlockOutDesignTokens.White,
@@ -186,7 +186,7 @@ namespace BlockOut.UI
             var rt = Place(parent, name, UIAnchorPreset.Stretch);
             var hit = rt.gameObject.AddComponent<Image>();
             hit.color = Color.clear;
-            var color = active ? BlockOutDesignTokens.CtaCoral : BlockOutDesignTokens.GrayLocked;
+            var color = active ? BlockOutDesignTokens.ActionPrimary : BlockOutDesignTokens.GrayLocked;
             var iconImg = SpriteImage(rt, "Icon", icon, UIAnchorPreset.TopCenter, 0, 10, 24, 24);
             iconImg.color = color;
             var txt = Label(rt, "Text", label, BlockOutDesignTokens.FontNav, 800, color, TextAnchor.MiddleCenter,
@@ -207,7 +207,7 @@ namespace BlockOut.UI
         public static void SetNavActive(Button navBtn, bool active)
         {
             if (navBtn == null) return;
-            var on = BlockOutDesignTokens.CtaCoral;
+            var on = BlockOutDesignTokens.ActionPrimary;
             var off = BlockOutDesignTokens.GrayLocked;
             var icon = navBtn.transform.Find("Icon")?.GetComponent<Image>();
             if (icon != null) icon.color = active ? on : off;
@@ -225,9 +225,9 @@ namespace BlockOut.UI
             hit.color = Color.clear;
             Label(rt, "Label", label, BlockOutDesignTokens.FontButton, 400, BlockOutDesignTokens.TextCocoa,
                 TextAnchor.MiddleLeft, UIAnchorPreset.MiddleLeft, 0, 0, 150, 24);
-            var track = Panel(rt, "Track", initial ? BlockOutDesignTokens.MintFly : BlockOutDesignTokens.GrayIconLocked,
+            var track = Panel(rt, "Track", initial ? BlockOutDesignTokens.ActionPrimary : BlockOutDesignTokens.GrayIconLocked,
                 UIAnchorPreset.MiddleRight, -8, 0, 44, 24);
-            track.sprite = BlockOutIconFactory.RoundedSlice(12f, initial ? BlockOutDesignTokens.MintFly : BlockOutDesignTokens.GrayIconLocked,
+            track.sprite = BlockOutIconFactory.RoundedSlice(12f, initial ? BlockOutDesignTokens.ActionPrimary : BlockOutDesignTokens.GrayIconLocked,
                 Color.clear, 0f, null);
             track.type = Image.Type.Sliced;
             var knob = Panel(rt, "Knob", BlockOutDesignTokens.White, UIAnchorPreset.MiddleRight,
@@ -242,7 +242,7 @@ namespace BlockOut.UI
             btn.onClick.AddListener(() =>
             {
                 value = !value;
-                var on = value ? BlockOutDesignTokens.MintFly : BlockOutDesignTokens.GrayIconLocked;
+                var on = value ? BlockOutDesignTokens.ActionPrimary : BlockOutDesignTokens.GrayIconLocked;
                 track.color = on;
                 track.sprite = BlockOutIconFactory.RoundedSlice(12f, on, Color.clear, 0f, null);
                 knob.rectTransform.anchoredPosition = new Vector2(value ? -10 : -30, 0);
@@ -251,12 +251,12 @@ namespace BlockOut.UI
             return btn;
         }
 
-        /// <summary>Toast 背景（深可可 85% 圆角条，9-slice）。</summary>
+        /// <summary>Toast 背景（v6 深可可 88% 圆角条，9-slice）。</summary>
         public static RectTransform ToastBar(Transform parent, string name)
         {
             var rt = Place(parent, name, UIAnchorPreset.BottomCenter, 0, 0, 460, 32);
             var img = rt.gameObject.AddComponent<Image>();
-            var c = BlockOutDesignTokens.TextCocoa; c.a = 0.85f;
+            var c = BlockOutDesignTokens.MaskWarm; c.a = 0.88f;
             img.sprite = BlockOutIconFactory.RoundedSlice(16f, c, Color.clear, 0f, null);
             img.color=c;
             img.type = Image.Type.Sliced;
@@ -280,12 +280,12 @@ namespace BlockOut.UI
             return img;
         }
 
-        /// <summary>弹窗遮罩（30% 暖棕 #674138）。</summary>
+        /// <summary>弹窗遮罩（v6 40% 可可 #3B2A24）。</summary>
         public static Image Dim(Transform parent, string name)
         {
             var rt = Place(parent, name, UIAnchorPreset.Stretch);
             var c = BlockOutDesignTokens.MaskWarm;
-            c.a = 0.30f;
+            c.a = 0.40f;
             var img = rt.gameObject.AddComponent<Image>();
             img.color = c;
             img.raycastTarget = true;
@@ -298,7 +298,7 @@ namespace BlockOut.UI
             if (switchBtn == null) return;
             var track = switchBtn.transform.Find("Track")?.GetComponent<Image>();
             var knob = switchBtn.transform.Find("Knob")?.GetComponent<RectTransform>();
-            var on = BlockOutDesignTokens.MintFly;
+            var on = BlockOutDesignTokens.ActionPrimary;
             var off = BlockOutDesignTokens.GrayIconLocked;
             if (track != null)
             {

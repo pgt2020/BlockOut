@@ -293,3 +293,7 @@ if __name__=='__main__':
     runpy.run_path(str(Path(__file__).with_name('bind_authored_feedback.py')))
     runpy.run_path(str(Path(__file__).with_name('align_artout_layout.py')))
     print('Authored 12 complete pages/popups and 5 item prefabs. Unity was not launched.')
+
+# Keep delivered layouts free of removed chapter artwork.
+if __name__ == '__main__':
+    runpy.run_path(str(Path(__file__).with_name('remove_chapter_art_layout.py')))

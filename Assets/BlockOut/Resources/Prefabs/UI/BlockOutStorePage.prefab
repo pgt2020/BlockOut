@@ -114,13 +114,12 @@ RectTransform:
     y: 1
     z: 1
   m_Children:
-  - fileID: 100097
   - fileID: 100009
   - fileID: 100018
   - fileID: 100022
+  - fileID: 100026
   - fileID: 100057
   - fileID: 100067
-  - fileID: 100026
   m_Father:
     fileID: 100002
   m_LocalEulerAnglesHint:
@@ -366,10 +365,6 @@ GameObject:
   - component:
       fileID: 100022
   - component:
-      fileID: 100084
-  - component:
-      fileID: 100085
-  - component:
       fileID: 100023
   - component:
       fileID: 100024
@@ -401,8 +396,7 @@ RectTransform:
     x: 1
     y: 1
     z: 1
-  m_Children:
-  - fileID: 100087
+  m_Children: []
   m_Father:
     fileID: 100004
   m_LocalEulerAnglesHint:
@@ -416,11 +410,11 @@ RectTransform:
     x: 0
     y: 1
   m_AnchoredPosition:
-    x: 262
-    y: -26
+    x: 270
+    y: -32
   m_SizeDelta:
-    x: 104
-    y: 40
+    x: 96
+    y: 36
   m_Pivot:
     x: 0
     y: 1
@@ -1076,10 +1070,6 @@ GameObject:
   - component:
       fileID: 100067
   - component:
-      fileID: 100090
-  - component:
-      fileID: 100091
-  - component:
       fileID: 100068
   - component:
       fileID: 100069
@@ -1111,8 +1101,7 @@ RectTransform:
     x: 1
     y: 1
     z: 1
-  m_Children:
-  - fileID: 100093
+  m_Children: []
   m_Father:
     fileID: 100004
   m_LocalEulerAnglesHint:
@@ -1127,10 +1116,10 @@ RectTransform:
     y: 1
   m_AnchoredPosition:
     x: 24
-    y: -300
+    y: -330
   m_SizeDelta:
     x: 342
-    y: 240
+    y: 36
   m_Pivot:
     x: 0
     y: 1
@@ -1168,9 +1157,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 1
-    g: 1
-    b: 1
+    r: 1.000
+    g: 0.973
+    b: 0.941
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -1179,9 +1168,9 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: 990afc6e53414cd4a9d068d47f818198
+    guid: e962cae895ab461b88951dfd848ac4c6
     type: 3
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
@@ -1260,7 +1249,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: fd2b3c60cb3e4106a97f6a8ce5763336
+    guid: e962cae895ab461b88951dfd848ac4c6
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -1370,9 +1359,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.086
-    g: 0.137
-    b: 0.259
+    r: 0.231
+    g: 0.165
+    b: 0.141
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -1392,7 +1381,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 返回
+  m_Text: "\u8FD4\u56DE"
 --- !u!222 &100019
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1427,9 +1416,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.965
-    g: 0.98
-    b: 1.0
+    r: 0.231
+    g: 0.165
+    b: 0.141
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -1449,7 +1438,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 商店
+  m_Text: "\u5546\u5E97"
 --- !u!222 &100023
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1484,9 +1473,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.086
-    g: 0.137
-    b: 0.259
+    r: 0.231
+    g: 0.165
+    b: 0.141
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -1495,7 +1484,7 @@ MonoBehaviour:
       fileID: 12800000
       guid: fd593325a489afb46b970fe4942877e4
       type: 3
-    m_FontSize: 17
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 15
@@ -1552,7 +1541,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: 99a951dac705464bbe56995a20ed81c1
+    guid: e962cae895ab461b88951dfd848ac4c6
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -1597,9 +1586,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 1
-    g: 1
-    b: 1
+    r: 0.118
+    g: 0.561
+    b: 0.408
     a: 1
   m_RaycastTarget: 1
   m_Maskable: 1
@@ -1608,7 +1597,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: fd2b3c60cb3e4106a97f6a8ce5763336
+    guid: e962cae895ab461b88951dfd848ac4c6
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -1718,9 +1707,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.086
-    g: 0.137
-    b: 0.259
+    r: 0.231
+    g: 0.165
+    b: 0.141
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -1740,7 +1729,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 首页
+  m_Text: "\u9996\u9875"
 --- !u!222 &100040
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1786,7 +1775,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: fd2b3c60cb3e4106a97f6a8ce5763336
+    guid: e962cae895ab461b88951dfd848ac4c6
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -1896,9 +1885,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.086
-    g: 0.137
-    b: 0.259
+    r: 0.231
+    g: 0.165
+    b: 0.141
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -1918,7 +1907,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 图鉴
+  m_Text: "\u56FE\u9274"
 --- !u!222 &100049
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1964,7 +1953,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: 69df4c88a1ef47aeafbfc1c36887badb
+    guid: e962cae895ab461b88951dfd848ac4c6
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -2074,9 +2063,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 1
-    g: 1
-    b: 1
+    r: 0.231
+    g: 0.165
+    b: 0.141
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -2096,7 +2085,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 商店
+  m_Text: "\u5546\u5E97"
 --- !u!222 &100058
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2303,9 +2292,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.086
-    g: 0.137
-    b: 0.259
+    r: 0.231
+    g: 0.165
+    b: 0.141
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -2325,9 +2314,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '道具商店准备中
-
-    完成关卡即可解锁道具礼包'
+  m_Text: "\u6682\u65E0\u5546\u54C1"
 --- !u!114 &100070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2659,484 +2646,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!222 &100084
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
-  m_GameObject:
-    fileID: 100021
-  m_CullTransparentMesh: 1
---- !u!114 &100085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
-  m_GameObject:
-    fileID: 100021
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script:
-    fileID: 11500000
-    guid: fe87c0e1cc204ed48ad3b37840f39efc
-    type: 3
-  m_Name: ''
-  m_EditorClassIdentifier: ''
-  m_Material:
-    fileID: 0
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  m_RaycastTarget: 0
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite:
-    fileID: 21300000
-    guid: 99a951dac705464bbe56995a20ed81c1
-    type: 3
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 0
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!1 &100086
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
-  serializedVersion: 6
-  m_Component:
-  - component:
-      fileID: 100087
-  - component:
-      fileID: 100088
-  - component:
-      fileID: 100089
-  m_Layer: 5
-  m_Name: BeadsListIcon
-  m_TagString: Untagged
-  m_IsActive: 1
---- !u!224 &100087
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
-  m_GameObject:
-    fileID: 100086
-  m_LocalRotation:
-    x: 0
-    y: 0
-    z: 0
-    w: 1
-  m_LocalPosition:
-    x: 0
-    y: 0
-    z: 0
-  m_LocalScale:
-    x: 1
-    y: 1
-    z: 1
-  m_Children: []
-  m_Father:
-    fileID: 100022
-  m_LocalEulerAnglesHint:
-    x: 0
-    y: 0
-    z: 0
-  m_AnchorMin:
-    x: 0
-    y: 1
-  m_AnchorMax:
-    x: 0
-    y: 1
-  m_AnchoredPosition:
-    x: 10
-    y: -7
-  m_SizeDelta:
-    x: 26
-    y: 26
-  m_Pivot:
-    x: 0
-    y: 1
---- !u!222 &100088
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
-  m_GameObject:
-    fileID: 100086
-  m_CullTransparentMesh: 1
---- !u!114 &100089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
-  m_GameObject:
-    fileID: 100086
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script:
-    fileID: 11500000
-    guid: fe87c0e1cc204ed48ad3b37840f39efc
-    type: 3
-  m_Name: ''
-  m_EditorClassIdentifier: ''
-  m_Material:
-    fileID: 0
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  m_RaycastTarget: 0
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite:
-    fileID: 21300000
-    guid: 854f30df384f451d908264e0c96ae6d3
-    type: 3
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 0
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &100090
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
-  m_GameObject:
-    fileID: 100066
-  m_CullTransparentMesh: 1
---- !u!114 &100091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
-  m_GameObject:
-    fileID: 100066
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script:
-    fileID: 11500000
-    guid: fe87c0e1cc204ed48ad3b37840f39efc
-    type: 3
-  m_Name: ''
-  m_EditorClassIdentifier: ''
-  m_Material:
-    fileID: 0
-  m_Color:
-    r: 1.0
-    g: 0.988
-    b: 0.96
-    a: 1
-  m_RaycastTarget: 0
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite:
-    fileID: 21300000
-    guid: b60b56bcd6cf40d9863f026760ccee9d
-    type: 3
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 0
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!1 &100092
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
-  serializedVersion: 6
-  m_Component:
-  - component:
-      fileID: 100093
-  - component:
-      fileID: 100094
-  - component:
-      fileID: 100095
-  m_Layer: 5
-  m_Name: BeadsListIcon
-  m_TagString: Untagged
-  m_IsActive: 1
---- !u!224 &100093
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
-  m_GameObject:
-    fileID: 100092
-  m_LocalRotation:
-    x: 0
-    y: 0
-    z: 0
-    w: 1
-  m_LocalPosition:
-    x: 0
-    y: 0
-    z: 0
-  m_LocalScale:
-    x: 1
-    y: 1
-    z: 1
-  m_Children: []
-  m_Father:
-    fileID: 100067
-  m_LocalEulerAnglesHint:
-    x: 0
-    y: 0
-    z: 0
-  m_AnchorMin:
-    x: 0
-    y: 1
-  m_AnchorMax:
-    x: 0
-    y: 1
-  m_AnchoredPosition:
-    x: 139
-    y: -24
-  m_SizeDelta:
-    x: 64
-    y: 64
-  m_Pivot:
-    x: 0
-    y: 1
---- !u!222 &100094
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
-  m_GameObject:
-    fileID: 100092
-  m_CullTransparentMesh: 1
---- !u!114 &100095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
-  m_GameObject:
-    fileID: 100092
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script:
-    fileID: 11500000
-    guid: fe87c0e1cc204ed48ad3b37840f39efc
-    type: 3
-  m_Name: ''
-  m_EditorClassIdentifier: ''
-  m_Material:
-    fileID: 0
-  m_Color:
-    r: 1
-    g: 0.58
-    b: 0.12
-    a: 1
-  m_RaycastTarget: 0
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite:
-    fileID: 21300000
-    guid: 3459d078a5954cd3a6aa3ea1dc2df25b
-    type: 3
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 0
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!1 &100096
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
-  serializedVersion: 6
-  m_Component:
-  - component:
-      fileID: 100097
-  - component:
-      fileID: 100098
-  - component:
-      fileID: 100099
-  m_Layer: 5
-  m_Name: BeadsDecor
-  m_TagString: Untagged
-  m_IsActive: 1
---- !u!224 &100097
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
-  m_GameObject:
-    fileID: 100096
-  m_LocalRotation:
-    x: 0
-    y: 0
-    z: 0
-    w: 1
-  m_LocalPosition:
-    x: 0
-    y: 0
-    z: 0
-  m_LocalScale:
-    x: 1
-    y: 1
-    z: 1
-  m_Children: []
-  m_Father:
-    fileID: 100004
-  m_LocalEulerAnglesHint:
-    x: 0
-    y: 0
-    z: 0
-  m_AnchorMin:
-    x: 0
-    y: 0
-  m_AnchorMax:
-    x: 1
-    y: 1
-  m_AnchoredPosition:
-    x: 0
-    y: 0
-  m_SizeDelta:
-    x: 0
-    y: 0
-  m_Pivot:
-    x: 0.5
-    y: 0.5
---- !u!222 &100098
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
-  m_GameObject:
-    fileID: 100096
-  m_CullTransparentMesh: 1
---- !u!114 &100099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
-  m_GameObject:
-    fileID: 100096
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script:
-    fileID: 11500000
-    guid: fe87c0e1cc204ed48ad3b37840f39efc
-    type: 3
-  m_Name: ''
-  m_EditorClassIdentifier: ''
-  m_Material:
-    fileID: 0
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  m_RaycastTarget: 0
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite:
-    fileID: 21300000
-    guid: 1252ee0338a1439a8f8472af8df624c8
-    type: 3
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 0
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1

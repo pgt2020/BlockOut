@@ -31,7 +31,7 @@ namespace BlockOut.Infrastructure.Configuration
 
         [Header("资源")]
         [Tooltip("是否预热章节大图（第一章仅 3 张 1080x1080，默认开）")]
-        public bool preloadChapterArt = true;
+        public bool preloadChapterArt = false;
         [Tooltip("首屏是否预热全部音效")]
         public bool preloadAudio = true;
 
@@ -76,7 +76,7 @@ namespace BlockOut.Infrastructure.Configuration
             c.adsEnabled = false;
             c.startupStepTimeoutSeconds = 10f;
             c.deferredPreload = true;
-            c.preloadChapterArt = true;
+            c.preloadChapterArt = false;
             c.preloadAudio = true;
             c.showStartupSplash = true;
             c.splashMinSeconds = 0.6f;

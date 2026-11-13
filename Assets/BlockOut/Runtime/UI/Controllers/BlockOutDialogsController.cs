@@ -119,7 +119,9 @@ namespace BlockOut.UI
             owner.UI.FailReviveBtn.interactable = interactable;
             if (owner.UI.FailFreeBadge != null) owner.UI.FailFreeBadge.SetActive(freeBadge);
             var img = owner.UI.FailReviveBtn.targetGraphic as Image;
-            if (img != null) img.color = interactable ? Color.white : new Color(0.80f, 0.76f, 0.73f);
+            // v6：FailReviveBtn 由 CoralButton 生成，白字必须一直配深底；禁用态只降到锁定灰。
+            if (img != null) img.color = interactable ? BlockOutDesignTokens.ActionPrimary
+                                                      : BlockOutDesignTokens.GrayIconLocked;
             if (owner.UI.FailReviveLabel != null)
                 owner.UI.FailReviveLabel.color = interactable ? BlockOutDesignTokens.White : new Color(1f, 1f, 1f, 0.85f);
         }
@@ -183,9 +185,9 @@ namespace BlockOut.UI
                 && owner.GM.CurrentLevelIndex + 1 == chapter * BlockOutContentConfig.LevelsPerChapter + total;
             bool firstClear = owner.GM.LastWinWasFirstClear;
 
-            // R11：单关通关图片优先展示（普通通关立即反馈）；章末才用章节拼片网格。
+            // R11：单关通关图片优先展示（所有关卡共用，包括章末）。
             // 成败都展示，避免结算层黑屏。
-            RefreshSettleReveal(chapter, true);
+            RefreshSettleReveal();
 
             // R06：结算保存失败——存档已回滚（进度/奖励/拼片均未落盘）。
             // 严禁假报领奖成功；禁用"下一关/重玩"，给出返回重试引导。
@@ -194,7 +196,7 @@ namespace BlockOut.UI
                 if (owner.UI.SettleTitleText != null) owner.UI.SettleTitleText.text = "关卡完成 · 进度未保存";
                 if (owner.UI.SettlePieceText != null) owner.UI.SettlePieceText.text = "本关已通过，但存档写入失败";
                 if (owner.UI.SettleNoteText != null)
-                    owner.UI.SettleNoteText.text = "存档保存失败，奖励与拼片未发放 · 请点击重试保存";
+                    owner.UI.SettleNoteText.text = "存档保存失败，奖励与进度未保存 · 请点击重试保存";
                 if (owner.UI.SettleRewardText != null) owner.UI.SettleRewardText.text = "存档失败 · 奖励未发放";
                 if (owner.UI.SettleNextBtn != null) { BlockOutUIController.SetButtonLabel(owner.UI.SettleNextBtn, "重试保存"); owner.UI.SettleNextBtn.interactable = true; }
                 if (owner.UI.SettleReplayBtn != null) { BlockOutUIController.SetButtonLabel(owner.UI.SettleReplayBtn, "暂不可用"); owner.UI.SettleReplayBtn.interactable = false; }
@@ -208,21 +210,21 @@ namespace BlockOut.UI
             if (owner.UI.SettleTitleText != null)
             {
                 if (isChapterEnd) owner.UI.SettleTitleText.text = firstClear ? "本章通关" : "本章已完成";
-                else owner.UI.SettleTitleText.text = firstClear ? "新拼片解锁" : "关卡完成";
+                else owner.UI.SettleTitleText.text = firstClear ? "首次通关" : "关卡完成";
             }
             if (owner.UI.SettlePieceText != null)
-                owner.UI.SettlePieceText.text = chapterComplete ? "拼片 "+total+"/"+total+" · 本章作品已集齐" : "拼片 " + completed + "/"+total;
+                owner.UI.SettlePieceText.text = chapterComplete ? "通关 "+total+"/"+total+" · 本章已完成" : "通关 " + completed + "/"+total;
 
             if (owner.UI.SettleNoteText != null)
             {
                 if (isChapterEnd)
                     owner.UI.SettleNoteText.text = firstClear
-                        ? "本章 "+total+" 片拼片全部揭晓 · 完整作品已解锁"
-                        : "重复通关 · 拼片不重复解锁，可继续刷金币";
+                        ? "本章 "+total+" 关全部完成"
+                        : "重复通关 · 通关记录已保留，可继续刷金币";
                 else
                     owner.UI.SettleNoteText.text = firstClear
-                        ? "本次新揭晓 1 片拼片"
-                        : "重复通关 · 拼片不重复解锁";
+                        ? "本关进度已保存"
+                        : "重复通关 · 通关记录已保留";
             }
             if (owner.UI.SettleRewardText != null)
                 owner.UI.SettleRewardText.text = (firstClear ? "首次通关 · 获得 " : "重复通关 · 获得 ")
@@ -256,46 +258,16 @@ namespace BlockOut.UI
             owner.UI.SetLayerActive("SettlementLayer", true);
             SyncModalFlag();
         }
-        internal void RefreshSettleReveal(int chapter, bool showSingleLevelImage)
+        internal void RefreshSettleReveal()
         {
-            // R11：单关关联图片（LoadCompletionImage）—— 普通通关立即展示该关图片反馈
-            if (owner.UI.SettleLevelImage != null)
-            {
-                if (!showSingleLevelImage) { owner.UI.SettleLevelImage.enabled = false; }
-                else
-                {
-                    var tex = owner.GM.LoadCompletionImage();
-                    if (tex != null)
-                    {
-                        var spr = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
-                        var previous=owner.UI.SettleLevelImage.sprite;
-                        owner.UI.SettleLevelImage.sprite = spr;
-                        owner.UI.SettleLevelImage.preserveAspect=true;
-                        if(previous!=null) UnityEngine.Object.Destroy(previous);
-                        owner.UI.SettleLevelImage.enabled = true;
-                    }
-                    else owner.UI.SettleLevelImage.enabled = false;
-                }
-            }
-            if (showSingleLevelImage)
-            {
-                // 单关反馈：隐藏章节拼片网格（"查看收藏"入口仍保留），避免章节拼片替代单关反馈（R11）
-                if (owner.UI.SettleRevealRoot != null) owner.UI.SettleRevealRoot.gameObject.SetActive(false);
-                return;
-            }
-            // 章末：展示章节拼片（contain 完整作品）
-            if (owner.UI.SettleRevealRoot != null) owner.UI.SettleRevealRoot.gameObject.SetActive(true);
-            if (owner.UI.SettleRevealRegions == null) return;
-            if (owner.loadedArtChapter != chapter) { owner.artProvider.LoadChapter(chapter); owner.loadedArtChapter = chapter; }
-            if (owner.artProvider.Status == ChapterArtStatus.Failed)
-            {
-                for (int i = 0; i < owner.UI.SettleRevealRegions.Length; i++)
-                    if (owner.UI.SettleRevealRegions[i] != null) owner.UI.SettleRevealRegions[i].sprite = null;
-                return;
-            }
-            for (int i = 0; i < owner.UI.SettleRevealRegions.Length; i++)
-                BlockOutUIController.SetRegionImage(owner.UI.SettleRevealRegions[i], owner.artProvider.RegionSprite(owner.Collection.IsRegionRevealed(chapter, i), i, true));
-            owner.UI.SetSettlementArtworkMode(true);
+            if (owner.UI.SettleLevelImage == null) return;
+            var previous = owner.UI.SettleLevelImage.sprite;
+            var texture = owner.GM.LoadCompletionImage();
+            owner.UI.SettleLevelImage.sprite = texture != null
+                ? Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f)) : null;
+            owner.UI.SettleLevelImage.preserveAspect = true;
+            owner.UI.SettleLevelImage.enabled = texture != null;
+            if (previous != null) UnityEngine.Object.Destroy(previous);
         }
     }
 }

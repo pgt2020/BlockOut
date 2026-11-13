@@ -266,18 +266,6 @@ def check_manifest():
 
 
 def check_contracts():
-    for kind in ("full", "preview", "silhouette"):
-        meta = os.path.join(ROOT, "Assets/Resources/block/ch01", kind + ".png.meta")
-        if not os.path.exists(meta):
-            problems.append("缺少章节图 meta：" + kind)
-            continue
-        text = open(meta, encoding="utf-8").read()
-        i = text.find("TextureImporter:")
-        block = text[i:] if i >= 0 else ""
-        for key, expect in (("textureType", "8"), ("spriteMode", "1"),
-                            ("spriteMeshType", "1"), ("nPOTScale", "0")):
-            if ("  " + key + ": " + expect) not in block:
-                problems.append("%s.png.meta: %s 应为 %s" % (kind, key, expect))
     ebs = open(os.path.join(ROOT, "ProjectSettings/EditorBuildSettings.asset"), encoding="utf-8").read()
     if "Launcher.unity" not in ebs:
         problems.append("EditorBuildSettings 未指向 Launcher.unity")

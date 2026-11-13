@@ -44,15 +44,8 @@ namespace BlockOut.Infrastructure.Resources
                 "Prefabs/UI/BlockOutGameHud",
                 "Prefabs/UI/BlockOutPopupLayer",
             };
-            plan.optionalFirstScreenSprites = new[]
-            {
-                "block/ch01/preview",
-                "block/ch01/silhouette",
-            };
-            plan.deferredSprites = new[]
-            {
-                "block/ch01/full",
-            };
+            plan.optionalFirstScreenSprites = new string[0];
+            plan.deferredSprites = new string[0];
             plan.deferredAudio = new string[0];
             return plan;
         }

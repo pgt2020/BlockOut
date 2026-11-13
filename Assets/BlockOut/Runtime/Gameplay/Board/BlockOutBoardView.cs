@@ -9,7 +9,7 @@ using BlockOut.Core;
 namespace BlockOut.Gameplay
 {
     /// <summary>
-    /// UGUI 棋盘视图（design_v5 04/05）：
+    /// UGUI 棋盘视图（Docs/DesignSystem.md 04/05）：
     /// 按参考安全视野适配关卡，方块加载持久化木块素材；
     /// 正常箭头按方块颜色混色；提示闪绿；受阻箭头红色交替并挤压回弹；锤子复制木块后敲碎。
     /// 贴图由 BlockOutIconFactory 加载，固定反馈由 Animator 播放。
@@ -53,8 +53,6 @@ namespace BlockOut.Gameplay
         internal float tapSuppressUntil;
         /// <summary>入场协程引用（重开/切关时终止，不留下旧动画锁）。</summary>
         internal Coroutine entranceRoutine;
-        /// <summary>所属页面尚未激活时挂起的入场演出，OnEnable 时补播。</summary>
-        private bool entrancePending;
         internal RectTransform zoomRoot;            // R09：缩放根，与入场缩放相互独立
         internal Coroutine focusRoutine;            // R10：视口聚焦协程
         internal Vector2 focusSavedPos;
@@ -370,8 +368,6 @@ namespace BlockOut.Gameplay
                 }
             inputLocks.Clear();
             focusRoutine = null;
-            entranceRoutine = null;
-            entrancePending = false;
             tapSuppressUntil = 0f;
         }
 
@@ -465,27 +461,9 @@ namespace BlockOut.Gameplay
             float dur = feel != null ? feel.boardEntranceSeconds : 0.9f;
             float startScale = feel != null ? feel.boardEntranceStartScale : 0.68f;
             float inputDelay = feel != null ? feel.boardEntranceInputDelay : 1.02f;
-            if (entranceRoutine != null) { StopCoroutine(entranceRoutine); entranceRoutine = null; }
-
-            // 启动期 LoadLevel 会早于 ShowScreen(Board)：此时棋盘 GameObject 在层级里仍是
-            // inactive，StartCoroutine 会抛 "couldn't be started"。若照常先锁输入，解锁只能
-            // 由该协程完成，输入就会被永久锁死（表现为整页点不动）。这里改为挂起演出、
-            // 明确解锁，等页面激活的 OnEnable 补播。
-            if (!gameObject.activeInHierarchy)
-            {
-                entrancePending = true;
-                SetInputLock(BlockOutInputLock.Entrance, false);
-                return;
-            }
-            entrancePending = false;
             SetInputLock(BlockOutInputLock.Entrance, true);
+            if (entranceRoutine != null) StopCoroutine(entranceRoutine);
             entranceRoutine = StartCoroutine(Presentation.EntranceRoutine(dur, startScale, inputDelay));
-        }
-
-        /// <summary>页面被激活时补播被挂起的入场演出。</summary>
-        private void OnEnable()
-        {
-            if (entrancePending) PlayEntrance();
         }
 
 

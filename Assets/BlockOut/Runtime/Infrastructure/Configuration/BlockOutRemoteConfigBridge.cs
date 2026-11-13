@@ -34,7 +34,7 @@ namespace BlockOut.Infrastructure.Configuration
 
         /// <summary>
         /// 应用本地默认配置。行为与已加载的 <see cref="BlockOutGameplayConfig"/> 同步
-        /// （ArtOut 对齐基线），不会把 JSON 值覆盖回旧 design_v5 常量。
+        /// （ArtOut 对齐基线），不会把 JSON 值覆盖回旧 Docs/DesignSystem.md 常量。
         /// 返回是否发生了任何覆盖，便于启动日志与测试断言。
         /// </summary>
         public static bool ApplyLocalDefaults()

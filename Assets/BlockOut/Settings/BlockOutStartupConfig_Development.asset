@@ -19,7 +19,7 @@ MonoBehaviour:
   verboseLog: 1
   startupStepTimeoutSeconds: 10
   deferredPreload: 1
-  preloadChapterArt: 1
+  preloadChapterArt: 0
   preloadAudio: 1
   allowFakeServices: 1
   adsEnabled: 0

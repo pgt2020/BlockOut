@@ -23,11 +23,6 @@ namespace BlockOut.Core
         public const string BlockOutFont = "Fonts/SourceHanSansCN-Regular";
         public const string BlockOutAudio = "audio";
 
-        /// <summary>章节图根路径：block/ch{chapterIndex+1}/{full|preview|silhouette}。</summary>
-        public static string ChapterArt(int chapterIndex, string kind)
-        {
-            return BlockOutBlock + "/ch" + (chapterIndex + 1).ToString("00") + "/" + kind;
-        }
 
         /// <summary>
         /// 旧路径别名登记表（迁移时启用）：新键 = 旧键。

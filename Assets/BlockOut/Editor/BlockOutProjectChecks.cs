@@ -124,27 +124,7 @@ namespace BlockOut.Editor
         }
 
         // ---- 4) 章节图 Sprite meta ----
-        private static void CheckChapterSpriteMeta(List<string> problems)
-        {
-            foreach (var kind in new[] { "full", "preview", "silhouette" })
-            {
-                var meta = "Assets/Resources/block/ch01/" + kind + ".png.meta";
-                if (!File.Exists(meta)) { problems.Add("缺少章节图 meta：" + meta); continue; }
-                var text = File.ReadAllText(meta);
-                bool InImporter(string key, string expect)
-                {
-                    int i = text.IndexOf("TextureImporter:", StringComparison.Ordinal);
-                    if (i < 0) return false;
-                    int end = text.IndexOf("\n--- ", i + 1, StringComparison.Ordinal);
-                    var block = end < 0 ? text.Substring(i) : text.Substring(i, end - i);
-                    return block.Contains("  " + key + ": " + expect, StringComparison.Ordinal);
-                }
-                if (!InImporter("textureType", "8")) problems.Add(kind + ".png.meta：textureType 应为 8（Sprite）。");
-                if (!InImporter("spriteMode", "1")) problems.Add(kind + ".png.meta：spriteMode 应为 1（Single）。");
-                if (!InImporter("spriteMeshType", "1")) problems.Add(kind + ".png.meta：spriteMeshType 应为 1（FullRect）。");
-                if (!InImporter("nPOTScale", "0")) problems.Add(kind + ".png.meta：nPOTScale 应为 0（不缩放）。");
-            }
-        }
+        private static void CheckChapterSpriteMeta(List<string> problems) { /* Chapter artwork removed. */ }
 
         // ---- 5) 重复关卡 ID ----
         private static void CheckDuplicateLevelIds(List<string> problems)
