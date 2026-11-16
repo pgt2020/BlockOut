@@ -4,7 +4,7 @@ Run from any directory with Python, PyYAML and Pillow. Existing prefab GUIDs are
 The editor baker is an alternative authoring path; do not rebake after hand-editing layouts.
 """
 from pathlib import Path
-import re, uuid, yaml
+import re, sys, uuid, yaml
 from PIL import Image, ImageDraw
 
 class NoAliasDumper(yaml.SafeDumper):
@@ -13,13 +13,30 @@ class NoAliasDumper(yaml.SafeDumper):
 ROOT = Path(__file__).resolve().parents[2]
 DEST = ROOT / 'Assets/BlockOut/Resources/Prefabs/UI'
 RUNTIME = ROOT / 'Assets/BlockOut/Runtime/UI'
+ART = ROOT / 'Assets/BlockOut/Resources/ArtOutPresentation/Sprites'
 PACKAGE = next((ROOT / 'Library/PackageCache').glob('com.unity.ugui@*'))
+# 命令行传入页面名时只落盘该页，避免覆盖其它已定稿页面（其余页仍然计算引用，不写文件）。
+ONLY = sys.argv[1] if len(sys.argv) > 1 else None
 WHITE = (1, 1, 1, 1)
 CREAM = (1, .963, .925, 1)
 INK = (.32, .22, .18, 1)
 CORAL = (.97, .43, .37, 1)
 MINT = (.66, .86, .76, 1)
 MUTED = (.88, .85, .80, 1)
+
+# ---- R2 参考（软胶厚卡）用到的 Token 同值色，与 BlockOutDesignTokens 保持一致 ----
+SURFACE_RAISED = (1.0, .992, .973, 1)      # #FFFDF8
+BG_CREAM_DEEP = (.988, .922, .847, 1)      # #FCEBD8
+STROKE_WARM = (.906, .824, .745, 1)        # #E7D2BE
+TEXT_COCOA = (.231, .165, .141, 1)         # #3B2A24
+TEXT_COCOA60 = (.431, .329, .286, 1)       # #6E5449
+TEXT_DISABLED = (.541, .459, .408, 1)      # #8A7568
+MINT_FLY = (.118, .561, .408, 1)           # #1E8F68
+GOLD_COIN = (.910, .635, .047, 1)          # #E8A20C
+GOLD_TEXT = (.420, .278, 0, 1)             # #6B4700
+BERRY_RED = (.776, .184, .271, 1)          # #C62F45
+LOCK_BADGE = (.431, .329, .286, 1)         # #6E5449
+SHADOW_TINT = (.40, .27, .13, .34)
 
 def guid(path):
     meta = Path(str(path) + '.meta')
@@ -147,6 +164,9 @@ class Page:
             docs.append((1,n.go,'GameObject',{'m_ObjectHideFlags':0,'m_CorrespondingSourceObject':ref(0),'m_PrefabInstance':ref(0),'m_PrefabAsset':ref(0),'serializedVersion':6,'m_Component':[{'component':ref(c)} for c in n.components],'m_Layer':5,'m_Name':n.name,'m_TagString':'Untagged','m_IsActive':int(n.active)}))
             docs.append((224,n.rt,'RectTransform',{'m_ObjectHideFlags':0,'m_CorrespondingSourceObject':ref(0),'m_PrefabInstance':ref(0),'m_PrefabAsset':ref(0),'m_GameObject':ref(n.go),'m_LocalRotation':{'x':0,'y':0,'z':0,'w':1},'m_LocalPosition':{'x':0,'y':0,'z':0},'m_LocalScale':n.scale,'m_Children':[ref(c.rt) for c in n.children],'m_Father':ref(n.parent.rt if n.parent else 0),'m_LocalEulerAnglesHint':{'x':0,'y':0,'z':0},'m_AnchorMin':n.anchor_min,'m_AnchorMax':n.anchor_max,'m_AnchoredPosition':n.position,'m_SizeDelta':n.size,'m_Pivot':n.pivot}))
         path=DEST/(('Items/' if self.item else '')+self.name+'.prefab');path.parent.mkdir(parents=True,exist_ok=True)
+        if ONLY and self.name!=ONLY:
+            # 只生成单页时：仍返回正确的资源引用（其它页面会引用本页 prefab），但不落盘。
+            return ext(path,vid)
         text='%YAML 1.1\n%TAG !u! tag:unity3d.com,2011:\n'
         for kind,cid,label,data in docs+self.docs:text+='--- !u!'+str(kind)+' &'+str(cid)+'\n'+yaml.dump({label:data},Dumper=NoAliasDumper,allow_unicode=True,sort_keys=False,width=120)
         path.write_text(text,encoding='utf-8');guid(path)
@@ -156,6 +176,70 @@ def vertical(n):
     n.component('VerticalLayoutGroup',{'m_Padding':{'m_Left':0,'m_Right':0,'m_Top':0,'m_Bottom':0},'m_ChildAlignment':0,'m_Spacing':12,'m_ChildForceExpandWidth':1,'m_ChildForceExpandHeight':0,'m_ChildControlWidth':1,'m_ChildControlHeight':1,'m_ChildScaleWidth':0,'m_ChildScaleHeight':0,'m_ReverseArrangement':0})
     n.component('ContentSizeFitter',{'m_HorizontalFit':0,'m_VerticalFit':2})
 def height(n,h):n.component('LayoutElement',{'m_IgnoreLayout':0,'m_MinWidth':-1,'m_MinHeight':h,'m_PreferredWidth':-1,'m_PreferredHeight':h,'m_FlexibleWidth':-1,'m_FlexibleHeight':0,'m_LayoutPriority':1})
+
+# ============================================================
+# R2 参考：软胶厚卡的作者侧构件
+# 单层 Image 无法同时表达「白描边 + 彩色面」（Image.color 会把两者乘成同色），
+# 故与 BlockOutWidgets.SoftCard 保持同一套分层：Shadow → Stroke → Fill →（可选点阵）。
+# ============================================================
+def spr(name):return ext(ART/(name+'.png'),21300000)
+SP_ROUND=spr('round');SP_CIRCLE=spr('circle');SP_SHADOW=spr('card_soft_shadow');SP_DOTS=spr('tray_dots')
+SP_ICON={n:spr(n) for n in ('heart','bulb','hammer','wand','pause','lock')}
+
+ANCH={'tl':((0,1),(0,1)),'tc':((.5,1),(.5,1)),'tr':((1,1),(1,1)),
+      'ml':((0,.5),(0,.5)),'mc':((.5,.5),(.5,.5)),'mr':((1,.5),(1,.5)),
+      'bl':((0,0),(0,0)),'bc':((.5,0),(.5,0)),'br':((1,0),(1,0)),
+      'st':((0,0),(1,1))}
+def place(node,preset,x,y,w,h):
+    """preset 语义与 BlockOutWidgets.UIAnchorPreset 一致：Top* 的 y 向下为正，Bottom* 与 Middle* 的 y 向上为正。"""
+    a,pv=ANCH[preset]
+    node.anchor_min=vec(*a);node.anchor_max=vec(*a);node.pivot=vec(*pv)
+    node.position=vec(-x if preset in ('tr','mr','br') else x,
+                      -y if preset in ('tl','tc','tr') else y)
+    node.size=vec(w,h)
+    return node
+
+def _patch(node,cid,**kv):
+    for doc in node.p.docs:
+        if doc[1]==cid:
+            for k,v in kv.items():doc[3][k]=v
+            return
+
+def image_node(p,parent,name,box=None,off=None,color=WHITE,sp=None,ty=0,raycast=0,preserve=0,preset=None):
+    """box 走左上角定位；off=(l,b,r,t) 走拉伸锚点；preset 指定锚点后 box=(x,y,w,h)。"""
+    node=p.node(name,box if box else (0,0,0,0),parent)
+    if off is not None:
+        node.anchor_min=vec(0,0);node.anchor_max=vec(1,1);node.pivot=vec(.5,.5)
+        node.position=vec((off[0]+off[2])*.5,(off[1]+off[3])*.5)
+        node.size=vec(off[2]-off[0],off[3]-off[1])
+    elif preset:
+        place(node,preset,*box)
+    cid=node.img(color,sp)
+    node.image=cid                      # Node.__init__ 不回写，不回写会让 button() 再叠一层不透明 Image
+    _patch(node,cid,m_Type=ty,m_RaycastTarget=raycast,m_PreserveAspect=preserve)
+    return node,cid
+
+def soft_card(p,parent,name,box=None,off=None,fill=CREAM,stroke=WHITE,sw=3,pad=9,hit=True,dots=False,preset=None):
+    root,_=image_node(p,parent,name,box,off,(0,0,0,0),None,0,1 if hit else 0,preset=preset)
+    image_node(p,root,'Shadow',None,(-pad,-pad-2,pad,pad),SHADOW_TINT,SP_SHADOW,1,0)
+    image_node(p,root,'Stroke',None,(0,0,0,0),stroke,SP_ROUND,1,0)
+    image_node(p,root,'Fill',None,(sw,sw,-sw,-sw),fill,SP_ROUND,1,0)
+    if dots:image_node(p,root,'Dots',None,(14,14,-14,-14),WHITE,SP_DOTS,2,0)
+    return root
+
+def text_node(p,field,name,text,box,parent,size=16,color=INK,align=4,preset=None):
+    """field 写进 View 序列化字段，节点名可与字段名不同（运行时 Relayout 按节点名查找）。"""
+    node=p.node(name,box,parent)
+    if preset:place(node,preset,*box)
+    cid=node.text(text,size,color,align)
+    p.fields[field]=ref(cid);return node,cid
+
+def stretch_node(p,parent,name,off=(0,0,0,0)):
+    node=p.node(name,(0,0,0,0),parent)
+    node.anchor_min=vec(0,0);node.anchor_max=vec(1,1);node.pivot=vec(.5,.5)
+    node.position=vec((off[0]+off[2])*.5,(off[1]+off[3])*.5)
+    node.size=vec(off[2]-off[0],off[3]-off[1])
+    return node
 
 def make_items():
     p=Page('ChapterItem','BlockOutChapterItemView',item=True);r=p.root;r.size=vec(342,72);r.image=r.img(WHITE);p.fields['Button']=ref(r.button());height(r,72)
@@ -205,23 +289,93 @@ def make_pages(chapter,repeat,stores):
     nodes=[]
     for i in range(12):_,cid=p.image('Node_'+str(i),(24+i*29,626,18,18),color=MINT);nodes.append(ref(cid))
     p.fields['HomeNodes']=nodes;p.label('HomePieceText','拼片 0/12',(24,662,342,28));p.nav();p.save()
+    # ============================================================
+    # 对局页（R2 参考）。层级自下而上：棋盘托盘 → 棋盘挂点 → HUD → 提示 → 底部道具
+    # 坐标 = 390×844 设计基线，box=(x, y 自上而下, w, h)，与 BlockOutWidgets.Place 的 Top* 预设同义。
+    # 运行时 Relayout 按节点名重排，故节点名必须与 BuildBoardScreen 一致（不是字段名）。
+    # ============================================================
     p=Page('BlockOutGameHud','BlockOutBoardPageView')
-    p.button('BoardPauseBtn','暂停',(24,24,60,44),color=WHITE)
-    p.label('BoardLevelTitle','第 1 章 · 第 1 关',(92,24,274,28),size=20);p.label('BoardLevelSub','沿箭头方向移除方块',(92,54,274,24),size=12)
-    hearts=[]
-    heartrow=p.node('Hearts',(146,94,100,28))
-    for i in range(3):_,cid=p.image('Heart'+str(i),(i*36,0,28,28),heartrow,color=CORAL,sp=HEART);hearts.append(ref(cid))
+
+    # ---- 棋盘挂点：Board 屏的直接子节点，名字必须是 BoardArea，轴心保持 0.5/0.5 ----
+    area=p.node('BoardArea',(36,147,318,404))
+    area.anchor_min=area.anchor_max=vec(.5,.5);area.pivot=vec(.5,.5)
+    area.position=vec(0,73);area.size=vec(318,404)          # 中心 (195,349)
+    p.fields['BoardArea']=ref(area.rt)
+
+    # ---- 棋盘奶油托盘：作为 BoardArea 的子节点，而不是兄弟节点 ----
+    # BlockOutAppBuilder 运行时会把 BoardArea SetAsFirstSibling；若托盘是兄弟节点，
+    # 走到首位后托盘会压在棋盘之上把方块盖住。挂在棋盘下则一起下沉，方块自然在其上。
+    # 拉伸外扩 (-12,-13,12,13) → 342×430，与设计稿托盘一致。
+    tray=soft_card(p,area,'BoardTray',off=(-12,-13,12,13),fill=SURFACE_RAISED,stroke=WHITE,
+                   sw=3,pad=9,hit=False,dots=True)
+    p.fields['BoardTray']=ref(tray.rt)
+
+    # ---- 顶部 HUD：全屏透明面板，不拦截棋盘手势 ----
+    hud=stretch_node(p,p.surface,'TopHUD')
+    hid=hud.img((0,0,0,0),None);_patch(hud,hid,m_Type=0,m_RaycastTarget=0)
+
+    text_node(p,'BoardLevelTitle','LevelTitle','第 1 关',(0,46,240,26),hud,20,TEXT_COCOA,4,preset='tc')
+    text_node(p,'BoardLevelSub','LevelSub','甜点星球',(0,72,240,14),hud,12,TEXT_COCOA60,4,preset='tc')
+
+    # 暂停：右上 40×40 白圆 + 咖色图标
+    pause,_=image_node(p,hud,'PauseBtn',(24,46,40,40),None,WHITE,SP_CIRCLE,0,1,preset='tr')
+    p.fields['BoardPauseBtn']=ref(pause.button())
+    image_node(p,pause,'Icon',None,(11,11,-11,-11),TEXT_COCOA,SP_ICON['pause'],0,0,1)
+
+    # 心（左）/ 推进条（中）/ 百分比（右）同一行
+    lives=place(p.node('LivesRow',(0,0,56,16),hud),'tl',24,88,56,16);hearts=[]
+    for i in range(3):
+        _,cid=image_node(p,lives,'Heart_'+str(i),(i*18,0,16,16),None,WHITE,SP_ICON['heart'],0,0,1)
+        hearts.append(ref(cid))
     p.fields['BoardHearts']=hearts
-    timer=p.node('Timer',(145,90,100,36),color=WHITE);p.fields['BoardTimerPill']=ref(timer.rt);p.label('BoardTimerText','02:00',(0,0,100,36),timer)
-    p.label('BoardRemainingText','剩余 0 块',(24,142,342,28))
-    area=p.node('BoardArea',(18,188,354,354));p.fields['BoardArea']=ref(area.rt)
-    p.label('BoardHintPill','轻点整块方块，沿箭头方向飞出',(24,562,342,44),size=13)
-    for i,(key,title) in enumerate([('HintSlot','提示'),('HammerSlot','锤子'),('MagicSlot','魔法棒')]):
-        root=p.node(key,(24+i*116,644,110,144),color=WHITE);slot={'Rect':ref(root.rt),'Button':ref(root.button())}
-        _,cid=p.image('Icon',(37,26,36,36),root,MINT,[BULB,HAMMER,WAND][i]);slot['Icon']=ref(cid)
-        badge=p.node('CountBadge',(74,8,28,24),root,CORAL);slot['CountBadge']=ref(badge.go);_,cid=p.label('Count','0',(0,0,28,24),badge,12,WHITE);slot['CountText']=ref(cid)
-        lock,_=p.image('LockBadge',(76,8,22,24),root,INK,LOCK);slot['LockBadge']=ref(lock.go)
-        for field,text,y in [('NameText',title,72),('CondText','',106)]:_,cid=p.label(field,text,(4,y,102,28),root,12);slot[field]=ref(cid)
+
+    # 计时胶囊（倒计时模式专用，与心互斥 → 默认隐藏）
+    timer,_=image_node(p,hud,'TimerPill',(24,85,64,22),None,BG_CREAM_DEEP,SP_ROUND,1,0,preset='tl')
+    timer.active=False;p.fields['BoardTimerPill']=ref(timer.rt)
+    text_node(p,'BoardTimerText','TimerText','01:23',(0,0,64,22),timer,12,GOLD_TEXT,4)
+
+    # 本关推进条：真实数据（已飞块数 / 本关总块数），填充层由 SetProgressBar 改锚点宽度
+    track,_=image_node(p,hud,'ProgressBar',(0,88,196,13),None,BG_CREAM_DEEP,SP_ROUND,1,0,preset='tc')
+    _,bar_cid=image_node(p,track,'Bar',None,(3,3,-3,-3),MINT_FLY,SP_ROUND,1,0)
+    image_node(p,track,'Gloss',None,(4,5.98,-4,-2.5),(1,1,1,.30),SP_ROUND,1,0)
+    p.fields['BoardProgressFill']=ref(bar_cid)   # ProgressBar 返回的是 Bar 而非根节点
+    text_node(p,'BoardProgressText','ProgressText','0%',(318,87,44,15),hud,12,TEXT_COCOA60,3,preset='tl')
+
+    # 剩余块数：托盘右下角内侧（真实数据）
+    rem=place(p.node('RemainingText',(0,0,140,16)),'tr',42,546,140,16)
+    p.fields['BoardRemainingText']=ref(rem.text('剩余 0 块',13,TEXT_DISABLED,5))
+
+    # 操作提示 pill（棋盘与道具之间）
+    # 托盘底 564 与道具条顶 748 之间共 184 的空档，提示条在中间居中（上下各 78），
+    # 贴棋盘会留下 176 的空洞，贴着道具又像道具的标题，居中读作呼吸留白。
+    hint,_=image_node(p,p.surface,'HintPill',(0,642,288,28),None,WHITE,SP_ROUND,1,0,preset='tc')
+    image_node(p,hint,'Bulb',(12,5,18,18),None,WHITE,SP_ICON['bulb'],0,0,1)
+    hint_text=stretch_node(p,hint,'HintText',(36,0,-10,0))
+    p.fields['BoardHintPill']=ref(hint_text.text('轻点整块方块，沿箭头方向飞出',12,TEXT_COCOA,3))
+
+    # ---- 底部道具容器：一整条奶油容器 + 三张独立内卡（94×66，中心距 106.3） ----
+    # 容器吸底（BottomCenter, y=12）；内卡用容器内的左上角坐标，容器内左右各留 6.2 内边距。
+    toolbar=soft_card(p,p.surface,'BottomToolbar',(0,12,319,84),fill=BG_CREAM_DEEP,stroke=WHITE,
+                      sw=3,pad=8,hit=True,preset='bc')
+    for i,(key,icon,title,cond) in enumerate([('HintSlot','bulb','提示','轮换高亮可飞块'),
+                                              ('HammerSlot','hammer','锤子','消除任意在场块'),
+                                              ('MagicSlot','wand','炸弹','飞走最多 3 块')]):
+        card=soft_card(p,toolbar,key,(6.2+i*106.3,6,94,72),fill=SURFACE_RAISED,stroke=WHITE,sw=2,pad=5,hit=True)
+        slot={'Rect':ref(card.rt),'Button':ref(card.button())}
+        _,icon_cid=image_node(p,card,'Icon',(31,8,32,32),None,WHITE,SP_ICON[icon],0,0,1);slot['Icon']=ref(icon_cid)
+        # 数量徽标（正常态）
+        badge,_=image_node(p,card,'CountBadge',(70,5,18,18),None,BERRY_RED,SP_CIRCLE,0,0)
+        slot['CountBadge']=ref(badge.go)
+        slot['CountText']=ref(badge.text('0',10,WHITE,4))
+        # 锁徽章（未解锁态，默认隐藏）
+        lock,_=image_node(p,card,'LockBadge',(70,5,18,18),None,LOCK_BADGE,SP_CIRCLE,0,0)
+        lock.active=False;slot['LockBadge']=ref(lock.go)
+        image_node(p,lock,'Lock',None,(5,5,-5,-5),WHITE,SP_ICON['lock'],0,0,1)
+        # 卡高 72：图标 8..40 / 名称 43..56 / 条件 57..67（卡底留 5px，别贴边）
+        name_node=p.node('Name',(2,43,90,13),card)
+        slot['NameText']=ref(name_node.text(title,12,TEXT_COCOA,4))
+        cond_node=p.node('Cond',(1,57,92,10),card)
+        slot['CondText']=ref(cond_node.text(cond,10,TEXT_DISABLED,4))
         p.fields[key]=slot
     p.save()
     p=Page('BlockOutStorePage','BlockOutStoreView');common_header(p,'Store','商店');p.nav('Store')
@@ -288,12 +442,12 @@ def make_popups():
         p.save()
 
 if __name__=='__main__':
-    make_pages(*make_items());make_popups()
     import runpy
+    make_pages(*make_items());make_popups()
+    # 反馈组件是幂等补齐（已挂过的节点跳过），单页模式下仍需跑，否则新按钮没有按压反馈。
     runpy.run_path(str(Path(__file__).with_name('bind_authored_feedback.py')))
-    runpy.run_path(str(Path(__file__).with_name('align_artout_layout.py')))
-    print('Authored 12 complete pages/popups and 5 item prefabs. Unity was not launched.')
-
-# Keep delivered layouts free of removed chapter artwork.
-if __name__ == '__main__':
-    runpy.run_path(str(Path(__file__).with_name('remove_chapter_art_layout.py')))
+    if not ONLY:
+        # 版面对齐脚本是「整体覆盖式」的，单页模式下不跑，避免回灌旧版式。
+        runpy.run_path(str(Path(__file__).with_name('align_artout_layout.py')))
+        runpy.run_path(str(Path(__file__).with_name('remove_chapter_art_layout.py')))
+        print('Authored 12 complete pages/popups and 5 item prefabs. Unity was not launched.')

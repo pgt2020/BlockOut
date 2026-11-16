@@ -133,7 +133,22 @@ namespace BlockOut.UI
         // 事件订阅
         // ============================================================
 
-        internal void RefreshRemaining(int n) { if(UI.BoardRemainingText!=null) UI.BoardRemainingText.text="剩余 "+n+" 块"; }
+        internal void RefreshRemaining(int n)
+        {
+            if (UI.BoardRemainingText != null) UI.BoardRemainingText.text = "剩余 " + n + " 块";
+            UpdateBoardProgress(n);
+        }
+
+        /// <summary>本关推进条：已飞块数 / 本关总块数（真实数据，不造百分比）。</summary>
+        private int boardTotalBlocks = -1;
+
+        internal void UpdateBoardProgress(int remaining)
+        {
+            if (boardTotalBlocks <= 0) return;
+            float done = 1f - Mathf.Clamp01((float)remaining / boardTotalBlocks);
+            if (UI.BoardProgressFill != null) BlockOutWidgets.SetProgressBar(UI.BoardProgressFill, done);
+            if (UI.BoardProgressText != null) UI.BoardProgressText.text = Mathf.RoundToInt(done * 100f) + "%";
+        }
         internal void SubscribeGameEvents()
         {
             GM.OnLevelLoaded += HandleLevelLoaded;
@@ -259,6 +274,10 @@ namespace BlockOut.UI
             Hud.RefreshTimer(GM.TimeRemaining);
             Hud.RefreshToolStates();
             Hud.RefreshHintPill();
+
+            // 推进条基准：关卡加载时的剩余块数即本关总数
+            boardTotalBlocks = Mathf.Max(1, GM.RemainingBlocks);
+            UpdateBoardProgress(GM.RemainingBlocks);
             var page=UI.GetScreenGO(BlockOutScreenId.Board);
             if(page!=null && page.activeInHierarchy)
             {

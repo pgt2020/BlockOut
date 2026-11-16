@@ -1,4 +1,4 @@
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -202,78 +202,98 @@ namespace BlockOut.UI
         {
             var go = MakeScreen("Board");
 
-            // ---- HUD 第一行：暂停 | 关卡 | 生命/计时 ----
+            // ============================================================
+            // 层级自下而上：棋盘托盘 → 棋盘挂点 → HUD → 提示 → 底部道具
+            // （UGUI 按子节点顺序绘制，先建的在底层）
+            // ============================================================
+
+            // ---- 棋盘挂点（契约：Board 屏根节点的直接子节点，名字必须是 BoardArea） ----
+            // 轴心保持 0.5/0.5：BoardView 以节点中心铺格，Relayout 亦按此重算
+            var areaRt = BlockOutWidgets.Place(go.transform, "BoardArea", UIAnchorPreset.MiddleCenter, 0, 73, 318, 402);
+
+            // ---- 棋盘奶油托盘（R2 参考：厚软胶卡 + 奶油描边 + 柔投影）----
+            // 必须挂在 BoardArea 之下，不能当兄弟节点：BlockOutAppBuilder 运行时会
+            // 对 BoardArea 执行 SetAsFirstSibling，兄弟托盘会随之压到棋盘上方把方块盖住。
+            var trayHit = BlockOutWidgets.SoftCard(areaRt, "BoardTray", 342, 430,
+                BlockOutDesignTokens.SurfaceRaised, BlockOutDesignTokens.White, 3f, 30f, 9f,
+                UIAnchorPreset.MiddleCenter, 0, 0, true, true);
+            var trayRt = (RectTransform)trayHit.transform;
+            trayRt.anchorMin = Vector2.zero;
+            trayRt.anchorMax = Vector2.one;
+            trayRt.offsetMin = new Vector2(-12f, -13f);   // 外扩 → 342×430，随棋盘一起缩放
+            trayRt.offsetMax = new Vector2(12f, 13f);
+            trayHit.raycastTarget = false;               // 不能吞掉棋盘手势
+            BoardTray = trayRt;
+
+            // ---- 顶部 HUD 第一行：关卡标题居中 + 暂停钮右上 ----
             var hud = BlockOutWidgets.Panel(go.transform, "TopHUD", Color.clear, UIAnchorPreset.Stretch);
             hud.raycastTarget = false; // 全屏面板不拦截棋盘点击
-            BoardPauseBtn = BlockOutWidgets.CircleIconButton(hud.transform, "PauseBtn", BlockOutIconFactory.PauseIcon(), 44, null,
-                BlockOutDesignTokens.White, BlockOutDesignTokens.StrokeWarm);
-            BoardLevelTitle = BlockOutWidgets.Label(hud.transform, "LevelTitle", "第一章 · 第 1 关",
-                BlockOutDesignTokens.FontHudLevel, 700, BlockOutDesignTokens.TextCocoa, TextAnchor.MiddleCenter,
-                UIAnchorPreset.TopCenter, 0, 0, 220, 22);
+
+            BoardLevelTitle = BlockOutWidgets.Label(hud.transform, "LevelTitle", "第 1 关",
+                BlockOutDesignTokens.FontHudLevel, 900, BlockOutDesignTokens.TextCocoa, TextAnchor.MiddleCenter,
+                UIAnchorPreset.TopCenter, 0, 46, 240, 26);
             BoardLevelSub = BlockOutWidgets.Label(hud.transform, "LevelSub", "甜点星球",
                 BlockOutDesignTokens.FontHudSub, 400, BlockOutDesignTokens.TextCocoa60, TextAnchor.MiddleCenter,
-                UIAnchorPreset.TopCenter, 0, 24, 220, 14);
+                UIAnchorPreset.TopCenter, 0, 72, 240, 14);
 
-            // 生命（3 心，互斥于计时）
-            var livesRow = BlockOutWidgets.Place(hud.transform, "LivesRow", UIAnchorPreset.TopRight, -66, 14, 55, 15);
+            BoardPauseBtn = BlockOutWidgets.CircleIconButton(hud.transform, "PauseBtn", BlockOutIconFactory.PauseIcon(), 40, null,
+                BlockOutDesignTokens.White, BlockOutDesignTokens.StrokeWarm);
+            var pauseRt = (RectTransform)BoardPauseBtn.transform;
+            BlockOutWidgets.ApplyAnchor(pauseRt, UIAnchorPreset.TopRight);
+            pauseRt.anchoredPosition = new Vector2(-24, -46);
+
+            // ---- 顶部 HUD 第二行：心（左）/ 推进条（中）/ 百分比（右） ----
+            var livesRow = BlockOutWidgets.Place(hud.transform, "LivesRow", UIAnchorPreset.TopLeft, 24, 88, 56, 16);
             BoardHearts = new Image[3];
             for (int i = 0; i < 3; i++)
             {
                 var heart = BlockOutWidgets.SpriteImage(livesRow, "Heart_" + i, BlockOutIconFactory.HeartIcon(),
-                    UIAnchorPreset.TopLeft, i * 20, 0, 15, 15);
+                    UIAnchorPreset.TopLeft, i * 18, 0, 16, 16);
                 BoardHearts[i] = heart;
             }
-            // 计时胶囊（倒计时模式专用）
-            BoardTimerPill = BlockOutWidgets.Pill(hud.transform, "TimerPill", 64, 20, BlockOutDesignTokens.BgCreamDeep,
-                BlockOutDesignTokens.GoldCoin, UIAnchorPreset.TopRight, -70, 11);
-            BoardTimerText = BlockOutWidgets.Label(BoardTimerPill, "TimerText", "01:23", 11, 900,
-                BlockOutDesignTokens.GoldRim, TextAnchor.MiddleCenter);
+
+            // 计时胶囊（倒计时模式专用，与心形互斥）
+            BoardTimerPill = BlockOutWidgets.Pill(hud.transform, "TimerPill", 64, 22, BlockOutDesignTokens.BgCreamDeep,
+                BlockOutDesignTokens.GoldCoin, UIAnchorPreset.TopLeft, 24, 85);
+            BoardTimerText = BlockOutWidgets.Label(BoardTimerPill, "TimerText", "01:23", 12, 900,
+                BlockOutDesignTokens.GoldText, TextAnchor.MiddleCenter);
             BoardTimerPill.gameObject.SetActive(false);
 
-            // ---- 剩余块数胶囊 ----
-            var remainPill = BlockOutWidgets.Pill(hud.transform, "RemainingPill", 110, 30, BlockOutDesignTokens.MintBg,
-                BlockOutDesignTokens.MintFly, UIAnchorPreset.TopRight, -110, 48);
-            var sq1 = BlockOutWidgets.Panel(remainPill, "Sq1", BlockOutDesignTokens.MintText,
-                UIAnchorPreset.MiddleLeft, 11, 3, 9, 9);
-            sq1.sprite = BlockOutIconFactory.RoundedSlice(2.5f, BlockOutDesignTokens.MintText, Color.clear, 0f, null);
-            sq1.type = Image.Type.Sliced;
-            var sq2 = BlockOutWidgets.Panel(remainPill, "Sq2", BlockOutDesignTokens.CtaCoral,
-                UIAnchorPreset.MiddleLeft, 22, -3, 9, 9);
-            sq2.sprite = BlockOutIconFactory.RoundedSlice(2.5f, BlockOutDesignTokens.CtaCoral, Color.clear, 0f, null);
-            sq2.type = Image.Type.Sliced;
-            BoardRemainingText = BlockOutWidgets.Label(remainPill, "RemainingText", "剩余 0 块",
-                BlockOutDesignTokens.FontRemaining, 700, BlockOutDesignTokens.MintText, TextAnchor.MiddleLeft,
-                UIAnchorPreset.Stretch);
-            BoardRemainingText.rectTransform.offsetMin = new Vector2(38, 0);
-            BoardRemainingText.rectTransform.offsetMax = new Vector2(-8, 0);
+            // 本关推进条（真实数据：已飞块数 / 本关总块数，由控制器写入）
+            BoardProgressFill = BlockOutWidgets.ProgressBar(hud.transform, "ProgressBar", 196, 13,
+                BlockOutDesignTokens.BgCreamDeep, BlockOutDesignTokens.MintFly,
+                UIAnchorPreset.TopCenter, 0, 88);
+            BoardProgressText = BlockOutWidgets.Label(hud.transform, "ProgressText", "0%",
+                12, 900, BlockOutDesignTokens.TextCocoa60, TextAnchor.MiddleLeft,
+                UIAnchorPreset.TopLeft, 318, 87, 44, 15);
 
-            // ---- 棋盘区（正方形；BoardView 由 Bootstrapper 挂入） ----
-            BlockOutWidgets.Place(go.transform, "BoardArea", UIAnchorPreset.MiddleCenter, 0, 0, 354, 354);
+            // ---- 剩余块数：浮在托盘右下角内侧（真实数据） ----
+            BoardRemainingText = BlockOutWidgets.Label(go.transform, "RemainingText", "剩余 0 块",
+                BlockOutDesignTokens.FontRemaining, 700, BlockOutDesignTokens.TextDisabled, TextAnchor.MiddleRight,
+                UIAnchorPreset.TopRight, -42, 546, 140, 16);
 
-            // ---- 操作提示 pill（Docs/DesignSystem.md：固定 220×26 居中，不缩放） ----
-            var hintPill = BlockOutWidgets.Pill(go.transform, "HintPill", 220, 26, BlockOutDesignTokens.SurfaceCard,
-                BlockOutDesignTokens.StrokeWarm, UIAnchorPreset.TopCenter, 0, 0);
+            // ---- 操作提示 pill（棋盘与道具之间） ----
+            // 托盘底 564 与道具条顶 754 之间共 190 空档：提示条居中（上下各 81），
+            // 贴棋盘会留 176 空洞、贴道具条又像它的标题，居中读作呼吸留白。
+            var hintPill = BlockOutWidgets.Pill(go.transform, "HintPill", 288, 28, BlockOutDesignTokens.SurfaceCard,
+                BlockOutDesignTokens.StrokeWarm, UIAnchorPreset.TopCenter, 0, 642);
             BlockOutWidgets.SpriteImage(hintPill, "Bulb", BlockOutIconFactory.Bulb(),
-                UIAnchorPreset.MiddleLeft, 12, 0, 16, 16).color = BlockOutDesignTokens.GoldCoin;
+                UIAnchorPreset.MiddleLeft, 12, 0, 18, 18);
             BoardHintPill = BlockOutWidgets.Label(hintPill, "HintText", "轻点整块方块，沿箭头方向飞出",
                 BlockOutDesignTokens.FontHintPill, 400, BlockOutDesignTokens.TextCocoa, TextAnchor.MiddleLeft,
                 UIAnchorPreset.Stretch);
-            BoardHintPill.rectTransform.offsetMin = new Vector2(34, 0);
+            BoardHintPill.rectTransform.offsetMin = new Vector2(36, 0);
             BoardHintPill.rectTransform.offsetMax = new Vector2(-10, 0);
 
-            // ---- 底部工具条：提示 / 锤子 / 魔法棒（Docs/DesignSystem.md：342×104；槽位区左右各内缩 26） ----
-            var toolbar = BlockOutWidgets.Place(go.transform, "BottomToolbar", UIAnchorPreset.BottomLeft, 24, 28, 342, 72);
-            var tbImg = toolbar.gameObject.AddComponent<Image>();
-            tbImg.sprite = BlockOutIconFactory.RoundedSlice(26f, BlockOutDesignTokens.SurfaceCard,
-                BlockOutDesignTokens.StrokeWarm, 2f, null);
-            tbImg.type = Image.Type.Sliced;
-            var slots = BlockOutWidgets.Place(toolbar, "Slots", UIAnchorPreset.Stretch);
-            BuildToolSlot(slots, "HintSlot", BlockOutIconFactory.Bulb(), "提示", "点击高亮可飞块", HintSlot);
-            BuildToolSlot(slots, "HammerSlot", BlockOutIconFactory.HammerIcon(), "锤子", "消除任意在场块", HammerSlot);
-            BuildToolSlot(slots, "MagicSlot", BlockOutIconFactory.Wand(), "魔法棒", "飞走最多 3 块", MagicSlot);
+            // ---- 底部道具容器（R2 参考：一整条奶油容器 + 三张内卡） ----
+            var toolbarHit = BlockOutWidgets.SoftCard(go.transform, "BottomToolbar", 319, 84,
+                BlockOutDesignTokens.BgCreamDeep, BlockOutDesignTokens.White, 3f, 26f, 8f,
+                UIAnchorPreset.BottomCenter, 0, 12);
+            var toolbar = (RectTransform)toolbarHit.transform;
 
-            // 弹层（暂停/失败/确认/结算）改由 Build() 经 LoadOrBuildPopup 独立加载/构建，
-            // 以便作为可复用 Prefab；此处不再内联构建，避免与 Prefab 路径重复生成。
+            BuildToolSlot(toolbar, "HintSlot", BlockOutIconFactory.Bulb(), "提示", "轮换高亮可飞块", HintSlot);
+            BuildToolSlot(toolbar, "HammerSlot", BlockOutIconFactory.HammerIcon(), "锤子", "消除任意在场块", HammerSlot);
+            BuildToolSlot(toolbar, "MagicSlot", BlockOutIconFactory.Wand(), "炸弹", "飞走最多 3 块", MagicSlot);
 
             return go;
         }
@@ -281,42 +301,45 @@ namespace BlockOut.UI
         private void BuildToolSlot(Transform toolbar, string name, Sprite icon, string toolName, string condNormal, ToolSlotRefs slot)
         {
             int index = name == "HintSlot" ? 0 : (name == "HammerSlot" ? 1 : 2);
-            var rootImg = BlockOutWidgets.Panel(toolbar, name, Color.clear, UIAnchorPreset.Stretch);
-            rootImg.raycastTarget = true;
-            var root = rootImg.rectTransform;
-            root.anchorMin = new Vector2(index / 3f, 0);
-            root.anchorMax = new Vector2((index + 1) / 3f, 1);
-            root.offsetMin = Vector2.zero;
-            root.offsetMax = Vector2.zero;
 
-            // 图标 24×24 直接落于工具条卡片（04：图标 24pt，工具条内 y=34..58；无白底圆）
-            slot.Icon = BlockOutWidgets.SpriteImage(root, "Icon", icon, UIAnchorPreset.TopCenter, 0, 34, 24, 24);
-            slot.Icon.color = BlockOutDesignTokens.GrayIconLocked; // 默认置灰，控制器按三态覆写
+            // 三张独立内卡：94×72，中心距 106.3（94 + 12.3 间距），两侧各留 6.2 内边距
+            var cardHit = BlockOutWidgets.SoftCard(toolbar, name, 94, 72,
+                BlockOutDesignTokens.SurfaceRaised, BlockOutDesignTokens.White, 2f, 22f, 5f,
+                UIAnchorPreset.MiddleCenter, (index - 1) * 106.3f, 0);
+            var root = (RectTransform)cardHit.transform;
+            cardHit.raycastTarget = true;
 
-            // 数量徽标（正常态）：右上珊瑚圆 + 计数（04：徽章中心 = 图标中心 + (20.5,-20)）
-            slot.CountBadge = BlockOutWidgets.Panel(root, "CountBadge", BlockOutDesignTokens.CtaCoral,
-                UIAnchorPreset.TopCenter, 20.5f, 15.5f, 21, 21).gameObject;
-            slot.CountBadge.GetComponent<Image>().sprite = BlockOutIconFactory.Circle(BlockOutDesignTokens.CtaCoral, Color.clear, 0f);
-            slot.CountText = BlockOutWidgets.Label(slot.CountBadge.transform, "Count", "0", 11, 900,
+            // 图标 32×32（参考：图标占卡高约一半，此前仅占三分之一是主要差距）
+            slot.Icon = BlockOutWidgets.SpriteImage(root, "Icon", icon, UIAnchorPreset.TopCenter, 0, 8, 32, 32);
+
+            // 数量徽标（正常态）：BerryRed 是状态色里的「数量/危险」语义，比 action.primary 的巧克力棕更醒目
+            slot.CountBadge = BlockOutWidgets.Panel(root, "CountBadge", BlockOutDesignTokens.BerryRed,
+                UIAnchorPreset.TopRight, -6, 5, 18, 18).gameObject;
+            slot.CountBadge.GetComponent<Image>().sprite = BlockOutIconFactory.Circle(BlockOutDesignTokens.BerryRed, Color.clear, 0f);
+            slot.CountText = BlockOutWidgets.Label(slot.CountBadge.transform, "Count", "0", 10, 900,
                 BlockOutDesignTokens.White, TextAnchor.MiddleCenter);
 
-            // 锁徽章（未解锁态）：#6E5449 圆底 + 白色锁形（Docs/DesignSystem.md）
+            // 锁徽章（未解锁态）
             slot.LockBadge = BlockOutWidgets.Panel(root, "LockBadge", BlockOutDesignTokens.LockBadge,
-                UIAnchorPreset.TopCenter, 20.5f, 15.5f, 21, 21).gameObject;
+                UIAnchorPreset.TopRight, -6, 5, 18, 18).gameObject;
             slot.LockBadge.GetComponent<Image>().sprite = BlockOutIconFactory.Circle(BlockOutDesignTokens.LockBadge, Color.clear, 0f);
             var lockImg = BlockOutWidgets.SpriteImage(slot.LockBadge.transform, "Lock", BlockOutIconFactory.LockIcon(),
                 UIAnchorPreset.Stretch);
-            lockImg.rectTransform.offsetMin = new Vector2(6, 6);
-            lockImg.rectTransform.offsetMax = new Vector2(-6, -6);
+            lockImg.rectTransform.offsetMin = new Vector2(5, 5);
+            lockImg.rectTransform.offsetMax = new Vector2(-5, -5);
             lockImg.color = BlockOutDesignTokens.White;
             slot.LockBadge.SetActive(false);
 
-            slot.NameText = BlockOutWidgets.Label(root, "Name", toolName, BlockOutDesignTokens.FontToolName, 400,
-                BlockOutDesignTokens.TextCocoa, TextAnchor.MiddleCenter, UIAnchorPreset.TopCenter, 0, 75, 100, 12);
-            slot.CondText = BlockOutWidgets.Label(root, "Cond", condNormal, BlockOutDesignTokens.FontToolCond, 400,
-                BlockOutDesignTokens.TextCocoa60, TextAnchor.MiddleCenter, UIAnchorPreset.TopCenter, 0, 89, 110, 11);
-            slot.Button = rootImg.gameObject.AddComponent<Button>();
-            slot.Button.targetGraphic = rootImg;
+            // 卡高 72：图标 8..40 / 名称 43..56 / 条件 57..67（卡底留 5px，别贴边）
+            slot.NameText = BlockOutWidgets.Label(root, "Name", toolName, BlockOutDesignTokens.FontToolName, 800,
+                BlockOutDesignTokens.TextCocoa, TextAnchor.MiddleCenter, UIAnchorPreset.TopCenter, 0, 43, 90, 13);
+
+            // 条件文案：参考图卡内没有，收成极浅小字贴卡底，不抢视觉但保留状态信息
+            slot.CondText = BlockOutWidgets.Label(root, "Cond", condNormal, 10, 400,
+                BlockOutDesignTokens.TextDisabled, TextAnchor.MiddleCenter, UIAnchorPreset.TopCenter, 0, 57, 92, 10);
+
+            slot.Button = cardHit.gameObject.AddComponent<Button>();
+            slot.Button.targetGraphic = cardHit;
             slot.Button.transition = Selectable.Transition.None;
             slot.Rect = root;
         }
@@ -1236,63 +1259,50 @@ namespace BlockOut.UI
                 }
             }
 
-            // ---- Board（04 HUD + Docs/DesignSystem.md：棋盘 W-36 居中 / 提示 pill 220×26 / 工具条 342×104 吸底） ----
+            // ---- Board（R2 参考：标题居中+右上暂停 / 心+推进条 / 奶油托盘棋盘 / 三卡道具吸底） ----
+            // 注意坐标系：页面的所有节点都在 DesignSurface 之下，而 BlockOutPageLayout 会把
+            // DesignSurface 固定成 390×844 设计盒再整体等比缩放 —— 因此这里必须用设计盒坐标
+            // （左上角原点、不含安全区偏移），不能用 Canvas 的 H/cw。用错会让同一套数字
+            // 在非 844 高的屏上整体偏移。SetTop*/SetBottom* 内部是 Transform.Find（只查直接子节点），
+            // 所以基准传 DesignSurface 而不是屏根节点 —— 传根节点会全部返回 null，静默空跑。
             GameObject board;
             if (screens.TryGetValue(BlockOutScreenId.Board, out board) && board != null)
             {
-                var hud = board.transform.Find("TopHUD") as RectTransform;
-                SetTopLeft(hud, "PauseBtn", L, T + 4, 44, 44);
-                SetTopCenter(hud, "LevelTitle", 0, T + 2, 220, 22);
-                SetTopCenter(hud, "LevelSub", 0, T + 24, 220, 14);
-                SetTopRight(hud, "LivesRow", R, T + 10, 55, 15);
-                SetTopRight(hud, "TimerPill", R, T + 9, 64, 20);
-                SetTopRight(hud, "RemainingPill", R, T + 48, 110, 30);
+                const float DW = 390f, DH = 844f;
+                var surface = (board.transform.Find("DesignSurface") as RectTransform) ?? (RectTransform)board.transform;
+                var hud = surface.Find("TopHUD") as RectTransform;
 
-                float toolbarH = m.ToolbarHeightCompact;   // v6: 全锁态 72；解锁后由 HudController 切到 104          // 固定 104（Docs/DesignSystem.md）
-                float toolbarBottom = B;                   // 止于安全区上方
-                const float PillH = 26f;                   // 提示 pill 固定高（Docs/DesignSystem.md）
-                float boardTop = T + 116f;                 // HUD 第二行（剩余块胶囊）之下 38（04）
-                float boardBottomLimit = H - toolbarBottom - toolbarH - 12f - PillH - 12f;
-                float side = Mathf.Min(m.BoardSideByWidth, boardBottomLimit - boardTop);
-                side = Mathf.Max(side, 120f);
-                float centerY = (boardTop + boardBottomLimit) * 0.5f;
-                var area = board.transform.Find("BoardArea") as RectTransform;
+                SetTopCenter(hud, "LevelTitle", 0, 46, 240, 26);
+                SetTopCenter(hud, "LevelSub", 0, 72, 240, 14);
+                SetTopRight(hud, "PauseBtn", 24, 46, 40, 40);
+                SetTopLeft(hud, "LivesRow", 24, 88, 56, 16);
+                SetTopLeft(hud, "TimerPill", 24, 85, 64, 22);
+                SetTopCenter(hud, "ProgressBar", 0, 88, 196, 13);
+                SetTopLeft(hud, "ProgressText", DW - 72, 87, 44, 15);
+
+                // 棋盘奶油托盘不再单独定位：它拉伸挂在 BoardArea 之下，棋盘改尺寸时托盘跟随
+                const float trayTop = 134f;
+                const float trayH = 430f;
+                const float trayW = 342f;
+
+                // 棋盘挂点：保持中心锚点（BoardView 以 0.5/0.5 为轴心铺格）
+                var area = surface.Find("BoardArea") as RectTransform;
                 if (area != null)
                 {
                     area.anchorMin = new Vector2(0.5f, 0.5f);
                     area.anchorMax = new Vector2(0.5f, 0.5f);
                     area.pivot = new Vector2(0.5f, 0.5f);
-                    area.sizeDelta = new Vector2(side, side);
-                    area.anchoredPosition = new Vector2(0, H * 0.5f - centerY);
+                    area.sizeDelta = new Vector2(trayW - 24f, trayH - 26f);
+                    area.anchoredPosition = new Vector2(0f, DH * 0.5f - (trayTop + trayH * 0.5f));
                 }
 
-                var hintPill = board.transform.Find("HintPill") as RectTransform;
-                if (hintPill != null)
-                {
-                    hintPill.anchorMin = new Vector2(0.5f, 0.5f);
-                    hintPill.anchorMax = new Vector2(0.5f, 0.5f);
-                    hintPill.pivot = new Vector2(0.5f, 1);
-                    hintPill.sizeDelta = new Vector2(220, PillH);
-                    hintPill.anchoredPosition = new Vector2(0, H * 0.5f - (centerY + side * 0.5f + 12f));
-                }
+                // 剩余块数贴托盘右下角内侧（右对齐），与 prefab 的 TopRight 锚点一致
+                SetTopRight(surface, "RemainingText", 42, trayTop + trayH - 18f, 140, 16);
+                float hintY = (trayTop + trayH + (DH - 12f - 84f) - 28f) * 0.5f;   // 托盘底与道具条顶之间居中
+                SetTopCenter(surface, "HintPill", 0, hintY, 288, 28);
 
-                var toolbar = board.transform.Find("BottomToolbar") as RectTransform;
-                if (toolbar != null)
-                {
-                    toolbar.anchorMin = new Vector2(0, 0);
-                    toolbar.anchorMax = new Vector2(0, 0);
-                    toolbar.pivot = new Vector2(0, 0);
-                    toolbar.sizeDelta = new Vector2(cw, toolbarH);   // Docs/DesignSystem.md：342×104（内容宽）
-                    toolbar.anchoredPosition = new Vector2(L, toolbarBottom);
-                    var slots = toolbar.Find("Slots") as RectTransform;
-                    if (slots != null)
-                    {
-                        slots.anchorMin = Vector2.zero;
-                        slots.anchorMax = Vector2.one;
-                        slots.offsetMin = new Vector2(26, 0);       // 04：槽位中心 97/195/293
-                        slots.offsetMax = new Vector2(-26, 0);
-                    }
-                }
+                // 底部道具容器：宽 319 吸底，三卡在容器内由 BuildToolSlot 定位
+                SetBottomCenter(surface, "BottomToolbar", 0, 12, 319, 84);
 
                 // 暂停/失败/确认/结算卡片随内容宽度自适应
                 ClampCardWidth(layers, "PauseLayer", cw);

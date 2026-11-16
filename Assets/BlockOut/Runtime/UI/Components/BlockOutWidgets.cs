@@ -280,6 +280,111 @@ namespace BlockOut.UI
             return img;
         }
 
+        /// <summary>
+        /// 奶油描边卡片（R2 参考图厚软胶质感）：柔投影层 + 奶油描边层 + 内填色层。
+        /// 单层 Image 无法同时表达「白色描边」与「彩色面」（Image.color 会把两者乘成同色），
+        /// 故拆成三层；返回根节点 Image 作点击热区，raycastTarget 落在它上面。
+        /// pad 为柔投影外扩量，卡片本体尺寸仍等于 w×h。
+        /// </summary>
+        public static Image SoftCard(Transform parent, string name, float w, float h,
+            Color fill, Color stroke, float strokeWidth = 2.5f, float radius = 26f, float pad = 7f,
+            UIAnchorPreset preset = UIAnchorPreset.MiddleCenter, float x = 0, float y = 0, bool drop = true,
+            bool dots = false)
+        {
+            var rt = Place(parent, name, preset, x, y, w, h);
+
+            if (drop)
+            {
+                var shadow = SpriteImage(rt, "Shadow", BlockOutIconFactory.SoftShadow(), UIAnchorPreset.Stretch);
+                shadow.type = Image.Type.Sliced;
+                shadow.color = new Color(0.40f, 0.27f, 0.13f, 0.34f);
+                shadow.raycastTarget = false;
+                shadow.rectTransform.offsetMin = new Vector2(-pad, -pad - 2f);
+                shadow.rectTransform.offsetMax = new Vector2(pad, pad);
+            }
+
+            var strokeImg = SpriteImage(rt, "Stroke", BlockOutIconFactory.RoundedSlice(radius, stroke, Color.clear, 0f, null),
+                UIAnchorPreset.Stretch);
+            strokeImg.type = Image.Type.Sliced;
+            strokeImg.color = stroke;
+            strokeImg.raycastTarget = false;
+
+            var fillImg = SpriteImage(rt, "Fill", strokeImg.sprite, UIAnchorPreset.Stretch);
+            fillImg.type = Image.Type.Sliced;
+            fillImg.color = fill;
+            fillImg.raycastTarget = false;
+            fillImg.rectTransform.offsetMin = new Vector2(strokeWidth, strokeWidth);
+            fillImg.rectTransform.offsetMax = new Vector2(-strokeWidth, -strokeWidth);
+
+            // 点阵底（仅棋盘托盘用）：大面积纯色内芯在 342×430 下会显得空，参考图靠这层极淡的点阵撑住
+            if (dots)
+            {
+                var dotsImg = SpriteImage(rt, "Dots", BlockOutIconFactory.TrayDots(), UIAnchorPreset.Stretch);
+                dotsImg.type = Image.Type.Tiled;          // 需 spriteMeshType = FullRect，见 tray_dots.png.meta
+                dotsImg.raycastTarget = false;
+                dotsImg.rectTransform.offsetMin = new Vector2(14f, 14f);
+                dotsImg.rectTransform.offsetMax = new Vector2(-14f, -14f);
+            }
+
+            var hit = rt.gameObject.AddComponent<Image>();
+            hit.color = Color.clear;
+            hit.raycastTarget = true;
+            return hit;
+        }
+
+        /// <summary>把 SoftCard 的填色层改色（状态切换用，不重建层级）。</summary>
+        public static void SetSoftCardFill(Image softCard, Color fill)
+        {
+            if (softCard == null) return;
+            var f = softCard.transform.Find("Fill");
+            if (f != null) f.GetComponent<Image>().color = fill;
+        }
+
+        /// <summary>
+        /// 胶囊进度条（R2 参考：浅色轨道 + 薄荷绿填充 + 内高光）。
+        /// 返回填充层 Image，调用方按 0..1 改 fillAmount 或 sizeDelta。
+        /// </summary>
+        public static Image ProgressBar(Transform parent, string name, float w, float h, Color track, Color fill,
+            UIAnchorPreset preset = UIAnchorPreset.TopCenter, float x = 0, float y = 0)
+        {
+            var rt = Place(parent, name, preset, x, y, w, h);
+            var ring = rt.gameObject.AddComponent<Image>();
+            ring.sprite = BlockOutIconFactory.RoundedSlice(h * 0.5f, track, Color.clear, 0f, null);
+            ring.type = Image.Type.Sliced;
+            ring.color = track;
+            ring.raycastTarget = false;
+
+            var bar = SpriteImage(rt, "Bar", ring.sprite, UIAnchorPreset.Stretch);
+            bar.type = Image.Type.Sliced;      // 九宫格保持右端圆角（Filled 会切成直角）
+            bar.color = fill;
+            bar.raycastTarget = false;
+            bar.rectTransform.offsetMin = new Vector2(3f, 3f);
+            bar.rectTransform.offsetMax = new Vector2(-3f, -3f);
+
+            var gloss = SpriteImage(rt, "Gloss", ring.sprite, UIAnchorPreset.Stretch);
+            gloss.type = Image.Type.Sliced;
+            gloss.color = new Color(1f, 1f, 1f, 0.30f);
+            gloss.raycastTarget = false;
+            gloss.rectTransform.offsetMin = new Vector2(4f, h * 0.46f);
+            gloss.rectTransform.offsetMax = new Vector2(-4f, -2.5f);
+            return bar;
+        }
+
+        /// <summary>按 0..1 设置推进条长度（改锚点宽度，保留两端圆角）。</summary>
+        public static void SetProgressBar(Image bar, float t)
+        {
+            if (bar == null) return;
+            t = Mathf.Clamp01(t);
+            var rt = bar.rectTransform;
+            bool visible = t > 0.015f;
+            bar.enabled = visible;
+            if (!visible) return;
+            rt.anchorMin = new Vector2(0f, 0f);
+            rt.anchorMax = new Vector2(t, 1f);
+            rt.offsetMin = new Vector2(3f, 3f);
+            rt.offsetMax = new Vector2(-3f, -3f);
+        }
+
         /// <summary>弹窗遮罩（v6 40% 可可 #3B2A24）。</summary>
         public static Image Dim(Transform parent, string name)
         {

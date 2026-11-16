@@ -95,6 +95,8 @@ namespace BlockOut.UI
             new Dictionary<BlockOutScreenId, string>
             {
                 { BlockOutScreenId.Loading,    "s1" },
+                { BlockOutScreenId.Home,       "s2" },
+                { BlockOutScreenId.Collection, "s3" },
                 { BlockOutScreenId.Board,      "s4" },
                 { BlockOutScreenId.Store,      "s7" },
             };
@@ -159,6 +161,9 @@ namespace BlockOut.UI
         public Text BoardTimerText;
         public Text BoardRemainingText;
         public Text BoardHintPill;
+        public Image BoardProgressFill;      // 本关推进条（已飞/总数，真实数据）
+        public Text BoardProgressText;       // 百分比文字
+        public RectTransform BoardTray;      // 棋盘奶油托盘（R2 参考）
         public ToolSlotRefs HintSlot = new ToolSlotRefs();
         public ToolSlotRefs HammerSlot = new ToolSlotRefs();
         public ToolSlotRefs MagicSlot = new ToolSlotRefs();
@@ -589,6 +594,16 @@ namespace BlockOut.UI
             var rt = parent != null ? parent.Find(name) as RectTransform : null;
             if (rt == null) return null;
             BlockOutWidgets.ApplyAnchor(rt, UIAnchorPreset.BottomLeft);
+            rt.anchoredPosition = new Vector2(x, y);
+            rt.sizeDelta = new Vector2(w, h);
+            return rt;
+        }
+
+        private RectTransform SetBottomCenter(Transform parent, string name, float x, float y, float w, float h)
+        {
+            var rt = parent != null ? parent.Find(name) as RectTransform : null;
+            if (rt == null) return null;
+            BlockOutWidgets.ApplyAnchor(rt, UIAnchorPreset.BottomCenter);
             rt.anchoredPosition = new Vector2(x, y);
             rt.sizeDelta = new Vector2(w, h);
             return rt;

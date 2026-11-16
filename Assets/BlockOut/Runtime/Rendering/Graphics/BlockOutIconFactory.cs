@@ -35,11 +35,17 @@ namespace BlockOut.UI
         public static Sprite BoardSprite(int width,int height) => Asset("board");
         public static Sprite BlockSprite(BlockOutBlockData block,int cols,int rows,float cellPx)
         {
-            var sprite=Resources.Load<Sprite>("ArtOutPresentation/Reference/Bundles/Sprites/WoodBlockHDR/"+block.ShapeId);
-            if(sprite==null)throw new InvalidOperationException("Missing wood block sprite "+block.ShapeId);
+            // 软胶方块（R2 参考）：灰阶白模 PNG，每格 240px，由 Custom_PerfectTint 乘 block.Color 上色。
+            // 旧木块 HDR 序列（WoodBlockHDR/*.exr）保留在工程内未删，切回只需改这一行路径。
+            var sprite=Resources.Load<Sprite>("ArtOutPresentation/Reference/Bundles/Sprites/BlockSoft/"+block.ShapeId);
+            if(sprite==null)throw new InvalidOperationException("Missing soft block sprite "+block.ShapeId);
             return sprite;
         }
         public static Sprite Ring(int w,int h,Color color,float width,float dashOn,float dashOff,float glow) => Asset(dashOn>0 ? "selection" : "ring");
+        /// <summary>烘焙好的圆角柔投影（9-slice，border 44）。白色基底，调用方用 Image.color 的 alpha 控制浓度。</summary>
+        public static Sprite SoftShadow() => Asset("card_soft_shadow");
+        /// <summary>棋盘托盘的点阵底（32×32 可平铺，点距 16px；Image.Type.Tiled 用）。</summary>
+        public static Sprite TrayDots() => Asset("tray_dots");
         // These compatibility APIs return neutral authored masks; callers own their Image tint.
         public static Sprite RoundedSlice(float radius,Color fill,Color stroke,float strokeWidth,Color? top) => Asset("round");
         public static Sprite RoundedPlain(int w,int h,float radius,Color fill,Color stroke,float strokeWidth) => Asset("round");

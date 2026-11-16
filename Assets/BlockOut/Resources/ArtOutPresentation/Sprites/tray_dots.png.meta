@@ -1,0 +1,62 @@
+fileFormatVersion: 2
+guid: 7c1f4a2d9b6e4c8fa13d5b0e2c7f4a91
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    enableMipMap: 0
+  isReadable: 0
+  textureType: 8
+  textureShape: 1
+  sRGBTexture: 1
+  alphaIsTransparency: 1
+  spriteMode: 1
+  spritePixelsToUnits: 100
+  spriteMeshType: 0
+  spriteAlignment: 0
+  spritePivot:
+    x: 0.5
+    y: 0.5
+  spriteBorder:
+    x: 0
+    y: 0
+    z: 0
+    w: 0
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  maxTextureSize: 2048
+  nPOTScale: 0
+  textureCompression: 1
+  compressionQuality: 50
+  spriteSheet:
+    serializedVersion: 2
+    sprites: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable: {}
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+  userData:
+  assetBundleName:
+  assetBundleVariant:

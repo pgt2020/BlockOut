@@ -53,6 +53,7 @@ namespace BlockOut.Gameplay
         internal float tapSuppressUntil;
         /// <summary>入场协程引用（重开/切关时终止，不留下旧动画锁）。</summary>
         internal Coroutine entranceRoutine;
+        private bool entrancePending;
         internal RectTransform zoomRoot;            // R09：缩放根，与入场缩放相互独立
         internal Coroutine focusRoutine;            // R10：视口聚焦协程
         internal Vector2 focusSavedPos;
@@ -63,6 +64,21 @@ namespace BlockOut.Gameplay
 
         internal const float CellTexPx = 128f;   // 贴图基准：每格 128px
         internal const float RingPad = 4f;       // 状态环外扩
+
+        private void OnEnable()
+        {
+            // 启动恢复存档时，关卡可能已加载，但游戏页仍隐藏在 Loading 后面。
+            if (entrancePending) PlayEntrance();
+        }
+
+        private void OnDisable()
+        {
+            // 隐藏页面会中断协程；再次显示时补播尚未完成的入场，避免遗留输入锁。
+            if ((inputLocks.Reasons & BlockOutInputLock.Entrance) == 0) return;
+            entrancePending = true;
+            if (entranceRoutine != null) StopCoroutine(entranceRoutine);
+            entranceRoutine = null;
+        }
 
         public void Setup(BlockOutGameRules gameRules, int width, int height)
         {
@@ -220,6 +236,21 @@ namespace BlockOut.Gameplay
             bg.color=block.Color;
             bodyRect.sizeDelta=new Vector2(bg.sprite.rect.width,bg.sprite.rect.height)*(cellSize/240f);
 
+            // 奶油白描边底（R2 参考）：同 sprite、同旋转，纯白不染色，压在 body 之下并外扩固定毫米数。
+            // body 的边缘 alpha 渐变透出这层白色 → 形成描边；不染色才不会被 block.Color 乘成同色。
+            var rimGo = new GameObject("Rim", typeof(RectTransform), typeof(Image));
+            rimGo.transform.SetParent(go.transform, false);
+            var rimRect = (RectTransform)rimGo.transform;
+            float rimPad = cellSize * 0.09f;
+            rimRect.sizeDelta = bodyRect.sizeDelta + new Vector2(rimPad, rimPad);
+            rimRect.localRotation = bodyRect.localRotation;
+            var rimImg = rimGo.GetComponent<Image>();
+            rimImg.material = bg.material;
+            rimImg.sprite = bg.sprite;
+            rimImg.color = new Color(1f, 0.988f, 0.965f, 1f);
+            rimImg.raycastTarget = false;
+            rimGo.transform.SetSiblingIndex(bodyGo.transform.GetSiblingIndex());
+
             // 每占格一个透明点击区（异形空洞不可点）
             foreach (var cell in block.GetOccupiedCells())
             {
@@ -346,7 +377,9 @@ namespace BlockOut.Gameplay
         public void CancelAnimations()
         {
             if (this == null) return;
+            entrancePending = false;
             StopAllCoroutines();
+            entranceRoutine = null;
             if(effects!=null)effects.Clear();
             var completion=GetComponent<BlockOutCompletionPresentation>();if(completion!=null)completion.Clear();
             rebuildPending = false;
@@ -457,11 +490,14 @@ namespace BlockOut.Gameplay
         /// 切关/重开由 Setup→CancelAnimations 终止旧协程，不会留下旧动画锁。</summary>
         public void PlayEntrance()
         {
+            SetInputLock(BlockOutInputLock.Entrance, true);
+            entrancePending = !isActiveAndEnabled;
+            if (entrancePending) return;
+
             var feel = BlockOut.Config.BlockOutGameplayConfig.Current.feel;
             float dur = feel != null ? feel.boardEntranceSeconds : 0.9f;
             float startScale = feel != null ? feel.boardEntranceStartScale : 0.68f;
             float inputDelay = feel != null ? feel.boardEntranceInputDelay : 1.02f;
-            SetInputLock(BlockOutInputLock.Entrance, true);
             if (entranceRoutine != null) StopCoroutine(entranceRoutine);
             entranceRoutine = StartCoroutine(Presentation.EntranceRoutine(dur, startScale, inputDelay));
         }
