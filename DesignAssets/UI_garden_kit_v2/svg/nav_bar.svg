@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2829" height="744" viewBox="0 0 943 248">
+<defs>
+  <linearGradient id="n" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#FFFBF0"/><stop offset="1" stop-color="#F4E3BE"/>
+  </linearGradient>
+  <filter id="s" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="7"/></filter>
+  <filter id="b" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="8"/></filter>
+  <clipPath id="k"><rect x="12" y="12" width="919" height="224" rx="56"/></clipPath>
+</defs>
+<rect x="20" y="26" width="903" height="206" rx="56" fill="#1E2A16" opacity="0.28" filter="url(#s)"/>
+<rect x="12" y="12" width="919" height="224" rx="56" fill="url(#n)"/>
+<g clip-path="url(#k)">
+  <ellipse cx="471" cy="46" rx="420" ry="40" fill="#FFFFFF" opacity="0.5" filter="url(#b)"/>
+  <rect x="12" y="200" width="919" height="40" fill="#000000" opacity="0.10" filter="url(#b)"/>
+</g>
+<rect x="12" y="12" width="919" height="224" rx="56" fill="none" stroke="#DCC497" stroke-opacity="0.5" stroke-width="2"/>
+</svg>

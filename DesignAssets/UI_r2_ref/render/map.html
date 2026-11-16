@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>BlockOut 关卡地图 R2</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+  html,body { width:540px; height:960px; overflow:hidden; }
+  body { font-family:'Microsoft YaHei','PingFang SC',sans-serif; position:relative; user-select:none; }
+  .bg { position:absolute; inset:0; width:540px; height:960px; object-fit:cover; }
+
+  /* 中间纵向路径：两条浅色边线 + 半透明浅绿带 */
+  .road { position:absolute; left:50%; top:0; width:74px; height:790px; transform:translateX(-50%);
+    background:linear-gradient(90deg, rgba(255,255,255,.05), rgba(238,250,220,.42) 18%, rgba(255,255,242,.30) 50%, rgba(238,250,220,.42) 82%, rgba(255,255,255,.05));
+    filter:blur(1px);
+  }
+
+  /* 通用厚软胶 */
+  .clay { position:absolute; border-radius:24px; display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 5px 0 rgba(70,55,35,.24), 0 10px 18px rgba(50,40,25,.20),
+                inset 0 4px 6px rgba(255,255,255,.62), inset 0 -4px 6px rgba(0,0,0,.08); }
+
+  /* 顶部 */
+  .gear { position:absolute; left:22px; top:24px; width:64px; height:64px; border-radius:50%;
+    background:linear-gradient(180deg,#FFFDF6,#F2E4C8 65%,#E3CEAA);
+    border:3px solid #FFFDF6; box-shadow:0 5px 0 rgba(120,90,50,.22),0 8px 14px rgba(60,45,25,.20),inset 0 3px 5px rgba(255,255,255,.9);
+    display:flex; align-items:center; justify-content:center; }
+  .gear svg { width:36px; height:36px; }
+  .ticket { position:absolute; right:16px; top:28px; height:50px; width:150px; padding:0 8px 0 14px; border-radius:25px;
+    background:linear-gradient(180deg,#FFFDF5,#F8E9CB 70%,#EDD6AE);
+    border:3px solid #FFFDF7; box-shadow:0 4px 0 rgba(120,90,50,.18),0 7px 12px rgba(60,45,25,.18),inset 0 3px 4px rgba(255,255,255,.9);
+    display:flex; align-items:center; gap:8px; }
+  .ticket svg { width:34px; height:24px; flex-shrink:0; }
+  .ticket b { flex-shrink:0; font-size:25px; font-weight:900; color:#8A6A38; text-shadow:0 1px 0 #fff; }
+  .plus { flex-shrink:0; width:38px; height:38px; border-radius:50%; background:linear-gradient(180deg,#8EDB5E,#54B530);
+    border:2px solid #F4FFE8; box-shadow:0 3px 0 #3C8A22,inset 0 2px 3px rgba(255,255,255,.6);
+    color:#fff; font-size:28px; font-weight:900; display:flex; align-items:center; justify-content:center; line-height:1; }
+
+  /* 关卡节点 */
+  .node { width:84px; height:88px; border:4px solid #FFFDF6; }
+  .node .num { font-size:43px; font-weight:900; color:#fff; letter-spacing:-1px;
+    text-shadow:0 2px 0 rgba(0,0,0,.18), 0 -1px 0 rgba(0,0,0,.10); }
+  .n-lock { background:linear-gradient(180deg,#F4F3F0 0%,#D3D2CE 48%,#B4B3AF 100%); }
+  .n-purple { background:linear-gradient(180deg,#CBA5F2 0%,#9E62DC 50%,#8146C2 100%);
+    box-shadow:0 5px 0 rgba(88,45,130,.28),0 10px 18px rgba(70,35,110,.22),inset 0 4px 6px rgba(255,255,255,.62),inset 0 -4px 6px rgba(0,0,0,.10); }
+  .n-current { width:96px; height:100px; border:5px solid #FFF9D2;
+    background:linear-gradient(180deg,#93E365 0%,#59C436 48%,#3BA622 100%);
+    box-shadow:0 5px 0 rgba(40,110,25,.38),0 0 26px rgba(170,240,110,.60),0 12px 22px rgba(40,90,25,.28),inset 0 5px 7px rgba(255,255,255,.68),inset 0 -5px 7px rgba(0,0,0,.10); }
+  .n-current .num { font-size:50px; }
+  .n-red { width:88px; height:80px; background:linear-gradient(180deg,#FF9C86 0%,#F46B53 50%,#DE503C 100%); }
+  .n-red .lbl { font-size:27px; font-weight:900; color:#fff; text-shadow:0 2px 0 rgba(140,40,25,.35); }
+  .badge { position:absolute; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    border:2px solid #FFFDF6; box-shadow:0 2px 5px rgba(0,0,0,.22),inset 0 2px 3px rgba(255,255,255,.6); }
+  .badge svg { width:20px; height:20px; }
+  .b-lock { right:-8px; bottom:-6px; background:linear-gradient(180deg,#CFCFCB,#9E9E9A); }
+  .b-star { right:-8px; bottom:-6px; background:linear-gradient(180deg,#B98AE8,#7D45BF); }
+
+  /* 当前关卡气泡 */
+  .bubble { position:absolute; left:318px; top:410px; background:#FFFDF7; border-radius:14px;
+    padding:8px 14px; font-size:18px; font-weight:800; color:#7A6038; white-space:nowrap;
+    box-shadow:0 4px 10px rgba(60,45,25,.18); }
+  .bubble:after { content:''; position:absolute; left:-10px; top:14px; border:6px solid transparent; border-right-color:#FFFDF7; border-left:0; }
+
+  /* 吉祥物 */
+  .mascot { position:absolute; left:222px; top:556px; width:96px; height:84px; }
+  .mascot .body { position:absolute; inset:8px 6px; border-radius:18px;
+    background:linear-gradient(180deg,#FFE57A 0%,#F8C93F 55%,#E5A921 100%);
+    border:4px solid #FFF6D8; box-shadow:0 5px 0 rgba(140,90,20,.30),0 10px 16px rgba(80,55,20,.22),inset 0 4px 6px rgba(255,255,255,.75); }
+  .mascot .eye { position:absolute; width:8px; height:11px; border-radius:50%; background:#4A3218; top:30px; }
+  .mascot .eye.l { left:25px; } .mascot .eye.r { right:25px; }
+  .mascot .blush { position:absolute; width:12px; height:6px; border-radius:50%; background:rgba(240,110,100,.55); top:43px; }
+  .mascot .blush.l { left:17px; } .mascot .blush.r { right:17px; }
+  .mascot .arrow { position:absolute; left:39px; top:32px; width:30px; height:26px; }
+  .mascot .arm { position:absolute; width:12px; height:18px; border-radius:6px; background:linear-gradient(180deg,#FFE378,#E8AC24); top:34px; }
+  .mascot .arm.l { left:0; } .mascot .arm.r { right:0; }
+  .mascot .foot { position:absolute; width:20px; height:10px; border-radius:6px; background:#E5A921; bottom:0; }
+  .mascot .foot.l { left:20px; } .mascot .foot.r { right:20px; }
+
+  /* 悬浮圆钮 */
+  .float { position:absolute; width:96px; text-align:center; }
+  .float .disc { width:86px; height:86px; margin:0 auto; border-radius:50%;
+    background:linear-gradient(180deg,#FFFDF6,#F6E7C9 65%,#E8D0A6);
+    border:4px solid #FFFDF8; box-shadow:0 5px 0 rgba(120,90,50,.22),0 9px 16px rgba(60,45,25,.22),inset 0 4px 6px rgba(255,255,255,.9);
+    display:flex; align-items:center; justify-content:center; position:relative; }
+  .float .disc svg { width:46px; height:46px; }
+  .float .tag { display:inline-block; margin-top:-6px; padding:4px 12px; border-radius:12px;
+    background:linear-gradient(180deg,#FFFDF6,#F3E3C4); border:2px solid #FFFDF8;
+    box-shadow:0 3px 6px rgba(60,45,25,.18); font-size:17px; font-weight:800; color:#8A6A38; }
+  .redDot { position:absolute; right:-2px; top:-2px; width:22px; height:22px; border-radius:50%;
+    background:linear-gradient(180deg,#FF7E6A,#E2402E); border:2px solid #fff; box-shadow:0 2px 4px rgba(0,0,0,.25); }
+
+  /* 主按钮 */
+  .cta { position:absolute; left:50%; top:700px; transform:translateX(-50%); width:440px; height:100px; border-radius:50px;
+    background:linear-gradient(180deg,#95E468 0%,#65C93D 46%,#43A926 100%);
+    border:5px solid #FFF8DF;
+    box-shadow:0 7px 0 rgba(38,105,22,.42),0 14px 24px rgba(40,90,25,.30),inset 0 5px 8px rgba(255,255,255,.62),inset 0 -5px 8px rgba(0,0,0,.10);
+    display:flex; align-items:center; justify-content:center; gap:12px; }
+  .cta span { font-size:45px; font-weight:900; color:#FFF; text-shadow:0 3px 0 rgba(35,95,20,.45); letter-spacing:2px; }
+  .cta svg { width:26px; height:26px; }
+  .tapHint { position:absolute; left:50%; top:818px; transform:translateX(-50%); font-size:17px; font-weight:800;
+    color:#FFF8E2; text-shadow:0 2px 5px rgba(50,40,20,.65),0 0 3px rgba(50,40,20,.5); letter-spacing:3px; white-space:nowrap; }
+
+  /* 底部导航 */
+  .navbar { position:absolute; left:12px; right:12px; bottom:14px; height:96px; display:flex; gap:10px; }
+  .tab { flex:1; border-radius:20px; background:linear-gradient(180deg,#FFFDF7,#F7EAD1 70%,#EDD9B8);
+    border:3px solid #FFFDF8; box-shadow:0 5px 0 rgba(120,90,50,.20),0 9px 16px rgba(50,40,25,.22),inset 0 3px 5px rgba(255,255,255,.9);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; position:relative; }
+  .tab.active { background:linear-gradient(180deg,#FFFDF7,#FFF4DF 70%,#F8E4C2); }
+  .tab.active:after { content:''; position:absolute; bottom:6px; width:30px; height:4px; border-radius:2px; background:#59BE38; }
+  .tab svg { width:38px; height:38px; }
+  .tab span { font-size:17px; font-weight:800; color:#8A6A38; }
+</style>
+</head>
+<body>
+<img class="bg" src="../assets/bg_garden_clean.png">
+<div class="road"></div>
+
+<!-- 左上设置 -->
+<div class="gear">
+  <svg viewBox="0 0 40 40" fill="none"><path d="M20 3l3.4 2.2 4-.6 1.6 3.8 3.8 1.6-.6 4L35 20l-2.8 3.4.6 4-3.8 1.6-1.6 3.8-4-.6L20 35l-3.4-2.8-4 .6-1.6-3.8-3.8-1.6.6-4L5 20l2.8-3.4-.6-4 3.8-1.6 1.6-3.8 4 .6L20 3z" fill="#9C8258"/><circle cx="20" cy="20" r="7" fill="#F6E8CC"/></svg>
+</div>
+
+<!-- 右上票券 -->
+<div class="ticket">
+  <svg viewBox="0 0 44 30"><rect x="2" y="3" width="40" height="24" rx="6" fill="#FFC94E" stroke="#FFF3CD" stroke-width="2"/><path d="M14 3v24M30 3v24" stroke="#FFF0C4" stroke-width="2" stroke-dasharray="3 3"/></svg>
+  <b>3</b><div class="plus">+</div>
+</div>
+
+<!-- 关卡路径 -->
+<div class="node n-lock clay" style="left:228px; top:56px;">
+  <span class="num">40</span><div class="badge b-lock"><svg viewBox="0 0 24 24" fill="none"><path d="M7 10V7a5 5 0 0110 0v3" stroke="#fff" stroke-width="3"/><rect x="5" y="10" width="14" height="11" rx="3" fill="#fff"/></svg></div>
+</div>
+<div class="node n-lock clay" style="left:228px; top:172px;">
+  <span class="num">39</span><div class="badge b-lock"><svg viewBox="0 0 24 24" fill="none"><path d="M7 10V7a5 5 0 0110 0v3" stroke="#fff" stroke-width="3"/><rect x="5" y="10" width="14" height="11" rx="3" fill="#fff"/></svg></div>
+</div>
+<div class="node n-purple clay" style="left:228px; top:288px;">
+  <span class="num">38</span><div class="badge b-star"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 6 20.6l1.4-6.8L2.3 9.1l6.9-.8L12 2z" fill="#fff"/></svg></div>
+</div>
+<div class="node n-current clay" style="left:222px; top:404px;">
+  <span class="num">37</span>
+</div>
+<div class="bubble">当前关卡</div>
+
+<!-- 36 / 挑战 -->
+<div class="node n-red clay" style="left:112px; top:534px;">
+  <span class="num">36</span><div class="badge b-lock"><svg viewBox="0 0 24 24"><path d="M12 2C7 2 3 6 3 11c0 3.5 2 6 5 7.5V21h8v-2.5C19 17 21 14.5 21 11c0-5-4-9-9-9z" fill="#fff"/><circle cx="8.5" cy="11" r="2.6" fill="#8B8B87"/><circle cx="15.5" cy="11" r="2.6" fill="#8B8B87"/><path d="M11 16h2v3h-2z" fill="#8B8B87"/><path d="M7 18h10" stroke="#8B8B87" stroke-width="1.4"/></svg></div>
+</div>
+<div class="node n-red clay" style="left:340px; top:534px;">
+  <span class="lbl">挑战</span><div class="badge b-lock"><svg viewBox="0 0 24 24"><path d="M12 2C7 2 3 6 3 11c0 3.5 2 6 5 7.5V21h8v-2.5C19 17 21 14.5 21 11c0-5-4-9-9-9z" fill="#fff"/><circle cx="8.5" cy="11" r="2.6" fill="#8B8B87"/><circle cx="15.5" cy="11" r="2.6" fill="#8B8B87"/><path d="M11 16h2v3h-2z" fill="#8B8B87"/><path d="M7 18h10" stroke="#8B8B87" stroke-width="1.4"/></svg></div>
+</div>
+
+<!-- 吉祥物 -->
+<div class="mascot">
+  <div class="body"></div>
+  <div class="eye l"></div><div class="eye r"></div>
+  <div class="blush l"></div><div class="blush r"></div>
+  <svg class="arrow" viewBox="0 0 30 26"><path d="M2 8h16V2l12 11-12 11v-6H2z" fill="#57C43A" stroke="#FFF6D0" stroke-width="2" stroke-linejoin="round"/></svg>
+  <div class="arm l"></div><div class="arm r"></div>
+  <div class="foot l"></div><div class="foot r"></div>
+</div>
+
+<!-- 悬浮钮：任务 -->
+<div class="float" style="right:14px; top:170px;">
+  <div class="disc">
+    <svg viewBox="0 0 48 48"><rect x="10" y="10" width="28" height="32" rx="5" fill="#5EC4A0" stroke="#FFF" stroke-width="3"/><rect x="15" y="5" width="18" height="9" rx="4" fill="#FFC94E" stroke="#FFF" stroke-width="2"/><path d="M16 26l6 6 11-12" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="redDot"></div>
+  </div><div class="tag">任务</div>
+</div>
+<!-- 悬浮钮：成就 -->
+<div class="float" style="right:14px; top:304px;">
+  <div class="disc">
+    <svg viewBox="0 0 48 48"><path d="M13 9h22v11c0 7-5 12-11 12S13 27 13 20V9z" fill="#FFC94E" stroke="#FFF" stroke-width="3"/><path d="M13 13H7v5c0 5 3 8 8 8M35 13h6v5c0 5-3 8-8 8" stroke="#FFC94E" stroke-width="4" fill="none"/><path d="M20 32v7h8v-7" fill="#FFC94E" stroke="#FFF" stroke-width="3"/><rect x="15" y="38" width="18" height="5" rx="2" fill="#FFF"/></svg>
+  </div><div class="tag">成就</div>
+</div>
+
+<!-- 主按钮 -->
+<div class="cta"><span>第 37 关</span><svg viewBox="0 0 26 26"><path d="M8 3l11 10L8 23" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div class="tapHint">✦ 点击开始游戏 ✦</div>
+
+<!-- 底部导航 -->
+<div class="navbar">
+  <div class="tab active">
+    <svg viewBox="0 0 40 40"><path d="M4 19L20 5l16 14" stroke="#F48C68" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 17v17h22V17" fill="#F5B49A" stroke="#FFF" stroke-width="2"/><rect x="16" y="24" width="8" height="10" rx="4" fill="#68BDE4" stroke="#FFF" stroke-width="2"/></svg>
+    <span>首页</span>
+  </div>
+  <div class="tab">
+    <svg viewBox="0 0 40 40"><rect x="4" y="7" width="32" height="26" rx="4" fill="#F0B27E" stroke="#FFF" stroke-width="3"/><rect x="9" y="12" width="22" height="16" rx="2" fill="#F6E3B8"/><path d="M11 25l6-7 4 4 4-5 4 8z" fill="#7BBF6A"/><circle cx="25" cy="16" r="2.5" fill="#F3A24E"/></svg>
+    <span>图库</span>
+  </div>
+  <div class="tab">
+    <svg viewBox="0 0 40 40"><path d="M20 4c-9 0-16 7-16 16s7 16 16 16c3 0 4-3 2-5-2-2 0-5 3-5h5c6 0 10-4 10-10C40 8 31 4 20 4z" fill="#F49AC0" stroke="#FFF" stroke-width="2"/><circle cx="12" cy="15" r="3" fill="#F7D34E"/><circle cx="22" cy="10" r="3" fill="#84C5E8"/><circle cx="31" cy="17" r="3" fill="#8FD07A"/><circle cx="18" cy="27" r="3" fill="#F3A24E"/></svg>
+    <span>皮肤</span>
+  </div>
+  <div class="tab">
+    <svg viewBox="0 0 40 40"><rect x="5" y="7" width="30" height="28" rx="5" fill="#F4A6A0" stroke="#FFF" stroke-width="3"/><path d="M5 15h30" stroke="#FFF" stroke-width="3"/><rect x="12" y="3" width="4" height="8" rx="2" fill="#E8796E"/><rect x="24" y="3" width="4" height="8" rx="2" fill="#E8796E"/><path d="M20 20l2.5 5 5.5.8-4 3.9 1 5.5L20 32.6l-5 2.6 1-5.5-4-3.9 5.5-.8z" fill="#FFD45E" stroke="#FFF" stroke-width="1.5"/></svg>
+    <span>每日</span>
+  </div>
+</div>
+
+<script>window.__ready = true;</script>
+</body>
+</html>

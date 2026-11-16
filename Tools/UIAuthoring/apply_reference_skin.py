@@ -293,7 +293,8 @@ def build_screen(sid, spec, cfg, data):
                                 "go": b.alloc(), "rt": b.alloc(),
                                 "cr": b.alloc(), "img": b.alloc()})
 
-    # 非 passthrough 屏才生成组件化棋盘格（s4 挖空后由运行时真棋盘接管）
+    # s4 走 passthrough：棋盘区不烧死静态格子，由运行时 BlockOutBoardView
+    # 按关卡配置(rules.Blocks)生成异形块透出。静态格子会与真棋盘冲突。
     board_cells = []
     tiles = data["tilekit"]
     if sid == "s4" and not passthrough:
@@ -302,11 +303,13 @@ def build_screen(sid, spec, cfg, data):
             for cell in row:
                 if cell["color"] is None and cell["dir"] == "none":
                     continue
+                col = pal.get(cell["color"], pal.get("cream", [233, 217, 198]))
                 board_cells.append({
                     "x": grid["x"] + cell["c"] * grid["size"],
                     "y": grid["y"] + cell["r"] * grid["size"],
                     "s": grid["size"], "r": cell["r"], "c": cell["c"],
                     "angle": tiles["rotation"].get(cell["dir"], 0), "dir": cell["dir"],
+                    "color": tuple(v / 255.0 for v in col),
                     "go": b.alloc(), "rt": b.alloc(), "cr": b.alloc(), "img": b.alloc(),
                     "arrow_go": b.alloc(), "arrow_rt": b.alloc(),
                     "arrow_cr": b.alloc(), "arrow_img": b.alloc(),
@@ -343,12 +346,18 @@ def build_screen(sid, spec, cfg, data):
     b.page_layout(root_go, surf_rt, W, H, fid=layout_cid)
     b.skin(root_go, sid, passthrough, fid=skin_cid)
 
-    # 纯色衬底：铺满全屏，解决原图与手机比例差带来的上下留白
+    # 纯色衬底：铺满全屏，解决原图与手机比例差带来的上下留白。
+    # s4 passthrough 时用中心镂空 sprite，让下层运行时真棋盘(异形块)透出。
     b.gameobject("Letterbox", [lb_rt, lb_cr, lb_img], fid=lb_go)
     b.rect(lb_go, [], root_rt, anchor_min=(0, 0), anchor_max=(1, 1),
            pivot=(0.5, 0.5), size=(0, 0), fid=lb_rt)
     b.renderer(lb_go, fid=lb_cr)
-    b.image(lb_go, None, color=unity_rgba("#%02X%02X%02X" % lb), fid=lb_img)
+    if sid == "s4" and passthrough:
+        # s4 用不透明奶油底板挡住业务层旧 HUD，中间棋盘区开洞让运行时真棋盘(异形块)透出。
+        # 全透明会让业务层 HUD 与还原层 HUD 双影叠加，故必须用挖洞图而非全透明。
+        b.image(lb_go, "bg/s4_letterbox_hole.png", fid=lb_img)
+    else:
+        b.image(lb_go, None, color=unity_rgba("#%02X%02X%02X" % lb), fid=lb_img)
 
     b.gameobject("DesignSurface", [surf_rt, surf_cr, surf_img], fid=surf_go)
     b.rect(surf_go, [skin_rt], root_rt, anchor_min=(0.5, 0.5), anchor_max=(0.5, 0.5),
@@ -391,9 +400,9 @@ def build_screen(sid, spec, cfg, data):
         b.rect(c["go"], [c["arrow_rt"]] if c["dir"] != "none" else [], skin_rt,
                pos=(c["x"], -c["y"]), size=(c["s"], c["s"]), fid=c["rt"])
         b.renderer(c["go"], fid=c["cr"])
-        b.image(c["go"], "tiles/tile_base.png", fid=c["img"])
+        b.image(c["go"], "tiles/tile_base@4x.png", color=c["color"] + (1.0,), fid=c["img"])
         if c["dir"] != "none":
-            arrow = "tiles/arrow_cross.png" if c["dir"] == "cross" else "tiles/arrow_up.png"
+            arrow = "tiles/arrow_cross@4x.png" if c["dir"] == "cross" else "tiles/arrow_up@4x.png"
             b.gameobject("arrow", [c["arrow_rt"], c["arrow_cr"], c["arrow_img"]], fid=c["arrow_go"])
             aw = int(round(c["s"] * 0.66))
             b.rect(c["arrow_go"], [], c["rt"], anchor_min=(0.5, 0.5), anchor_max=(0.5, 0.5),

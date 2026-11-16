@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="768" height="768" viewBox="0 0 256 256">
+<defs>
+  <linearGradient id="f" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#7EE2BE"/><stop offset="1" stop-color="#3AB28A"/>
+  </linearGradient>
+  <linearGradient id="r" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#FFFDF7"/><stop offset="1" stop-color="#F3E6C8"/>
+  </linearGradient>
+  <filter id="sh" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="7"/></filter>
+  <filter id="gl" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="9"/></filter>
+  <clipPath id="c"><rect x="34" y="34" width="188" height="188" rx="44"/></clipPath>
+</defs>
+<rect x="24" y="34" width="208" height="208" rx="56" fill="#1E2A16" opacity="0.30" filter="url(#sh)"/>
+<rect x="14" y="14" width="228" height="228" rx="54" fill="url(#r)"/>
+<rect x="34" y="34" width="188" height="188" rx="44" fill="url(#f)"/>
+<g clip-path="url(#c)">
+  <ellipse cx="128" cy="66" rx="92" ry="44" fill="#FFFFFF" opacity="0.42" filter="url(#gl)"/>
+  <rect x="40" y="196" width="176" height="40" rx="20" fill="#000000" opacity="0.16" filter="url(#gl)"/>
+  <rect x="36" y="36" width="184" height="184" rx="42" fill="none" stroke="#FFFFFF" stroke-opacity="0.5" stroke-width="3"/>
+</g>
+<rect x="14" y="14" width="228" height="228" rx="54" fill="none" stroke="#C7AE84" stroke-opacity="0.55" stroke-width="2"/>
+</svg>

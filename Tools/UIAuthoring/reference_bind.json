@@ -208,6 +208,20 @@
      "size": 15,
      "color": "#FFFFFF",
      "source": "runtime"
+    },
+    {
+     "key": "progress",
+     "item": "progress",
+     "box": [
+      200,
+      0,
+      46,
+      24
+     ],
+     "text": "65%",
+     "size": 15,
+     "color": "#5C3A24",
+     "source": "design_default"
     }
    ]
   },

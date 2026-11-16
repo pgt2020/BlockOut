@@ -1,0 +1,241 @@
+{
+  "kit": "BlockOut garden/clay UI v3 (home)",
+  "design_space": {
+    "portrait": [
+      1080,
+      1920
+    ],
+    "authoring": "components rendered by three.js at ~2x"
+  },
+  "background": {
+    "file": "art/bg_source.png",
+    "source": "CogView-3-Flash + retouch (watermark removed)"
+  },
+  "components": [
+    {
+      "file": "components/badge_alert.png",
+      "size": [
+        227,
+        190
+      ]
+    },
+    {
+      "file": "components/badge_lock.png",
+      "size": [
+        223,
+        256
+      ]
+    },
+    {
+      "file": "components/badge_plus.png",
+      "size": [
+        258,
+        206
+      ]
+    },
+    {
+      "file": "components/badge_skull.png",
+      "size": [
+        308,
+        255
+      ]
+    },
+    {
+      "file": "components/badge_star.png",
+      "size": [
+        301,
+        247
+      ]
+    },
+    {
+      "file": "components/btn_primary.png",
+      "size": [
+        440,
+        214
+      ],
+      "nine_slice": [
+        72,
+        72,
+        72,
+        72
+      ]
+    },
+    {
+      "file": "components/bubble.png",
+      "size": [
+        355,
+        193
+      ]
+    },
+    {
+      "file": "components/capsule.png",
+      "size": [
+        313,
+        127
+      ],
+      "nine_slice": [
+        43,
+        43,
+        43,
+        43
+      ]
+    },
+    {
+      "file": "components/circle_button.png",
+      "size": [
+        364,
+        290
+      ]
+    },
+    {
+      "file": "components/nav_bar.png",
+      "size": [
+        501,
+        151
+      ],
+      "nine_slice": [
+        51,
+        51,
+        51,
+        51
+      ]
+    },
+    {
+      "file": "components/node_challenge.png",
+      "size": [
+        681,
+        603
+      ]
+    },
+    {
+      "file": "components/node_completed.png",
+      "size": [
+        681,
+        603
+      ]
+    },
+    {
+      "file": "components/node_current.png",
+      "size": [
+        681,
+        603
+      ]
+    },
+    {
+      "file": "components/node_fail.png",
+      "size": [
+        681,
+        603
+      ]
+    },
+    {
+      "file": "components/node_locked.png",
+      "size": [
+        681,
+        603
+      ]
+    },
+    {
+      "file": "components/node_star.png",
+      "size": [
+        681,
+        603
+      ]
+    },
+    {
+      "file": "components/plate_label.png",
+      "size": [
+        225,
+        70
+      ],
+      "nine_slice": [
+        23,
+        23,
+        23,
+        23
+      ]
+    }
+  ],
+  "sliced": [
+    {
+      "file": "sliced/btn_achievement.png",
+      "size": [
+        175,
+        202
+      ],
+      "note": "1x slice from reference, text baked"
+    },
+    {
+      "file": "sliced/btn_settings.png",
+      "size": [
+        108,
+        108
+      ],
+      "note": "1x slice from reference, text baked"
+    },
+    {
+      "file": "sliced/btn_task.png",
+      "size": [
+        175,
+        200
+      ],
+      "note": "1x slice from reference, text baked"
+    },
+    {
+      "file": "sliced/mascot_arrow.png",
+      "size": [
+        152,
+        136
+      ],
+      "note": "1x slice from reference, text baked"
+    },
+    {
+      "file": "sliced/nav_bar.png",
+      "size": [
+        844,
+        234
+      ],
+      "note": "1x slice from reference, text baked"
+    },
+    {
+      "file": "sliced/pill_currency.png",
+      "size": [
+        254,
+        92
+      ],
+      "note": "1x slice from reference, text baked"
+    },
+    {
+      "file": "sliced/tab_daily.png",
+      "size": [
+        184,
+        170
+      ],
+      "note": "1x slice from reference, text baked"
+    },
+    {
+      "file": "sliced/tab_gallery.png",
+      "size": [
+        184,
+        170
+      ],
+      "note": "1x slice from reference, text baked"
+    },
+    {
+      "file": "sliced/tab_home.png",
+      "size": [
+        184,
+        170
+      ],
+      "note": "1x slice from reference, text baked"
+    },
+    {
+      "file": "sliced/tab_skin.png",
+      "size": [
+        184,
+        170
+      ],
+      "note": "1x slice from reference, text baked"
+    }
+  ]
+}

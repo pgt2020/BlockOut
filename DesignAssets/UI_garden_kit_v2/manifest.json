@@ -1,0 +1,486 @@
+{
+  "kit": "BlockOut garden/clay UI kit v2 (home screen)",
+  "source": "source_reference.jpg (941x1672)",
+  "design_space": {
+    "portrait": [
+      1080,
+      1920
+    ],
+    "scale_from_source": 1.1477
+  },
+  "notes": "sliced = 静态件（文案烘焙，1x）；components = 动态件（2x，无文字，nine_slice 可直接填 Unity Sprite Border）",
+  "sliced": [
+    {
+      "file": "ui/btn_settings.png",
+      "size": [
+        128,
+        130
+      ],
+      "source_box": [
+        40,
+        38,
+        168,
+        168
+      ],
+      "note": "参考图原样切出（含烘焙文字）"
+    },
+    {
+      "file": "ui/pill_currency.png",
+      "size": [
+        278,
+        112
+      ],
+      "source_box": [
+        650,
+        48,
+        928,
+        160
+      ],
+      "note": "参考图原样切出（含烘焙文字）"
+    },
+    {
+      "file": "ui/btn_task.png",
+      "size": [
+        194,
+        222
+      ],
+      "source_box": [
+        726,
+        228,
+        920,
+        450
+      ],
+      "note": "参考图原样切出（含烘焙文字）"
+    },
+    {
+      "file": "ui/btn_achievement.png",
+      "size": [
+        194,
+        221
+      ],
+      "source_box": [
+        726,
+        473,
+        920,
+        694
+      ],
+      "note": "参考图原样切出（含烘焙文字）"
+    },
+    {
+      "file": "ui/node_locked_40.png",
+      "size": [
+        192,
+        192
+      ],
+      "source_box": [
+        386,
+        38,
+        578,
+        230
+      ],
+      "note": "参考图原样切出（含烘焙文字）"
+    },
+    {
+      "file": "ui/node_locked_39.png",
+      "size": [
+        192,
+        178
+      ],
+      "source_box": [
+        386,
+        256,
+        578,
+        434
+      ],
+      "note": "参考图原样切出（含烘焙文字）"
+    },
+    {
+      "file": "ui/node_star_38.png",
+      "size": [
+        196,
+        199
+      ],
+      "source_box": [
+        386,
+        493,
+        582,
+        692
+      ],
+      "note": "参考图原样切出（含烘焙文字）"
+    },
+    {
+      "file": "ui/node_current_37.png",
+      "size": [
+        232,
+        280
+      ],
+      "source_box": [
+        350,
+        698,
+        582,
+        978
+      ],
+      "note": "参考图原样切出（含烘焙文字）"
+    },
+    {
+      "file": "ui/node_fail_36.png",
+      "size": [
+        179,
+        189
+      ],
+      "source_box": [
+        183,
+        953,
+        362,
+        1142
+      ],
+      "note": "参考图原样切出（含烘焙文字）"
+    },
+    {
+      "file": "ui/node_challenge.png",
+      "size": [
+        189,
+        189
+      ],
+      "source_box": [
+        578,
+        953,
+        767,
+        1142
+      ],
+      "note": "参考图原样切出（含烘焙文字）"
+    },
+    {
+      "file": "ui/bubble_current.png",
+      "size": [
+        167,
+        114
+      ],
+      "source_box": [
+        543,
+        683,
+        710,
+        797
+      ],
+      "note": "参考图原样切出（含烘焙文字）"
+    },
+    {
+      "file": "ui/mascot_arrow.png",
+      "size": [
+        170,
+        158
+      ],
+      "source_box": [
+        370,
+        934,
+        540,
+        1092
+      ],
+      "note": "参考图原样切出（含烘焙文字）"
+    },
+    {
+      "file": "ui/btn_primary.png",
+      "size": [
+        572,
+        260
+      ],
+      "source_box": [
+        184,
+        1134,
+        756,
+        1394
+      ],
+      "note": "参考图原样切出（含烘焙文字）"
+    },
+    {
+      "file": "ui/nav_bar.png",
+      "size": [
+        866,
+        236
+      ],
+      "source_box": [
+        38,
+        1436,
+        904,
+        1672
+      ],
+      "note": "参考图原样切出（含烘焙文字）"
+    },
+    {
+      "file": "ui/tab_home.png",
+      "size": [
+        192,
+        190
+      ],
+      "source_box": [
+        74,
+        1464,
+        266,
+        1654
+      ],
+      "note": "导航卡片（含图标与文字）"
+    },
+    {
+      "file": "ui/tab_gallery.png",
+      "size": [
+        192,
+        190
+      ],
+      "source_box": [
+        284,
+        1464,
+        476,
+        1654
+      ],
+      "note": "导航卡片（含图标与文字）"
+    },
+    {
+      "file": "ui/tab_skin.png",
+      "size": [
+        192,
+        190
+      ],
+      "source_box": [
+        494,
+        1464,
+        686,
+        1654
+      ],
+      "note": "导航卡片（含图标与文字）"
+    },
+    {
+      "file": "ui/tab_daily.png",
+      "size": [
+        176,
+        190
+      ],
+      "source_box": [
+        702,
+        1464,
+        878,
+        1654
+      ],
+      "note": "导航卡片（含图标与文字）"
+    }
+  ],
+  "components": [
+    {
+      "file": "components/node_locked.png",
+      "size": [
+        512,
+        512
+      ],
+      "note": "未解锁关卡（无数字，可叠任意文案）",
+      "nine_slice": [
+        28,
+        28,
+        28,
+        28
+      ],
+      "state": "locked"
+    },
+    {
+      "file": "components/node_completed.png",
+      "size": [
+        512,
+        512
+      ],
+      "note": "已通关关卡（无数字，可叠任意文案）",
+      "nine_slice": [
+        28,
+        28,
+        28,
+        28
+      ],
+      "state": "completed"
+    },
+    {
+      "file": "components/node_current.png",
+      "size": [
+        512,
+        512
+      ],
+      "note": "当前关卡（无数字，可叠任意文案）",
+      "nine_slice": [
+        28,
+        28,
+        28,
+        28
+      ],
+      "state": "current"
+    },
+    {
+      "file": "components/node_star.png",
+      "size": [
+        512,
+        512
+      ],
+      "note": "星级/里程碑关卡（无数字，可叠任意文案）",
+      "nine_slice": [
+        28,
+        28,
+        28,
+        28
+      ],
+      "state": "star"
+    },
+    {
+      "file": "components/node_fail.png",
+      "size": [
+        512,
+        512
+      ],
+      "note": "失败关卡（无数字，可叠任意文案）",
+      "nine_slice": [
+        28,
+        28,
+        28,
+        28
+      ],
+      "state": "fail"
+    },
+    {
+      "file": "components/node_challenge.png",
+      "size": [
+        512,
+        512
+      ],
+      "note": "挑战关卡（无数字，可叠任意文案）",
+      "nine_slice": [
+        28,
+        28,
+        28,
+        28
+      ],
+      "state": "challenge"
+    },
+    {
+      "file": "components/node_pointer.png",
+      "size": [
+        128,
+        128
+      ],
+      "note": "当前关卡下方指向箭"
+    },
+    {
+      "file": "components/btn_primary.png",
+      "size": [
+        1230,
+        514
+      ],
+      "note": "主按钮（无文字），左右九宫格拉伸",
+      "nine_slice": [
+        220,
+        120,
+        220,
+        120
+      ]
+    },
+    {
+      "file": "components/capsule.png",
+      "size": [
+        566,
+        188
+      ],
+      "note": "货币胶囊底（票券/数字/加号另叠）",
+      "nine_slice": [
+        88,
+        40,
+        88,
+        40
+      ]
+    },
+    {
+      "file": "components/nav_bar.png",
+      "size": [
+        1886,
+        496
+      ],
+      "note": "底部导航条底（tab 另叠）",
+      "nine_slice": [
+        112,
+        60,
+        112,
+        60
+      ]
+    },
+    {
+      "file": "components/tab_active.png",
+      "size": [
+        450,
+        480
+      ],
+      "note": "选中态 tab 卡片"
+    },
+    {
+      "file": "components/plate_label.png",
+      "size": [
+        600,
+        184
+      ],
+      "note": "小标签底板（任务/成就等）",
+      "nine_slice": [
+        60,
+        60,
+        60,
+        60
+      ]
+    },
+    {
+      "file": "components/circle_button.png",
+      "size": [
+        240,
+        240
+      ],
+      "note": "圆形按钮底（齿轮/关闭等）"
+    },
+    {
+      "file": "components/bubble.png",
+      "size": [
+        600,
+        300
+      ],
+      "note": "气泡“当前关卡”底"
+    },
+    {
+      "file": "components/badge_lock.png",
+      "size": [
+        128,
+        128
+      ],
+      "note": "独立徽章"
+    },
+    {
+      "file": "components/badge_star.png",
+      "size": [
+        128,
+        128
+      ],
+      "note": "独立徽章"
+    },
+    {
+      "file": "components/badge_skull.png",
+      "size": [
+        128,
+        128
+      ],
+      "note": "独立徽章"
+    },
+    {
+      "file": "components/badge_plus.png",
+      "size": [
+        128,
+        128
+      ],
+      "note": "独立徽章"
+    },
+    {
+      "file": "components/badge_alert.png",
+      "size": [
+        128,
+        128
+      ],
+      "note": "独立徽章"
+    }
+  ]
+}

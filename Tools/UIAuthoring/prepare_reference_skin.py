@@ -207,6 +207,21 @@ def prepare_passthrough():
     out = REF / "bg" / pt["bg_out"]
     Image.fromarray(a, "RGBA").save(out)
     ensure_meta(out)
+
+    # Letterbox 底板也要在棋盘区镂空：它是铺满全屏的不透明纯色 Image，
+    # 若不做镂空会把下层 BoardScreen 里的运行时真棋盘(异形块)整块盖住 —— 棋盘空白根因。
+    # 用 s4_final 上下边缘中位色做留白色，中心 rect 置 alpha=0。
+    base = np.asarray(Image.open(src).convert("RGB"))
+    band = np.concatenate([base[:8].reshape(-1, 3), base[-8:].reshape(-1, 3)], axis=0)
+    lc = np.median(band, axis=0).astype(np.uint8)
+    lb = np.zeros((H, W, 4), dtype=np.uint8)
+    lb[:, :, :3] = lc
+    lb[:, :, 3] = 255
+    lb[y:y1, x:x1, 3] = 0
+    lb[y:y1, x:x1, :3] = 0  # straight alpha
+    lb_path = REF / "bg" / "s4_letterbox_hole.png"
+    Image.fromarray(lb, "RGBA").save(lb_path)
+    ensure_meta(lb_path)
     return out
 
 

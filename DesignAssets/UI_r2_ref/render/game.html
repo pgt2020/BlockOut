@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>BlockOut 对局页 R2</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+  html,body { width:540px; height:960px; overflow:hidden; }
+  body { font-family:'Microsoft YaHei','PingFang SC',sans-serif; position:relative; user-select:none;
+    background:linear-gradient(180deg,#FFFDF7 0%,#FBF0DC 100%); }
+
+  /* 浅奶油点阵底 */
+  .dots { position:absolute; inset:0;
+    background-image:radial-gradient(circle, rgba(206,180,140,.30) 1.6px, transparent 1.7px);
+    background-size:22px 22px; background-position:11px 11px; }
+
+  /* 顶部 HUD */
+  .back { position:absolute; left:22px; top:24px; width:64px; height:64px; border-radius:50%;
+    background:linear-gradient(180deg,#FFFDF6,#F2E4C8 65%,#E3CEAA); border:3px solid #FFFDF6;
+    box-shadow:0 5px 0 rgba(120,90,50,.22),0 8px 14px rgba(60,45,25,.20),inset 0 3px 5px rgba(255,255,255,.9);
+    display:flex; align-items:center; justify-content:center; }
+  .back svg { width:30px; height:30px; }
+  .title { position:absolute; left:50%; top:40px; transform:translateX(-50%); font-size:31px; font-weight:900; color:#7A6038;
+    text-shadow:0 2px 0 #fff; letter-spacing:2px; }
+  .pause { position:absolute; right:22px; top:24px; width:64px; height:64px; border-radius:22px;
+    background:linear-gradient(180deg,#FFFDF6,#F2E4C8 65%,#E3CEAA); border:3px solid #FFFDF6;
+    box-shadow:0 5px 0 rgba(120,90,50,.22),0 8px 14px rgba(60,45,25,.20),inset 0 3px 5px rgba(255,255,255,.9);
+    display:flex; align-items:center; justify-content:center; gap:9px; }
+  .pause i { width:9px; height:26px; border-radius:4px; background:#A98A5C; }
+
+  .hud2 { position:absolute; left:24px; right:24px; top:104px; height:46px; display:flex; align-items:center; gap:14px; }
+  .hearts { display:flex; gap:5px; align-items:center; }
+  .hearts svg { width:36px; height:36px; }
+  .progressWrap { flex:1; height:22px; border-radius:11px; background:#EADCC4; overflow:hidden;
+    box-shadow:inset 0 2px 4px rgba(120,90,50,.25),0 1px 0 rgba(255,255,255,.8); position:relative; }
+  .progressFill { height:100%; width:19%; border-radius:11px;
+    background:linear-gradient(180deg,#9BE06B,#5FC037 60%,#45A628);
+    box-shadow:inset 0 3px 4px rgba(255,255,255,.5),0 1px 2px rgba(0,0,0,.12); }
+  .pct { font-size:20px; font-weight:900; color:#A98A5C; width:52px; text-align:right; }
+
+  /* 棋盘托盘 */
+  .board { position:absolute; left:50%; top:162px; transform:translateX(-50%) rotateX(7deg);
+    width:504px; height:504px; padding:14px; border-radius:30px;
+    background:linear-gradient(180deg,#FFFDF8,#F6E9D2 70%,#EDDBC0);
+    border:4px solid #FFFDF8;
+    box-shadow:0 8px 0 rgba(160,130,85,.28),0 18px 34px rgba(120,90,50,.24),inset 0 4px 8px rgba(255,255,255,.9);
+    transform-style:preserve-3d; }
+  .grid { position:relative; width:100%; height:100%;
+    background:radial-gradient(circle, rgba(206,180,140,.32) 1.5px, transparent 1.6px) 0 0/18px 18px; }
+  .tile { position:absolute; border-radius:8px; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 4px 0 rgba(70,50,25,.30), 0 7px 10px rgba(70,50,25,.22), inset 0 3px 4px rgba(255,255,255,.85), inset 0 -3px 4px rgba(0,0,0,.12);
+    border:2px solid rgba(255,255,255,.65); }
+  .tile.empty { background:linear-gradient(180deg,#F3ECDD,#E7DDC9); box-shadow:inset 0 2px 4px rgba(150,120,80,.18); border-color:rgba(255,255,255,.5); }
+  .tile svg { width:64%; height:64%; }
+
+  /* 底部道具 */
+  .tools { position:absolute; left:16px; right:16px; bottom:22px; height:120px; display:flex; gap:16px; }
+  .tool { flex:1; border-radius:24px; background:linear-gradient(180deg,#FFFDF7,#F7EAD1 70%,#EDD9B8);
+    border:3px solid #FFFDF8; box-shadow:0 5px 0 rgba(120,90,50,.20),0 9px 16px rgba(50,40,25,.22),inset 0 3px 5px rgba(255,255,255,.9);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; position:relative; }
+  .tool svg { width:48px; height:48px; }
+  .tool span { font-size:18px; font-weight:800; color:#8A6A38; }
+  .count { position:absolute; right:-8px; top:-10px; min-width:30px; height:30px; padding:0 7px; border-radius:15px;
+    background:linear-gradient(180deg,#FF9E7E,#EA573F); border:2px solid #fff; color:#fff;
+    font-size:17px; font-weight:900; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 3px 6px rgba(120,50,30,.28); }
+</style>
+</head>
+<body>
+<div class="dots"></div>
+
+<div class="back"><svg viewBox="0 0 32 32"><path d="M20 5L9 16l11 11" stroke="#9C8258" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div class="title">第 1 关</div>
+<div class="pause"><i></i><i></i></div>
+
+<div class="hud2">
+  <div class="hearts" id="hearts"></div>
+  <div class="progressWrap"><div class="progressFill"></div></div>
+  <div class="pct">19%</div>
+</div>
+
+<div class="board"><div class="grid" id="grid"></div></div>
+
+<div class="tools">
+  <div class="tool">
+    <div class="count">3</div>
+    <svg viewBox="0 0 48 48"><path d="M24 5C15 5 8 12 8 21c0 6 3 10 7 13v5h18v-5c4-3 7-7 7-13C40 12 33 5 24 5z" fill="#FFD65E" stroke="#FFF3C4" stroke-width="3"/><rect x="19" y="39" width="10" height="5" rx="2" fill="#E5A93E"/><path d="M24 13v6M17 17l2 3M31 17l-2 3" stroke="#FFF6CF" stroke-width="3" stroke-linecap="round"/></svg>
+    <span>提示</span>
+  </div>
+  <div class="tool">
+    <div class="count">2</div>
+    <svg viewBox="0 0 48 48"><rect x="10" y="10" width="28" height="30" rx="7" fill="#C9A6E8" stroke="#FFF" stroke-width="3"/><rect x="17" y="4" width="14" height="10" rx="4" fill="#A982D6" stroke="#FFF" stroke-width="3"/><path d="M17 24h14M24 17v14" stroke="#FFF" stroke-width="4" stroke-linecap="round"/></svg>
+    <span>锤子</span>
+  </div>
+  <div class="tool">
+    <div class="count">1</div>
+    <svg viewBox="0 0 48 48"><circle cx="24" cy="26" r="15" fill="#4A4A52" stroke="#FFF" stroke-width="3"/><path d="M32 11l6-6" stroke="#F5A05E" stroke-width="5" stroke-linecap="round"/><circle cx="19" cy="23" r="3" fill="#8A8A92"/><circle cx="28" cy="23" r="3" fill="#8A8A92"/></svg>
+    <span>炸弹</span>
+  </div>
+</div>
+
+<script>
+const C = {
+  orange:['#FFB44E','#F28A22'], mint:['#7FDD5A','#4CB629'], violet:['#7FC4F2','#4294DC'],
+  pink:['#FA8778','#E95848'], yellow:['#FFD65A','#EDB01F'], blue:['#6FB0EC','#3D82D4'],
+  stone:['#6E6A64','#4A4742']
+};
+const DIR = { up:'M24 38V12M24 12l-10 10M24 12l10 10',
+  right:'M10 24h28M38 24l-10-10M38 24L28 34',
+  down:'M24 10v28M24 38l-10-10M24 38l10-10',
+  left:'M38 24H10M10 24l10-10M10 24l10 10' };
+function arrowSvg(dir){ return `<svg viewBox="0 0 48 48"><path d="${DIR[dir]}" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`; }
+
+(async () => {
+  const d = await fetch('../data/board.json').then(r=>r.json());
+  const grid = document.getElementById('grid');
+  const gap = 5, cell = (504 - 28 - gap*(d.cols+1)) / d.cols;
+  // 空格底
+  const occ = new Map();
+  for (const b of d.blocks) if (!b.skip) for (const [c,r] of b.cells) occ.set(`${c},${r}`, b);
+
+  for (let r=0; r<d.rows; r++) for (let c=0; c<d.cols; c++) {
+    const b = occ.get(`${c},${r}`);
+    const el = document.createElement('div');
+    el.className = 'tile' + (b ? '' : ' empty');
+    el.style.left  = (gap + c*(cell+gap)) + 'px';
+    el.style.top   = (gap + r*(cell+gap)) + 'px';
+    el.style.width = cell + 'px';
+    el.style.height= cell + 'px';
+    if (b) {
+      const col = C[b.family] || C.stone;
+      el.style.background = `linear-gradient(180deg,${col[0]} 0%,${col[1]} 100%)`;
+      if (b.arrow[0]===c && b.arrow[1]===r) el.innerHTML = arrowSvg(b.dir);
+    }
+    grid.appendChild(el);
+  }
+  // 心：3 满 1 空
+  const hearts = document.getElementById('hearts');
+  const heartPath = 'M16 29C6 22 3 17 3 12a7 7 0 0113-3 7 7 0 0113 3c0 5-3 10-13 17z';
+  for (let i=0;i<4;i++) hearts.insertAdjacentHTML('beforeend',
+    `<svg viewBox="0 0 32 32"><path d="${heartPath}" fill="${i<3?'#F2605C':'#E4D9C6'}" stroke="#fff" stroke-width="2"/></svg>`);
+  window.__ready = true;
+})();
+</script>
+</body>
+</html>

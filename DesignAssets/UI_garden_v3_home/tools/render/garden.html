@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>html,body{margin:0;background:#8fd3f4;overflow:hidden}canvas{display:block}</style></head>
+<body>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import { RoundedBoxGeometry } from './vendor/geometries/RoundedBoxGeometry.js';
+
+const q = new URLSearchParams(location.search);
+const W = parseInt(q.get('w') || '1080', 10);
+const H = parseInt(q.get('h') || '1920', 10);
+
+const renderer = new THREE.WebGLRenderer({antialias:true, alpha:false, preserveDrawingBuffer:true});
+renderer.setPixelRatio(1);
+renderer.setSize(W, H, false);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.NoToneMapping;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(60, W / H, 0.1, 160);
+camera.position.set(0, 4.2, 14);
+camera.lookAt(0, 1.7, 0);
+
+// ---------- sky ----------
+function skyTexture() {
+  const c = document.createElement('canvas'); c.width = 64; c.height = 512;
+  const g = c.getContext('2d');
+  const grd = g.createLinearGradient(0, 0, 0, 512);
+  grd.addColorStop(0.00, '#4ab6ee');
+  grd.addColorStop(0.34, '#7fcdf5');
+  grd.addColorStop(0.62, '#bfe6f7');
+  grd.addColorStop(0.82, '#e8f3e4');
+  grd.addColorStop(1.00, '#cfe6b8');
+  g.fillStyle = grd; g.fillRect(0, 0, 64, 512);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+}
+scene.background = skyTexture();
+
+const hemi = new THREE.HemisphereLight(0xfff1d0, 0x5b8c3c, 0.55);
+scene.add(hemi);
+const sun = new THREE.DirectionalLight(0xffe0a8, 2.3);
+sun.position.set(-6.5, 10, 6.5);
+sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048);
+Object.assign(sun.shadow.camera, {near:1, far:40, left:-11, right:11, top:11, bottom:-11});
+sun.shadow.bias = -0.0006; sun.shadow.radius = 6;
+scene.add(sun);
+const rim = new THREE.DirectionalLight(0xffe9c8, 0.55);
+rim.position.set(7, 4, -6);
+scene.add(rim);
+scene.fog = new THREE.Fog(0xe7eed6, 18, 44);
+
+const MAT = {
+  ground: new THREE.MeshStandardMaterial({color:0x74b748, roughness:0.95}),
+  hillFar: new THREE.MeshStandardMaterial({color:0x86c45c, roughness:1}),
+  hillNear: new THREE.MeshStandardMaterial({color:0x79bb4e, roughness:1}),
+  path: new THREE.MeshStandardMaterial({color:0xf1e0b4, roughness:0.9}),
+  cream: new THREE.MeshStandardMaterial({color:0xfbf1d8, roughness:0.8}),
+  creamDark: new THREE.MeshStandardMaterial({color:0xe4d3ac, roughness:0.9}),
+  wood: new THREE.MeshStandardMaterial({color:0xb87a41, roughness:0.85}),
+  darkWood: new THREE.MeshStandardMaterial({color:0x8b5a34, roughness:0.9}),
+  leaf: new THREE.MeshStandardMaterial({color:0x4f9c3e, roughness:0.95}),
+  cloud: new THREE.MeshStandardMaterial({color:0xffffff, roughness:1, emissive:0xdfeeff, emissiveIntensity:0.25}),
+  canvasWhite: new THREE.MeshStandardMaterial({color:0xfffdf4, roughness:0.9}),
+  shadowMat: new THREE.ShadowMaterial({color:0x2a3a22, opacity:0.16}),
+};
+
+// ---------- ground & path ----------
+function groundTexture() {
+  const c = document.createElement('canvas'); c.width = c.height = 256;
+  const g = c.getContext('2d');
+  g.fillStyle = '#74b748'; g.fillRect(0,0,256,256);
+  for (let i=0;i<900;i++){
+    const r = 3 + Math.random()*16;
+    g.fillStyle = Math.random()<0.5 ? 'rgba(108,175,66,0.55)' : 'rgba(146,199,92,0.45)';
+    g.beginPath(); g.arc(Math.random()*256, Math.random()*256, r, 0, Math.PI*2); g.fill();
+  }
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace;
+  t.wrapS = t.wrapT = THREE.RepeatWrapping;
+  t.repeat.set(14, 14);
+  return t;
+}
+MAT.ground.map = groundTexture();
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(46, 46), MAT.ground);
+ground.rotation.x = -Math.PI/2; ground.receiveShadow = true; scene.add(ground);
+
+const pathShape = new THREE.Shape();
+const pw = 2.0, plen = 26, pr = 0.9;
+pathShape.moveTo(-pw/2, -plen/2 + pr);
+pathShape.quadraticCurveTo(-pw/2, -plen/2, -pw/2 + pr, -plen/2);
+pathShape.lineTo(pw/2 - pr, -plen/2);
+pathShape.quadraticCurveTo(pw/2, -plen/2, pw/2, -plen/2 + pr);
+pathShape.lineTo(pw/2, plen/2 - pr);
+pathShape.quadraticCurveTo(pw/2, plen/2, pw/2 - pr, plen/2);
+pathShape.lineTo(-pw/2 + pr, plen/2);
+pathShape.quadraticCurveTo(-pw/2, plen/2, -pw/2, plen/2 - pr);
+pathShape.closePath();
+const path = new THREE.Mesh(new THREE.ExtrudeGeometry(pathShape, {depth:0.06, bevelEnabled:false}), MAT.path);
+path.rotation.x = -Math.PI/2; path.position.y = 0.030; path.receiveShadow = true;
+scene.add(path);
+
+// paving stones on top of the ribbon
+const stoneMat = new THREE.MeshStandardMaterial({color:0xf6e8c4, roughness:0.92});
+let row = 0;
+for (let z = 8.2; z > -9.0; z -= 0.62, row++) {
+  const perRow = 3;
+  for (let i = 0; i < perRow; i++) {
+    const x = (i - (perRow - 1) / 2) * 0.66 + (row % 2 ? 0.10 : -0.10);
+    if (Math.abs(x) > pw/2 - 0.26) continue;
+    const st = new THREE.Mesh(new RoundedBoxGeometry(0.58, 0.05, 0.52, 2, 0.12), stoneMat);
+    st.position.set(x, 0.055, z);
+    st.receiveShadow = true;
+    scene.add(st);
+  }
+}
+
+// stepping stones
+for (let i=0;i<9;i++){
+  const st = new THREE.Mesh(new THREE.CylinderGeometry(0.19, 0.19, 0.04, 20), MAT.cream);
+  st.position.set((i%2?0.24:-0.22), 0.09, 6.2 - i*0.85);
+  st.receiveShadow = true; scene.add(st);
+}
+
+// path kerb stones
+for (let i=0;i<26;i++){
+  const z = 7.2 - i*0.78;
+  for (const side of [-1, 1]) {
+    const k = new THREE.Mesh(new THREE.SphereGeometry(0.16, 10, 8), MAT.creamDark);
+    k.scale.set(1.1, 0.5, 0.85);
+    k.position.set(side*(pw/2 + 0.10), 0.07, z + (side>0?0.2:0));
+    k.receiveShadow = true; scene.add(k);
+  }
+}
+
+// grass tufts
+function tuft(x, z, s) {
+  const g = new THREE.Group();
+  for (let i=0;i<4;i++){
+    const b = new THREE.Mesh(new THREE.ConeGeometry(0.045, 0.30 + Math.random()*0.18, 5), MAT.leaf);
+    b.position.set((Math.random()-0.5)*0.18, 0.15, (Math.random()-0.5)*0.18);
+    b.rotation.z = (Math.random()-0.5)*0.5;
+    g.add(b);
+  }
+  g.position.set(x, 0, z); g.scale.setScalar(s); scene.add(g);
+}
+for (let i=0;i<70;i++){
+  const z = -4 + Math.random()*12;
+  const x = (Math.random()-0.5)*13;
+  if (Math.abs(x) < pw/2 + 0.35) continue;
+  tuft(x, z, 0.7 + Math.random()*0.8);
+}
+
+// ---------- clouds ----------
+function cloud(x, y, z, s) {
+  const g = new THREE.Group();
+  const n = 6 + (Math.random()*4|0);
+  for (let i=0;i<n;i++){
+    const r = 0.7 + Math.random()*0.6;
+    const m = new THREE.Mesh(new THREE.SphereGeometry(r, 18, 14), MAT.cloud);
+    m.position.set((i-n/2)*0.85 + Math.random()*0.3, Math.random()*0.22, Math.random()*0.4);
+    m.scale.set(1.5, 0.52, 1.1);
+    g.add(m);
+  }
+  g.position.set(x, y, z); g.scale.setScalar(s);
+  scene.add(g);
+}
+cloud(-9.0, 11.2, -34, 2.2);
+cloud(0.5, 12.6, -36, 1.7);
+cloud(8.5, 10.4, -33, 2.0);
+cloud(-4.0, 8.6, -28, 1.2);
+
+// ---------- distant hills ----------
+function hill(x, z, sx, sy, mat) {
+  const m = new THREE.Mesh(new THREE.SphereGeometry(1, 24, 16), mat);
+  m.position.set(x, 0, z); m.scale.set(sx, sy, sx*0.8);
+  scene.add(m);
+}
+hill(-7.5, -15, 8.5, 2.4, MAT.hillFar);
+hill(6.0, -16, 9.5, 2.6, MAT.hillFar);
+hill(-1.5, -12, 7.0, 1.5, MAT.hillNear);
+
+// ---------- left building ----------
+const building = new THREE.Group();
+const body = new THREE.Mesh(new RoundedBoxGeometry(3.2, 4.8, 1.4, 4, 0.22), MAT.cream);
+body.position.set(0, 2.4, 0); body.castShadow = true; body.receiveShadow = true;
+building.add(body);
+// cornice
+const cor = new THREE.Mesh(new RoundedBoxGeometry(3.4, 0.28, 1.6, 3, 0.10), MAT.creamDark);
+cor.position.set(0, 4.85, 0); cor.castShadow = true; building.add(cor);
+// arch recess
+const archW = 1.15, archH = 1.9;
+const archGroup = new THREE.Group();
+const dark = new THREE.MeshStandardMaterial({color:0x6a4a30, roughness:0.95});
+const archRect = new THREE.Mesh(new THREE.BoxGeometry(archW, archH, 0.5), dark);
+archRect.position.set(0, archH/2, 0.55); archGroup.add(archRect);
+const archTop = new THREE.Mesh(new THREE.CylinderGeometry(archW/2, archW/2, 0.5, 24, 1, false, 0, Math.PI), dark);
+archTop.rotation.z = -Math.PI/2; archTop.rotation.y = Math.PI/2;
+archTop.position.set(0, archH, 0.55); archGroup.add(archTop);
+// arch frame
+const frame = new THREE.Mesh(new THREE.TorusGeometry(archW/2 + 0.13, 0.13, 12, 32, Math.PI), MAT.creamDark);
+frame.position.set(0, archH, 0.62); frame.castShadow = true; archGroup.add(frame);
+building.add(archGroup);
+// mosaic painting
+function mosaicTexture(seed) {
+  const c = document.createElement('canvas'); c.width = c.height = 128;
+  const g = c.getContext('2d');
+  g.fillStyle = '#f8f1dd'; g.fillRect(0,0,128,128);
+  const P = 8, n = 128 / P;
+  const art = [
+    '................',
+    '.....pp..pp.....',
+    '....pPPppPPp....',
+    '...pPPPPPPPPp...',
+    '...pPPyPPyPPp...',
+    '...pPPPPPPPPp...',
+    '....pPPrrPPp....',
+    '.....pPPPPp.....',
+    '.......gg.......',
+    '....gg..gg......',
+    '.....gg.gg......',
+    '......gggg......',
+    '.......gg.......',
+    '.......gg.......',
+    '....gg.gg.gg....',
+    '.....gggggg.....',
+  ];
+  const palette = { p:'#e8598f', P:'#f27fb0', y:'#ffe066', r:'#f2a03c', g:'#4f9c3e', '.':null };
+  for (let y=0;y<16;y++) for (let x=0;x<16;x++){
+    const ch = art[y][x];
+    const col = palette[ch];
+    if (col) { g.fillStyle = col; g.fillRect(x*n, y*n, n, n); }
+  }
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace;
+  t.magFilter = THREE.NearestFilter;
+  return t;
+}
+// engaged columns
+for (const cx of [-1.28, 1.28]) {
+  const col = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.17, 3.5, 20), MAT.cream);
+  col.position.set(cx, 1.9, 0.72); col.castShadow = true; building.add(col);
+  const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.23, 0.23, 0.16, 20), MAT.creamDark);
+  cap.position.set(cx, 3.72, 0.72); building.add(cap);
+  const base = new THREE.Mesh(new THREE.CylinderGeometry(0.23, 0.23, 0.16, 20), MAT.creamDark);
+  base.position.set(cx, 0.20, 0.72); building.add(base);
+}
+// roof band
+const roof = new THREE.Mesh(new RoundedBoxGeometry(3.6, 0.22, 1.7, 3, 0.08), MAT.creamDark);
+roof.position.set(0, 5.05, 0); roof.castShadow = true; building.add(roof);
+
+const pic = new THREE.Mesh(new THREE.BoxGeometry(1.5, 1.5, 0.10),
+  new THREE.MeshStandardMaterial({map: mosaicTexture(3), roughness:0.8}));
+pic.position.set(-0.9, 3.3, 0.66); pic.castShadow = true;
+building.add(pic);
+const picFrame = new THREE.Mesh(new RoundedBoxGeometry(1.66, 1.66, 0.08, 3, 0.06), MAT.wood);
+picFrame.position.set(-0.9, 3.3, 0.60); building.add(picFrame);
+building.position.set(-4.15, 0, -3.4);
+building.scale.setScalar(1.05);
+building.rotation.y = 0.20;
+scene.add(building);
+
+// ---------- right easel ----------
+const easel = new THREE.Group();
+function leg(x, z, tilt) {
+  const m = new THREE.Mesh(new RoundedBoxGeometry(0.13, 2.5, 0.13, 2, 0.05), MAT.wood);
+  m.position.set(x, 1.25, z); m.rotation.x = tilt; m.castShadow = true;
+  return m;
+}
+easel.add(leg(-0.55, 0.12, -0.10));
+easel.add(leg(0.55, 0.12, -0.10));
+const back = leg(0, -0.45, 0.24); easel.add(back);
+const bar = new THREE.Mesh(new RoundedBoxGeometry(1.35, 0.10, 0.12, 2, 0.04), MAT.wood);
+bar.position.set(0, 1.15, 0.16); bar.castShadow = true; easel.add(bar);
+const canvas = new THREE.Mesh(new RoundedBoxGeometry(1.5, 1.35, 0.12, 3, 0.05),
+  new THREE.MeshStandardMaterial({map: mosaicTexture(11), roughness:0.85}));
+canvas.position.set(0, 1.62, 0.16); canvas.rotation.x = -0.16; canvas.castShadow = true;
+easel.add(canvas);
+const canvasFrame = new THREE.Mesh(new RoundedBoxGeometry(1.62, 1.47, 0.08, 3, 0.05), MAT.wood);
+canvasFrame.position.set(0, 1.62, 0.10); canvasFrame.rotation.x = -0.16; easel.add(canvasFrame);
+easel.position.set(3.6, 0, -1.2); easel.rotation.y = -0.25;
+scene.add(easel);
+
+// ---------- flowers ----------
+const PETALS = [0xf58bb0, 0xfff4e2, 0xffd766, 0xf7a5c6, 0xffe9a8];
+function flower(x, z, s, color) {
+  const g = new THREE.Group();
+  const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.028, 0.034, 0.65, 8), MAT.leaf);
+  stem.position.y = 0.32; g.add(stem);
+  const head = new THREE.Group();
+  head.position.y = 0.68;
+  for (let i=0;i<5;i++){
+    const p = new THREE.Mesh(new THREE.SphereGeometry(0.115, 12, 10),
+      new THREE.MeshStandardMaterial({color, roughness:0.85}));
+    const a = i*Math.PI*2/5;
+    p.position.set(Math.cos(a)*0.115, 0, Math.sin(a)*0.115);
+    p.scale.set(1, 0.72, 1); p.castShadow = true;
+    head.add(p);
+  }
+  const c = new THREE.Mesh(new THREE.SphereGeometry(0.085, 12, 10),
+    new THREE.MeshStandardMaterial({color:0xffc94d, roughness:0.8}));
+  c.position.y = 0.02; head.add(c);
+  g.add(head);
+  const leaf = new THREE.Mesh(new THREE.SphereGeometry(0.16, 10, 8), MAT.leaf);
+  leaf.scale.set(1, 0.28, 0.55); leaf.position.set(0.12, 0.28, 0); g.add(leaf);
+  g.position.set(x, 0.02, z); g.scale.setScalar(s);
+  g.rotation.y = Math.random()*Math.PI;
+  scene.add(g);
+}
+function filler(x, z, s, color) {
+  const m = new THREE.Mesh(new THREE.SphereGeometry(0.10, 10, 8),
+    new THREE.MeshStandardMaterial({color, roughness:0.85}));
+  m.scale.set(1.25, 0.6, 1.25);
+  m.position.set(x, 0.10, z); m.castShadow = true; scene.add(m);
+}
+function leafClump(x, z, s) {
+  const g = new THREE.Group();
+  for (let i=0;i<5;i++){
+    const l = new THREE.Mesh(new THREE.SphereGeometry(0.22, 10, 8), MAT.leaf);
+    l.scale.set(1.1, 0.30, 0.62);
+    l.position.set((Math.random()-0.5)*0.42, 0.06, (Math.random()-0.5)*0.42);
+    l.rotation.y = Math.random()*Math.PI;
+    l.castShadow = true; g.add(l);
+  }
+  g.position.set(x, 0, z); g.scale.setScalar(s); scene.add(g);
+}
+function scatter(bx, bz, rw, rd, n, smin, smax) {
+  for (let i=0;i<n;i++){
+    const x = bx + (Math.random()-0.5)*rw;
+    const z = bz + (Math.random()-0.5)*rd;
+    flower(x, z, smin + Math.random()*(smax-smin), PETALS[(Math.random()*PETALS.length)|0]);
+  }
+}
+scatter(0, 6.8, 18, 3.0, 90, 0.55, 0.95);
+scatter(0, 3.2, 18, 2.6, 70, 0.45, 0.8);
+scatter(-2.0, 8.6, 14, 1.6, 40, 0.8, 1.15);
+scatter(2.0, 8.8, 14, 1.6, 40, 0.8, 1.15);
+scatter(-6.2, 1.2, 7, 3.2, 34, 0.45, 0.75);
+scatter(6.2, 1.4, 7, 3.2, 34, 0.45, 0.75);
+for (let i=0;i<260;i++){
+  const z = -3 + Math.random()*12;
+  const x = (Math.random()-0.5)*15;
+  if (Math.abs(x) < pw/2 + 0.5) continue;
+  filler(x, z, 1, PETALS[(Math.random()*PETALS.length)|0]);
+}
+for (let i=0;i<120;i++){
+  const z = -2 + Math.random()*11;
+  const x = (Math.random()-0.5)*14;
+  if (Math.abs(x) < pw/2 + 0.4) continue;
+  leafClump(x, z, 0.7 + Math.random()*0.6);
+}
+
+// bushes
+function bush(x, z, s, col) {
+  const m = new THREE.Mesh(new THREE.SphereGeometry(0.55, 16, 12),
+    new THREE.MeshStandardMaterial({color:col, roughness:0.95}));
+  m.position.set(x, 0.32*s, z); m.scale.set(1.35*s, 0.85*s, 1.1*s);
+  m.castShadow = true; m.receiveShadow = true; scene.add(m);
+}
+bush(-4.6, 2.2, 1.1, 0x5c9e46); bush(-3.6, 3.0, 0.85, 0x6cb050);
+bush(4.4, 2.0, 1.15, 0x5c9e46); bush(3.5, 2.9, 0.8, 0x6cb050);
+bush(-6.0, 4.2, 1.3, 0x548f40); bush(5.9, 4.0, 1.25, 0x548f40);
+
+// ---------- contact shadow plane ----------
+const catcher = new THREE.Mesh(new THREE.PlaneGeometry(40, 40), MAT.shadowMat);
+catcher.rotation.x = -Math.PI/2; catcher.position.y = 0.02; catcher.receiveShadow = true;
+scene.add(catcher);
+
+renderer.render(scene, camera);
+window.__done = true;
+</script>
+</body></html>

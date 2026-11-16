@@ -1,0 +1,220 @@
+[
+  {
+    "file": "components/node_locked.png",
+    "size": [
+      512,
+      512
+    ],
+    "note": "未解锁关卡（无数字，可叠任意文案）",
+    "nine_slice": [
+      28,
+      28,
+      28,
+      28
+    ],
+    "state": "locked"
+  },
+  {
+    "file": "components/node_completed.png",
+    "size": [
+      512,
+      512
+    ],
+    "note": "已通关关卡（无数字，可叠任意文案）",
+    "nine_slice": [
+      28,
+      28,
+      28,
+      28
+    ],
+    "state": "completed"
+  },
+  {
+    "file": "components/node_current.png",
+    "size": [
+      512,
+      512
+    ],
+    "note": "当前关卡（无数字，可叠任意文案）",
+    "nine_slice": [
+      28,
+      28,
+      28,
+      28
+    ],
+    "state": "current"
+  },
+  {
+    "file": "components/node_star.png",
+    "size": [
+      512,
+      512
+    ],
+    "note": "星级/里程碑关卡（无数字，可叠任意文案）",
+    "nine_slice": [
+      28,
+      28,
+      28,
+      28
+    ],
+    "state": "star"
+  },
+  {
+    "file": "components/node_fail.png",
+    "size": [
+      512,
+      512
+    ],
+    "note": "失败关卡（无数字，可叠任意文案）",
+    "nine_slice": [
+      28,
+      28,
+      28,
+      28
+    ],
+    "state": "fail"
+  },
+  {
+    "file": "components/node_challenge.png",
+    "size": [
+      512,
+      512
+    ],
+    "note": "挑战关卡（无数字，可叠任意文案）",
+    "nine_slice": [
+      28,
+      28,
+      28,
+      28
+    ],
+    "state": "challenge"
+  },
+  {
+    "file": "components/node_pointer.png",
+    "size": [
+      128,
+      128
+    ],
+    "note": "当前关卡下方指向箭"
+  },
+  {
+    "file": "components/btn_primary.png",
+    "size": [
+      1230,
+      514
+    ],
+    "note": "主按钮（无文字），左右九宫格拉伸",
+    "nine_slice": [
+      220,
+      120,
+      220,
+      120
+    ]
+  },
+  {
+    "file": "components/capsule.png",
+    "size": [
+      566,
+      188
+    ],
+    "note": "货币胶囊底（票券/数字/加号另叠）",
+    "nine_slice": [
+      88,
+      40,
+      88,
+      40
+    ]
+  },
+  {
+    "file": "components/nav_bar.png",
+    "size": [
+      1886,
+      496
+    ],
+    "note": "底部导航条底（tab 另叠）",
+    "nine_slice": [
+      112,
+      60,
+      112,
+      60
+    ]
+  },
+  {
+    "file": "components/tab_active.png",
+    "size": [
+      450,
+      480
+    ],
+    "note": "选中态 tab 卡片"
+  },
+  {
+    "file": "components/plate_label.png",
+    "size": [
+      600,
+      184
+    ],
+    "note": "小标签底板（任务/成就等）",
+    "nine_slice": [
+      60,
+      60,
+      60,
+      60
+    ]
+  },
+  {
+    "file": "components/circle_button.png",
+    "size": [
+      240,
+      240
+    ],
+    "note": "圆形按钮底（齿轮/关闭等）"
+  },
+  {
+    "file": "components/bubble.png",
+    "size": [
+      600,
+      300
+    ],
+    "note": "气泡“当前关卡”底"
+  },
+  {
+    "file": "components/badge_lock.png",
+    "size": [
+      128,
+      128
+    ],
+    "note": "独立徽章"
+  },
+  {
+    "file": "components/badge_star.png",
+    "size": [
+      128,
+      128
+    ],
+    "note": "独立徽章"
+  },
+  {
+    "file": "components/badge_skull.png",
+    "size": [
+      128,
+      128
+    ],
+    "note": "独立徽章"
+  },
+  {
+    "file": "components/badge_plus.png",
+    "size": [
+      128,
+      128
+    ],
+    "note": "独立徽章"
+  },
+  {
+    "file": "components/badge_alert.png",
+    "size": [
+      128,
+      128
+    ],
+    "note": "独立徽章"
+  }
+]
