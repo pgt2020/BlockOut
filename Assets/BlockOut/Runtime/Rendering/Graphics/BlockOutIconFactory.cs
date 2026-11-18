@@ -46,6 +46,15 @@ namespace BlockOut.UI
         public static Sprite SoftShadow() => Asset("card_soft_shadow");
         /// <summary>棋盘托盘的点阵底（32×32 可平铺，点距 16px；Image.Type.Tiled 用）。</summary>
         public static Sprite TrayDots() => Asset("tray_dots");
+
+        // ---- R2 首页：背景与四个入口都用真控件，整屏图只做美术底 ----
+        public static Sprite HomeBackground() => Asset("home_bg");
+        public static Sprite HomeCircle() => Asset("home_circle");
+        public static Sprite HomeSettings() => Asset("home_settings");
+        public static Sprite HomeTitlePlate() => Asset("home_title_plate");
+        public static Sprite HomeStartButton() => Asset("home_btn_start");
+        public static Sprite HomePlus() => Asset("home_plus");
+        public static Sprite HomeFeatureIcon(string key) => Asset("home_icon_" + key);
         // These compatibility APIs return neutral authored masks; callers own their Image tint.
         public static Sprite RoundedSlice(float radius,Color fill,Color stroke,float strokeWidth,Color? top) => Asset("round");
         public static Sprite RoundedPlain(int w,int h,float radius,Color fill,Color stroke,float strokeWidth) => Asset("round");

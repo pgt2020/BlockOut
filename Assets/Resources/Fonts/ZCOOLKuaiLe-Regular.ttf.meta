@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 582a552245d65210a4d59f5cd2dc924e
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - ZCOOL KuaiLe
+  fallbackFontReferences:
+  - fileID: 12800000
+    guid: fd593325a489afb46b970fe4942877e4
+    type: 3
+  customCharacters: null
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: null
+  assetBundleName: null
+  assetBundleVariant: null

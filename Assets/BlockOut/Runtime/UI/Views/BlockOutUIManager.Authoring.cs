@@ -50,148 +50,100 @@ namespace BlockOut.UI
             foreach (var kv in screens) kv.Value.SetActive(false);
         }
 
+        /// <summary>R2 首页圆形入口：奶油圆底 + 3D 图标 + 原生文字，整组是真控件。</summary>
+        private Button BuildHomeRoundButton(Transform parent, string name, string label, Sprite icon,
+            UIAnchorPreset preset, float x, float y)
+        {
+            var rt = BlockOutWidgets.Place(parent, name, preset, x, y, 68, 68);
+            var baseImg = rt.gameObject.AddComponent<Image>();
+            baseImg.sprite = BlockOutIconFactory.HomeCircle();
+            baseImg.type = Image.Type.Sliced;
+            var btn = rt.gameObject.AddComponent<Button>();
+            btn.targetGraphic = baseImg;
+
+            var ic = BlockOutWidgets.SpriteImage(rt, "Icon", icon, UIAnchorPreset.MiddleCenter, 0, 0, 46, 46);
+            ic.raycastTarget = false;
+            var labelText = BlockOutWidgets.Label(rt, "Label", label, 14, 800, BlockOutDesignTokens.TextCocoa,
+                TextAnchor.MiddleCenter, UIAnchorPreset.TopCenter, 0, 70, 68, 18);
+            var outline = labelText.gameObject.AddComponent<Outline>();
+            outline.effectColor = BlockOutDesignTokens.White;
+            outline.effectDistance = new Vector2(1f, -1f);
+            return btn;
+        }
+
         private GameObject BuildHomeScreen()
         {
             var go = MakeScreen("Home");
 
-            // ---- 顶部：logo | 金币 | 设置 ----
-            var logoTile = BlockOutWidgets.Panel(go.transform, "LogoTile", BlockOutDesignTokens.MintFly,
-                UIAnchorPreset.TopLeft, 24, 30, 36, 36);
-            logoTile.sprite = BlockOutIconFactory.RoundedSlice(11f, BlockOutDesignTokens.MintFly, Color.clear, 0f, null);
-            logoTile.type = Image.Type.Sliced;
-            var logoArrow = BlockOutWidgets.SpriteImage(go.transform, "LogoArrow", BlockOutIconFactory.Arrow(Core.BlockOutDirection.Right),
-                UIAnchorPreset.TopLeft, 31, 37, 22, 22);
-            logoArrow.color = BlockOutDesignTokens.White;
-            BlockOutWidgets.Label(go.transform, "LogoTitle", "BlockOut", BlockOutDesignTokens.FontHomeLogo, 900,
-                BlockOutDesignTokens.TextCocoa, TextAnchor.MiddleLeft, UIAnchorPreset.TopLeft, 70, 30, 150, 18);
-            BlockOutWidgets.Label(go.transform, "LogoSub", "箭头方块消除", BlockOutDesignTokens.FontHomeLogoSub, 400,
-                BlockOutDesignTokens.TextCocoa60, TextAnchor.MiddleLeft, UIAnchorPreset.TopLeft, 70, 48, 150, 12);
+            // 整屏美术底：像素猫已经画进画架画布，它不接点击；交互元件全部是真 UI。
+            var bg = BlockOutWidgets.SpriteImage(go.transform, "HomeBackground", BlockOutIconFactory.HomeBackground(),
+                UIAnchorPreset.Stretch);
+            bg.type = Image.Type.Simple;
+            bg.raycastTarget = false;
+            bg.rectTransform.offsetMin = Vector2.zero;
+            bg.rectTransform.offsetMax = Vector2.zero;
 
-            var coinPill = BlockOutWidgets.Pill(go.transform, "CoinPill", 94, 30, BlockOutDesignTokens.SurfaceCard,
-                BlockOutDesignTokens.StrokeWarm, UIAnchorPreset.TopRight, -138, 33);
-            BlockOutWidgets.SpriteImage(coinPill, "CoinIcon", BlockOutIconFactory.Coin(),
-                UIAnchorPreset.MiddleLeft, 9, 0, 18, 18);
-            HomeCoinText = BlockOutWidgets.Label(coinPill, "CoinText", "0", BlockOutDesignTokens.FontCoin, 900,
-                BlockOutDesignTokens.TextCocoa, TextAnchor.MiddleLeft, UIAnchorPreset.Stretch, 0, 0, 0, 0);
-            HomeCoinText.rectTransform.offsetMin = new Vector2(33, 0);
-            HomeCoinText.rectTransform.offsetMax = new Vector2(-8, 0);
-            HomeSettingsBtn = BlockOutWidgets.CircleIconButton(go.transform, "SettingsBtn", BlockOutIconFactory.Gear(), 36, null,
-                BlockOutDesignTokens.SurfaceCard, BlockOutDesignTokens.StrokeWarm);
+            // ---- 左上金币胶囊：真图标 + 真数字 + 加号按钮 ----
+            var coinPill = BlockOutWidgets.SpriteImage(go.transform, "CoinPill",
+                BlockOutIconFactory.RoundedSlice(20f, BlockOutDesignTokens.SurfaceCard, BlockOutDesignTokens.White, 2f, null),
+                UIAnchorPreset.TopLeft, 22, 26, 118, 40);
+            coinPill.type = Image.Type.Sliced;
+            coinPill.raycastTarget = false;
+            var coinIcon = BlockOutWidgets.SpriteImage(coinPill.transform, "CoinIcon", BlockOutIconFactory.Coin(),
+                UIAnchorPreset.MiddleLeft, 10, 0, 26, 26);
+            coinIcon.raycastTarget = false;
+            HomeCoinText = BlockOutWidgets.Label(coinPill.transform, "CoinText", "0", 18, 800,
+                BlockOutDesignTokens.GoldRim, TextAnchor.MiddleLeft);
+            HomeCoinText.rectTransform.offsetMin = new Vector2(43, 0);
+            HomeCoinText.rectTransform.offsetMax = new Vector2(-30, 0);
+            var plusRt = BlockOutWidgets.Place(coinPill.transform, "PlusBtn", UIAnchorPreset.MiddleRight, -5, 0, 30, 30);
+            var plusImg = plusRt.gameObject.AddComponent<Image>();
+            plusImg.sprite = BlockOutIconFactory.HomePlus();
+            plusImg.type = Image.Type.Sliced;
+            var plusBtn = plusRt.gameObject.AddComponent<Button>();
+            plusBtn.targetGraphic = plusImg;
+            HomeCoinsButton = plusBtn;
 
-            // ---- 中央：遮罩作品预览卡（06：插画满铺 + 标题/徽章浮层） ----
-            HomePreviewCard = BlockOutWidgets.Place(go.transform, "PreviewCard", UIAnchorPreset.TopLeft, 24, 148, 342, 300);
-            var cardImg = HomePreviewCard.gameObject.AddComponent<Image>();
-            cardImg.sprite = BlockOutIconFactory.RoundedSlice(24f, BlockOutDesignTokens.SurfaceCard,
-                BlockOutDesignTokens.StrokeWarm, 2f, null);
-            cardImg.type = Image.Type.Sliced;
+            // ---- 右上设置 ----
+            var setRt = BlockOutWidgets.Place(go.transform, "SettingsBtn", UIAnchorPreset.TopRight, 22, 26, 40, 40);
+            var setImg = setRt.gameObject.AddComponent<Image>();
+            setImg.sprite = BlockOutIconFactory.HomeSettings();
+            setImg.type = Image.Type.Sliced;
+            HomeSettingsBtn = setRt.gameObject.AddComponent<Button>();
+            HomeSettingsBtn.targetGraphic = setImg;
 
-            // 插画区（06：mist 30,154,330×288 → 卡内 6,6,330,288；标题/徽章浮于其上）
-            var artRoot = BlockOutWidgets.Place(HomePreviewCard, "ArtRoot", UIAnchorPreset.TopLeft, 6, 6, 330, 288);
-            HomeRegionArts = BuildRegionGrid(artRoot, "ArtworkViewport", 0, 0, 330, 288, out HomeArtViewport);
-            HomeRegionLocks = new GameObject[12];
-            for (int i = 0; i < HomeRegionArts.Length; i++)
-            {
-                var art = HomeRegionArts[i];
-                var mist = BlockOutWidgets.Panel(art.transform, "Mist", BlockOutDesignTokens.WithAlpha(BlockOutDesignTokens.White, 0.25f));
-                mist.raycastTarget = false;
-                var lockImg = BlockOutWidgets.SpriteImage(art.transform, "LockDot", BlockOutIconFactory.LockIcon(),
-                    UIAnchorPreset.MiddleCenter, 0, 0, 14, 12);
-                lockImg.raycastTarget = false;
-                lockImg.color = new Color(1f, 1f, 1f, .55f);
-                HomeRegionLocks[i] = lockImg.gameObject;
-            }
+            // ---- 关卡标题牌（浮在画架顶端）----
+            var plate = BlockOutWidgets.SpriteImage(go.transform, "TitlePlate", BlockOutIconFactory.HomeTitlePlate(),
+                UIAnchorPreset.TopCenter, 0, 150, 150, 46);
+            plate.type = Image.Type.Sliced;
+            plate.raycastTarget = false;
+            HomeLevelTitle = BlockOutWidgets.Label(plate.transform, "TitleText", "第 1 关", 22, 800,
+                BlockOutDesignTokens.TextCocoa, TextAnchor.MiddleCenter);
 
-            // 前景玩具块（玩法预览）
-            BuildDecoToys(artRoot);
+            // ---- 左右四个入口：图库 / 皮肤 / 每日 / 成就 ----
+            HomeGalleryBtn = BuildHomeRoundButton(go.transform, "GalleryBtn", "关卡",
+                BlockOutIconFactory.HomeFeatureIcon("gallery"), UIAnchorPreset.TopLeft, 22, 366);
+            HomeSkinBtn = BuildHomeRoundButton(go.transform, "SkinBtn", "道具",
+                BlockOutIconFactory.HomeFeatureIcon("skin"), UIAnchorPreset.TopLeft, 22, 474);
+            HomeDailyBtn = BuildHomeRoundButton(go.transform, "DailyBtn", "每日",
+                BlockOutIconFactory.HomeFeatureIcon("daily"), UIAnchorPreset.TopRight, 22, 366);
+            HomeAchievementBtn = BuildHomeRoundButton(go.transform, "AchievementBtn", "成就",
+                BlockOutIconFactory.HomeFeatureIcon("achievement"), UIAnchorPreset.TopRight, 22, 474);
+            HomeDailyBtn.gameObject.SetActive(false);
+            HomeAchievementBtn.gameObject.SetActive(false);
 
-            // 图片加载失败态（07-C）
-            HomeFailBox = BlockOutWidgets.Panel(artRoot, "FailBox", BlockOutDesignTokens.MistWarm, UIAnchorPreset.Stretch).gameObject;
-            var failImg = HomeFailBox.GetComponent<Image>();
-            failImg.sprite = BlockOutIconFactory.RoundedSlice(12f, BlockOutDesignTokens.MistWarm,
-                BlockOutDesignTokens.GrayLocked, 1.5f, null);
-            failImg.type = Image.Type.Sliced;
-            BlockOutWidgets.SpriteImage(HomeFailBox.transform, "BrokenIcon", BlockOutIconFactory.BrokenImageIcon(),
-                UIAnchorPreset.TopCenter, 0, 26, 40, 32).color = BlockOutDesignTokens.GrayLocked;
-            BlockOutWidgets.Label(HomeFailBox.transform, "FailText", "图片加载失败", 11, 700,
-                BlockOutDesignTokens.TextCocoa60, TextAnchor.MiddleCenter, UIAnchorPreset.TopCenter, 0, 64, 160, 12);
-            HomeRetryBtn = BlockOutWidgets.SecondaryButton(HomeFailBox.transform, "RetryBtn", "重试", null,
-                UIAnchorPreset.TopCenter, 0, 84, 80, 24);
-            HomeRetryExhausted = BlockOutWidgets.Label(HomeFailBox.transform, "ExhaustedText", "稍后再试", 11, 400,
-                BlockOutDesignTokens.TextCocoa60, TextAnchor.MiddleCenter, UIAnchorPreset.TopCenter, 0, 88, 160, 12);
-            HomeFailBox.SetActive(false);
-
-            // 标题与拼片徽章（浮层：创建于插画区之后 = 绘制在上层）
-            BlockOutWidgets.Label(HomePreviewCard, "CardTitle", "第一章 · 作品预览", 11, 800,
-                BlockOutDesignTokens.TextCocoa60, TextAnchor.MiddleLeft, UIAnchorPreset.TopLeft, 18, 18, 160, 12);
-            var pieceBadge = BlockOutWidgets.Pill(HomePreviewCard, "PieceBadge", 62, 20, BlockOutDesignTokens.CtaCoral,
-                BlockOutDesignTokens.CtaCoral, UIAnchorPreset.TopRight, -10, 12);
-            pieceBadge.GetComponent<Image>().color = BlockOutDesignTokens.ActionPrimary; // v6 #4A2F26
-            HomePieceBadge = BlockOutWidgets.Label(pieceBadge, "Text", "通关 0/12", 11, 900,
-                BlockOutDesignTokens.White, TextAnchor.MiddleCenter);   // v6: 深棕徽底必须配白字
-
-            HomePlaceholderTag = BlockOutWidgets.Label(HomePreviewCard, "PlaceholderTag", "作品预览", 11, 400,
-                BlockOutDesignTokens.TextCocoa60, TextAnchor.MiddleRight, UIAnchorPreset.BottomRight, -8, -6, 150, 10).gameObject;
-            HomePlaceholderTag.SetActive(false);
-
-            // ---- 唯一最强 CTA ----
-            HomeCtaButton = BlockOutWidgets.CoralButton(go.transform, "CTA", "开始第 1 关", "第一章 · 甜点星球", null,
-                BlockOutIconFactory.PlayIcon(), true);
-            HomeCtaTitle = HomeCtaButton.transform.Find("Title").GetComponent<Text>();
-            HomeCtaSub = HomeCtaButton.transform.Find("Sub").GetComponent<Text>();
-            HomeCtaSecondary = BlockOutWidgets.SecondaryButton(go.transform, "CTASecondary", "重玩本章关卡", null,
-                UIAnchorPreset.TopCenter, 0, 0, 232, 38);
-            HomeCtaSecondary.gameObject.SetActive(false);
-
-            // ---- 进度卡：12 拼片节点 ----
-            var prog = BlockOutWidgets.Place(go.transform, "ProgressCard", UIAnchorPreset.TopLeft, 24, 524, 342, 120);
-            var progImg = prog.gameObject.AddComponent<Image>();
-            progImg.sprite = BlockOutIconFactory.RoundedSlice(20f, BlockOutDesignTokens.SurfaceCard,
-                BlockOutDesignTokens.StrokeWarm, 2f, null);
-            progImg.type = Image.Type.Sliced;
-            HomeChapterTitle = BlockOutWidgets.Label(prog, "ChapterTitle", "第一章 · 甜点星球",
-                BlockOutDesignTokens.FontCardTitle, 800, BlockOutDesignTokens.TextCocoa, TextAnchor.MiddleLeft,
-                UIAnchorPreset.TopLeft, 18, 16, 200, 14);
-            HomeCollectionLink = BlockOutWidgets.SecondaryButton(prog, "CollectionLink", "查看关卡", null,
-                UIAnchorPreset.TopRight, -12, 12, 72, 18);
-            var barBg = BlockOutWidgets.Panel(prog, "BarBg", BlockOutDesignTokens.BgCreamDeep,
-                UIAnchorPreset.TopLeft, 18, 38, 306, 10);
-            barBg.sprite = BlockOutIconFactory.RoundedSlice(5f, BlockOutDesignTokens.BgCreamDeep, Color.clear, 0f, null);
-            barBg.type = Image.Type.Sliced;
-            HomeProgressFill = BlockOutWidgets.Panel(prog, "BarFill", BlockOutDesignTokens.ActionPrimary,
-                UIAnchorPreset.TopLeft, 18, 38, 306, 10);
-            HomeProgressFill.type = Image.Type.Filled;
-            HomeProgressFill.fillMethod = Image.FillMethod.Horizontal;
-            HomeProgressFill.fillOrigin = (int)Image.OriginHorizontal.Left;
-            HomeProgressFill.fillAmount = 0f;
-            HomeNodes = new Image[12];
-            for (int i = 0; i < 12; i++)
-            {
-                var node = BlockOutWidgets.Panel(prog, "Node_" + i, BlockOutDesignTokens.SurfaceCard,
-                    UIAnchorPreset.TopLeft, 18 + i * 26.7f, 64, 12, 12);
-                node.sprite = BlockOutIconFactory.Circle(BlockOutDesignTokens.SurfaceCard, BlockOutDesignTokens.StrokeBoard, 1.5f);
-                HomeNodes[i] = node;
-            }
-            HomePieceText = BlockOutWidgets.Label(prog, "PieceText", "通关 0/12 · 还差 12 关完成本章",
-                BlockOutDesignTokens.FontCardSub, 400, BlockOutDesignTokens.TextCocoa60, TextAnchor.MiddleCenter,
-                UIAnchorPreset.TopCenter, 0, 94, 306, 12);
-
-            // ---- 底部三导航 ----
-            var nav = BlockOutWidgets.Place(go.transform, "BottomNav", UIAnchorPreset.BottomLeft, 24, 28, 342, 64);
-            var navImg = nav.gameObject.AddComponent<Image>();
-            navImg.sprite = BlockOutIconFactory.RoundedSlice(22f, BlockOutDesignTokens.SurfaceCard,
-                BlockOutDesignTokens.StrokeWarm, 2f, null);
-            navImg.type = Image.Type.Sliced;
-            for (int i = 0; i < 3; i++)
-            {
-                var slot = BlockOutWidgets.Panel(nav, "Slot_" + i, Color.clear, UIAnchorPreset.Stretch);
-                slot.rectTransform.anchorMin = new Vector2(i / 3f, 0);
-                slot.rectTransform.anchorMax = new Vector2((i + 1) / 3f, 1);
-                slot.rectTransform.offsetMin = Vector2.zero;
-                slot.rectTransform.offsetMax = Vector2.zero;
-            }
-            NavHomeBtn = BlockOutWidgets.NavItem(nav.transform.Find("Slot_0"), "HomeNav", BlockOutIconFactory.HomeIcon(), "首页", true, null);
-            NavCollectionBtn = BlockOutWidgets.NavItem(nav.transform.Find("Slot_1"), "CollectionNav", BlockOutIconFactory.BookIcon(), "图鉴", false, null);
-            NavStoreBtn = BlockOutWidgets.NavItem(nav.transform.Find("Slot_2"), "StoreNav", BlockOutIconFactory.BagIcon(), "商店", false, null);
+            // ---- 唯一最强 CTA：绿色开始按钮（文案由真实关卡进度驱动）----
+            var ctaRt = BlockOutWidgets.Place(go.transform, "CTA", UIAnchorPreset.TopCenter, 0, 690, 280, 86);
+            var ctaImg = ctaRt.gameObject.AddComponent<Image>();
+            ctaImg.sprite = BlockOutIconFactory.HomeStartButton();
+            ctaImg.type = Image.Type.Sliced;
+            HomeCtaButton = ctaRt.gameObject.AddComponent<Button>();
+            HomeCtaButton.targetGraphic = ctaImg;
+            HomeCtaTitle = BlockOutWidgets.Label(ctaRt, "Title", "开始", 34, 900,
+                BlockOutDesignTokens.White, TextAnchor.MiddleCenter);
+            HomeCtaSub = BlockOutWidgets.Label(ctaRt, "Sub", "", 12, 400,
+                BlockOutDesignTokens.White, TextAnchor.MiddleCenter, UIAnchorPreset.TopCenter, 0, 64, 200, 14);
+            HomeCtaSub.gameObject.SetActive(true);
 
             return go;
         }
@@ -1023,54 +975,6 @@ namespace BlockOut.UI
             CollectionZoom.ResetView();
         }
 
-        private void LayoutRegions(RectTransform artRt, float artW, float artH)
-        {
-            SetTopLeft(artRt, "ArtworkViewport", 0, 0, artW, artH);
-            LayoutArtwork(HomeArtViewport, false);
-        }
-
-        private void LayoutDeco(RectTransform artRt, float artW, float artH)
-        {
-            float c = 22f;
-            var toyB = artRt.Find("ToyB") as RectTransform;
-            if (toyB != null)
-            {
-                toyB.anchorMin = new Vector2(0, 1);
-                toyB.anchorMax = new Vector2(0, 1);
-                toyB.pivot = new Vector2(0, 1);
-                toyB.sizeDelta = new Vector2(c, c * 2);
-                toyB.anchoredPosition = new Vector2(artW * 0.14f, -artH * 0.42f);
-            }
-            var ripple = artRt.Find("Ripple") as RectTransform;
-            if (ripple != null)
-            {
-                ripple.anchorMin = new Vector2(0, 1);
-                ripple.anchorMax = new Vector2(0, 1);
-                ripple.pivot = new Vector2(0.5f, 0.5f);
-                ripple.sizeDelta = new Vector2(28, 28);
-                ripple.anchoredPosition = new Vector2(artW * 0.14f + c * 0.5f, -artH * 0.42f + c * 0.5f - 18);
-            }
-            var toyA = artRt.Find("ToyA") as RectTransform;
-            if (toyA != null)
-            {
-                toyA.anchorMin = new Vector2(0, 1);
-                toyA.anchorMax = new Vector2(0, 1);
-                toyA.pivot = new Vector2(0, 1);
-                toyA.sizeDelta = new Vector2(c * 2, c * 2);
-                toyA.anchoredPosition = new Vector2(artW * 0.62f, -artH * 0.44f);
-            }
-            for (int i = 0; i < 3; i++)
-            {
-                var dot = artRt.Find("TrailDot_" + i) as RectTransform;
-                if (dot == null) continue;
-                dot.anchorMin = new Vector2(0, 1);
-                dot.anchorMax = new Vector2(0, 1);
-                dot.pivot = new Vector2(0, 1);
-                dot.sizeDelta = new Vector2(4, 4);
-                dot.anchoredPosition = new Vector2(artW * 0.62f + c * 2 + 6 + i * 9, -artH * 0.44f + c * 1.6f - i * 4);
-            }
-        }
-
         private void LayoutFullPages(float width, float height)
         {
             // 卡片已挂在 SafeRoot（已按安全区内缩）之下，因此这里只做"铺满安全区"，
@@ -1168,95 +1072,30 @@ namespace BlockOut.UI
             bool small = m.IsSmallScreen;
             bool longScreen = m.IsLongScreen;
 
-            // ---- Home（06 纵向节奏：顶栏 42 / 卡 148 / CTA 468 / 进度 586；长屏 CTA 吸底） ----
+            // ---- Home（R2：整屏美术底 + 真控件，坐标即 390×844 设计盒） ----
             GameObject home;
             if (screens.TryGetValue(BlockOutScreenId.Home, out home) && home != null)
             {
-                // 顶栏（06：图标垂直中心 T+36；金币胶囊右缘距右 72 = 设计 x224..318）
-                SetTopLeft(home.transform, "LogoTile", L, T + 18, 36, 36);
-                SetTopLeft(home.transform, "LogoArrow", L + 7, T + 25, 22, 22);
-                SetTopLeft(home.transform, "LogoTitle", L + 46, T + 26, 150, 18);
-                SetTopLeft(home.transform, "LogoSub", L + 46, T + 44, 150, 12);
-                SetTopRight(home.transform, "CoinPill", 72, T + 21, 94, 30);
-                SetTopRight(home.transform, "SettingsBtn", R, T + 18, 36, 36);
+                var surface = (home.transform.Find("DesignSurface") as RectTransform) ?? (RectTransform)home.transform;
 
-                // 预览卡：插画满铺 + 标题/徽章浮层
-                // 高度按"扣除安全区 + 顶栏 + CTA(含次级) + 进度卡 + 底部导航"后的余高计算（P1-7）
-                float navBottomHome = B;
-                float navTopHome = H - navBottomHome - m.NavHeight;
-                float progHHome = small ? 104f : 120f;
-                bool secondaryVisibleHome = (home.transform.Find("CTASecondary") as RectTransform) != null
-                                            && home.transform.Find("CTASecondary").gameObject.activeSelf;
-                float topBarH = 56f;                       // 顶栏 logo 区高度
-                float ctaBlockH = m.CtaHeight + (secondaryVisibleHome ? 16f + 38f : 0f);
-                float cardH = m.ComputePreviewCardHeight(topBarH, ctaBlockH, progHHome);
-                float cardY = T + topBarH + (small ? 8f : 24f);
-                var cardRt = SetTopLeft(home.transform, "PreviewCard", L, cardY, cw, cardH);
-                var artRt = SetTopLeft(cardRt, "ArtRoot", 6, 6, cw - 12, cardH - 12);
-                LayoutRegions(artRt, cw - 12, cardH - 12);
-                LayoutDeco(artRt, cw - 12, cardH - 12);
-                SetTopLeft(cardRt, "CardTitle", 18, 18, 160, 12);
-                SetTopRight(cardRt, "PieceBadge", 10, 12, 62, 20);
-
-                // 次级 CTA（重玩本章关卡）：仅章节完成时显示，位于 CTA 正下方
-                var secondary = home.transform.Find("CTASecondary") as RectTransform;
-                bool secondaryVisible = secondary != null && secondary.gameObject.activeSelf;
-                float secondaryH = 38f;
-
-                float navBottom = navBottomHome;                       // Docs/DesignSystem.md：底部组件止于安全区上方
-                float navTop = navTopHome;
-                float progH = progHHome;
-
-                // CTA：默认贴预览卡；长屏（Docs/DesignSystem.md）CTA/导航吸底、中部留白
-                float ctaY = cardY + cardH + (small ? 8f : 20f);
-                if (longScreen)
+                var bgRt = surface.Find("HomeBackground") as RectTransform;
+                if (bgRt != null)
                 {
-                    float progTop = navTop - 8 - progH;
-                    float ctaBlock = m.CtaHeight + (secondaryVisible ? 16f + secondaryH : 0f);
-                    ctaY = progTop - (small ? 12f : 24f) - ctaBlock;
-                    float minCtaY = cardY + cardH + 8;
-                    if (ctaY < minCtaY) ctaY = minCtaY;
+                    bgRt.anchorMin = Vector2.zero;
+                    bgRt.anchorMax = Vector2.one;
+                    bgRt.pivot = new Vector2(0.5f, 0.5f);
+                    bgRt.offsetMin = Vector2.zero;
+                    bgRt.offsetMax = Vector2.zero;
                 }
-                SetTopLeft(home.transform, "CTA", L, ctaY, cw, m.CtaHeight);
-                if (secondary != null)
-                {
-                    BlockOutWidgets.ApplyAnchor(secondary, UIAnchorPreset.TopCenter);
-                    secondary.anchoredPosition = new Vector2(0, -(ctaY + m.CtaHeight + 16));
-                    secondary.sizeDelta = new Vector2(232, secondaryH);
-                }
-                float ctaBottom = ctaY + m.CtaHeight;
 
-                float afterCta = ctaBottom + (secondaryVisible ? 16f + secondaryH : 0f);
-                float progY;
-                if (longScreen) progY = navTop - 8 - progH;
-                else
-                {
-                    progY = afterCta + (small ? 8f : 30f);
-                    if (progY + progH > navTop - 8)
-                        progY = Mathf.Max(afterCta + 8, navTop - 8 - progH);
-                }
-                var progRt = SetTopLeft(home.transform, "ProgressCard", L, progY, cw, progH);
-                SetTopLeft(progRt, "ChapterTitle", 18, 16, 200, 14);
-                SetTopRight(progRt, "CollectionLink", 12, 12, 72, 18);
-                SetTopLeft(progRt, "BarBg", 18, 38, cw - 36, 10);
-                SetTopLeft(progRt, "BarFill", 18, 38, cw - 36, 10);
-                float nodeSpan = cw - 36 - 12;   // 06：节点中心 24..318（卡内），均分一行
-                for (int i = 0; i < 12; i++)
-                    SetTopLeft(progRt, "Node_" + i, 18 + nodeSpan * i / 11f, 64, 12, 12);
-                SetTopCenter(progRt, "PieceText", 0, progH - 22, cw - 36, 12);
-
-                var navRt = SetBottomLeft(home.transform, "BottomNav", L, navBottom, cw, m.NavHeight);
-                for (int i = 0; i < 3; i++)
-                {
-                    var slot = navRt.Find("Slot_" + i) as RectTransform;
-                    if (slot != null)
-                    {
-                        slot.anchorMin = new Vector2(i / 3f, 0);
-                        slot.anchorMax = new Vector2((i + 1) / 3f, 1);
-                        slot.offsetMin = Vector2.zero;
-                        slot.offsetMax = Vector2.zero;
-                    }
-                }
+                SetTopLeft(surface, "CoinPill", 22, 26, 118, 40);
+                SetTopRight(surface, "SettingsBtn", 22, 26, 40, 40);
+                SetTopCenter(surface, "TitlePlate", 0, 150, 150, 46);
+                SetTopLeft(surface, "GalleryBtn", 22, 366, 68, 68);
+                SetTopLeft(surface, "SkinBtn", 22, 474, 68, 68);
+                SetTopRight(surface, "DailyBtn", 22, 366, 68, 68);
+                SetTopRight(surface, "AchievementBtn", 22, 474, 68, 68);
+                SetTopCenter(surface, "CTA", 0, 690, 280, 86);
             }
 
             // ---- Board（R2 参考：标题居中+右上暂停 / 心+推进条 / 奶油托盘棋盘 / 三卡道具吸底） ----

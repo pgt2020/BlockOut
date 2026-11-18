@@ -1,0 +1,451 @@
+{
+  "reference": "input/style-reference.jpg",
+  "delivery": "independent-modules-only",
+  "assets": [
+    {
+      "id": "A01",
+      "file": "output/backgrounds/garden-home.png",
+      "size": [
+        1080,
+        1920
+      ],
+      "alpha": "opaque",
+      "required": true,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        0,
+        0,
+        1080,
+        1920
+      ]
+    },
+    {
+      "id": "A02",
+      "file": "output/backgrounds/garden-play_v02.png",
+      "size": [
+        1080,
+        1920
+      ],
+      "alpha": "opaque",
+      "required": true,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        0,
+        0,
+        1080,
+        1920
+      ]
+    },
+    {
+      "id": "A03",
+      "file": "output/components/panel-cream_v02.png",
+      "size": [
+        768,
+        1024
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        44,
+        48,
+        722,
+        968
+      ]
+    },
+    {
+      "id": "A04",
+      "file": "output/components/button-green_v02.png",
+      "size": [
+        768,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        26,
+        18,
+        741,
+        238
+      ]
+    },
+    {
+      "id": "A05",
+      "file": "output/components/button-cream.png",
+      "size": [
+        768,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        26,
+        18,
+        741,
+        238
+      ]
+    },
+    {
+      "id": "A06",
+      "file": "output/components/button-coral.png",
+      "size": [
+        768,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        26,
+        18,
+        741,
+        238
+      ]
+    },
+    {
+      "id": "A07",
+      "file": "output/components/round-base_v02.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        24,
+        19,
+        232,
+        222
+      ]
+    },
+    {
+      "id": "A08",
+      "file": "output/components/tile-green.png",
+      "size": [
+        320,
+        352
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        9,
+        23,
+        310,
+        327
+      ]
+    },
+    {
+      "id": "A09",
+      "file": "output/components/tile-grey.png",
+      "size": [
+        320,
+        352
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        9,
+        23,
+        310,
+        327
+      ]
+    },
+    {
+      "id": "A10",
+      "file": "output/components/tile-purple.png",
+      "size": [
+        320,
+        352
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        9,
+        23,
+        310,
+        327
+      ]
+    },
+    {
+      "id": "A11",
+      "file": "output/components/frame-art_v02.png",
+      "size": [
+        768,
+        768
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        23,
+        23,
+        746,
+        746
+      ]
+    },
+    {
+      "id": "A12",
+      "file": "output/components/ribbon-coral.png",
+      "size": [
+        768,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        117,
+        41,
+        653,
+        177
+      ]
+    },
+    {
+      "id": "A13",
+      "file": "output/components/pill-cream_v02.png",
+      "size": [
+        512,
+        160
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        11,
+        9,
+        502,
+        144
+      ]
+    },
+    {
+      "id": "A14",
+      "file": "output/icons/icon-hint_v02.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        59,
+        19,
+        198,
+        230
+      ]
+    },
+    {
+      "id": "A15",
+      "file": "output/icons/icon-hammer.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        28,
+        25,
+        227,
+        230
+      ]
+    },
+    {
+      "id": "A16",
+      "file": "output/icons/icon-magic.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        74,
+        25,
+        182,
+        230
+      ]
+    },
+    {
+      "id": "A17",
+      "file": "output/icons/icon-settings.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        25,
+        25,
+        230,
+        230
+      ]
+    },
+    {
+      "id": "A18",
+      "file": "output/icons/icon-home.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        25,
+        37,
+        230,
+        218
+      ]
+    },
+    {
+      "id": "A19",
+      "file": "output/icons/icon-levels.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        25,
+        27,
+        230,
+        229
+      ]
+    },
+    {
+      "id": "A20",
+      "file": "output/icons/icon-store.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        31,
+        25,
+        224,
+        230
+      ]
+    },
+    {
+      "id": "A21",
+      "file": "output/icons/icon-coin.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        28,
+        25,
+        227,
+        230
+      ]
+    },
+    {
+      "id": "A22",
+      "file": "output/icons/icon-heart.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        25,
+        34,
+        230,
+        222
+      ]
+    },
+    {
+      "id": "A23",
+      "file": "output/icons/icon-heart-broken.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        25,
+        34,
+        230,
+        222
+      ]
+    },
+    {
+      "id": "A24",
+      "file": "output/icons/icon-lock_v02.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        55,
+        26,
+        201,
+        231
+      ]
+    },
+    {
+      "id": "A25",
+      "file": "output/icons/icon-trophy.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        25,
+        36,
+        230,
+        219
+      ]
+    },
+    {
+      "id": "A26",
+      "file": "output/optional/mascot_v02.png",
+      "size": [
+        512,
+        640
+      ],
+      "alpha": "transparent",
+      "required": false,
+      "status": "reviewed-integration-candidate",
+      "visible_bbox_exclusive": [
+        36,
+        93,
+        476,
+        547
+      ]
+    }
+  ],
+  "status": "ready-for-integration",
+  "runtime_checks": "not-run",
+  "visual_acceptance": "pending-user-final-interface-review"
+}

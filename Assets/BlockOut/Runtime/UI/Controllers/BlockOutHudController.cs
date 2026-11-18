@@ -10,15 +10,18 @@ namespace BlockOut.UI
     internal sealed class BlockOutHudController
     {
         private readonly BlockOutUIController owner;
+        private float lastWrongToast = -10f;
         internal BlockOutHudController(BlockOutUIController owner) { this.owner=owner; }
         internal void OnBlockWrongMarked(BlockOutBlockData block, bool isRepeat)
         {
+            if (UnityEngine.Time.unscaledTime - lastWrongToast < 1.2f) return;
+            lastWrongToast = UnityEngine.Time.unscaledTime;
             // 受阻反馈：生命模式扣心并提示；计时模式只震动（HUD 互斥，不扣心）。
             // R08：重复误点仍反馈，但文案区分"已扣 1 颗心"与"重复误点，不重复扣心"。
             if (owner.GM.UseTimeFailMode)
-                owner.UI.ShowToast(isRepeat ? "受阻 · 重复误点，计时模式仅震动" : "受阻 · 计时模式仅震动，沿箭头方向才能飞出");
+                owner.UI.ShowToast("前方有阻挡，先移开其他方块");
             else
-                owner.UI.ShowToast(isRepeat ? "受阻 · 重复误点，不重复扣心" : "受阻 · 已扣 1 颗心，沿箭头方向才能飞出");
+                owner.UI.ShowToast(isRepeat ? "前方仍有阻挡 · 不重复扣心" : "前方有阻挡 · 损失 1 颗心");
         }
         internal void RefreshHearts(int lives)
         {
@@ -28,8 +31,8 @@ namespace BlockOut.UI
                 var heart = owner.UI.BoardHearts[i];
                 if (heart == null) continue;
                 bool alive = i < lives;
-                heart.sprite=BlockOutIconFactory.Asset(alive ? "heart" : "heart_disabled");
-                heart.color=Color.white;
+                heart.sprite=BlockOutGardenSprites.Get("icon-heart");
+                heart.color=alive ? Color.white : new Color(.55f,.55f,.55f,.38f);
             }
         }
         internal void RefreshTimer(float seconds)
@@ -109,10 +112,10 @@ namespace BlockOut.UI
             if (owner.GM.Tools.GetCount(tool) <= 0)
             {
                 string name=tool==BlockOutToolId.Hint ? "提示" : tool==BlockOutToolId.Hammer ? "锤子" : "魔法";
-                int run=owner.GM.CurrentLevelIndex;
+                int run=owner.GM.ActiveRunToken;
                 owner.Dialogs.AskConfirm("补充"+name,BlockOutContentConfig.ToolPackCost+" 金币购买 "+BlockOutContentConfig.ToolPackAmount+" 个，购买后使用一次。",()=>
                 {
-                    if(owner.GM.CurrentLevelIndex!=run || !owner.GM.CanStartTool)return;
+                    if(owner.GM.ActiveRunToken!=run || !owner.GM.CanStartTool)return;
                     var result=owner.GM.PurchaseTool(tool);
                     if(result==BlockOutGameManager.BlockOutPurchaseResult.Ok) { action();RefreshToolStates(); }
                     else owner.UI.ShowToast(result==BlockOutGameManager.BlockOutPurchaseResult.InsufficientCoins ? "金币不足" : "购买失败，请重试");

@@ -115,6 +115,7 @@ RectTransform:
     z: 1
   m_Children:
   - fileID: 100009
+  - fileID: 100082
   m_Father:
     fileID: 100002
   m_LocalEulerAnglesHint:
@@ -196,6 +197,7 @@ RectTransform:
   - fileID: 100038
   - fileID: 100046
   - fileID: 100055
+  - fileID: 100078
   m_Father:
     fileID: 100006
   m_LocalEulerAnglesHint:
@@ -480,20 +482,20 @@ RectTransform:
     y: 0
     z: 0
   m_AnchorMin:
-    x: 0
-    y: 1
+    x: 0.5
+    y: 0.5
   m_AnchorMax:
-    x: 0
-    y: 1
+    x: 0.5
+    y: 0.5
   m_AnchoredPosition:
-    x: 8
-    y: -4
-  m_SizeDelta:
-    x: 278
-    y: 48
-  m_Pivot:
     x: 0
-    y: 1
+    y: 0
+  m_SizeDelta:
+    x: 282
+    y: 50
+  m_Pivot:
+    x: 0.5
+    y: 0.5
 --- !u!1 &100029
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,20 +894,20 @@ RectTransform:
     y: 0
     z: 0
   m_AnchorMin:
-    x: 0
-    y: 1
+    x: 0.5
+    y: 0.5
   m_AnchorMax:
-    x: 0
-    y: 1
+    x: 0.5
+    y: 0.5
   m_AnchoredPosition:
-    x: 8
-    y: -4
-  m_SizeDelta:
-    x: 278
-    y: 44
-  m_Pivot:
     x: 0
-    y: 1
+    y: 0
+  m_SizeDelta:
+    x: 282
+    y: 46
+  m_Pivot:
+    x: 0.5
+    y: 0.5
 --- !u!1 &100054
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,20 +1037,20 @@ RectTransform:
     y: 0
     z: 0
   m_AnchorMin:
-    x: 0
-    y: 1
+    x: 0.5
+    y: 0.5
   m_AnchorMax:
-    x: 0
-    y: 1
+    x: 0.5
+    y: 0.5
   m_AnchoredPosition:
-    x: 8
-    y: -4
-  m_SizeDelta:
-    x: 278
-    y: 44
-  m_Pivot:
     x: 0
-    y: 1
+    y: 0
+  m_SizeDelta:
+    x: 282
+    y: 46
+  m_Pivot:
+    x: 0.5
+    y: 0.5
 --- !u!222 &100003
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1173,7 +1175,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: f17b8d316dd491f4d9c7d41e84d8dfb9
+    guid: 323686ed614451be805f1958bdd6d1eb
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -1183,7 +1185,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 3
 --- !u!222 &100014
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1218,16 +1220,16 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.231
-    g: 0.165
-    b: 0.141
+    r: 0.3
+    g: 0.2
+    b: 0.13
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: fd593325a489afb46b970fe4942877e4
+      guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
     m_FontSize: 26
     m_FontStyle: 0
@@ -1240,7 +1242,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u518D\u8BD5\u4E00\u6B21"
+  m_Text: 再试一次
 --- !u!222 &100018
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1297,7 +1299,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u751F\u547D\u8017\u5C3D"
+  m_Text: 生命耗尽
 --- !u!222 &100022
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1332,9 +1334,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.290
-    g: 0.184
-    b: 0.149
+    r: 1
+    g: 1
+    b: 1
     a: 1
   m_RaycastTarget: 1
   m_Maskable: 1
@@ -1343,7 +1345,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: e962cae895ab461b88951dfd848ac4c6
+    guid: 0f8c8758ed34502c88f666d6164cec0d
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -1353,7 +1355,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 3
 --- !u!114 &100024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1397,9 +1399,9 @@ MonoBehaviour:
       b: 1
       a: 1
     m_PressedColor:
-      r: 0.88
-      g: 0.88
-      b: 0.88
+      r: 0.84
+      g: 0.87
+      b: 0.82
       a: 1
     m_SelectedColor:
       r: 1
@@ -1407,12 +1409,12 @@ MonoBehaviour:
       b: 1
       a: 1
     m_DisabledColor:
-      r: 0.65
-      g: 0.65
-      b: 0.65
-      a: 0.5
+      r: 0.72
+      g: 0.72
+      b: 0.72
+      a: 0.85
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 0.08
   m_Interactable: 1
   m_TargetGraphic:
     fileID: 100023
@@ -1462,20 +1464,20 @@ MonoBehaviour:
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: fd593325a489afb46b970fe4942877e4
+      guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
-    m_FontSize: 16
+    m_FontSize: 17
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 13
-    m_MaxSize: 16
+    m_MaxSize: 17
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u590D\u6D3B"
+  m_Text: 复活
 --- !u!222 &100031
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1532,7 +1534,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u6062\u590D\u540E\u7EE7\u7EED\u5F53\u524D\u5173\u5361"
+  m_Text: 恢复后继续当前关卡
 --- !u!222 &100035
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1578,18 +1580,18 @@ MonoBehaviour:
       fileID: 12800000
       guid: fd593325a489afb46b970fe4942877e4
       type: 3
-    m_FontSize: 14
+    m_FontSize: 13
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 11
-    m_MaxSize: 14
+    m_MaxSize: 13
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u672C\u5C40\u6682\u4E0D\u53EF\u590D\u6D3B\uFF0C\u8BF7\u91CD\u8BD5"
+  m_Text: 本局暂不可复活，请重试
 --- !u!222 &100039
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1702,7 +1704,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u514D\u8D39"
+  m_Text: 免费
 --- !u!222 &100047
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1737,9 +1739,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.290
-    g: 0.184
-    b: 0.149
+    r: 1
+    g: 1
+    b: 1
     a: 1
   m_RaycastTarget: 1
   m_Maskable: 1
@@ -1748,7 +1750,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: e962cae895ab461b88951dfd848ac4c6
+    guid: 8194722319b152a7925c3ab498e934f4
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -1758,7 +1760,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 3
 --- !u!114 &100049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1802,9 +1804,9 @@ MonoBehaviour:
       b: 1
       a: 1
     m_PressedColor:
-      r: 0.88
-      g: 0.88
-      b: 0.88
+      r: 0.84
+      g: 0.87
+      b: 0.82
       a: 1
     m_SelectedColor:
       r: 1
@@ -1812,12 +1814,12 @@ MonoBehaviour:
       b: 1
       a: 1
     m_DisabledColor:
-      r: 0.65
-      g: 0.65
-      b: 0.65
-      a: 0.5
+      r: 0.72
+      g: 0.72
+      b: 0.72
+      a: 0.85
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 0.08
   m_Interactable: 1
   m_TargetGraphic:
     fileID: 100048
@@ -1867,20 +1869,20 @@ MonoBehaviour:
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: fd593325a489afb46b970fe4942877e4
+      guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
-    m_FontSize: 16
+    m_FontSize: 17
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 13
-    m_MaxSize: 16
+    m_MaxSize: 17
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u91CD\u5F00\u672C\u5173"
+  m_Text: 重开本关
 --- !u!222 &100056
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1926,7 +1928,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: e962cae895ab461b88951dfd848ac4c6
+    guid: 4c81e7a91fab5d2eb965752e1bc64e31
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -1936,7 +1938,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 3
 --- !u!114 &100058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1980,9 +1982,9 @@ MonoBehaviour:
       b: 1
       a: 1
     m_PressedColor:
-      r: 0.88
-      g: 0.88
-      b: 0.88
+      r: 0.84
+      g: 0.87
+      b: 0.82
       a: 1
     m_SelectedColor:
       r: 1
@@ -1990,12 +1992,12 @@ MonoBehaviour:
       b: 1
       a: 1
     m_DisabledColor:
-      r: 0.65
-      g: 0.65
-      b: 0.65
-      a: 0.5
+      r: 0.72
+      g: 0.72
+      b: 0.72
+      a: 0.85
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 0.08
   m_Interactable: 1
   m_TargetGraphic:
     fileID: 100057
@@ -2036,29 +2038,29 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.231
-    g: 0.165
-    b: 0.141
+    r: 0.3
+    g: 0.2
+    b: 0.13
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: fd593325a489afb46b970fe4942877e4
+      guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
-    m_FontSize: 16
+    m_FontSize: 17
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 13
-    m_MaxSize: 16
+    m_MaxSize: 17
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u8FD4\u56DE\u9996\u9875"
+  m_Text: 返回首页
 --- !u!114 &100063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2382,3 +2384,267 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &100077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  serializedVersion: 6
+  m_Component:
+  - component:
+      fileID: 100078
+  - component:
+      fileID: 100079
+  - component:
+      fileID: 100080
+  m_Layer: 5
+  m_Name: GardenBrokenHeart
+  m_TagString: Untagged
+  m_Icon:
+    fileID: 0
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &100078
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  m_GameObject:
+    fileID: 100077
+  m_LocalRotation:
+    x: 0
+    y: 0
+    z: 0
+    w: 1
+  m_LocalPosition:
+    x: 0
+    y: 0
+    z: 0
+  m_LocalScale:
+    x: 1
+    y: 1
+    z: 1
+  m_Children: []
+  m_Father:
+    fileID: 100009
+  m_LocalEulerAnglesHint:
+    x: 0
+    y: 0
+    z: 0
+  m_AnchorMin:
+    x: 0
+    y: 1
+  m_AnchorMax:
+    x: 0
+    y: 1
+  m_AnchoredPosition:
+    x: 123
+    y: -70
+  m_SizeDelta:
+    x: 74
+    y: 66
+  m_Pivot:
+    x: 0
+    y: 1
+--- !u!222 &100079
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  m_GameObject:
+    fileID: 100077
+  m_CullTransparentMesh: 1
+--- !u!114 &100080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  m_GameObject:
+    fileID: 100077
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script:
+    fileID: 11500000
+    guid: fe87c0e1cc204ed48ad3b37840f39efc
+    type: 3
+  m_Name: ''
+  m_EditorClassIdentifier: ''
+  m_Material:
+    fileID: 0
+  m_Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
+  m_RaycastTarget: 0
+  m_RaycastPadding:
+    x: 0
+    y: 0
+    z: 0
+    w: 0
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite:
+    fileID: 21300000
+    guid: 1ea1724f7a695d68adfe6c4902e36826
+    type: 3
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &100081
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  serializedVersion: 6
+  m_Component:
+  - component:
+      fileID: 100082
+  - component:
+      fileID: 100083
+  - component:
+      fileID: 100084
+  m_Layer: 5
+  m_Name: GardenBrokenHeart
+  m_TagString: Untagged
+  m_Icon:
+    fileID: 0
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &100082
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  m_GameObject:
+    fileID: 100081
+  m_LocalRotation:
+    x: 0
+    y: 0
+    z: 0
+    w: 1
+  m_LocalPosition:
+    x: 0
+    y: 0
+    z: 0
+  m_LocalScale:
+    x: 1
+    y: 1
+    z: 1
+  m_Children: []
+  m_Father:
+    fileID: 100006
+  m_LocalEulerAnglesHint:
+    x: 0
+    y: 0
+    z: 0
+  m_AnchorMin:
+    x: 0
+    y: 1
+  m_AnchorMax:
+    x: 0
+    y: 1
+  m_AnchoredPosition:
+    x: 153
+    y: -112
+  m_SizeDelta:
+    x: 84
+    y: 84
+  m_Pivot:
+    x: 0
+    y: 1
+--- !u!222 &100083
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  m_GameObject:
+    fileID: 100081
+  m_CullTransparentMesh: 1
+--- !u!114 &100084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  m_GameObject:
+    fileID: 100081
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script:
+    fileID: 11500000
+    guid: fe87c0e1cc204ed48ad3b37840f39efc
+    type: 3
+  m_Name: ''
+  m_EditorClassIdentifier: ''
+  m_Material:
+    fileID: 0
+  m_Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
+  m_RaycastTarget: 0
+  m_RaycastPadding:
+    x: 0
+    y: 0
+    z: 0
+    w: 0
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite:
+    fileID: 21300000
+    guid: 1ea1724f7a695d68adfe6c4902e36826
+    type: 3
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1

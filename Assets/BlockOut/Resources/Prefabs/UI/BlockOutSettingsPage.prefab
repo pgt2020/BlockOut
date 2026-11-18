@@ -411,20 +411,20 @@ RectTransform:
     y: 0
     z: 0
   m_AnchorMin:
-    x: 0
-    y: 1
+    x: 0.5
+    y: 0.5
   m_AnchorMax:
-    x: 0
-    y: 1
+    x: 0.5
+    y: 0.5
   m_AnchoredPosition:
-    x: 8
-    y: -4
-  m_SizeDelta:
-    x: 278
-    y: 44
-  m_Pivot:
     x: 0
-    y: 1
+    y: 0
+  m_SizeDelta:
+    x: 282
+    y: 46
+  m_Pivot:
+    x: 0.5
+    y: 0.5
 --- !u!1 &100025
 GameObject:
   m_ObjectHideFlags: 0
@@ -1391,20 +1391,20 @@ RectTransform:
     y: 0
     z: 0
   m_AnchorMin:
-    x: 0
-    y: 1
+    x: 0.5
+    y: 0.5
   m_AnchorMax:
-    x: 0
-    y: 1
+    x: 0.5
+    y: 0.5
   m_AnchoredPosition:
-    x: 8
-    y: -4
-  m_SizeDelta:
-    x: 278
-    y: 44
-  m_Pivot:
     x: 0
-    y: 1
+    y: 0
+  m_SizeDelta:
+    x: 282
+    y: 46
+  m_Pivot:
+    x: 0.5
+    y: 0.5
 --- !u!222 &100003
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1518,9 +1518,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 1.000
-    g: 0.973
-    b: 0.941
+    r: 1
+    g: 1
+    b: 1
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -1529,7 +1529,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: e962cae895ab461b88951dfd848ac4c6
+    guid: 323686ed614451be805f1958bdd6d1eb
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -1539,7 +1539,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 3
 --- !u!222 &100014
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1574,16 +1574,16 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.231
-    g: 0.165
-    b: 0.141
+    r: 0.3
+    g: 0.2
+    b: 0.13
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: fd593325a489afb46b970fe4942877e4
+      guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
     m_FontSize: 26
     m_FontStyle: 0
@@ -1596,7 +1596,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u8BBE\u7F6E"
+  m_Text: 设置
 --- !u!222 &100018
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1642,7 +1642,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: e962cae895ab461b88951dfd848ac4c6
+    guid: 0f8c8758ed34502c88f666d6164cec0d
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -1652,7 +1652,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 3
 --- !u!114 &100020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1696,9 +1696,9 @@ MonoBehaviour:
       b: 1
       a: 1
     m_PressedColor:
-      r: 0.88
-      g: 0.88
-      b: 0.88
+      r: 0.84
+      g: 0.87
+      b: 0.82
       a: 1
     m_SelectedColor:
       r: 1
@@ -1706,12 +1706,12 @@ MonoBehaviour:
       b: 1
       a: 1
     m_DisabledColor:
-      r: 0.65
-      g: 0.65
-      b: 0.65
-      a: 0.5
+      r: 0.72
+      g: 0.72
+      b: 0.72
+      a: 0.85
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 0.08
   m_Interactable: 1
   m_TargetGraphic:
     fileID: 100019
@@ -1752,29 +1752,29 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.231
-    g: 0.165
-    b: 0.141
+    r: 1
+    g: 1
+    b: 1
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: fd593325a489afb46b970fe4942877e4
+      guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
-    m_FontSize: 16
+    m_FontSize: 17
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 13
-    m_MaxSize: 16
+    m_MaxSize: 17
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u8FD4\u56DE"
+  m_Text: 返回
 --- !u!222 &100027
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1820,7 +1820,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: e962cae895ab461b88951dfd848ac4c6
+    guid: 323686ed614451be805f1958bdd6d1eb
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -1830,7 +1830,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 3
 --- !u!114 &100029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1874,9 +1874,9 @@ MonoBehaviour:
       b: 1
       a: 1
     m_PressedColor:
-      r: 0.88
-      g: 0.88
-      b: 0.88
+      r: 0.84
+      g: 0.87
+      b: 0.82
       a: 1
     m_SelectedColor:
       r: 1
@@ -1884,12 +1884,12 @@ MonoBehaviour:
       b: 1
       a: 1
     m_DisabledColor:
-      r: 0.65
-      g: 0.65
-      b: 0.65
-      a: 0.5
+      r: 0.72
+      g: 0.72
+      b: 0.72
+      a: 0.85
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 0.08
   m_Interactable: 1
   m_TargetGraphic:
     fileID: 100028
@@ -1930,16 +1930,16 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.231
-    g: 0.165
-    b: 0.141
+    r: 0.3
+    g: 0.2
+    b: 0.13
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: fd593325a489afb46b970fe4942877e4
+      guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
     m_FontSize: 18
     m_FontStyle: 0
@@ -1952,7 +1952,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u80CC\u666F\u97F3\u4E50"
+  m_Text: 背景音乐
 --- !u!222 &100036
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2110,7 +2110,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: e962cae895ab461b88951dfd848ac4c6
+    guid: 323686ed614451be805f1958bdd6d1eb
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -2120,7 +2120,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 3
 --- !u!114 &100046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2164,9 +2164,9 @@ MonoBehaviour:
       b: 1
       a: 1
     m_PressedColor:
-      r: 0.88
-      g: 0.88
-      b: 0.88
+      r: 0.84
+      g: 0.87
+      b: 0.82
       a: 1
     m_SelectedColor:
       r: 1
@@ -2174,12 +2174,12 @@ MonoBehaviour:
       b: 1
       a: 1
     m_DisabledColor:
-      r: 0.65
-      g: 0.65
-      b: 0.65
-      a: 0.5
+      r: 0.72
+      g: 0.72
+      b: 0.72
+      a: 0.85
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 0.08
   m_Interactable: 1
   m_TargetGraphic:
     fileID: 100045
@@ -2220,16 +2220,16 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.231
-    g: 0.165
-    b: 0.141
+    r: 0.3
+    g: 0.2
+    b: 0.13
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: fd593325a489afb46b970fe4942877e4
+      guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
     m_FontSize: 18
     m_FontStyle: 0
@@ -2242,7 +2242,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u6E38\u620F\u97F3\u6548"
+  m_Text: 游戏音效
 --- !u!222 &100053
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2400,7 +2400,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: e962cae895ab461b88951dfd848ac4c6
+    guid: 323686ed614451be805f1958bdd6d1eb
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -2410,7 +2410,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 3
 --- !u!114 &100063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2454,9 +2454,9 @@ MonoBehaviour:
       b: 1
       a: 1
     m_PressedColor:
-      r: 0.88
-      g: 0.88
-      b: 0.88
+      r: 0.84
+      g: 0.87
+      b: 0.82
       a: 1
     m_SelectedColor:
       r: 1
@@ -2464,12 +2464,12 @@ MonoBehaviour:
       b: 1
       a: 1
     m_DisabledColor:
-      r: 0.65
-      g: 0.65
-      b: 0.65
-      a: 0.5
+      r: 0.72
+      g: 0.72
+      b: 0.72
+      a: 0.85
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 0.08
   m_Interactable: 1
   m_TargetGraphic:
     fileID: 100062
@@ -2510,16 +2510,16 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.231
-    g: 0.165
-    b: 0.141
+    r: 0.3
+    g: 0.2
+    b: 0.13
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: fd593325a489afb46b970fe4942877e4
+      guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
     m_FontSize: 18
     m_FontStyle: 0
@@ -2532,7 +2532,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u632F\u52A8\u53CD\u9988"
+  m_Text: 振动反馈
 --- !u!222 &100070
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2690,7 +2690,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: e962cae895ab461b88951dfd848ac4c6
+    guid: 4c81e7a91fab5d2eb965752e1bc64e31
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -2700,7 +2700,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 3
 --- !u!114 &100080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2744,9 +2744,9 @@ MonoBehaviour:
       b: 1
       a: 1
     m_PressedColor:
-      r: 0.88
-      g: 0.88
-      b: 0.88
+      r: 0.84
+      g: 0.87
+      b: 0.82
       a: 1
     m_SelectedColor:
       r: 1
@@ -2754,12 +2754,12 @@ MonoBehaviour:
       b: 1
       a: 1
     m_DisabledColor:
-      r: 0.65
-      g: 0.65
-      b: 0.65
-      a: 0.5
+      r: 0.72
+      g: 0.72
+      b: 0.72
+      a: 0.85
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 0.08
   m_Interactable: 1
   m_TargetGraphic:
     fileID: 100079
@@ -2800,29 +2800,29 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.231
-    g: 0.165
-    b: 0.141
+    r: 0.3
+    g: 0.2
+    b: 0.13
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: fd593325a489afb46b970fe4942877e4
+      guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
-    m_FontSize: 16
+    m_FontSize: 17
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 13
-    m_MaxSize: 16
+    m_MaxSize: 17
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5173\u4E8E"
+  m_Text: 关于
 --- !u!114 &100085
 MonoBehaviour:
   m_ObjectHideFlags: 0

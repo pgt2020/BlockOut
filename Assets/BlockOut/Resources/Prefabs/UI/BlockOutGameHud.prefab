@@ -46,6 +46,7 @@ RectTransform:
     y: 1
     z: 1
   m_Children:
+  - fileID: 100271
   - fileID: 100004
   m_Father:
     fileID: 0
@@ -115,6 +116,7 @@ RectTransform:
     z: 1
   m_Children:
   - fileID: 100009
+  - fileID: 100276
   - fileID: 100031
   - fileID: 100090
   - fileID: 100094
@@ -429,7 +431,7 @@ GameObject:
   m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &100023
 RectTransform:
   m_ObjectHideFlags: 0
@@ -496,7 +498,7 @@ GameObject:
   m_Layer: 5
   m_Name: Dots
   m_TagString: Untagged
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &100027
 RectTransform:
   m_ObjectHideFlags: 0
@@ -881,19 +883,19 @@ RectTransform:
     z: 0
   m_AnchorMin:
     x: 0
-    y: 0
+    y: 1
   m_AnchorMax:
-    x: 1
+    x: 0
     y: 1
   m_AnchoredPosition:
-    x: 0.0
-    y: 0.0
+    x: 12
+    y: -12
   m_SizeDelta:
-    x: -22
-    y: -22
+    x: 16
+    y: 16
   m_Pivot:
-    x: 0.5
-    y: 0.5
+    x: 0
+    y: 1
 --- !u!1 &100051
 GameObject:
   m_ObjectHideFlags: 0
@@ -1619,19 +1621,19 @@ RectTransform:
     y: 0
     z: 0
   m_AnchorMin:
-    x: 1
+    x: 0
     y: 1
   m_AnchorMax:
-    x: 1
+    x: 0
     y: 1
   m_AnchoredPosition:
-    x: -42
-    y: -546
+    x: 202
+    y: -574
   m_SizeDelta:
     x: 140
-    y: 16
+    y: 18
   m_Pivot:
-    x: 1
+    x: 0
     y: 1
 --- !u!1 &100093
 GameObject:
@@ -2063,7 +2065,7 @@ GameObject:
   m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &100118
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2347,7 +2349,7 @@ GameObject:
   m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &100134
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2478,10 +2480,6 @@ GameObject:
       fileID: 100144
   - component:
       fileID: 100145
-  - component:
-      fileID: 100146
-  - component:
-      fileID: 100147
   m_Layer: 5
   m_Name: CountBadge
   m_TagString: Untagged
@@ -2510,7 +2508,8 @@ RectTransform:
     x: 1
     y: 1
     z: 1
-  m_Children: []
+  m_Children:
+  - fileID: 100265
   m_Father:
     fileID: 100122
   m_LocalEulerAnglesHint:
@@ -2662,8 +2661,8 @@ RectTransform:
     x: 0.0
     y: 0.0
   m_SizeDelta:
-    x: -10
-    y: -10
+    x: 8
+    y: 8
   m_Pivot:
     x: 0.5
     y: 0.5
@@ -2797,7 +2796,7 @@ RectTransform:
     y: -57
   m_SizeDelta:
     x: 92
-    y: 10
+    y: 18
   m_Pivot:
     x: 0
     y: 1
@@ -3038,7 +3037,7 @@ GameObject:
   m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &100177
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3169,10 +3168,6 @@ GameObject:
       fileID: 100187
   - component:
       fileID: 100188
-  - component:
-      fileID: 100189
-  - component:
-      fileID: 100190
   m_Layer: 5
   m_Name: CountBadge
   m_TagString: Untagged
@@ -3201,7 +3196,8 @@ RectTransform:
     x: 1
     y: 1
     z: 1
-  m_Children: []
+  m_Children:
+  - fileID: 100267
   m_Father:
     fileID: 100165
   m_LocalEulerAnglesHint:
@@ -3353,8 +3349,8 @@ RectTransform:
     x: 0.0
     y: 0.0
   m_SizeDelta:
-    x: -10
-    y: -10
+    x: 8
+    y: 8
   m_Pivot:
     x: 0.5
     y: 0.5
@@ -3488,7 +3484,7 @@ RectTransform:
     y: -57
   m_SizeDelta:
     x: 92
-    y: 10
+    y: 18
   m_Pivot:
     x: 0
     y: 1
@@ -3729,7 +3725,7 @@ GameObject:
   m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &100220
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3860,10 +3856,6 @@ GameObject:
       fileID: 100230
   - component:
       fileID: 100231
-  - component:
-      fileID: 100232
-  - component:
-      fileID: 100233
   m_Layer: 5
   m_Name: CountBadge
   m_TagString: Untagged
@@ -3892,7 +3884,8 @@ RectTransform:
     x: 1
     y: 1
     z: 1
-  m_Children: []
+  m_Children:
+  - fileID: 100269
   m_Father:
     fileID: 100208
   m_LocalEulerAnglesHint:
@@ -4044,8 +4037,8 @@ RectTransform:
     x: 0.0
     y: 0.0
   m_SizeDelta:
-    x: -10
-    y: -10
+    x: 8
+    y: 8
   m_Pivot:
     x: 0.5
     y: 0.5
@@ -4179,7 +4172,7 @@ RectTransform:
     y: -57
   m_SizeDelta:
     x: 92
-    y: 10
+    y: 18
   m_Pivot:
     x: 0
     y: 1
@@ -4220,7 +4213,7 @@ MonoBehaviour:
     r: 1
     g: 0.963
     b: 0.925
-    a: 1
+    a: 0
   m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4419,7 +4412,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: d46a89a1d46c455c91a4bad2acab2de3
+    guid: 323686ed614451be805f1958bdd6d1eb
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -4429,7 +4422,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 3
 --- !u!222 &100024
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4630,16 +4623,16 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.231
-    g: 0.165
-    b: 0.141
+    r: 0.3
+    g: 0.2
+    b: 0.13
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: fd593325a489afb46b970fe4942877e4
+      guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
     m_FontSize: 20
     m_FontStyle: 0
@@ -4652,7 +4645,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u7B2C 1 \u5173"
+  m_Text: 第 1 关
 --- !u!222 &100040
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4709,7 +4702,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u751C\u70B9\u661F\u7403"
+  m_Text: 甜点星球
 --- !u!222 &100044
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4755,10 +4748,10 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: 787f4172ca7547cf9b6fb2c52cd3a717
+    guid: ae31af321f135e8ba1194c26f689dba0
     type: 3
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 0
   m_FillAmount: 1
@@ -4809,9 +4802,9 @@ MonoBehaviour:
       b: 1
       a: 1
     m_PressedColor:
-      r: 0.88
-      g: 0.88
-      b: 0.88
+      r: 0.84
+      g: 0.87
+      b: 0.82
       a: 1
     m_SelectedColor:
       r: 1
@@ -4819,12 +4812,12 @@ MonoBehaviour:
       b: 1
       a: 1
     m_DisabledColor:
-      r: 0.65
-      g: 0.65
-      b: 0.65
-      a: 0.5
+      r: 0.72
+      g: 0.72
+      b: 0.72
+      a: 0.85
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 0.08
   m_Interactable: 1
   m_TargetGraphic:
     fileID: 100045
@@ -4932,7 +4925,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: f3d0083f314b43e693b28b2c6c24eb77
+    guid: 9d3e3630341b565ba1b988eb60ae8600
     type: 3
   m_Type: 0
   m_PreserveAspect: 1
@@ -4988,7 +4981,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: f3d0083f314b43e693b28b2c6c24eb77
+    guid: 9d3e3630341b565ba1b988eb60ae8600
     type: 3
   m_Type: 0
   m_PreserveAspect: 1
@@ -5044,7 +5037,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: f3d0083f314b43e693b28b2c6c24eb77
+    guid: 9d3e3630341b565ba1b988eb60ae8600
     type: 3
   m_Type: 0
   m_PreserveAspect: 1
@@ -5089,9 +5082,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.988
-    g: 0.922
-    b: 0.847
+    r: 1
+    g: 1
+    b: 1
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -5100,7 +5093,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: d46a89a1d46c455c91a4bad2acab2de3
+    guid: 5b7fd6defbec5aee9df68e67ae2477e8
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -5110,7 +5103,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 3
 --- !u!222 &100071
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5449,7 +5442,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5269\u4F59 0 \u5757"
+  m_Text: 剩余 0 块
 --- !u!222 &100095
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5495,7 +5488,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: d46a89a1d46c455c91a4bad2acab2de3
+    guid: 5b7fd6defbec5aee9df68e67ae2477e8
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -5505,7 +5498,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 3
 --- !u!222 &100099
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5551,7 +5544,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: 48fa1b29a0a441859cb267f05f6e2ff4
+    guid: 4a3c577c1f255d0e934ec4de63227383
     type: 3
   m_Type: 0
   m_PreserveAspect: 1
@@ -5618,8 +5611,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u8F7B\u70B9\u6574\u5757\u65B9\u5757\uFF0C\u6CBF\u7BAD\u5934\u65B9\u5411\
-    \u98DE\u51FA"
+  m_Text: 轻点整块方块，沿箭头方向飞出
 --- !u!222 &100107
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5775,7 +5767,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: d46a89a1d46c455c91a4bad2acab2de3
+    guid: 323686ed614451be805f1958bdd6d1eb
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -5785,7 +5777,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 3
 --- !u!222 &100119
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5997,7 +5989,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: d46a89a1d46c455c91a4bad2acab2de3
+    guid: 323686ed614451be805f1958bdd6d1eb
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -6007,7 +5999,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 3
 --- !u!222 &100135
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6107,9 +6099,9 @@ MonoBehaviour:
       b: 1
       a: 1
     m_PressedColor:
-      r: 0.88
-      g: 0.88
-      b: 0.88
+      r: 0.84
+      g: 0.87
+      b: 0.82
       a: 1
     m_SelectedColor:
       r: 1
@@ -6117,12 +6109,12 @@ MonoBehaviour:
       b: 1
       a: 1
     m_DisabledColor:
-      r: 0.65
-      g: 0.65
-      b: 0.65
-      a: 0.5
+      r: 0.72
+      g: 0.72
+      b: 0.72
+      a: 0.85
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 0.08
   m_Interactable: 1
   m_TargetGraphic:
     fileID: 100124
@@ -6174,7 +6166,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: 48fa1b29a0a441859cb267f05f6e2ff4
+    guid: 4a3c577c1f255d0e934ec4de63227383
     type: 3
   m_Type: 0
   m_PreserveAspect: 1
@@ -6251,7 +6243,7 @@ CanvasRenderer:
   m_PrefabAsset:
     fileID: 0
   m_GameObject:
-    fileID: 100142
+    fileID: 100264
   m_CullTransparentMesh: 1
 --- !u!114 &100147
 MonoBehaviour:
@@ -6263,7 +6255,7 @@ MonoBehaviour:
   m_PrefabAsset:
     fileID: 0
   m_GameObject:
-    fileID: 100142
+    fileID: 100264
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script:
@@ -6286,7 +6278,7 @@ MonoBehaviour:
       fileID: 12800000
       guid: fd593325a489afb46b970fe4942877e4
       type: 3
-    m_FontSize: 10
+    m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 9
@@ -6399,7 +6391,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: 3c703448d2fc4ebfa64f9cf6f362e3a6
+    guid: cfe9d897bf3d5ad8ab61bff1862952bd
     type: 3
   m_Type: 0
   m_PreserveAspect: 1
@@ -6444,16 +6436,16 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.231
-    g: 0.165
-    b: 0.141
+    r: 0.3
+    g: 0.2
+    b: 0.13
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: fd593325a489afb46b970fe4942877e4
+      guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
     m_FontSize: 12
     m_FontStyle: 0
@@ -6466,7 +6458,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u63D0\u793A"
+  m_Text: 提示
 --- !u!222 &100162
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6501,18 +6493,18 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.541
-    g: 0.459
-    b: 0.408
+    r: 0.3
+    g: 0.2
+    b: 0.13
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: fd593325a489afb46b970fe4942877e4
+      guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
-    m_FontSize: 10
+    m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 9
@@ -6523,7 +6515,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u8F6E\u6362\u9AD8\u4EAE\u53EF\u98DE\u5757"
+  m_Text: 轮换高亮可飞块
 --- !u!222 &100166
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6679,7 +6671,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: d46a89a1d46c455c91a4bad2acab2de3
+    guid: 323686ed614451be805f1958bdd6d1eb
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -6689,7 +6681,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 3
 --- !u!222 &100178
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6789,9 +6781,9 @@ MonoBehaviour:
       b: 1
       a: 1
     m_PressedColor:
-      r: 0.88
-      g: 0.88
-      b: 0.88
+      r: 0.84
+      g: 0.87
+      b: 0.82
       a: 1
     m_SelectedColor:
       r: 1
@@ -6799,12 +6791,12 @@ MonoBehaviour:
       b: 1
       a: 1
     m_DisabledColor:
-      r: 0.65
-      g: 0.65
-      b: 0.65
-      a: 0.5
+      r: 0.72
+      g: 0.72
+      b: 0.72
+      a: 0.85
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 0.08
   m_Interactable: 1
   m_TargetGraphic:
     fileID: 100167
@@ -6856,7 +6848,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: efc712f5cb8d405cb13877e69c9b187f
+    guid: 2a7735758c28589080b44ebccf371ba7
     type: 3
   m_Type: 0
   m_PreserveAspect: 1
@@ -6933,7 +6925,7 @@ CanvasRenderer:
   m_PrefabAsset:
     fileID: 0
   m_GameObject:
-    fileID: 100185
+    fileID: 100266
   m_CullTransparentMesh: 1
 --- !u!114 &100190
 MonoBehaviour:
@@ -6945,7 +6937,7 @@ MonoBehaviour:
   m_PrefabAsset:
     fileID: 0
   m_GameObject:
-    fileID: 100185
+    fileID: 100266
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script:
@@ -6968,7 +6960,7 @@ MonoBehaviour:
       fileID: 12800000
       guid: fd593325a489afb46b970fe4942877e4
       type: 3
-    m_FontSize: 10
+    m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 9
@@ -7081,7 +7073,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: 3c703448d2fc4ebfa64f9cf6f362e3a6
+    guid: cfe9d897bf3d5ad8ab61bff1862952bd
     type: 3
   m_Type: 0
   m_PreserveAspect: 1
@@ -7126,16 +7118,16 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.231
-    g: 0.165
-    b: 0.141
+    r: 0.3
+    g: 0.2
+    b: 0.13
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: fd593325a489afb46b970fe4942877e4
+      guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
     m_FontSize: 12
     m_FontStyle: 0
@@ -7148,7 +7140,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u9524\u5B50"
+  m_Text: 锤子
 --- !u!222 &100205
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7183,18 +7175,18 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.541
-    g: 0.459
-    b: 0.408
+    r: 0.3
+    g: 0.2
+    b: 0.13
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: fd593325a489afb46b970fe4942877e4
+      guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
-    m_FontSize: 10
+    m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 9
@@ -7205,7 +7197,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u6D88\u9664\u4EFB\u610F\u5728\u573A\u5757"
+  m_Text: 消除任意在场块
 --- !u!222 &100209
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7361,7 +7353,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: d46a89a1d46c455c91a4bad2acab2de3
+    guid: 323686ed614451be805f1958bdd6d1eb
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -7371,7 +7363,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 3
 --- !u!222 &100221
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7471,9 +7463,9 @@ MonoBehaviour:
       b: 1
       a: 1
     m_PressedColor:
-      r: 0.88
-      g: 0.88
-      b: 0.88
+      r: 0.84
+      g: 0.87
+      b: 0.82
       a: 1
     m_SelectedColor:
       r: 1
@@ -7481,12 +7473,12 @@ MonoBehaviour:
       b: 1
       a: 1
     m_DisabledColor:
-      r: 0.65
-      g: 0.65
-      b: 0.65
-      a: 0.5
+      r: 0.72
+      g: 0.72
+      b: 0.72
+      a: 0.85
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 0.08
   m_Interactable: 1
   m_TargetGraphic:
     fileID: 100210
@@ -7538,7 +7530,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: 4569e413f1664583af8fcd78eba5647d
+    guid: f83ca25e13205a669ebf9e4bfa1efde4
     type: 3
   m_Type: 0
   m_PreserveAspect: 1
@@ -7615,7 +7607,7 @@ CanvasRenderer:
   m_PrefabAsset:
     fileID: 0
   m_GameObject:
-    fileID: 100228
+    fileID: 100268
   m_CullTransparentMesh: 1
 --- !u!114 &100233
 MonoBehaviour:
@@ -7627,7 +7619,7 @@ MonoBehaviour:
   m_PrefabAsset:
     fileID: 0
   m_GameObject:
-    fileID: 100228
+    fileID: 100268
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script:
@@ -7650,7 +7642,7 @@ MonoBehaviour:
       fileID: 12800000
       guid: fd593325a489afb46b970fe4942877e4
       type: 3
-    m_FontSize: 10
+    m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 9
@@ -7763,7 +7755,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: 3c703448d2fc4ebfa64f9cf6f362e3a6
+    guid: cfe9d897bf3d5ad8ab61bff1862952bd
     type: 3
   m_Type: 0
   m_PreserveAspect: 1
@@ -7808,16 +7800,16 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.231
-    g: 0.165
-    b: 0.141
+    r: 0.3
+    g: 0.2
+    b: 0.13
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: fd593325a489afb46b970fe4942877e4
+      guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
     m_FontSize: 12
     m_FontStyle: 0
@@ -7830,7 +7822,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u70B8\u5F39"
+  m_Text: 魔法
 --- !u!222 &100248
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7865,18 +7857,18 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.541
-    g: 0.459
-    b: 0.408
+    r: 0.3
+    g: 0.2
+    b: 0.13
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: fd593325a489afb46b970fe4942877e4
+      guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
-    m_FontSize: 10
+    m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 9
@@ -7887,7 +7879,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u98DE\u8D70\u6700\u591A 3 \u5757"
+  m_Text: 飞走最多 3 块
 --- !u!114 &100250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8272,3 +8264,491 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &100264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  serializedVersion: 6
+  m_Component:
+  - component:
+      fileID: 100265
+  - component:
+      fileID: 100146
+  - component:
+      fileID: 100147
+  m_Layer: 5
+  m_Name: CountText
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!224 &100265
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  m_GameObject:
+    fileID: 100264
+  m_LocalRotation:
+    x: 0
+    y: 0
+    z: 0
+    w: 1
+  m_LocalPosition:
+    x: 0
+    y: 0
+    z: 0
+  m_LocalScale:
+    x: 1
+    y: 1
+    z: 1
+  m_Children: []
+  m_Father:
+    fileID: 100143
+  m_LocalEulerAnglesHint:
+    x: 0
+    y: 0
+    z: 0
+  m_AnchorMin:
+    x: 0
+    y: 0
+  m_AnchorMax:
+    x: 1
+    y: 1
+  m_AnchoredPosition:
+    x: 0
+    y: 0
+  m_SizeDelta:
+    x: 0
+    y: 0
+  m_Pivot:
+    x: 0.5
+    y: 0.5
+--- !u!1 &100266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  serializedVersion: 6
+  m_Component:
+  - component:
+      fileID: 100267
+  - component:
+      fileID: 100189
+  - component:
+      fileID: 100190
+  m_Layer: 5
+  m_Name: CountText
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!224 &100267
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  m_GameObject:
+    fileID: 100266
+  m_LocalRotation:
+    x: 0
+    y: 0
+    z: 0
+    w: 1
+  m_LocalPosition:
+    x: 0
+    y: 0
+    z: 0
+  m_LocalScale:
+    x: 1
+    y: 1
+    z: 1
+  m_Children: []
+  m_Father:
+    fileID: 100186
+  m_LocalEulerAnglesHint:
+    x: 0
+    y: 0
+    z: 0
+  m_AnchorMin:
+    x: 0
+    y: 0
+  m_AnchorMax:
+    x: 1
+    y: 1
+  m_AnchoredPosition:
+    x: 0
+    y: 0
+  m_SizeDelta:
+    x: 0
+    y: 0
+  m_Pivot:
+    x: 0.5
+    y: 0.5
+--- !u!1 &100268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  serializedVersion: 6
+  m_Component:
+  - component:
+      fileID: 100269
+  - component:
+      fileID: 100232
+  - component:
+      fileID: 100233
+  m_Layer: 5
+  m_Name: CountText
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!224 &100269
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  m_GameObject:
+    fileID: 100268
+  m_LocalRotation:
+    x: 0
+    y: 0
+    z: 0
+    w: 1
+  m_LocalPosition:
+    x: 0
+    y: 0
+    z: 0
+  m_LocalScale:
+    x: 1
+    y: 1
+    z: 1
+  m_Children: []
+  m_Father:
+    fileID: 100229
+  m_LocalEulerAnglesHint:
+    x: 0
+    y: 0
+    z: 0
+  m_AnchorMin:
+    x: 0
+    y: 0
+  m_AnchorMax:
+    x: 1
+    y: 1
+  m_AnchoredPosition:
+    x: 0
+    y: 0
+  m_SizeDelta:
+    x: 0
+    y: 0
+  m_Pivot:
+    x: 0.5
+    y: 0.5
+--- !u!1 &100270
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  serializedVersion: 6
+  m_Component:
+  - component:
+      fileID: 100271
+  - component:
+      fileID: 100272
+  - component:
+      fileID: 100273
+  - component:
+      fileID: 100274
+  m_Layer: 5
+  m_Name: GardenBackdrop
+  m_TagString: Untagged
+  m_Icon:
+    fileID: 0
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &100271
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  m_GameObject:
+    fileID: 100270
+  m_LocalRotation:
+    x: 0
+    y: 0
+    z: 0
+    w: 1
+  m_LocalPosition:
+    x: 0
+    y: 0
+    z: 0
+  m_LocalScale:
+    x: 1
+    y: 1
+    z: 1
+  m_Children: []
+  m_Father:
+    fileID: 100002
+  m_LocalEulerAnglesHint:
+    x: 0
+    y: 0
+    z: 0
+  m_AnchorMin:
+    x: 0
+    y: 0
+  m_AnchorMax:
+    x: 1
+    y: 1
+  m_AnchoredPosition:
+    x: 0
+    y: 0
+  m_SizeDelta:
+    x: 0
+    y: 0
+  m_Pivot:
+    x: 0.5
+    y: 0.5
+--- !u!222 &100272
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  m_GameObject:
+    fileID: 100270
+  m_CullTransparentMesh: 1
+--- !u!114 &100273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  m_GameObject:
+    fileID: 100270
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script:
+    fileID: 11500000
+    guid: fe87c0e1cc204ed48ad3b37840f39efc
+    type: 3
+  m_Name: ''
+  m_EditorClassIdentifier: ''
+  m_Material:
+    fileID: 0
+  m_Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
+  m_RaycastTarget: 0
+  m_RaycastPadding:
+    x: 0
+    y: 0
+    z: 0
+    w: 0
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite:
+    fileID: 21300000
+    guid: 854cd2acc8555aec9d18d0fdd508d716
+    type: 3
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &100274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  m_GameObject:
+    fileID: 100270
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script:
+    fileID: 11500000
+    guid: 86710e43de46f6f4bac7c8e50813a599
+    type: 3
+  m_Name: ''
+  m_EditorClassIdentifier: ''
+  m_AspectMode: 4
+  m_AspectRatio: 0.5625
+--- !u!1 &100275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  serializedVersion: 6
+  m_Component:
+  - component:
+      fileID: 100276
+  - component:
+      fileID: 100277
+  - component:
+      fileID: 100278
+  m_Layer: 5
+  m_Name: GardenHudPlate
+  m_TagString: Untagged
+  m_Icon:
+    fileID: 0
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &100276
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  m_GameObject:
+    fileID: 100275
+  m_LocalRotation:
+    x: 0
+    y: 0
+    z: 0
+    w: 1
+  m_LocalPosition:
+    x: 0
+    y: 0
+    z: 0
+  m_LocalScale:
+    x: 1
+    y: 1
+    z: 1
+  m_Children: []
+  m_Father:
+    fileID: 100004
+  m_LocalEulerAnglesHint:
+    x: 0
+    y: 0
+    z: 0
+  m_AnchorMin:
+    x: 0
+    y: 1
+  m_AnchorMax:
+    x: 0
+    y: 1
+  m_AnchoredPosition:
+    x: 16
+    y: -28
+  m_SizeDelta:
+    x: 358
+    y: 88
+  m_Pivot:
+    x: 0
+    y: 1
+--- !u!222 &100277
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  m_GameObject:
+    fileID: 100275
+  m_CullTransparentMesh: 1
+--- !u!114 &100278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  m_GameObject:
+    fileID: 100275
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script:
+    fileID: 11500000
+    guid: fe87c0e1cc204ed48ad3b37840f39efc
+    type: 3
+  m_Name: ''
+  m_EditorClassIdentifier: ''
+  m_Material:
+    fileID: 0
+  m_Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
+  m_RaycastTarget: 0
+  m_RaycastPadding:
+    x: 0
+    y: 0
+    z: 0
+    w: 0
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite:
+    fileID: 21300000
+    guid: 323686ed614451be805f1958bdd6d1eb
+    type: 3
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 3

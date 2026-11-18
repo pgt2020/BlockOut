@@ -254,7 +254,7 @@ namespace BlockOut.UI
         /// <summary>Toast 背景（v6 深可可 88% 圆角条，9-slice）。</summary>
         public static RectTransform ToastBar(Transform parent, string name)
         {
-            var rt = Place(parent, name, UIAnchorPreset.BottomCenter, 0, 0, 460, 32);
+            var rt = Place(parent, name, UIAnchorPreset.BottomCenter, 0, 0, 342, 44);
             var img = rt.gameObject.AddComponent<Image>();
             var c = BlockOutDesignTokens.MaskWarm; c.a = 0.88f;
             img.sprite = BlockOutIconFactory.RoundedSlice(16f, c, Color.clear, 0f, null);

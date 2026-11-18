@@ -83,6 +83,7 @@ namespace BlockOut.UI
 
         void Update()
         {
+            if (UI != null && GM != null && Input.GetKeyDown(KeyCode.Escape)) HandleBack();
             // 失败层打开期间：广告就绪 / 加载超时回退 → 刷新复活按钮态（脏检查，避免每帧刷新）
             if (UI == null || GM == null || !UI.IsLayerActive("FailLayer")) return;
             if (!GM.ReviveAvailableAtAll) return;
@@ -91,6 +92,17 @@ namespace BlockOut.UI
             else if (!GM.AdReviveReady && lastReviveLabel == "广告加载中"
                      && failLayerOpenedAt >= 0f && Time.time - failLayerOpenedAt > AdLoadFallbackSeconds) needRefresh = true;
             if (needRefresh) Dialogs.RefreshFailLayer();
+        }
+
+        private void HandleBack()
+        {
+            if (UI.IsLayerActive("AboutLayer")) { UI.AboutCloseBtn.onClick.Invoke(); return; }
+            if (UI.IsLayerActive("ConfirmLayer")) { UI.ConfirmCancelBtn.onClick.Invoke(); return; }
+            if (UI.IsLayerActive("SettingsLayer")) { UI.SettingsCloseBtn.onClick.Invoke(); return; }
+            if (UI.IsLayerActive("PauseLayer")) { UI.PauseResumeBtn.onClick.Invoke(); return; }
+            if (UI.IsLayerActive("FailLayer") || UI.IsLayerActive("SettlementLayer")) return;
+            if (UI.CurrentScreen == BlockOutScreenId.Board) Dialogs.OpenPauseLayer();
+            else if (UI.CurrentScreen != BlockOutScreenId.Home && UI.CurrentScreen != BlockOutScreenId.Loading) Home.GoHome();
         }
 
         // ============================================================
@@ -187,7 +199,21 @@ namespace BlockOut.UI
         internal void HandleScreenChanged(BlockOutScreenId screen)
         {
             Dialogs.SyncModalFlag();
+            SetNav(UI.CollectionNavHomeBtn,false);SetNav(UI.CollectionNavCollectionBtn,true);SetNav(UI.CollectionNavStoreBtn,false);
+            SetNav(UI.StoreNavHomeBtn,false);SetNav(UI.StoreNavCollectionBtn,false);SetNav(UI.StoreNavStoreBtn,true);
             if (GM != null) GM.Settings.PlayMusic(screen == BlockOutScreenId.Board ? "bgm_game" : "bgm_home");
+        }
+
+        private static void SetNav(Button button,bool selected)
+        {
+            if(button==null)return;
+            if(button.targetGraphic is Image image)
+            {
+                image.sprite = BlockOutGardenSprites.Get(selected ? "button-green" : "button-cream");
+                image.color = Color.white;
+            }
+            var label=button.GetComponentInChildren<Text>(true);
+            if(label!=null)label.color=selected ? Color.white : BlockOutDesignTokens.TextCocoa;
         }
 
         internal void HandlePauseChanged(bool paused) { Hud.RefreshToolStates(); }
@@ -238,7 +264,23 @@ namespace BlockOut.UI
 
         internal void EnterLevel(int index)
         {
+            if (GM == null || GM.Profile == null || GM.Catalog.LevelCount == 0)
+            {
+                UI.ShowToast("关卡数据尚未就绪，请稍后重试");
+                return;
+            }
             int target = Mathf.Clamp(index, 0, Mathf.Max(0, GM.Catalog.LevelCount - 1));
+            var targetLevel = GM.Catalog.GetLevel(target);
+            if (targetLevel == null || targetLevel.Blocks == null || targetLevel.Blocks.Count == 0)
+            {
+                UI.ShowToast("该关卡暂时无法加载，请选择其他关卡");
+                return;
+            }
+            if (target > GM.Profile.CurrentLevelIndex && !GM.Profile.IsLevelCompleted(targetLevel.Id))
+            {
+                UI.ShowToast("请先完成当前关卡");
+                return;
+            }
             // 进行中的局仅当与目标关卡一致时恢复（退出不保留本局，见 GiveUp）
             bool restore = false;
             if (GM.Profile.HasActiveRun && !string.IsNullOrEmpty(GM.Profile.RunLevelId))
@@ -276,8 +318,8 @@ namespace BlockOut.UI
             Hud.RefreshHintPill();
 
             // 推进条基准：关卡加载时的剩余块数即本关总数
-            boardTotalBlocks = Mathf.Max(1, GM.RemainingBlocks);
-            UpdateBoardProgress(GM.RemainingBlocks);
+            boardTotalBlocks = Mathf.Max(1, level != null ? level.Blocks.Count : GM.RemainingBlocks);
+            RefreshRemaining(GM.RemainingBlocks);
             var page=UI.GetScreenGO(BlockOutScreenId.Board);
             if(page!=null && page.activeInHierarchy)
             {
@@ -343,13 +385,15 @@ namespace BlockOut.UI
                 if (ctaTargetIndex < 0) return;
                 EnterLevel(ctaTargetIndex);
             });
-            Bind(UI.HomeCtaSecondary, () => EnterLevel(HomeChapterIndex * BlockOutContentConfig.LevelsPerChapter));
             Bind(UI.HomeSettingsBtn, () => Dialogs.OpenSettings(null));
-            Bind(UI.HomeCollectionLink, () => { UI.ShowScreen(BlockOutScreenId.Collection); Collection.RefreshCollection(); });
 
-            Bind(UI.NavHomeBtn, () => Home.GoHome());
-            Bind(UI.NavCollectionBtn, () => { UI.ShowScreen(BlockOutScreenId.Collection); Collection.RefreshCollection(); });
-            Bind(UI.NavStoreBtn, () => { UI.ShowScreen(BlockOutScreenId.Store); Store.RefreshStore(); });
+            // R2 四个入口：图库/皮肤接到项目已有的 Collection/Store；每日与成就暂无页面，
+            // 保留控件与点击反馈但不跳转，避免造出项目里不存在的功能。
+            Bind(UI.HomeGalleryBtn, () => { collectionChapter=HomeChapterIndex; UI.ShowScreen(BlockOutScreenId.Collection); Collection.RefreshCollection(); });
+            Bind(UI.HomeSkinBtn, () => { UI.ShowScreen(BlockOutScreenId.Store); Store.RefreshStore(); });
+            Bind(UI.HomeCoinsButton, () => UI.ShowToast("通关可获得金币，用于补充道具和复活"));
+            Bind(UI.HomeDailyBtn, null);
+            Bind(UI.HomeAchievementBtn, null);
 
             // ---- 游戏页 HUD ----
             Bind(UI.BoardPauseBtn, Dialogs.OpenPauseLayer);
@@ -363,20 +407,20 @@ namespace BlockOut.UI
             });
             Bind(UI.PauseRestartBtn, () => Dialogs.AskConfirm("重开本关？",
                 "棋盘、生命与计时将重置；已消耗的道具与金币不返还，复活资格随重开重置。",
-                () => { UI.HideAllBoardLayers(); GM.RestartLevel(); }));
+                () => { if (GM.TryRestartLevel()) UI.HideAllBoardLayers(); }));
             Bind(UI.PauseQuitBtn, () => Dialogs.AskConfirm("退出本关？",
                 "本局进度不保留；通关记录、金币与道具库存保留。",
-                () => { UI.HideAllBoardLayers(); GM.GiveUp(); Home.GoHome(); }));
+                () => { if (GM.TryGiveUp()) { UI.HideAllBoardLayers(); Home.GoHome(); } }));
             Bind(UI.PauseSettingsBtn, () => Dialogs.OpenSettings("PauseLayer"));
 
             // ---- 失败层 ----
             Bind(UI.FailReviveBtn, Dialogs.OnReviveClicked);
             Bind(UI.FailRestartBtn, () => Dialogs.AskConfirm("重开本关？",
                 "棋盘、生命与计时将重置；已消耗的道具与金币不返还，复活资格随重开重置。",
-                () => { UI.HideAllBoardLayers(); GM.RestartLevel(); }));
+                () => { if (GM.TryRestartLevel()) UI.HideAllBoardLayers(); }));
             Bind(UI.FailQuitBtn, () => Dialogs.AskConfirm("退出本关？",
                 "本局进度不保留；通关记录、金币与道具库存保留。",
-                () => { UI.HideAllBoardLayers(); GM.GiveUp(); Home.GoHome(); }));
+                () => { if (GM.TryGiveUp()) { UI.HideAllBoardLayers(); Home.GoHome(); } }));
 
             // ---- 通用确认层 ----
             Bind(UI.ConfirmCancelBtn, () =>
@@ -399,16 +443,20 @@ namespace BlockOut.UI
             {
                 if(GM.SettlementSaveFailed) { GM.RetrySettlement(); return; }
                 UI.HideAllBoardLayers();
-                if (GM.CurrentLevelIndex + 1 < GM.Catalog.LevelCount) GM.NextLevel();
-                else { UI.ShowToast("新章节准备中，敬请期待"); Home.GoHome(); }
+                int next = GM.CurrentLevelIndex + 1;
+                var nextLevel = next < GM.Catalog.LevelCount ? GM.Catalog.GetLevelMetadata(next) : null;
+                if (nextLevel != null && BlockOutContentConfig.IsChapterPublished(nextLevel.Chapter)
+                    && GM.Catalog.HasChapterData(nextLevel.Chapter)) EnterLevel(next);
+                else Home.GoHome();
             });
             Bind(UI.SettleReplayBtn, () =>
             {
-                UI.HideAllBoardLayers();
-                GM.RestartLevel();
+                if (GM.SettlementSaveFailed) { UI.ShowToast("请先重试保存，保留本次通关奖励"); return; }
+                if (GM.TryRestartLevel()) UI.HideAllBoardLayers();
             });
             Bind(UI.SettleCollectionBtn, () =>
             {
+                if (GM.SettlementSaveFailed) { UI.ShowToast("请先重试保存，保留本次通关奖励"); return; }
                 // 查看收藏：切到收藏页查看关卡进度（返回路径由收藏页导航处理）
                 UI.HideAllBoardLayers();
                 collectionChapter = GM.CurrentLevel.Chapter;
@@ -417,6 +465,7 @@ namespace BlockOut.UI
             });
             Bind(UI.SettleHomeBtn, () =>
             {
+                if (GM.SettlementSaveFailed) { UI.ShowToast("请先重试保存，保留本次通关奖励"); return; }
                 UI.HideAllBoardLayers();
                 Home.GoHome();
             });
@@ -466,7 +515,7 @@ namespace BlockOut.UI
             // ---- 商店（15：三商品购买 + 底部导航） ----
             Bind(UI.StoreBackBtn, Home.GoHome);
             Bind(UI.StoreNavHomeBtn, Home.GoHome);
-            Bind(UI.StoreNavCollectionBtn, () => { UI.ShowScreen(BlockOutScreenId.Collection); Collection.RefreshCollection(); });
+            Bind(UI.StoreNavCollectionBtn, () => { collectionChapter=HomeChapterIndex; UI.ShowScreen(BlockOutScreenId.Collection); Collection.RefreshCollection(); });
             Bind(UI.StoreNavStoreBtn, null);
             if (UI.StoreProducts != null)
                 for (int i = 0; i < UI.StoreProducts.Length; i++)

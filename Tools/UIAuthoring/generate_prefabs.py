@@ -78,6 +78,7 @@ LOCK=sprite('lock',lambda d:(d.rounded_rectangle((36,54,92,110),radius=8,fill='w
 HEART=sprite('heart',lambda d:(d.ellipse((15,22,69,76),fill='white'),d.ellipse((59,22,113,76),fill='white'),d.polygon([(18,60),(110,60),(64,114)],fill='white')))
 BULB=sprite('bulb',lambda d:(d.ellipse((30,12,98,80),fill='white'),d.rectangle((48,70,80,94),fill='white'),d.line([(48,105),(80,105)],fill='white',width=9)))
 HAMMER=sprite('hammer',lambda d:(d.line([(35,110),(83,35)],fill='white',width=16),d.polygon([(52,18),(65,2),(112,35),(98,54)],fill='white')))
+BACK_ARROW=sprite('back_arrow',lambda d:(d.line([(40,64),(86,26)],fill='white',width=13),d.line([(40,64),(86,102)],fill='white',width=13)))
 WAND=sprite('wand',lambda d:(d.line([(22,111),(84,45)],fill='white',width=12),d.polygon([(89,8),(97,27),(118,29),(102,43),(107,64),(88,53),(68,63),(73,42),(58,28),(80,27)],fill='white')))
 FONT=ext(ROOT/'Assets/Resources/Fonts/SourceHanSansCN-Regular.otf',12800000)
 
@@ -185,6 +186,7 @@ def height(n,h):n.component('LayoutElement',{'m_IgnoreLayout':0,'m_MinWidth':-1,
 def spr(name):return ext(ART/(name+'.png'),21300000)
 SP_ROUND=spr('round');SP_CIRCLE=spr('circle');SP_SHADOW=spr('card_soft_shadow');SP_DOTS=spr('tray_dots')
 SP_ICON={n:spr(n) for n in ('heart','bulb','hammer','wand','pause','lock')}
+SP_HOME={n:spr('home_'+k) for n,k in [('bg','bg'),('circle','circle'),('settings','settings'),('plate','title_plate'),('start','btn_start'),('plus','plus'),('gallery','icon_gallery'),('skin','icon_skin'),('daily','icon_daily'),('achievement','icon_achievement')]}
 
 ANCH={'tl':((0,1),(0,1)),'tc':((.5,1),(.5,1)),'tr':((1,1),(1,1)),
       'ml':((0,.5),(0,.5)),'mc':((.5,.5),(.5,.5)),'mr':((1,.5),(1,.5)),
@@ -209,9 +211,13 @@ def image_node(p,parent,name,box=None,off=None,color=WHITE,sp=None,ty=0,raycast=
     """box 走左上角定位；off=(l,b,r,t) 走拉伸锚点；preset 指定锚点后 box=(x,y,w,h)。"""
     node=p.node(name,box if box else (0,0,0,0),parent)
     if off is not None:
+        # 拉伸锚点：offsetMin=(l,b)、offsetMax=(r,t) 相对父矩形四边；
+        # 换算成 anchoredPosition/sizeDelta 时必须把父容器尺寸算进去，否则 inset 会变成负尺寸。
+        pw=parent.size['x'] if parent is not None else 0
+        ph=parent.size['y'] if parent is not None else 0
         node.anchor_min=vec(0,0);node.anchor_max=vec(1,1);node.pivot=vec(.5,.5)
         node.position=vec((off[0]+off[2])*.5,(off[1]+off[3])*.5)
-        node.size=vec(off[2]-off[0],off[3]-off[1])
+        node.size=vec(pw+off[2]-off[0],ph+off[3]-off[1])
     elif preset:
         place(node,preset,*box)
     cid=node.img(color,sp)
@@ -223,7 +229,8 @@ def soft_card(p,parent,name,box=None,off=None,fill=CREAM,stroke=WHITE,sw=3,pad=9
     root,_=image_node(p,parent,name,box,off,(0,0,0,0),None,0,1 if hit else 0,preset=preset)
     image_node(p,root,'Shadow',None,(-pad,-pad-2,pad,pad),SHADOW_TINT,SP_SHADOW,1,0)
     image_node(p,root,'Stroke',None,(0,0,0,0),stroke,SP_ROUND,1,0)
-    image_node(p,root,'Fill',None,(sw,sw,-sw,-sw),fill,SP_ROUND,1,0)
+    _,fill_cid=image_node(p,root,'Fill',None,(sw,sw,-sw,-sw),fill,SP_ROUND,1,0)
+    root._fill_cid=fill_cid
     if dots:image_node(p,root,'Dots',None,(14,14,-14,-14),WHITE,SP_DOTS,2,0)
     return root
 
@@ -236,59 +243,144 @@ def text_node(p,field,name,text,box,parent,size=16,color=INK,align=4,preset=None
 
 def stretch_node(p,parent,name,off=(0,0,0,0)):
     node=p.node(name,(0,0,0,0),parent)
+    pw=parent.size['x'] if parent is not None else 0
+    ph=parent.size['y'] if parent is not None else 0
     node.anchor_min=vec(0,0);node.anchor_max=vec(1,1);node.pivot=vec(.5,.5)
     node.position=vec((off[0]+off[2])*.5,(off[1]+off[3])*.5)
-    node.size=vec(off[2]-off[0],off[3]-off[1])
+    node.size=vec(pw+off[2]-off[0],ph+off[3]-off[1])
     return node
 
+
+def soft_button(p,parent,key,text,box,fill=MINT_FLY,stroke=WHITE,sw=2,pad=5,preset=None,
+                tsize=16,tcolor=WHITE,talign=4):
+    """软胶按钮：Shadow/Stroke/Fill 三层 + 按钮 + 文字；TargetGraphic 指向 Fill 层让按压变色可见。"""
+    card=soft_card(p,parent,key,box,fill=fill,stroke=stroke,sw=sw,pad=pad,preset=preset)
+    fill_cid=card._fill_cid
+    btn_cid=card.button()
+    for doc in p.docs:
+        if doc[1]==btn_cid: doc[3]['m_TargetGraphic']=ref(fill_cid)
+    p.fields[key]=ref(btn_cid)
+    tn=p.node('Text',(0,0,box[2],box[3]),card)
+    if preset: place(tn,preset,0,0,box[2],box[3])
+    tid=tn.text(text,tsize,tcolor,talign)
+    return card,tid
+
+def r2_header(p,prefix,title):
+    """R2 页头：白圆返回钮 + 居中标题 + 右上金币胶囊。"""
+    back,_=image_node(p,p.surface,prefix+'BackBtn',(22,26,40,40),None,WHITE,SP_CIRCLE,1,1,preset='tl')
+    image_node(p,back,'Icon',(0,0,20,20),None,TEXT_COCOA,BACK_ARROW,0,0,preserve=1,preset='mc')
+    p.fields[prefix+'BackBtn']=ref(back.button())
+    text_node(p,'_title','PageTitle',title,(0,32,150,30),p.surface,20,TEXT_COCOA,4,preset='tc')
+    pill,_=image_node(p,p.surface,prefix+'CoinPill',(22,26,118,40),None,WHITE,SP_ROUND,1,0,preset='tr')
+    image_node(p,pill,'CoinIcon',(10,0,26,26),None,WHITE,spr('coin'),0,0,preset='ml')
+    ct=stretch_node(p,pill,'CoinText',(43,0,-30,0))
+    p.fields[prefix+'CoinText']=ref(ct.text('0',18,GOLD_TEXT,3))
+
+def r2_nav(p,prefix,active):
+    """底部导航：奶油白软条 + 三钮，当前页绿底白字。"""
+    bar=soft_card(p,p.surface,'BottomNav',(24,756,342,64),fill=SURFACE_RAISED,stroke=WHITE,sw=2,pad=6)
+    for i,(key,title) in enumerate([('Home','首页'),('Collection','图鉴'),('Store','商店')]):
+        on=key==active
+        soft_button(p,bar,prefix+'Nav'+key+'Btn',title,(i*110+12,8,98,48),
+                    fill=MINT_FLY if on else SURFACE_RAISED,
+                    stroke=WHITE if on else STROKE_WARM,
+                    tsize=14,tcolor=WHITE if on else TEXT_COCOA)
+
 def make_items():
-    p=Page('ChapterItem','BlockOutChapterItemView',item=True);r=p.root;r.size=vec(342,72);r.image=r.img(WHITE);p.fields['Button']=ref(r.button());height(r,72)
-    p.label('Title','章节',(76,10,250,24),r);p.label('Subtitle','章节进度',(76,36,250,24),r,size=12)
-    p.image('Thumbnail',(12,10,52,52),r);n,_=p.image('LockIcon',(28,24,22,22),r,INK,LOCK);p.fields['Locked']=ref(n.go)
+    # 章节行卡：白软卡 + 框式缩略图 + 标题/进度 + 右侧锁
+    p=Page('ChapterItem','BlockOutChapterItemView',item=True);r=p.root;r.size=vec(342,76)
+    r.image=r.img((0,0,0,0),None);p.fields['Button']=ref(r.button());height(r,76)
+    card=soft_card(p,r,'Card',(0,0,342,76),fill=SURFACE_RAISED,stroke=STROKE_WARM,sw=2,pad=4,hit=False)
+    p.image('Thumbnail',(14,10,56,56),r)
+    p.label('Title','章节',(86,14,226,24),r,16)
+    p.label('Subtitle','章节进度',(86,42,226,18),r,12)
+    n,_=p.image('LockIcon',(306,27,22,22),r,INK,LOCK);p.fields['Locked']=ref(n.go)
     chapter=p.save()
-    p=Page('RepeatItem','BlockOutRepeatItemView',item=True);r=p.root;r.size=vec(44,44);r.image=r.img((0,0,0,0),None,True);p.fields['Button']=ref(r.button())
-    p.image('Background',(4,4,36,36),r);p.label('Number','1',(8,8,28,28),r,size=12)
-    for key,sp in [('Mark',CHECK),('Locked',LOCK)]:n,_=p.image(key,(13,13,18,18),r,INK,sp);p.fields[key]=ref(n.go)
-    repeat=p.save();stores=[]
-    for i,(name,title,desc) in enumerate([('Hint','提示','高亮可飞出的方块'),('Hammer','锤子','消除任意在场方块'),('Magic','魔法棒','自动消除一组方块')]):
-        p=Page('Store'+name,'BlockOutStoreItemView',item=True);r=p.root;r.size=vec(342,112);r.image=r.img(WHITE);height(r,112)
-        product={'Tool':i,'CardRoot':ref(r.go),'CardImg':ref(r.image)}
-        _,cid=p.image('Icon',(20,26,44,44),r,MINT,[BULB,HAMMER,WAND][i]);product['IconImg']=ref(cid)
-        n,_=p.image('LockBadge',(50,12,20,20),r,INK,LOCK);product['LockBadge']=ref(n.go)
-        for key,text,box,size in [('NameText',title,(84,12,160,24),18),('DescText',desc,(84,38,160,36),12),('CoinText','300 金币',(84,78,150,20),12)]:_,cid=p.label(key,text,box,r,size);product[key]=ref(cid)
-        _,cid,tid=p.button('BuyBtn','购买',(252,38,76,40),r);product['BuyBtn']=ref(cid);product['BuyText']=ref(tid)
+
+    # 重复挑战数字圆：薄荷圆 + 白字
+    p=Page('RepeatItem','BlockOutRepeatItemView',item=True);r=p.root;r.size=vec(44,44)
+    r.image=r.img((0,0,0,0),None,True);p.fields['Button']=ref(r.button())
+    p.image('Background',(2,2,40,40),r,MINT_FLY,SP_CIRCLE)
+    p.label('Number','1',(2,2,40,40),r,14,WHITE)
+    for key,sp in [('Mark',CHECK),('Locked',LOCK)]:n,_=p.image(key,(13,13,18,18),r,WHITE,sp);p.fields[key]=ref(n.go)
+    repeat=p.save()
+
+    # 商店道具卡：图标内卡 + 名称/描述/金币价 + 绿色购买钮
+    stores=[]
+    for i,(name,title,desc) in enumerate([('Hint','提示','高亮可飞出的方块'),('Hammer','锤子','消除任意在场方块'),('Magic','炸弹','自动消除一组方块')]):
+        p=Page('Store'+name,'BlockOutStoreItemView',item=True);r=p.root;r.size=vec(342,112)
+        r.image=r.img((0,0,0,0),None);height(r,112)
+        card=soft_card(p,r,'Card',(0,0,342,112),fill=SURFACE_RAISED,stroke=STROKE_WARM,sw=2,pad=4,hit=False)
+        product={'Tool':i,'CardRoot':ref(r.go),'CardImg':ref(card._fill_cid)}
+        tile,_=image_node(p,r,'IconTile',(14,20,72,72),None,BG_CREAM_DEEP,SP_ROUND,1,0)
+        _,cid=image_node(p,tile,'Icon',(16,16,40,40),None,WHITE,[BULB,HAMMER,WAND][i],0,0);product['IconImg']=ref(cid)
+        n,_=image_node(p,r,'LockBadge',(312,10,20,20),None,LOCK_BADGE,SP_CIRCLE,0,0);product['LockBadge']=ref(n.go)
+        for key,text,box,size,color in [('NameText',title,(100,16,160,24),16,TEXT_COCOA),
+                                        ('DescText',desc,(100,44,160,32),11,TEXT_DISABLED),
+                                        ('CoinText','300 金币',(128,84,130,20),13,GOLD_TEXT)]:
+            _,cid=text_node(p,'_tmp_'+key,key,text,box,r,size,color,0);product[key]=ref(cid);p.fields.pop('_tmp_'+key)
+        image_node(p,r,'CoinIcon',(102,84,18,18),None,WHITE,spr('coin'),0,0)
+        _,btid=soft_button(p,r,'BuyBtn','购买',(252,34,76,44),fill=MINT_FLY,tsize=15)
+        product['BuyBtn']=p.fields['BuyBtn'];product['BuyText']=ref(btid)
         p.fields['Product']=product;stores.append(p.save())
     return chapter,repeat,stores
 
-def common_header(p,prefix,title):
-    p.button(prefix+'BackBtn','返回',(24,28,64,44),color=WHITE)
-    p.label('PageTitle',title,(100,30,150,40),size=22)
-    p.label(prefix+'CoinText','0',(270,32,96,36),size=18)
-
 def make_pages(chapter,repeat,stores):
-    p=Page('BlockOutLoadingPage','BlockOutLoadingView');p.label('Title','BlockOut',(45,310,300,60),size=40,color=CORAL);p.label('Sub','加载中…',(95,384,200,30));p.save()
+    # 加载页（R2 s1）：拱廊画廊美术底 + logo 卡 + 标题 + 静态进度条（加载近乎瞬时，条为装饰）
+    p=Page('BlockOutLoadingPage','BlockOutLoadingView')
+    image_node(p,p.surface,'LoadingBackground',None,(0,0,0,0),WHITE,spr('loading_bg'),0,0)
+    image_node(p,p.surface,'Logo',(0,236,150,146),None,WHITE,spr('loading_logo'),0,0,1,preset='tc')
+    title_node,tid=p.label('Title','点击画廊',(0,424,300,46),None,32,CORAL,4)
+    title_node.component('Outline',{'m_EffectColor':rgba(WHITE),'m_EffectDistance':vec(2.5,-2.5),'m_UseGraphicAlpha':1})
+    title_node.component('Shadow',{'m_EffectColor':rgba((0,0,0,.25)),'m_EffectDistance':vec(0,2.5),'m_UseGraphicAlpha':1})
+    sub_node,_=p.label('Sub','正在准备画作…',(0,478,300,24),None,14,TEXT_COCOA,4)
+    sub_node.component('Outline',{'m_EffectColor':rgba(WHITE),'m_EffectDistance':vec(1.5,-1.5),'m_UseGraphicAlpha':1})
+    track,_=image_node(p,p.surface,'ProgressTrack',(0,688,220,14),None,BG_CREAM_DEEP,SP_ROUND,1,0,preset='tc')
+    image_node(p,track,'Fill',None,(3,3,-3,-4),MINT_FLY,SP_ROUND,1,0)
+    p.save()
+    # ============================================================
+    # 首页（R2 参考）：整屏美术底 + 真控件，不用全屏图 + 透明热区
+    # 坐标 = 390×844 设计盒，与 BuildHomeScreen / LayoutAuthoring 一致
+    # ============================================================
     p=Page('BlockOutHomePage','BlockOutHomeView')
-    p.label('Logo','BlockOut',(24,28,180,42),size=28,color=CORAL)
-    p.label('HomeCoinText','300',(224,34,82,30),size=18);p.button('HomeSettingsBtn','设置',(314,28,52,44),color=WHITE)
-    card=p.node('PreviewCard',(24,100,342,288),color=WHITE);p.fields['HomePreviewCard']=ref(card.rt)
-    art,root=p.art('HomeArtViewport','HomeRegionArts',(12,12,318,264),card)
-    locks=[]
-    for i in range(12):n=Node(p,'Lock_'+str(i),root,(i%4*79.5+30,i//4*88+32,20,24));n.img(INK,LOCK);locks.append(ref(n.go))
-    p.fields['HomeRegionLocks']=locks
-    p.label('HomePieceBadge','0/12',(250,14,74,26),card,size=12)
-    fail=p.node('FailBox',(12,12,318,264),card,MUTED,False);p.fields['HomeFailBox']=ref(fail.go)
-    p.button('HomeRetryBtn','重试',(99,130,120,44),fail);p.label('HomeRetryExhausted','稍后再试',(79,180,160,24),fail)
-    tag,_=p.label('HomePlaceholderTag','作品预览',(110,246,130,24),card,size=12);p.fields['HomePlaceholderTag']=ref(tag.go)
-    n,cid,tid=p.button('HomeCtaButton','开始游戏',(24,412,342,80));p.fields['HomeCtaTitle']=ref(tid)
-    p.label('HomeCtaSub','第 1 关',(24,48,294,24),n,size=12,color=WHITE)
-    # Keep title and subtitle separate inside the CTA.
-    n.children[0].size=vec(326,36)
-    p.button('HomeCtaSecondary','重玩本章',(79,504,232,40),color=WHITE)
-    p.label('HomeChapterTitle','第一章',(24,562,220,24));p.button('HomeCollectionLink','查看图鉴',(274,556,92,36),color=WHITE)
-    p.image('HomeProgressFill',(24,598,342,10),color=CORAL,filled=True)
-    nodes=[]
-    for i in range(12):_,cid=p.image('Node_'+str(i),(24+i*29,626,18,18),color=MINT);nodes.append(ref(cid))
-    p.fields['HomeNodes']=nodes;p.label('HomePieceText','拼片 0/12',(24,662,342,28));p.nav();p.save()
+    image_node(p,p.surface,'HomeBackground',None,(0,0,0,0),WHITE,SP_HOME['bg'],0,0)
+
+    # 左上金币胶囊：图标 + 真数字 + 加号
+    pill,_=image_node(p,p.surface,'CoinPill',(22,26,118,40),None,WHITE,SP_ROUND,1,0,preset='tl')
+    image_node(p,pill,'CoinIcon',(10,0,26,26),None,WHITE,spr('coin'),0,0,preset='ml')
+    coin_text=stretch_node(p,pill,'CoinText',(43,0,-30,0))
+    p.fields['HomeCoinText']=ref(coin_text.text('0',18,GOLD_TEXT,3))
+    plus,_=image_node(p,pill,'PlusBtn',(-5,5,30,30),None,WHITE,SP_HOME['plus'],1,1,preset='mr')
+    plus.button()
+
+    # 右上设置
+    settings,_=image_node(p,p.surface,'SettingsBtn',(22,26,40,40),None,WHITE,SP_HOME['settings'],1,1,preset='tr')
+    p.fields['HomeSettingsBtn']=ref(settings.button())
+
+    # 关卡标题牌
+    plate,_=image_node(p,p.surface,'TitlePlate',(0,150,150,46),None,WHITE,SP_HOME['plate'],1,0,preset='tc')
+    pt=stretch_node(p,plate,'TitleText',(8,4,-8,-4))
+    pt.text('第 1 关',22,TEXT_COCOA,4)
+
+    def home_round(key,label,icon,box,preset):
+        n,_=image_node(p,p.surface,key,box,None,WHITE,SP_HOME['circle'],1,1,preset=preset)
+        image_node(p,n,'Icon',(0,0,46,46),None,WHITE,SP_HOME[icon],0,0,1,preset='mc')
+        ln,_=text_node(p,'_home_label','Label',label,(0,70,68,18),n,14,TEXT_COCOA,4,preset='tc')
+        ln.component('Outline',{'m_EffectColor':rgba(WHITE),'m_EffectDistance':vec(1,-1),'m_UseGraphicAlpha':1})
+        p.fields.pop('_home_label');p.fields[key]=ref(n.button())
+
+    home_round('HomeGalleryBtn','图库','gallery',(22,366,68,68),'tl')
+    home_round('HomeSkinBtn','皮肤','skin',(22,474,68,68),'tl')
+    home_round('HomeDailyBtn','每日','daily',(22,366,68,68),'tr')
+    home_round('HomeAchievementBtn','成就','achievement',(22,474,68,68),'tr')
+
+    # 唯一的绿色 CTA；文案仍由真实进度驱动，Sub 保留字段但隐藏
+    cta,_=image_node(p,p.surface,'CTA',(0,690,280,86),None,WHITE,SP_HOME['start'],1,1,preset='tc')
+    p.fields['HomeCtaButton']=ref(cta.button())
+    _,tid=text_node(p,'HomeCtaTitle','Title','开始',(0,26,240,44),cta,34,WHITE,4,preset='tc')
+    subn,_=text_node(p,'HomeCtaSub','Sub','',(0,64,200,14),cta,12,WHITE,4,preset='tc')
+    subn.active=False
+    p.save()
     # ============================================================
     # 对局页（R2 参考）。层级自下而上：棋盘托盘 → 棋盘挂点 → HUD → 提示 → 底部道具
     # 坐标 = 390×844 设计基线，box=(x, y 自上而下, w, h)，与 BlockOutWidgets.Place 的 Top* 预设同义。
@@ -378,67 +470,132 @@ def make_pages(chapter,repeat,stores):
         slot['CondText']=ref(cond_node.text(cond,10,TEXT_DISABLED,4))
         p.fields[key]=slot
     p.save()
-    p=Page('BlockOutStorePage','BlockOutStoreView');common_header(p,'Store','商店');p.nav('Store')
-    content,_=p.scroll('StoreViewport',(24,92,342,624));p.fields['StoreListRoot']=ref(content.rt);p.fields['StoreItemPrefabs']=stores
-    p.label('StoreEmptyText','暂无商品',(24,330,342,36));p.save()
-    p=Page('BlockOutCollectionPage','BlockOutCollectionView');common_header(p,'Collection','收藏');p.nav('Collection')
-    content,sc=p.scroll('ContentViewport',(24,92,342,624));p.fields['CollectionContent']=ref(content.rt);p.fields['collectionScroll']=ref(sc)
-    summary=p.node('SummaryCard',(0,0,342,190),content,WHITE);height(summary,190)
-    p.art('CollectionThumbRoot','CollectionThumbRegions',(12,12,120,156),summary)
-    p.label('CollectionChapterText','第一章',(144,14,180,32),summary,14);p.label('CollectionPieceText','拼片 0/12',(144,52,180,30),summary,12)
-    p.image('CollectionProgressFill',(144,94,180,10),summary,CORAL,filled=True);p.button('CollectionViewBigBtn','查看大图',(144,124,180,44),summary)
-    n,_=p.label('CollectionEmptyText','还没有拼片，去完成关卡吧',(0,0,342,40),content,13);height(n,40)
-    retry=p.node('RetryBar',(0,0,342,60),content,WHITE,False);height(retry,60);p.fields['CollectionRetryBar']=ref(retry.rt)
-    p.label('CollectionRetryText','图片加载失败',(8,8,226,44),retry,12);p.button('CollectionRetryBtn','重试',(244,8,90,44),retry)
-    rows=p.node('ChapterList',(0,0,342,0),content);vertical(rows);p.fields['CollectionChapterList']=ref(rows.rt);p.fields['ChapterItemPrefab']=chapter
-    repeatcard=p.node('RepeatCard',(0,0,342,172),content,WHITE);height(repeatcard,172);p.fields['CollectionRepeatGrid']=ref(repeatcard.rt)
-    p.label('RepeatLabel','重复挑战',(12,8,318,28),repeatcard)
-    grid=p.node('Cells',(12,42,318,96),repeatcard);grid.component('GridLayoutGroup',{'m_Padding':{'m_Left':0,'m_Right':0,'m_Top':0,'m_Bottom':0},'m_ChildAlignment':1,'m_StartCorner':0,'m_StartAxis':0,'m_CellSize':vec(44,44),'m_Spacing':vec(8,4),'m_Constraint':1,'m_ConstraintCount':6})
+    # 商店页（R2 s7 皮肤店）：页头 + 商品列表 + 底部导航
+    p=Page('BlockOutStorePage','BlockOutStoreView');r2_header(p,'Store','皮肤')
+    content,sc=p.scroll('StoreViewport',(24,86,342,656))
+    p.fields['StoreListRoot']=ref(content.rt);p.fields['StoreItemPrefabs']=stores
+    empty_node,_=text_node(p,'StoreEmptyText','StoreEmptyText','暂无商品',(0,0,342,36),content,13,TEXT_DISABLED,4)
+    height(empty_node,36)
+    r2_nav(p,'Store','Store')
+    p.save()
+
+    # 图库页（R2 s3）：页头 + 章节摘要卡（艺术图/进度/查看大图）+ 章节列表 + 重复挑战格 + 大图弹层
+    p=Page('BlockOutCollectionPage','BlockOutCollectionView');r2_header(p,'Collection','图库')
+    content,sc=p.scroll('ContentViewport',(24,86,342,656))
+    p.fields['CollectionContent']=ref(content.rt);p.fields['collectionScroll']=ref(sc)
+    summary=soft_card(p,content,'SummaryCard',(0,0,342,190),fill=SURFACE_RAISED,stroke=STROKE_WARM,sw=2,pad=5,hit=False)
+    height(summary,190)
+    p.art('CollectionThumbRoot','CollectionThumbRegions',(14,14,120,162),summary)
+    p.label('CollectionChapterText','第一章',(150,22,178,30),summary,16)
+    p.label('CollectionPieceText','拼片 0/12',(150,58,178,26),summary,12)
+    p.image('CollectionProgressFill',(150,94,178,12),summary,MINT_FLY,filled=True)
+    _,tid=soft_button(p,summary,'CollectionViewBigBtn','查看大图',(150,126,178,40),fill=BG_CREAM_DEEP,stroke=WHITE,tsize=14,tcolor=TEXT_COCOA)
+    empty_node,_=text_node(p,'CollectionEmptyText','CollectionEmptyText','还没有拼片，去完成关卡吧',(0,0,342,40),content,13,TEXT_DISABLED,4);height(empty_node,40)
+    retry=soft_card(p,content,'RetryBar',(0,0,342,60),fill=SURFACE_RAISED,stroke=STROKE_WARM,sw=2,pad=4,hit=False)
+    height(retry,60)
+    p.label('CollectionRetryText','图片加载失败',(16,8,210,44),retry,12)
+    soft_button(p,retry,'CollectionRetryBtn','重试',(232,10,96,40),fill=MINT_FLY,tsize=14)
+    rows=p.node('ChapterList',(0,0,342,0),content);vertical(rows)
+    p.fields['CollectionChapterList']=ref(rows.rt);p.fields['ChapterItemPrefab']=chapter
+    repeatcard=soft_card(p,content,'RepeatCard',(0,0,342,172),fill=SURFACE_RAISED,stroke=STROKE_WARM,sw=2,pad=5,hit=False)
+    height(repeatcard,172);p.fields['CollectionRepeatGrid']=ref(repeatcard.rt)
+    p.label('RepeatLabel','重复挑战',(14,10,314,26),repeatcard,15)
+    grid=p.node('Cells',(14,44,314,96),repeatcard);grid.component('GridLayoutGroup',{'m_Padding':{'m_Left':0,'m_Right':0,'m_Top':0,'m_Bottom':0},'m_ChildAlignment':1,'m_StartCorner':0,'m_StartAxis':0,'m_CellSize':vec(44,44),'m_Spacing':vec(8,4),'m_Constraint':1,'m_ConstraintCount':6})
     p.fields['RepeatListRoot']=ref(grid.rt);p.fields['RepeatItemPrefab']=repeat
-    p.label('RepeatNote','已通关关卡可重复挑战',(12,142,318,22),repeatcard,11)
+    p.label('RepeatNote','已通关关卡可重复挑战',(14,144,314,20),repeatcard,11)
     big=p.node('CollectionBigLayer',(0,0,390,844),color=(0,0,0,.4),active=False);p.fields['CollectionBigLayer']=ref(big.go);big.enable_hit()
-    card=p.node('Card',(24,100,342,624),big,WHITE);p.fields['bigCard']=ref(card.rt)
+    card=soft_card(p,big,'Card',(24,110,342,624),fill=SURFACE_RAISED,sw=3,pad=8,hit=False);p.fields['bigCard']=ref(card.rt)
     viewport,art=p.art('CollectionBigRoot','CollectionBigRegions',(16,68,310,460),card)
     viewport.enable_hit()
     p.fields['CollectionZoom']=ref(viewport.component('BlockOutPinchZoom',{'Target':ref(art.rt),'MinScale':1,'MaxScale':3}))
-    p.button('CollectionBigCloseBtn','返回',(16,548,310,48),card);p.save()
+    soft_button(p,card,'CollectionBigCloseBtn','返回',(16,548,310,48),fill=BG_CREAM_DEEP,stroke=WHITE,tsize=15,tcolor=TEXT_COCOA)
+    r2_nav(p,'Collection','Collection')
+    p.save()
 
 def make_popups():
+    """全部弹窗统一软胶卡家族：暂停/失败/确认/设置/关于/玩法/结算。"""
     for name,view,title in [('PausePopup','Pause','暂停'),('FailPopup','Fail','再试一次'),('ConfirmPopup','Confirm','请确认'),('SettingsPage','Settings','设置'),('AboutPopup','About','关于'),('GuidePopup','Guide','玩法说明'),('SettlementPage','Settlement','关卡完成')]:
         p=Page('BlockOut'+name,'BlockOut'+view+'View',popup=True)
-        full=view in ('Settings','Settlement');box=(24,36,342,772) if full else (24,200,342,444)
-        card=p.node('Card',box,color=CREAM)
-        p.label('Heading',title,(16,24,310,36),card,26)
+        full=view in ('Settings',);box=(24,36,342,772) if full else (24,200,342,444)
+
         if view=='Pause':
-            for key,text,y in [('PauseResumeBtn','继续游戏',104),('PauseRestartBtn','重开本关',176),('PauseSettingsBtn','设置',248),('PauseQuitBtn','返回首页',320)]:p.button(key,text,(24,y,294,52),card)
-        elif view=='Fail':
-            p.label('FailReasonText','生命耗尽',(24,78,294,32),card)
-            _,cid,tid=p.button('FailReviveBtn','复活',(24,142,294,56),card);p.fields['FailReviveLabel']=ref(tid)
-            p.label('FailReviveNote','恢复后继续当前关卡',(24,206,294,26),card,12)
-            p.label('FailExhaustedNote','本局暂不可复活，请重试',(24,126,294,80),card,14)
-            badge=p.node('FreeBadge',(244,126,64,24),card,MINT);p.fields['FailFreeBadge']=ref(badge.go);Node(p,'Text',badge,(0,0,64,24)).text('免费',12)
-            p.button('FailRestartBtn','重开本关',(24,260,294,52),card);p.button('FailQuitBtn','返回首页',(24,332,294,52),card,color=WHITE)
-        elif view=='Confirm':
-            p.label('ConfirmTitle','请确认',(24,72,294,36),card,20);p.label('ConfirmBody','确认继续操作？',(24,128,294,124),card,16)
-            p.button('ConfirmCancelBtn','取消',(24,310,140,52),card,color=WHITE);p.button('ConfirmOkBtn','确认',(178,310,140,52),card)
-        elif view=='Settings':
-            p.button('SettingsCloseBtn','返回',(24,680,294,52),card,color=WHITE)
-            for key,title,y in [('SettingsMusicSwitch','背景音乐',124),('SettingsSoundSwitch','游戏音效',208),('SettingsVibSwitch','振动反馈',292)]:
-                n=p.node(key,(24,y,294,64),card,WHITE);p.fields[key]=ref(n.button());Node(p,'Label',n,(16,12,174,40)).text(title,18,INK,3)
-                track=Node(p,'Track',n,(0,0,44,24));track.anchor_min=track.anchor_max=vec(1,.5);track.pivot=vec(1,.5);track.position=vec(-8,0);track.img(MINT)
-                knob=Node(p,'Knob',n,(0,0,20,20));knob.anchor_min=knob.anchor_max=vec(1,.5);knob.pivot=vec(1,.5);knob.position=vec(-10,0);knob.img(WHITE)
-            p.button('SettingsAboutBtn','关于',(24,440,294,52),card,color=WHITE)
-        elif view=='About':
-            p.label('Description','BlockOut\n箭头方块消除',(24,104,294,120),card,20);p.button('AboutCloseBtn','返回',(24,318,294,52),card)
-        elif view=='Guide':
-            p.fields['GuideLayer']=ref(p.root.go);p.label('GuideBodyText','轻点方块，沿箭头方向飞出。\n清空棋盘即可过关。\n受阻方块会标红并扣除生命。',(24,104,294,140),card,18);p.button('GuideDismissBtn','开始挑战',(24,318,294,52),card)
-        else:
-            p.label('SettleTitleText','关卡完成',(16,68,310,36),card,24);p.label('SettlePieceText','获得新拼片',(16,108,310,30),card)
-            viewport,_=p.art('SettleRevealRoot','SettleRevealRegions',(16,154,310,280),card)
-            p.image('SettleLevelImage',(16,154,310,280),card,WHITE,None,True)
-            p.label('SettleNoteText','作品已收集',(16,448,310,42),card,14);p.label('SettleRewardText','奖励金币',(16,496,310,28),card)
-            p.button('SettleNextBtn','下一关',(16,542,310,52),card);p.button('SettleReplayBtn','重玩',(16,612,148,48),card,color=WHITE)
-            p.button('SettleCollectionBtn','查看收藏',(178,612,148,48),card,color=WHITE);p.button('SettleHomeBtn','返回首页',(16,684,310,48),card,color=WHITE)
+            card=soft_card(p,p.surface,'Card',(35,240,320,360),fill=SURFACE_RAISED,sw=3,pad=8,hit=False)
+            p.label('Heading',title,(0,24,320,36),card,26,TEXT_COCOA,4)
+            for key,text,y,primary in [('PauseResumeBtn','继续游戏',84,True),('PauseRestartBtn','重开本关',146,False),('PauseSettingsBtn','设置',208,False),('PauseQuitBtn','返回首页',270,False)]:
+                soft_button(p,card,key,text,(30,y,260,50),fill=MINT_FLY if primary else BG_CREAM_DEEP,
+                            stroke=WHITE if primary else STROKE_WARM,tsize=17,tcolor=WHITE if primary else TEXT_COCOA)
+            p.save();continue
+
+        if view=='Fail':
+            card=soft_card(p,p.surface,'Card',(35,212,320,420),fill=SURFACE_RAISED,sw=3,pad=8,hit=False)
+            p.label('Heading','生命用完了',(0,26,320,34),card,24,TEXT_COCOA,4)
+            image_node(p,card,'HeartBroken',(110,68,100,74),None,WHITE,spr('icon_heart_broken'),0,0,1)
+            text_node(p,'FailReasonText','ReasonText','再试一次，一次就能成功哦！',(0,148,320,24),card,13,TEXT_DISABLED,4)
+            _,tid=soft_button(p,card,'FailReviveBtn','看广告复活',(30,184,260,54),fill=MINT_FLY,tsize=18)
+            p.fields['FailReviveLabel']=ref(tid)
+            badge,_=image_node(p,card,'FreeBadge',(216,176,60,24),None,GOLD_COIN,SP_ROUND,1,0)
+            p.fields['FailFreeBadge']=ref(badge.go)
+            Node(p,'Text',badge,(0,0,60,24)).text('免费',12,GOLD_TEXT,4)
+            text_node(p,'FailReviveNote','ReviveNote','恢复后继续当前关卡',(30,244,260,20),card,11,TEXT_DISABLED,4)
+            text_node(p,'FailExhaustedNote','ExhaustedNote','本局暂不可复活，请重试',(30,240,260,28),card,11,TEXT_DISABLED,4)
+            soft_button(p,card,'FailRestartBtn','重新开始',(30,282,260,48),fill=BG_CREAM_DEEP,stroke=STROKE_WARM,tsize=16,tcolor=TEXT_COCOA)
+            soft_button(p,card,'FailQuitBtn','回首页',(30,344,260,40),fill=SURFACE_RAISED,stroke=STROKE_WARM,sw=1,tsize=14,tcolor=TEXT_DISABLED)
+            p.save();continue
+
+        if view=='Confirm':
+            card=soft_card(p,p.surface,'Card',(35,280,320,280),fill=SURFACE_RAISED,sw=3,pad=8,hit=False)
+            p.label('ConfirmTitle','请确认',(0,26,320,34),card,20,TEXT_COCOA,4)
+            p.label('ConfirmBody','确认继续操作？',(30,70,260,110),card,15)
+            soft_button(p,card,'ConfirmCancelBtn','取消',(30,196,126,48),fill=BG_CREAM_DEEP,stroke=STROKE_WARM,tsize=16,tcolor=TEXT_COCOA)
+            soft_button(p,card,'ConfirmOkBtn','确认',(164,196,126,48),fill=MINT_FLY,tsize=16)
+            p.save();continue
+
+        if view=='Settings':
+            card=soft_card(p,p.surface,'Card',(24,36,342,772),fill=SURFACE_RAISED,sw=3,pad=8,hit=False)
+            p.label('Heading',title,(0,28,342,38),card,26,TEXT_COCOA,4)
+            for key,stitle,y in [('SettingsMusicSwitch','背景音乐',110),('SettingsSoundSwitch','游戏音效',190),('SettingsVibSwitch','振动反馈',270)]:
+                row=soft_card(p,card,key,(24,y,294,64),fill=WHITE,stroke=STROKE_WARM,sw=2,pad=4,hit=True)
+                p.fields[key]=ref(row.button())
+                Node(p,'Label',row,(16,12,174,40)).text(stitle,17,TEXT_COCOA,3)
+                track=Node(p,'Track',row,(0,0,44,24));track.anchor_min=track.anchor_max=vec(1,.5);track.pivot=vec(1,.5);track.position=vec(-12,0);track.img(BG_CREAM_DEEP)
+                knob=Node(p,'Knob',row,(0,0,20,20));knob.anchor_min=knob.anchor_max=vec(1,.5);knob.pivot=vec(1,.5);knob.position=vec(-14,0);knob.img(MINT_FLY,SP_CIRCLE)
+            soft_button(p,card,'SettingsAboutBtn','关于',(24,380,294,50),fill=BG_CREAM_DEEP,stroke=STROKE_WARM,tsize=16,tcolor=TEXT_COCOA)
+            soft_button(p,card,'SettingsCloseBtn','返回',(24,700,294,50),fill=MINT_FLY,tsize=16)
+            p.save();continue
+
+        if view=='About':
+            card=soft_card(p,p.surface,'Card',(35,300,320,240),fill=SURFACE_RAISED,sw=3,pad=8,hit=False)
+            p.label('Heading',title,(0,24,320,34),card,24,TEXT_COCOA,4)
+            p.label('Description','BlockOut\n箭头方块消除',(30,68,260,100),card,17)
+            soft_button(p,card,'AboutCloseBtn','返回',(30,176,260,44),fill=MINT_FLY,tsize=15)
+            p.save();continue
+
+        if view=='Guide':
+            p.fields['GuideLayer']=ref(p.root.go)
+            card=soft_card(p,p.surface,'Card',(35,280,320,280),fill=SURFACE_RAISED,sw=3,pad=8,hit=False)
+            p.label('Heading',title,(0,24,320,34),card,24,TEXT_COCOA,4)
+            p.label('GuideBodyText','轻点方块，沿箭头方向飞出。\n清空棋盘即可过关。\n受阻方块会标红并扣除生命。',(30,68,260,110),card,15)
+            soft_button(p,card,'GuideDismissBtn','开始挑战',(30,196,260,48),fill=MINT_FLY,tsize=16)
+            p.save();continue
+
+        # ---- 结算（R2 s5）：彩旗 + 标题 + 画作框 + 金币 + 绿色下一关 + 三副钮 ----
+        card=soft_card(p,p.surface,'Card',(30,100,330,644),fill=SURFACE_RAISED,sw=3,pad=8,hit=False)
+        image_node(p,card,'BuntingL',(12,8,74,58),None,WHITE,spr('deco_bunting_l'),0,0)
+        image_node(p,card,'BuntingR',(244,8,74,58),None,WHITE,spr('deco_bunting_r'),0,0)
+        text_node(p,'SettleTitleText','SettleTitleText','完成',(0,20,330,42),card,28,TEXT_COCOA,4)
+        frame=soft_card(p,card,'RevealFrame',(15,84,300,304),fill=WHITE,stroke=STROKE_WARM,sw=2,pad=6,hit=False)
+        viewport,art=p.art('SettleRevealRoot','SettleRevealRegions',(9,9,282,286),frame)
+        li_node,li_cid=image_node(p,card,'SettleLevelImage',(24,92,282,288),None,WHITE,None,0,0,1)
+        p.fields['SettleLevelImage']=ref(li_cid)
+        coin_row=p.node('CoinRow',(0,404,330,30),card)
+        image_node(p,coin_row,'CoinIcon',(103,1,28,28),None,WHITE,spr('coin'),0,0)
+        text_node(p,'SettleRewardText','RewardText','+60',(139,0,90,30),coin_row,20,GOLD_TEXT,3)
+        text_node(p,'SettlePieceText','PieceText','获得新拼片',(0,440,330,22),card,13,TEXT_COCOA,4)
+        text_node(p,'SettleNoteText','NoteText','作品已收入图库',(0,468,330,20),card,11,TEXT_DISABLED,4)
+        soft_button(p,card,'SettleNextBtn','下一关',(35,502,260,54),fill=MINT_FLY,tsize=19)
+        soft_button(p,card,'SettleReplayBtn','重玩',(15,572,96,48),fill=BG_CREAM_DEEP,stroke=STROKE_WARM,tsize=14,tcolor=TEXT_COCOA)
+        soft_button(p,card,'SettleCollectionBtn','收藏',(117,572,96,48),fill=BG_CREAM_DEEP,stroke=STROKE_WARM,tsize=14,tcolor=TEXT_COCOA)
+        soft_button(p,card,'SettleHomeBtn','首页',(219,572,96,48),fill=BG_CREAM_DEEP,stroke=STROKE_WARM,tsize=14,tcolor=TEXT_COCOA)
         p.save()
 
 if __name__=='__main__':
@@ -446,8 +603,12 @@ if __name__=='__main__':
     make_pages(*make_items());make_popups()
     # 反馈组件是幂等补齐（已挂过的节点跳过），单页模式下仍需跑，否则新按钮没有按压反馈。
     runpy.run_path(str(Path(__file__).with_name('bind_authored_feedback.py')))
-    if not ONLY:
-        # 版面对齐脚本是「整体覆盖式」的，单页模式下不跑，避免回灌旧版式。
+    if not ONLY and '--no-align' not in sys.argv:
+        # 版面对齐脚本是「整体覆盖式」的，会回灌旧版式；全量重烘焙新版式时用 --no-align 跳过。
         runpy.run_path(str(Path(__file__).with_name('align_artout_layout.py')))
         runpy.run_path(str(Path(__file__).with_name('remove_chapter_art_layout.py')))
-        print('Authored 12 complete pages/popups and 5 item prefabs. Unity was not launched.')
+    from polish_player_experience import main as polish
+    polish()
+    # The delivered garden theme is the final authoring pass, including single-page rebuilds.
+    runpy.run_path(str(Path(__file__).with_name('integrate_garden_ui.py')), run_name='__main__')
+    print('Authored 12 complete pages/popups and 5 item prefabs. Unity was not launched.')

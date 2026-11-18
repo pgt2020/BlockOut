@@ -94,17 +94,11 @@ namespace BlockOut.UI
         private static readonly Dictionary<BlockOutScreenId, string> ScreenSkinMap =
             new Dictionary<BlockOutScreenId, string>
             {
-                { BlockOutScreenId.Loading,    "s1" },
-                { BlockOutScreenId.Home,       "s2" },
-                { BlockOutScreenId.Collection, "s3" },
-                { BlockOutScreenId.Board,      "s4" },
-                { BlockOutScreenId.Store,      "s7" },
+                // 正式页面只使用真实控件，参考稿不进入运行时。
             };
         private static readonly Dictionary<string, string> LayerSkinMap =
             new Dictionary<string, string>
             {
-                { "SettlementLayer", "s5" },
-                { "FailLayer",       "s6" },
             };
         private readonly Dictionary<string, BlockOutReferenceSkin> referenceSkins =
             new Dictionary<string, BlockOutReferenceSkin>();
@@ -127,30 +121,18 @@ namespace BlockOut.UI
         public event Action OnLayersChanged;
         private readonly Dictionary<string,int> layerVersions=new Dictionary<string,int>();
 
-        // ---------- Home refs ----------
+        // ---------- Home refs（R2：整屏美术底 + 真控件，无透明热区） ----------
         public Button HomeCtaButton;
         public Text HomeCtaTitle;
-        public Text HomeCtaSub;
-        public Button HomeCtaSecondary;
+        public Text HomeCtaSub;          // 当前章节真实完成进度
+        public Text HomeLevelTitle;
+        public Button HomeCoinsButton;
         public Text HomeCoinText;
-        public Text HomePieceBadge;
-        public Text HomeChapterTitle;
-        public Text HomePieceText;
-        public Image HomeProgressFill;
-        public Image[] HomeNodes;
-        public Button HomeCollectionLink;
         public Button HomeSettingsBtn;
-        public Image[] HomeRegionArts;
-        public GameObject[] HomeRegionLocks;
-        public GameObject HomeFailBox;
-        public Button HomeRetryBtn;
-        public Text HomeRetryExhausted;
-        public GameObject HomePlaceholderTag;
-        public RectTransform HomePreviewCard;
-        public RectTransform HomeArtViewport;
-        public Button NavHomeBtn;
-        public Button NavCollectionBtn;
-        public Button NavStoreBtn;
+        public Button HomeGalleryBtn;    // 关卡选择
+        public Button HomeSkinBtn;       // 道具商店（保留序列化字段名）
+        public Button HomeDailyBtn;      // 兼容旧预制体，正式界面隐藏
+        public Button HomeAchievementBtn;// 兼容旧预制体，正式界面隐藏
 
         // ---------- Board refs ----------
         public Button BoardPauseBtn;
@@ -278,16 +260,29 @@ namespace BlockOut.UI
 
             // 页面背景：奶油顶 → 奶油深底（竖向渐变贴图拉伸）
             var bg = BlockOutWidgets.Panel(canvasGo.transform, "BG", BlockOutDesignTokens.BgCream);
-            bg.sprite=BlockOutIconFactory.Asset("background");
-            bg.color=Color.white;
+            bg.sprite=null;
+            bg.color=BlockOutDesignTokens.BgCream;
             bg.type = Image.Type.Simple;
+            bg.raycastTarget=false;
         }
         private void BuildToast()
         {
             var go = new GameObject("Toast", typeof(RectTransform));
             go.transform.SetParent(canvasGo.transform, false);
+            var toastRoot=(RectTransform)go.transform;
+            toastRoot.anchorMin=Vector2.zero;toastRoot.anchorMax=Vector2.one;
+            toastRoot.offsetMin=toastRoot.offsetMax=Vector2.zero;
             toastRect = BlockOutWidgets.ToastBar(go.transform, "ToastBar");
             toastText = toastRect.Find("Text").GetComponent<Text>();
+            var toastImage = toastRect.GetComponent<Image>();
+            if (toastImage != null)
+            {
+                toastImage.sprite = BlockOutGardenSprites.Get("pill-cream");
+                toastImage.type = Image.Type.Sliced;
+                toastImage.pixelsPerUnitMultiplier = 3f;
+                toastImage.color = Color.white;
+            }
+            toastText.color = BlockOutDesignTokens.TextCocoa;
             toastRect.gameObject.SetActive(false);
         }
         public void ShakeSlot(BlockOutToolId tool)
@@ -468,21 +463,10 @@ namespace BlockOut.UI
         {
             switch (sid)
             {
-                case "s2":
-                    skin.Bind("HomeCtaButton", HomeCtaButton);
-                    skin.Bind("HomeSettingsBtn", HomeSettingsBtn);
-                    skin.Bind("HomeCollectionLink", HomeCollectionLink);
-                    skin.Bind("NavStoreBtn", NavStoreBtn);
-                    break;
                 case "s3":
                     skin.Bind("CollectionBackBtn", CollectionBackBtn);
                     break;
-                case "s4":
-                    skin.Bind("BoardPauseBtn", BoardPauseBtn);
-                    if (HintSlot != null) skin.Bind("HintSlot.Button", HintSlot.Button);
-                    if (HammerSlot != null) skin.Bind("HammerSlot.Button", HammerSlot.Button);
-                    if (MagicSlot != null) skin.Bind("MagicSlot.Button", MagicSlot.Button);
-                    break;
+                // s2 / s4 已下线：首页与对局页现在是真控件，不再需要热区转发。
                 case "s5":
                     skin.Bind("SettleNextBtn", SettleNextBtn);
                     skin.Bind("SettleHomeBtn", SettleHomeBtn);
@@ -691,6 +675,7 @@ namespace BlockOut.UI
             layerVersions[name]=version;
             if(active)
             {
+                if(toastRect!=null)toastRect.gameObject.SetActive(false);
                 layer.SetActive(true);
                 var feedback=FindPopupFeedback(layer);
                 if(feedback!=null && feedback.Popup)feedback.Play("PopupOpen");
@@ -731,6 +716,7 @@ namespace BlockOut.UI
             if (toastText == null || toastRect == null) return;
             OnToastShown?.Invoke();
             toastText.text = message ?? string.Empty;
+            if(metrics!=null)toastRect.sizeDelta=new Vector2(Mathf.Min(342f,metrics.CanvasWidth-32f),44f);
             toastRect.gameObject.SetActive(true);
             if(toastRoutine!=null) StopCoroutine(toastRoutine);
             toastRoutine=StartCoroutine(HideToastAfter(duration));

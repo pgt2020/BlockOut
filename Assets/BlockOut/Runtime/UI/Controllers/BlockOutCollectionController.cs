@@ -45,7 +45,7 @@ namespace BlockOut.UI
                 bool ready=c<published;
                 int done=ready ? owner.GM.Catalog.GetCompletedCountInChapter(c,owner.GM.Profile) : 0;
                 row.Title.text=ready ? "第 "+(c+1)+" 章 · "+BlockOutContentConfig.ChapterThemeName(c) : "新章节准备中";
-                row.Subtitle.text=ready ? done+"/"+owner.GM.Catalog.ChapterLevelCount(c)+(done>=owner.GM.Catalog.ChapterLevelCount(c) ? " · 已完成" : " · 进行中") : "新章节发布时间待定";
+                row.Subtitle.text=ready ? done+"/"+owner.GM.Catalog.ChapterLevelCount(c)+(done>=owner.GM.Catalog.ChapterLevelCount(c) ? " · 已完成" : c > owner.HomeChapterIndex ? " · 待开启" : " · 进行中") : "新章节发布时间待定";
                 row.Locked.SetActive(!ready);
                 row.Button.interactable=ready;
                 owner.Bind(row.Button,()=>OnCollectionChapterRowClicked(index));
@@ -63,11 +63,13 @@ namespace BlockOut.UI
                 int global=chapter*BlockOutContentConfig.LevelsPerChapter+i;
                 var level=owner.GM.Catalog.GetLevel(global);
                 bool done=level!=null && owner.GM.Profile.IsLevelCompleted(level.Id);
-                bool current=!done && global==first;
-                cell.Mark.SetActive(done); cell.Number.gameObject.SetActive(current); cell.Locked.SetActive(!done&&!current);
-                cell.Number.text=(i+1).ToString();
-                cell.Background.color=done ? BlockOutDesignTokens.MintBg : current ? BlockOutDesignTokens.White : BlockOutDesignTokens.MistWarm;
-                cell.Button.interactable=done;
+                bool current=!done && global==first && global<=owner.GM.Profile.CurrentLevelIndex;
+                cell.Mark.SetActive(false); cell.Number.gameObject.SetActive(done || current); cell.Locked.SetActive(!done&&!current);
+                cell.Number.text=(global+1).ToString();
+                cell.Background.sprite=BlockOutGardenSprites.Get(current ? "tile-green" : done ? "tile-purple" : "tile-grey");
+                cell.Background.color=Color.white;
+                cell.Number.color=Color.white;
+                cell.Button.interactable=done || current;
                 owner.Bind(cell.Button,()=>OnRepeatCellClicked(index));
             }
         }
@@ -88,7 +90,7 @@ namespace BlockOut.UI
             if (global >= owner.GM.Catalog.LevelCount) return;
             var lv = owner.GM.Catalog.GetLevel(global);
             if (lv == null) return;
-            if (!owner.GM.Profile.IsLevelCompleted(lv.Id))
+            if (!owner.GM.Profile.IsLevelCompleted(lv.Id) && global>owner.GM.Profile.CurrentLevelIndex)
             {
                 owner.UI.ShowToast("该关卡尚未通关，无法重复挑战");
                 return;

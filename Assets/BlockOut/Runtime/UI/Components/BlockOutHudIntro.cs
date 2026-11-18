@@ -16,6 +16,7 @@ namespace BlockOut.UI
             game=gm;player=GetComponent<BlockOutAnimationPlayer>() ?? gameObject.AddComponent<BlockOutAnimationPlayer>();
             top.Clear();tools.Clear();
             Add(top,ui.BoardLevelTitle);Add(top,ui.BoardLevelSub);Add(top,ui.BoardPauseBtn);Add(top,ui.BoardTimerPill);Add(top,ui.BoardRemainingText);
+            Add(top,ui.BoardProgressFill);Add(top,ui.BoardProgressText);Add(top,ui.BoardHintPill);
             if(ui.BoardHearts!=null)foreach(var heart in ui.BoardHearts)Add(top,heart);
             Add(tools,ui.HintSlot.Rect);Add(tools,ui.HammerSlot.Rect);Add(tools,ui.MagicSlot.Rect);
         }

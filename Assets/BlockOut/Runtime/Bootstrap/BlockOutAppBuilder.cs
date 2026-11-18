@@ -97,7 +97,7 @@ namespace BlockOut.Bootstrap
             cam.orthographicSize = 5f;
             cam.transform.position = new Vector3(0, 0, -10);
             if (root != null) camGo.transform.SetParent(root.transform, false);
-            Object.DontDestroyOnLoad(camGo);
+            if(root==null)Object.DontDestroyOnLoad(camGo);
         }
 
         private static void EnsureEventSystem(BlockOutAppRoot root)
@@ -107,7 +107,7 @@ namespace BlockOut.Bootstrap
             esGo.AddComponent<EventSystem>();
             esGo.AddComponent<StandaloneInputModule>();
             if (root != null) esGo.transform.SetParent(root.transform, false);
-            Object.DontDestroyOnLoad(esGo);
+            if(root==null)Object.DontDestroyOnLoad(esGo);
         }
     }
 }

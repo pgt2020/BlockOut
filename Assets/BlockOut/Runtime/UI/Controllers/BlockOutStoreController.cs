@@ -41,21 +41,21 @@ namespace BlockOut.UI
         internal void SetProductVisual(StoreProductRefs p, bool unlocked, string desc, bool canBuy, bool buying)
         {
             if (p.CardImg != null)
-                p.CardImg.color = unlocked ? BlockOutDesignTokens.SurfaceCard : BlockOutDesignTokens.BgCreamDeep;
+                p.CardImg.color = unlocked ? Color.white : new Color(.88f, .88f, .88f, 1f);
             if (p.IconImg != null)
                 p.IconImg.color = unlocked ? Color.white : BlockOutDesignTokens.GrayIconLocked;
             if (p.LockBadge != null) p.LockBadge.SetActive(!unlocked);
             if (p.NameText != null)
                 p.NameText.color = unlocked ? BlockOutDesignTokens.TextCocoa : BlockOutDesignTokens.GrayLocked;
             if (p.DescText != null) p.DescText.text = desc;
-            if(p.CoinText!=null) p.CoinText.text=BlockOutContentConfig.ToolPackCost+" 金币";
+            if(p.CoinText!=null) p.CoinText.text=BlockOutContentConfig.ToolPackCost+" 金币 / "+BlockOutContentConfig.ToolPackAmount+" 个";
             if (p.CoinText != null)
                 p.CoinText.color = unlocked ? BlockOutDesignTokens.GoldText : BlockOutDesignTokens.GrayLocked;
             if (p.BuyBtn != null) p.BuyBtn.interactable = canBuy;
-            if (p.BuyText != null) p.BuyText.text = !unlocked ? "禁买" : (buying ? "…" : "购买");
+            if (p.BuyText != null) p.BuyText.text = !unlocked ? "未解锁" : buying ? "购买中" : canBuy ? "购买" : "金币不足";
             if (p.BuyBtn != null && p.BuyBtn.targetGraphic is Image buyImg)
                 // v6：BuyText 是白字，可购买态必须保持深棕底，禁用态才降到锁定灰。
-                buyImg.color = canBuy ? BlockOutDesignTokens.ActionPrimary
+                buyImg.color = canBuy ? Color.white
                                       : BlockOutDesignTokens.GrayIconLocked;
         }
         internal void OnStoreBuyClicked(int idx)

@@ -1,0 +1,292 @@
+{
+  "reference": "input/style-reference.jpg",
+  "delivery": "independent-modules-only",
+  "assets": [
+    {
+      "id": "A01",
+      "file": "output/backgrounds/garden-home.png",
+      "size": [
+        1080,
+        1920
+      ],
+      "alpha": "opaque",
+      "required": true,
+      "status": "generated"
+    },
+    {
+      "id": "A02",
+      "file": "output/backgrounds/garden-play.png",
+      "size": [
+        1080,
+        1920
+      ],
+      "alpha": "opaque",
+      "required": true,
+      "status": "not-generated"
+    },
+    {
+      "id": "A03",
+      "file": "output/components/panel-cream.png",
+      "size": [
+        768,
+        1024
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "generated"
+    },
+    {
+      "id": "A04",
+      "file": "output/components/button-green.png",
+      "size": [
+        768,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "generated"
+    },
+    {
+      "id": "A05",
+      "file": "output/components/button-cream.png",
+      "size": [
+        768,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "not-generated"
+    },
+    {
+      "id": "A06",
+      "file": "output/components/button-coral.png",
+      "size": [
+        768,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "not-generated"
+    },
+    {
+      "id": "A07",
+      "file": "output/components/round-base.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "not-generated"
+    },
+    {
+      "id": "A08",
+      "file": "output/components/tile-green.png",
+      "size": [
+        320,
+        352
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "not-generated"
+    },
+    {
+      "id": "A09",
+      "file": "output/components/tile-grey.png",
+      "size": [
+        320,
+        352
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "not-generated"
+    },
+    {
+      "id": "A10",
+      "file": "output/components/tile-purple.png",
+      "size": [
+        320,
+        352
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "not-generated"
+    },
+    {
+      "id": "A11",
+      "file": "output/components/frame-art.png",
+      "size": [
+        768,
+        768
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "not-generated"
+    },
+    {
+      "id": "A12",
+      "file": "output/components/ribbon-coral.png",
+      "size": [
+        768,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "not-generated"
+    },
+    {
+      "id": "A13",
+      "file": "output/components/pill-cream.png",
+      "size": [
+        512,
+        160
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "not-generated"
+    },
+    {
+      "id": "A14",
+      "file": "output/icons/icon-hint.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "generated"
+    },
+    {
+      "id": "A15",
+      "file": "output/icons/icon-hammer.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "not-generated"
+    },
+    {
+      "id": "A16",
+      "file": "output/icons/icon-magic.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "not-generated"
+    },
+    {
+      "id": "A17",
+      "file": "output/icons/icon-settings.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "not-generated"
+    },
+    {
+      "id": "A18",
+      "file": "output/icons/icon-home.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "not-generated"
+    },
+    {
+      "id": "A19",
+      "file": "output/icons/icon-levels.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "not-generated"
+    },
+    {
+      "id": "A20",
+      "file": "output/icons/icon-store.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "not-generated"
+    },
+    {
+      "id": "A21",
+      "file": "output/icons/icon-coin.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "not-generated"
+    },
+    {
+      "id": "A22",
+      "file": "output/icons/icon-heart.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "not-generated"
+    },
+    {
+      "id": "A23",
+      "file": "output/icons/icon-heart-broken.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "not-generated"
+    },
+    {
+      "id": "A24",
+      "file": "output/icons/icon-lock.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "not-generated"
+    },
+    {
+      "id": "A25",
+      "file": "output/icons/icon-trophy.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": "transparent",
+      "required": true,
+      "status": "not-generated"
+    },
+    {
+      "id": "A26",
+      "file": "output/optional/mascot.png",
+      "size": [
+        512,
+        640
+      ],
+      "alpha": "transparent",
+      "required": false,
+      "status": "not-generated"
+    }
+  ]
+}

@@ -113,6 +113,8 @@ namespace BlockOut.Gameplay
         }
         internal void CompleteReviveSuccess()
         {
+            // 切后台（包括广告）可能留下 Pause 锁，复活即明确继续本局。
+            owner.Resume();
             owner.Settings.PlaySound("sfx_revive");
             // R01：复活统一恢复棋盘输入与计时可运行态（失败锁在失败反馈/倒计时失败时置位）
             if (owner.boardView != null) owner.boardView.SetInputLock(BlockOutInputLock.Lost,false);

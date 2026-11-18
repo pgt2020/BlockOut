@@ -73,7 +73,7 @@ RectTransform:
     y: 0
   m_SizeDelta:
     x: 342
-    y: 112
+    y: 136
   m_Pivot:
     x: 0.5
     y: 0.5
@@ -136,11 +136,11 @@ RectTransform:
     x: 0
     y: 1
   m_AnchoredPosition:
-    x: 20
-    y: -26
+    x: 18
+    y: -29
   m_SizeDelta:
-    x: 44
-    y: 44
+    x: 54
+    y: 54
   m_Pivot:
     x: 0
     y: 1
@@ -271,10 +271,10 @@ RectTransform:
     y: 1
   m_AnchoredPosition:
     x: 84
-    y: -12
+    y: -16
   m_SizeDelta:
-    x: 160
-    y: 24
+    x: 226
+    y: 26
   m_Pivot:
     x: 0
     y: 1
@@ -338,10 +338,10 @@ RectTransform:
     y: 1
   m_AnchoredPosition:
     x: 84
-    y: -38
+    y: -45
   m_SizeDelta:
-    x: 160
-    y: 36
+    x: 232
+    y: 37
   m_Pivot:
     x: 0
     y: 1
@@ -405,10 +405,10 @@ RectTransform:
     y: 1
   m_AnchoredPosition:
     x: 84
-    y: -78
+    y: -96
   m_SizeDelta:
-    x: 150
-    y: 20
+    x: 148
+    y: 24
   m_Pivot:
     x: 0
     y: 1
@@ -480,10 +480,10 @@ RectTransform:
     x: 0
     y: 1
   m_AnchoredPosition:
-    x: 252
-    y: -38
+    x: 238
+    y: -87
   m_SizeDelta:
-    x: 76
+    x: 88
     y: 40
   m_Pivot:
     x: 0
@@ -547,11 +547,11 @@ RectTransform:
     x: 0
     y: 1
   m_AnchoredPosition:
-    x: 8
-    y: -4
+    x: 5
+    y: -3
   m_SizeDelta:
-    x: 60
-    y: 32
+    x: 78
+    y: 34
   m_Pivot:
     x: 0
     y: 1
@@ -600,7 +600,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: e962cae895ab461b88951dfd848ac4c6
+    guid: 323686ed614451be805f1958bdd6d1eb
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -610,7 +610,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 3
 --- !u!114 &100005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -632,9 +632,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: ''
   m_IgnoreLayout: 0
   m_MinWidth: -1
-  m_MinHeight: 112
+  m_MinHeight: 136
   m_PreferredWidth: -1
-  m_PreferredHeight: 112
+  m_PreferredHeight: 136
   m_FlexibleWidth: -1
   m_FlexibleHeight: 0
   m_LayoutPriority: 1
@@ -683,7 +683,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: 4569e413f1664583af8fcd78eba5647d
+    guid: f83ca25e13205a669ebf9e4bfa1efde4
     type: 3
   m_Type: 0
   m_PreserveAspect: 1
@@ -739,7 +739,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: 3c703448d2fc4ebfa64f9cf6f362e3a6
+    guid: cfe9d897bf3d5ad8ab61bff1862952bd
     type: 3
   m_Type: 0
   m_PreserveAspect: 1
@@ -784,16 +784,16 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.32
-    g: 0.22
-    b: 0.18
+    r: 0.3
+    g: 0.2
+    b: 0.13
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: fd593325a489afb46b970fe4942877e4
+      guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
     m_FontSize: 18
     m_FontStyle: 0
@@ -806,7 +806,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u9B54\u6CD5\u68D2"
+  m_Text: 魔法棒
 --- !u!222 &100020
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -863,7 +863,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u81EA\u52A8\u6D88\u9664\u4E00\u7EC4\u65B9\u5757"
+  m_Text: 自动消除一组方块
 --- !u!222 &100024
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -920,7 +920,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "300 \u91D1\u5E01"
+  m_Text: 300 金币
 --- !u!222 &100028
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -955,9 +955,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.97
-    g: 0.43
-    b: 0.37
+    r: 1
+    g: 1
+    b: 1
     a: 1
   m_RaycastTarget: 1
   m_Maskable: 1
@@ -966,7 +966,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: e962cae895ab461b88951dfd848ac4c6
+    guid: 0f8c8758ed34502c88f666d6164cec0d
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -976,7 +976,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 3
 --- !u!114 &100030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1020,9 +1020,9 @@ MonoBehaviour:
       b: 1
       a: 1
     m_PressedColor:
-      r: 0.88
-      g: 0.88
-      b: 0.88
+      r: 0.84
+      g: 0.87
+      b: 0.82
       a: 1
     m_SelectedColor:
       r: 1
@@ -1030,12 +1030,12 @@ MonoBehaviour:
       b: 1
       a: 1
     m_DisabledColor:
-      r: 0.65
-      g: 0.65
-      b: 0.65
-      a: 0.5
+      r: 0.72
+      g: 0.72
+      b: 0.72
+      a: 0.85
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 0.08
   m_Interactable: 1
   m_TargetGraphic:
     fileID: 100029
@@ -1085,20 +1085,20 @@ MonoBehaviour:
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: fd593325a489afb46b970fe4942877e4
+      guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
-    m_FontSize: 16
+    m_FontSize: 17
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 13
-    m_MaxSize: 16
+    m_MaxSize: 17
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u8D2D\u4E70"
+  m_Text: 购买
 --- !u!114 &100035
 MonoBehaviour:
   m_ObjectHideFlags: 0

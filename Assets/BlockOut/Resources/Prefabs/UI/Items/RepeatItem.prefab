@@ -140,11 +140,11 @@ RectTransform:
     x: 0
     y: 1
   m_AnchoredPosition:
-    x: 4
-    y: -4
+    x: 0
+    y: 0
   m_SizeDelta:
-    x: 36
-    y: 36
+    x: 44
+    y: 44
   m_Pivot:
     x: 0
     y: 1
@@ -383,18 +383,20 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
+    r: 1
+    g: 1
+    b: 1
+    a: 1
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite:
-    fileID: 0
-  m_Type: 0
+    fileID: 21300000
+    guid: 4c81e7a91fab5d2eb965752e1bc64e31
+    type: 3
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
@@ -402,7 +404,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 3
 --- !u!114 &100005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -446,9 +448,9 @@ MonoBehaviour:
       b: 1
       a: 1
     m_PressedColor:
-      r: 0.88
-      g: 0.88
-      b: 0.88
+      r: 0.84
+      g: 0.87
+      b: 0.82
       a: 1
     m_SelectedColor:
       r: 1
@@ -456,12 +458,12 @@ MonoBehaviour:
       b: 1
       a: 1
     m_DisabledColor:
-      r: 0.65
-      g: 0.65
-      b: 0.65
-      a: 0.5
+      r: 0.72
+      g: 0.72
+      b: 0.72
+      a: 0.85
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 0.08
   m_Interactable: 1
   m_TargetGraphic:
     fileID: 100004
@@ -502,9 +504,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.66
-    g: 0.86
-    b: 0.76
+    r: 1
+    g: 1
+    b: 1
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -513,10 +515,10 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: e962cae895ab461b88951dfd848ac4c6
+    guid: 4fa6b9f0ed815c5fa74fb79a38d80deb
     type: 3
-  m_Type: 1
-  m_PreserveAspect: 0
+  m_Type: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 0
   m_FillAmount: 1
@@ -558,16 +560,16 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.32
-    g: 0.22
-    b: 0.18
+    r: 1
+    g: 1
+    b: 1
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: fd593325a489afb46b970fe4942877e4
+      guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
     m_FontSize: 12
     m_FontStyle: 0
@@ -682,7 +684,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: 3c703448d2fc4ebfa64f9cf6f362e3a6
+    guid: cfe9d897bf3d5ad8ab61bff1862952bd
     type: 3
   m_Type: 0
   m_PreserveAspect: 1

@@ -167,9 +167,8 @@ namespace BlockOut.Gameplay
             }
             if (startDistance < 1f) return;
             float distance=Vector2.Distance(a.position,b.position);
-            float factor=1+(distance-startDistance)*.0008f*2;
-            float scale=Mathf.Clamp(target.localScale.x*Mathf.Max(.01f,factor),BoardView.MinimumZoom,BoardView.MaximumZoom);
-            startDistance=distance;
+            // 距离比与设备 DPI 无关，手指扩大一倍时棋盘也扩大一倍。
+            float scale=Mathf.Clamp(startScale*distance/startDistance,BoardView.MinimumZoom,BoardView.MaximumZoom);
             BoardView.SuppressTaps(TapSuppressSeconds);
             if (target != null) target.localScale = new Vector3(scale, scale, 1f);
             ClampPosition();

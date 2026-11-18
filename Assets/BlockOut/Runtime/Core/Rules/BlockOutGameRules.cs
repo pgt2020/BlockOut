@@ -81,7 +81,7 @@ namespace BlockOut.Core
 
         public bool CanMove(BlockOutBlockData block)
         {
-            return IsPathClear(block);
+            return block != null && block.Active && IsPathClear(block);
         }
 
         /// <summary>

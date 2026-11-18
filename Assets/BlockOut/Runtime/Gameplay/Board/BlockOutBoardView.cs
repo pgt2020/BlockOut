@@ -157,7 +157,7 @@ namespace BlockOut.Gameplay
             float side = Mathf.Min(rt.rect.width, rt.rect.height);
             if (side <= 1f) side = 354f; // 首帧布局未完成时的基准值（390-36）
             int cells = Mathf.Max(boardWidth, boardHeight);
-            cellSize = Mathf.Min(rt.rect.width*.9f/Mathf.Max(9.5f,boardWidth),rt.rect.height/(boardHeight*248f/240f));
+            cellSize = Mathf.Min(rt.rect.width*.9f/Mathf.Max(7f,boardWidth),rt.rect.height*.9f/(boardHeight*248f/240f));
             if(cellSize<=0)cellSize=side/Mathf.Max(9.5f,cells);
             // 参考世界单位 → 局部单位（§7.1）：可见半高 / 参考相机半高
             var feel = BlockOut.Config.BlockOutGameplayConfig.Current.feel;

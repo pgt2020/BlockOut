@@ -54,7 +54,8 @@ EXPECTED_RECTS = {
     'TimerPill': ((0, 1), (0, 1), (24, -85), (64, 22)),
     'ProgressBar': ((.5, 1), (.5, 1), (0, -88), (196, 13)),
     'ProgressText': ((0, 1), (0, 1), (318, -87), (44, 15)),
-    'RemainingText': ((1, 1), (1, 1), (-42, -546), (140, 16)),
+    # Garden tray: below the playable area, so the counter cannot cover bottom-row blocks.
+    'RemainingText': ((0, 1), (0, 1), (202, -574), (140, 18)),
     'HintPill': ((.5, 1), (.5, 1), (0, -642), (288, 28)),
     'BottomToolbar': ((.5, 0), (.5, 0), (0, 12), (319, 84)),
 }

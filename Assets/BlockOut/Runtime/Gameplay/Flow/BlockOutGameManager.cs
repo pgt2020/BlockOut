@@ -820,7 +820,12 @@ namespace BlockOut.Gameplay
 
         /// <summary>Player gives up after failing: clear active run (pieces & coins kept).</summary>
         public void GiveUp()
+        { TryGiveUp(); }
+
+        /// <summary>Do not leave the run when clearing its persisted snapshot fails.</summary>
+        public bool TryGiveUp()
         {
+            if (SettlementSaveFailed || !CommitProfileMutation(() => Profile.ClearActiveRun())) return false;
             ReviveUsedThisRun = false;
             // 退出本关同样要终止旧动画并解锁视图，避免回到首页后残留协程（P1-3）
             activeRunToken++;
@@ -840,16 +845,18 @@ namespace BlockOut.Gameplay
             }
             // 放弃后本局不再有效：后续 GoHome→Pause()、切后台、失焦都不允许再保存（P1-5）
             runPlayable = false;
-            Profile.ClearActiveRun();
-            SaveProfile();
+            return true;
         }
 
         /// <summary>重开本关：重置棋盘/生命/计时/工具选择态与复活资格；已消耗道具与已扣金币不返还。</summary>
         public void RestartLevel()
+        { TryRestartLevel(); }
+
+        public bool TryRestartLevel()
         {
-            Profile.ClearActiveRun();
-            SaveProfile();
+            if (SettlementSaveFailed || !CommitProfileMutation(() => Profile.ClearActiveRun())) return false;
             LoadLevel(CurrentLevelIndex);   // LoadLevel 内部已重置视图 paused / 取消旧动画（P1-2/P1-3）
+            return true;
         }
 
         public bool IsLastLevel => CurrentLevelIndex >= Catalog.LevelCount - 1;
@@ -980,9 +987,10 @@ namespace BlockOut.Gameplay
             var pic = Catalog.FindPicture(CurrentLevel.PictureId);
             if (pic == null || string.IsNullOrEmpty(pic.completeImage)) return null;
             var tex = Resources.Load<Texture2D>(pic.completeImage);
-            if (tex != null) return tex;
+            if (tex != null) { tex.filterMode=FilterMode.Point; return tex; }
             if (!string.IsNullOrEmpty(pic.texturePath))
                 tex = Resources.Load<Texture2D>(pic.texturePath);
+            if(tex!=null)tex.filterMode=FilterMode.Point;
             return tex;
         }
 

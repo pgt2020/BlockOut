@@ -24,6 +24,7 @@ namespace BlockOut.UI
         }
         internal void OpenPauseLayer()
         {
+            if (owner.GM.State != BlockOutGameState.Ready || owner.GM.ModalPopupOpen) return;
             owner.GM.Settings.PlaySound("sfx_popup");
             owner.GM.Pause();
             owner.UI.SetLayerActive("PauseLayer", true);
@@ -60,10 +61,11 @@ namespace BlockOut.UI
         }
         internal IEnumerator ShowFailLayerAfterDelay()
         {
+            int token = owner.GM.ActiveRunToken;
             float delay = BlockOut.Config.BlockOutGameplayConfig.Current.feel != null
                 ? BlockOut.Config.BlockOutGameplayConfig.Current.feel.failPopupDelaySeconds : 0.58f;
             if (delay > 0f) yield return new WaitForSeconds(delay);
-            if (owner.GM == null) yield break;
+            if (owner.GM == null || token != owner.GM.ActiveRunToken) yield break;
             if (owner.GM.State != BlockOutGameState.Lost || !owner.GM.IsRunPlayable) yield break;   // 延迟期间已放弃/重开
             owner.failLayerOpenedAt = Time.time;
             RefreshFailLayer();
@@ -74,6 +76,10 @@ namespace BlockOut.UI
         {
             if (owner.GM == null) return;
             if (owner.UI.FailReasonText != null) owner.UI.FailReasonText.text = owner.GM.LastFailReason;
+            if (owner.UI.FailReviveNote != null)
+                owner.UI.FailReviveNote.text = owner.GM.UseTimeFailMode
+                    ? "增加 " + BlockOutContentConfig.ReviveTimeBonusSeconds + " 秒 · 保留当前进度"
+                    : "恢复 " + (owner.GM.FreeReviveAvailable ? BlockOutContentConfig.FreeReviveLifeCount : BlockOutContentConfig.ReviveLifeBonus) + " 颗心 · 保留当前进度";
 
             bool exhausted = !owner.GM.ReviveAvailableAtAll;
             if (owner.UI.FailReviveBtn != null) owner.UI.FailReviveBtn.gameObject.SetActive(!exhausted);
@@ -120,7 +126,7 @@ namespace BlockOut.UI
             if (owner.UI.FailFreeBadge != null) owner.UI.FailFreeBadge.SetActive(freeBadge);
             var img = owner.UI.FailReviveBtn.targetGraphic as Image;
             // v6：FailReviveBtn 由 CoralButton 生成，白字必须一直配深底；禁用态只降到锁定灰。
-            if (img != null) img.color = interactable ? BlockOutDesignTokens.ActionPrimary
+            if (img != null) img.color = interactable ? Color.white
                                                       : BlockOutDesignTokens.GrayIconLocked;
             if (owner.UI.FailReviveLabel != null)
                 owner.UI.FailReviveLabel.color = interactable ? BlockOutDesignTokens.White : new Color(1f, 1f, 1f, 0.85f);
@@ -150,7 +156,7 @@ namespace BlockOut.UI
             if (owner.GM.CanReviveWithCoins)
             {
                 if (owner.GM.ReviveWithCoins()) CloseFailLayer();
-                else owner.UI.ShowToast("金币不足");
+                else owner.UI.ShowToast("复活未成功，金币未扣除，请重试");
                 return;
             }
             owner.UI.ShowToast("金币不足 · 通关可获取金币");
@@ -176,6 +182,8 @@ namespace BlockOut.UI
         }
         private void ShowWinResults()
         {
+            if(owner.UI.SettleHomeBtn!=null) owner.UI.SettleHomeBtn.interactable=!owner.GM.SettlementSaveFailed;
+            if(owner.UI.SettleCollectionBtn!=null) owner.UI.SettleCollectionBtn.interactable=!owner.GM.SettlementSaveFailed;
             int chapter = owner.GM.CurrentLevel != null ? owner.GM.CurrentLevel.Chapter : 0;
             int completed = owner.GM.ChapterCompletedCount;
             int total = owner.GM.Catalog.ChapterLevelCount(chapter);
@@ -248,12 +256,12 @@ namespace BlockOut.UI
                 // 章末且下一章未发布 → 显示"新章节准备中"（P1-4：不是"进入下一章"禁用）
                 // 章末且下一章已发布 → "进入下一章"
                 string label;
-                if (!hasNext) label = "新章节准备中";
+                if (!hasNext) label = "返回首页";
                 else if (isChapterEnd) label = "进入下一章";
                 else if (nextIsNewChapter) label = "进入下一章";
                 else label = "下一关";
                 BlockOutUIController.SetButtonLabel(owner.UI.SettleNextBtn, label);
-                owner.UI.SettleNextBtn.interactable = hasNext;
+                owner.UI.SettleNextBtn.interactable = true;
             }
             owner.UI.SetLayerActive("SettlementLayer", true);
             SyncModalFlag();

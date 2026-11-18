@@ -59,7 +59,7 @@ namespace BlockOut.Tests.EditMode
             level.Blocks.Add(new BlockOutBlockData { Row = 0, Column = 2, Direction = BlockOutDirection.Right });
             var rules = new BlockOutGameRules();
             rules.StartLevel(level);
-            var a = rules.Blocks[0];
+            var a = rules.Blocks[2]; // 最右侧才是当前可飞块；左侧被其他两块阻挡。
             Assert.IsTrue(rules.CanMove(a));
             rules.Remove(a);
             Assert.IsFalse(rules.CanMove(a), "移除后不可再飞");
@@ -93,9 +93,10 @@ namespace BlockOut.Tests.EditMode
         public void 验收_提示轮换_不重复已提示块()
         {
             var level = new BlockOutLevelData { Id = "hint", Width = 3, Height = 1 };
-            level.Blocks.Add(new BlockOutBlockData { Row = 0, Column = 0, Direction = BlockOutDirection.Right });
-            level.Blocks.Add(new BlockOutBlockData { Row = 0, Column = 1, Direction = BlockOutDirection.Right });
-            level.Blocks.Add(new BlockOutBlockData { Row = 0, Column = 2, Direction = BlockOutDirection.Right });
+            // 三块都朝上，才存在三个可以轮换的提示目标。
+            level.Blocks.Add(new BlockOutBlockData { Row = 0, Column = 0, Direction = BlockOutDirection.Up });
+            level.Blocks.Add(new BlockOutBlockData { Row = 0, Column = 1, Direction = BlockOutDirection.Up });
+            level.Blocks.Add(new BlockOutBlockData { Row = 0, Column = 2, Direction = BlockOutDirection.Up });
             var rules = new BlockOutGameRules();
             rules.StartLevel(level);
             var tools = new BlockOutToolController(rules, 3, 0, 0);
@@ -177,9 +178,18 @@ namespace BlockOut.Tests.EditMode
         [Category("UnityRuntime")]
         public void 验收_通关图片收藏_12关均有关联图片()
         {
-            // 依赖 Unity 资源加载（ArtOutPictureConfig + 插画），离线桩 Resources.Load 返回 null。
-            // Unity Test Runner 验收：进入收藏页确认第一章 12 片齐全且可查看大图（§6.10）。
-            Assert.Ignore("通关图片收藏闭环需 Unity 资源加载，按 §6.10 在 Unity 内手动验收");
+#if UNITY_EDITOR
+            var catalog=new BlockOutCatalog();catalog.Load();
+            Assert.GreaterOrEqual(catalog.LevelCount,12);
+            for(int i=0;i<12;i++)
+            {
+                var level=catalog.GetLevel(i);var picture=catalog.FindPicture(level.PictureId);
+                Assert.IsNotNull(picture,level.Id);
+                Assert.IsNotNull(UnityEngine.Resources.Load<UnityEngine.Texture2D>(picture.completeImage),level.Id);
+            }
+#else
+            Assert.Ignore("本项需要 Unity Resources，离线运行器不执行");
+#endif
         }
     }
 }
