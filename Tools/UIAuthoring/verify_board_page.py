@@ -48,12 +48,13 @@ NAMED_NODES = [
 EXPECTED_RECTS = {
     'BoardArea': ((.5, .5), (.5, .5), (0, 73), (318, 404)),
     'LevelTitle': ((.5, 1), (.5, 1), (0, -46), (240, 26)),
-    'LevelSub': ((.5, 1), (.5, 1), (0, -72), (240, 14)),
-    'PauseBtn': ((1, 1), (1, 1), (-24, -46), (40, 40)),
+    'LevelSub': ((0, 1), (0, 1), (75, -72), (240, 20)),
+    # Centered button pivot keeps its visual box at the original top-right position.
+    'PauseBtn': ((1, 1), (1, 1), (-44, -66), (40, 40)),
     'LivesRow': ((0, 1), (0, 1), (24, -88), (56, 16)),
     'TimerPill': ((0, 1), (0, 1), (24, -85), (64, 22)),
     'ProgressBar': ((.5, 1), (.5, 1), (0, -88), (196, 13)),
-    'ProgressText': ((0, 1), (0, 1), (318, -87), (44, 15)),
+    'ProgressText': ((0, 1), (0, 1), (318, -86), (44, 18)),
     # Garden tray: below the playable area, so the counter cannot cover bottom-row blocks.
     'RemainingText': ((0, 1), (0, 1), (202, -574), (140, 18)),
     'HintPill': ((.5, 1), (.5, 1), (0, -642), (288, 28)),
@@ -215,7 +216,8 @@ def main():
                (rt['m_AnchoredPosition']['x'], rt['m_AnchoredPosition']['y']),
                (rt['m_SizeDelta']['x'], rt['m_SizeDelta']['y']))
         for label, a, b in zip(('锚点min', '锚点max', '位置', '尺寸'), got, (amin, amax, pos, size)):
-            if abs(a[0] - b[0]) > 0.51 or abs(a[1] - b[1]) > 0.51:
+            tolerance = .001 if label.startswith('锚点') else .51
+            if abs(a[0] - b[0]) > tolerance or abs(a[1] - b[1]) > tolerance:
                 errors.append('%s 的%s 为 %s，基线应为 %s' % (name, label, a, b))
 
     print('文档 %d 个，GameObject %d 个' % (len(docs), len(gos)))

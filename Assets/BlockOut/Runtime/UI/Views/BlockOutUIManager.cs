@@ -600,6 +600,7 @@ namespace BlockOut.UI
         public void ShowScreen(BlockOutScreenId id)
         {
             HideReferenceStandalone();
+            foreach (var key in layers.Keys) HideLayerImmediately(key);
             foreach (var kv in screens)
                 if (kv.Value != null) kv.Value.SetActive(kv.Key == id);
             string wantSkin;
@@ -607,7 +608,6 @@ namespace BlockOut.UI
             foreach (var kv in referenceSkins)
                 if (ScreenSkinIds.Contains(kv.Key) && kv.Value != null)
                     kv.Value.gameObject.SetActive(kv.Key == wantSkin);
-            if (id == BlockOutScreenId.Board) HideAllBoardLayers();
             currentScreen = id;
             SyncReferenceSkins();
             // Toast 位置：游戏页位于工具条上方，其余页面位于底部导航上方
@@ -676,9 +676,12 @@ namespace BlockOut.UI
             if(active)
             {
                 if(toastRect!=null)toastRect.gameObject.SetActive(false);
+                layer.transform.SetAsLastSibling();
+                if(toastRect!=null)toastRect.parent.SetAsLastSibling();
+                bool alreadyVisible=layer.activeSelf;
                 layer.SetActive(true);
                 var feedback=FindPopupFeedback(layer);
-                if(feedback!=null && feedback.Popup)feedback.Play("PopupOpen");
+                if(alreadyVisible && feedback!=null && feedback.Popup)feedback.Play("PopupOpen");
                 OnLayersChanged?.Invoke();return;
             }
             var popup=FindPopupFeedback(layer);
@@ -724,7 +727,7 @@ namespace BlockOut.UI
 
         private IEnumerator HideToastAfter(float duration)
         {
-            yield return new WaitForSeconds(duration);
+            yield return new WaitForSecondsRealtime(duration);
             if (toastRect != null) toastRect.gameObject.SetActive(false);
         }
 

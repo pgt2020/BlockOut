@@ -206,14 +206,14 @@ RectTransform:
     x: 0
     y: 1
   m_AnchoredPosition:
-    x: 24
-    y: -200
+    x: 195.0
+    y: -422.0
   m_SizeDelta:
     x: 342
-    y: 444
+    y: 344
   m_Pivot:
-    x: 0
-    y: 1
+    x: 0.5
+    y: 0.5
 --- !u!1 &100012
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +274,7 @@ RectTransform:
     y: 1
   m_AnchoredPosition:
     x: 16
-    y: -24
+    y: -20
   m_SizeDelta:
     x: 310
     y: 36
@@ -349,14 +349,14 @@ RectTransform:
     x: 0
     y: 1
   m_AnchoredPosition:
-    x: 24
-    y: -104
+    x: 171.0
+    y: -102.0
   m_SizeDelta:
     x: 294
     y: 52
   m_Pivot:
-    x: 0
-    y: 1
+    x: 0.5
+    y: 0.5
 --- !u!1 &100021
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,14 +492,14 @@ RectTransform:
     x: 0
     y: 1
   m_AnchoredPosition:
-    x: 24
-    y: -176
+    x: 171.0
+    y: -162.0
   m_SizeDelta:
     x: 294
     y: 52
   m_Pivot:
-    x: 0
-    y: 1
+    x: 0.5
+    y: 0.5
 --- !u!1 &100030
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,14 +635,14 @@ RectTransform:
     x: 0
     y: 1
   m_AnchoredPosition:
-    x: 24
-    y: -248
+    x: 171.0
+    y: -222.0
   m_SizeDelta:
     x: 294
     y: 52
   m_Pivot:
-    x: 0
-    y: 1
+    x: 0.5
+    y: 0.5
 --- !u!1 &100039
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,14 +778,14 @@ RectTransform:
     x: 0
     y: 1
   m_AnchoredPosition:
-    x: 24
-    y: -320
+    x: 171.0
+    y: -282.0
   m_SizeDelta:
     x: 294
     y: 52
   m_Pivot:
-    x: 0
-    y: 1
+    x: 0.5
+    y: 0.5
 --- !u!1 &100048
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,7 +1100,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 3
+  m_PixelsPerUnitMultiplier: 4.384615384615385
 --- !u!114 &100020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1211,11 +1211,11 @@ MonoBehaviour:
       fileID: 12800000
       guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
-    m_FontSize: 17
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 13
-    m_MaxSize: 17
+    m_MinSize: 16
+    m_MaxSize: 20
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1278,7 +1278,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 3
+  m_PixelsPerUnitMultiplier: 4.384615384615385
 --- !u!114 &100029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1389,11 +1389,11 @@ MonoBehaviour:
       fileID: 12800000
       guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
-    m_FontSize: 17
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 13
-    m_MaxSize: 17
+    m_MinSize: 16
+    m_MaxSize: 20
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1456,7 +1456,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 3
+  m_PixelsPerUnitMultiplier: 4.384615384615385
 --- !u!114 &100038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1567,11 +1567,11 @@ MonoBehaviour:
       fileID: 12800000
       guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
-    m_FontSize: 17
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 13
-    m_MaxSize: 17
+    m_MinSize: 16
+    m_MaxSize: 20
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1634,7 +1634,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 3
+  m_PixelsPerUnitMultiplier: 4.384615384615385
 --- !u!114 &100047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1745,11 +1745,11 @@ MonoBehaviour:
       fileID: 12800000
       guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
-    m_FontSize: 17
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 13
-    m_MaxSize: 17
+    m_MinSize: 16
+    m_MaxSize: 20
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1

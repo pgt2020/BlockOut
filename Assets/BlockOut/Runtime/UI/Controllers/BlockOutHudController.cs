@@ -45,6 +45,7 @@ namespace BlockOut.UI
         {
             if (owner.UI.HomeCoinText != null) owner.UI.HomeCoinText.text = coins.ToString();
             if (owner.UI.StoreCoinText != null) owner.UI.StoreCoinText.text = coins.ToString();
+            if (owner.UI.CollectionCoinText != null) owner.UI.CollectionCoinText.text = coins.ToString();
         }
         internal void RefreshHintPill()
         {
@@ -54,8 +55,8 @@ namespace BlockOut.UI
         }
         internal void RefreshToolStates()
         {
-            RefreshToolSlot(owner.UI.HintSlot, BlockOutToolId.Hint, BlockOutContentConfig.HintUnlockLevel, "轮换高亮可飞块");
-            RefreshToolSlot(owner.UI.HammerSlot, BlockOutToolId.Hammer, BlockOutContentConfig.HammerUnlockLevel, "消除任意在场块");
+            RefreshToolSlot(owner.UI.HintSlot, BlockOutToolId.Hint, BlockOutContentConfig.HintUnlockLevel, "高亮可飞块");
+            RefreshToolSlot(owner.UI.HammerSlot, BlockOutToolId.Hammer, BlockOutContentConfig.HammerUnlockLevel, "消除一块");
             RefreshToolSlot(owner.UI.MagicSlot, BlockOutToolId.Magic, BlockOutContentConfig.MagicUnlockLevel, "飞走最多 " + BlockOutContentConfig.MagicTargetCount + " 块");
             RefreshHintPill();
         }
@@ -66,7 +67,7 @@ namespace BlockOut.UI
             int count = owner.GM.Tools.GetCount(tool);
             if(tool==BlockOutToolId.Magic && owner.GM.HasPendingMagic)
             {
-                SetSlotVisual(slot,false,count,"继续未完成施法 · 不重复扣除");slot.Button.interactable=true;return;
+                SetSlotVisual(slot,false,count,"点击继续");slot.Button.interactable=true;return;
             }
 
             if (!unlocked)
@@ -78,7 +79,7 @@ namespace BlockOut.UI
             }
             if (count <= 0)
             {
-                SetSlotVisual(slot, false, 0, "数量不足 · 商店可购");
+                SetSlotVisual(slot, false, 0, "点击补充");
                 // 同上：零库存也要能点，点了提示"库存不足"，不能静默无响应（P2-4）
                 slot.Button.interactable = true;
                 return;
@@ -86,7 +87,7 @@ namespace BlockOut.UI
             // 锤子选择态：条件文案切换为操作提示
             string cond = condNormal;
             if (tool == BlockOutToolId.Hammer && owner.GM.Tools.IsHammerSelecting)
-                cond = "选择要消除的方块";
+                cond = "选择方块";
             SetSlotVisual(slot, false, count, cond);
             slot.Button.interactable = true;   // 暂停/忙碌态在点击处理里拦截（P2-4）
         }

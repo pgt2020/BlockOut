@@ -38,6 +38,7 @@ namespace BlockOut.UI
         internal float failLayerOpenedAt = -1f;
         internal bool coinShortageToastDone;
         internal string lastReviveLabel;
+        private float nextFailRefresh;
 
         // 首页 CTA 目标关卡索引（RefreshHomeCta 计算）
         internal int ctaTargetIndex;
@@ -84,20 +85,19 @@ namespace BlockOut.UI
         void Update()
         {
             if (UI != null && GM != null && Input.GetKeyDown(KeyCode.Escape)) HandleBack();
-            // 失败层打开期间：广告就绪 / 加载超时回退 → 刷新复活按钮态（脏检查，避免每帧刷新）
+            // 失败层打开期间低频检查广告/金币状态，不依赖游戏计时。
             if (UI == null || GM == null || !UI.IsLayerActive("FailLayer")) return;
-            if (!GM.ReviveAvailableAtAll) return;
-            bool needRefresh = false;
-            if (GM.AdReviveReady && lastReviveLabel != "复活 · 激励广告") needRefresh = true;
-            else if (!GM.AdReviveReady && lastReviveLabel == "广告加载中"
-                     && failLayerOpenedAt >= 0f && Time.time - failLayerOpenedAt > AdLoadFallbackSeconds) needRefresh = true;
-            if (needRefresh) Dialogs.RefreshFailLayer();
+            // Lack of coins/readiness is temporary, not an exhausted revive entitlement.
+            if (Time.unscaledTime < nextFailRefresh) return;
+            nextFailRefresh = Time.unscaledTime + .25f;
+            Dialogs.RefreshFailLayer();
         }
 
         private void HandleBack()
         {
             if (UI.IsLayerActive("AboutLayer")) { UI.AboutCloseBtn.onClick.Invoke(); return; }
             if (UI.IsLayerActive("ConfirmLayer")) { UI.ConfirmCancelBtn.onClick.Invoke(); return; }
+            if (UI.IsLayerActive("GuideLayer")) { UI.GuideDismissBtn.onClick.Invoke(); return; }
             if (UI.IsLayerActive("SettingsLayer")) { UI.SettingsCloseBtn.onClick.Invoke(); return; }
             if (UI.IsLayerActive("PauseLayer")) { UI.PauseResumeBtn.onClick.Invoke(); return; }
             if (UI.IsLayerActive("FailLayer") || UI.IsLayerActive("SettlementLayer")) return;
@@ -264,9 +264,14 @@ namespace BlockOut.UI
 
         internal void EnterLevel(int index)
         {
-            if (GM == null || GM.Profile == null || GM.Catalog.LevelCount == 0)
+            if (GM == null || GM.Profile == null || GM.Catalog == null || GM.Catalog.LevelCount == 0)
             {
                 UI.ShowToast("关卡数据尚未就绪，请稍后重试");
+                return;
+            }
+            if (GM.SettlementSaveFailed)
+            {
+                UI.ShowToast("请先重试保存，保留本次通关奖励");
                 return;
             }
             int target = Mathf.Clamp(index, 0, Mathf.Max(0, GM.Catalog.LevelCount - 1));
@@ -442,7 +447,6 @@ namespace BlockOut.UI
             Bind(UI.SettleNextBtn, () =>
             {
                 if(GM.SettlementSaveFailed) { GM.RetrySettlement(); return; }
-                UI.HideAllBoardLayers();
                 int next = GM.CurrentLevelIndex + 1;
                 var nextLevel = next < GM.Catalog.LevelCount ? GM.Catalog.GetLevelMetadata(next) : null;
                 if (nextLevel != null && BlockOutContentConfig.IsChapterPublished(nextLevel.Chapter)
@@ -494,8 +498,16 @@ namespace BlockOut.UI
                 if (settingsReturn == "PauseLayer") UI.SetLayerActive("PauseLayer", true);
             });
             // ---- 关于（16 稿）：设置页二级弹层，关闭后回设置页 ----
-            Bind(UI.SettingsAboutBtn, () => UI.SetLayerActive("AboutLayer", true));
-            Bind(UI.AboutCloseBtn, () => UI.SetLayerActive("AboutLayer", false));
+            Bind(UI.SettingsAboutBtn, () =>
+            {
+                UI.SetLayerActive("AboutLayer", true);
+                UI.HideLayerImmediately("SettingsLayer");
+            });
+            Bind(UI.AboutCloseBtn, () =>
+            {
+                UI.SetLayerActive("SettingsLayer", true);
+                UI.SetLayerActive("AboutLayer", false);
+            });
 
             // ---- 道具（统一走 TryUseTool：解锁/库存/暂停/忙碌先判定，再执行）----
             Bind(UI.HintSlot != null ? UI.HintSlot.Button : null, () =>

@@ -211,14 +211,14 @@ RectTransform:
     x: 0
     y: 1
   m_AnchoredPosition:
-    x: 24
-    y: -28
+    x: 56.0
+    y: -50.0
   m_SizeDelta:
     x: 64
     y: 44
   m_Pivot:
-    x: 0
-    y: 1
+    x: 0.5
+    y: 0.5
 --- !u!1 &100013
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,14 +559,14 @@ RectTransform:
     x: 0
     y: 1
   m_AnchoredPosition:
-    x: 4
-    y: -8
+    x: 57.0
+    y: -36.0
   m_SizeDelta:
     x: 106
     y: 56
   m_Pivot:
-    x: 0
-    y: 1
+    x: 0.5
+    y: 0.5
 --- !u!1 &100034
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,14 +703,14 @@ RectTransform:
     x: 0
     y: 1
   m_AnchoredPosition:
-    x: 118
-    y: -8
+    x: 171.0
+    y: -36.0
   m_SizeDelta:
     x: 106
     y: 56
   m_Pivot:
-    x: 0
-    y: 1
+    x: 0.5
+    y: 0.5
 --- !u!1 &100043
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,14 +847,14 @@ RectTransform:
     x: 0
     y: 1
   m_AnchoredPosition:
-    x: 232
-    y: -8
+    x: 285.0
+    y: -36.0
   m_SizeDelta:
     x: 106
     y: 56
   m_Pivot:
-    x: 0
-    y: 1
+    x: 0.5
+    y: 0.5
 --- !u!1 &100052
 GameObject:
   m_ObjectHideFlags: 0
@@ -1264,7 +1264,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 3
+  m_PixelsPerUnitMultiplier: 5.181818181818182
 --- !u!114 &100012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1375,11 +1375,11 @@ MonoBehaviour:
       fileID: 12800000
       guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
-    m_FontSize: 17
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 13
-    m_MaxSize: 17
+    m_MinSize: 16
+    m_MaxSize: 20
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1556,7 +1556,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 3
+  m_PixelsPerUnitMultiplier: 5.291005291005291
 --- !u!222 &100031
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1612,7 +1612,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 3
+  m_PixelsPerUnitMultiplier: 4.071428571428571
 --- !u!114 &100033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1726,7 +1726,7 @@ MonoBehaviour:
     m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 13
+    m_MinSize: 16
     m_MaxSize: 16
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -1790,7 +1790,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 3
+  m_PixelsPerUnitMultiplier: 4.071428571428571
 --- !u!114 &100042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1904,7 +1904,7 @@ MonoBehaviour:
     m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 13
+    m_MinSize: 16
     m_MaxSize: 16
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -1968,7 +1968,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 3
+  m_PixelsPerUnitMultiplier: 4.071428571428571
 --- !u!114 &100051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2082,7 +2082,7 @@ MonoBehaviour:
     m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 13
+    m_MinSize: 16
     m_MaxSize: 16
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -2937,7 +2937,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 3
+  m_PixelsPerUnitMultiplier: 5.9523809523809526
 --- !u!1 &100093
 GameObject:
   m_ObjectHideFlags: 0

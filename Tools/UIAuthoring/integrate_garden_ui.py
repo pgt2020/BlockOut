@@ -257,4 +257,6 @@ if __name__=='__main__':
     SPR=import_assets()
     for file in list(UI.glob('*.prefab'))+list((UI/'Items').glob('*.prefab')):
         apply(Prefab(str(file.relative_to(UI).with_suffix(''))))
+    from refine_garden_ui import refine
+    refine()
     print('Garden assets and all delivered prefabs integrated; Unity not invoked.')

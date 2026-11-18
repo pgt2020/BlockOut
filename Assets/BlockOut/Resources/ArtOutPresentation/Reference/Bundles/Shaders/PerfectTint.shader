@@ -6,6 +6,7 @@
         _MainTex ("Sprite Texture", 2D) = "white" {}
         [HideInInspector] _BaseMap ("Base Map", 2D) = "white" {}
         _Color ("Tint Color (Hex)", Color) = (1,1,1,1)
+        _HighlightStrength ("Neutral edge highlight", Range(0,1)) = 0
         [HideInInspector] _Stencil ("Stencil ID", Float) = 0
         [HideInInspector] _StencilComp ("Stencil Comparison", Float) = 8
         [HideInInspector] _StencilOp ("Stencil Operation", Float) = 0
@@ -65,6 +66,7 @@
 
             sampler2D _MainTex;
             fixed4 _Color;
+            half _HighlightStrength;
 
             v2f vert(appdata_t IN)
             {
@@ -81,6 +83,9 @@
                 half4 texColor = tex2D(_MainTex, IN.texcoord);
 
                 half3 finalRGB = texColor.rgb * IN.color.rgb;
+                // Preserve the level's base hue while keeping a small neutral bevel highlight.
+                half highlight = saturate((texColor.r - 0.86h) / 0.13h) * _HighlightStrength;
+                finalRGB = lerp(finalRGB, half3(1, 0.98h, 0.94h), highlight);
 
                 half finalAlpha = texColor.a * IN.color.a;
 

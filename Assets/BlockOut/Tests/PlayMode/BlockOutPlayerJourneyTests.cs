@@ -199,5 +199,37 @@ namespace BlockOut.Tests.PlayMode
             if(BlockOutAppRoot.Instance!=null)BlockOutAppRoot.Instance.Shutdown();
             yield return null;
         }
+
+        [UnityTest]
+        public IEnumerator ChapterSelectionAndSettings_ReturnToExpectedContext()
+        {
+            var root=BlockOutAppRoot.Ensure(null);
+            var save=new BlockOutSaveService(new InMemoryProfileStore());save.Load();
+            save.Profile.GuideCompleted=true;root.Services.Register(save);
+            var gm=BlockOutAppBuilder.Build(root);var ui=root.Service<BlockOutUIManager>();
+            yield return new WaitForSeconds(.8f);
+            ui.HomeGalleryBtn.onClick.Invoke();yield return null;
+            ui.collectionScroll.verticalNormalizedPosition=0;
+            ui.ChapterItems[0].Button.onClick.Invoke();yield return null;
+            Assert.That(ui.collectionScroll.verticalNormalizedPosition,Is.EqualTo(1f).Within(.01f));
+            Assert.IsTrue(ui.RepeatItems[0].Button.interactable);
+            ui.RepeatItems[0].Button.onClick.Invoke();yield return new WaitForSeconds(1.4f);
+            ui.BoardPauseBtn.onClick.Invoke();ui.PauseSettingsBtn.onClick.Invoke();
+            Assert.IsTrue(gm.IsPaused);
+            Assert.IsFalse(ui.IsLayerActive("PauseLayer"));
+            Assert.IsTrue(ui.IsLayerActive("SettingsLayer"));
+            ui.SettingsAboutBtn.onClick.Invoke();ui.AboutCloseBtn.onClick.Invoke();
+            Assert.IsTrue(ui.IsLayerActive("SettingsLayer"));
+            ui.SettingsCloseBtn.onClick.Invoke();
+            Assert.IsTrue(ui.IsLayerActive("PauseLayer"));Assert.IsTrue(gm.IsPaused);
+            ui.PauseResumeBtn.onClick.Invoke();
+            Assert.IsFalse(gm.IsPaused);Assert.IsFalse(gm.ModalPopupOpen);
+            ui.BoardPauseBtn.onClick.Invoke();ui.PauseQuitBtn.onClick.Invoke();
+            ui.ConfirmOkBtn.onClick.Invoke();yield return null;
+            Assert.AreEqual(BlockOutScreenId.Home,ui.CurrentScreen);
+            foreach(var layer in new[]{"PauseLayer","SettingsLayer","AboutLayer","ConfirmLayer","FailLayer","SettlementLayer"})
+                Assert.IsFalse(ui.IsLayerActive(layer),layer);
+        }
+
     }
 }

@@ -35,7 +35,7 @@ namespace BlockOut.UI
         public static Sprite BoardSprite(int width,int height) => Asset("board");
         public static Sprite BlockSprite(BlockOutBlockData block,int cols,int rows,float cellPx)
         {
-            // 软胶方块（R2 参考）：灰阶白模 PNG，每格 240px，由 Custom_PerfectTint 乘 block.Color 上色。
+            // Continuous beveled silhouette, 240 px per square cell; level color plus neutral edge light.
             // 旧木块 HDR 序列（WoodBlockHDR/*.exr）保留在工程内未删，切回只需改这一行路径。
             var sprite=Resources.Load<Sprite>("ArtOutPresentation/Reference/Bundles/Sprites/BlockSoft/"+block.ShapeId);
             if(sprite==null)throw new InvalidOperationException("Missing soft block sprite "+block.ShapeId);

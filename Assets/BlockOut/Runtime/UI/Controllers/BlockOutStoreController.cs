@@ -76,14 +76,15 @@ namespace BlockOut.UI
         }
         internal IEnumerator StorePurchaseRoutine(int idx, BlockOutToolId tool)
         {
-            yield return new WaitForSeconds(0.4f);                  // 保留短暂购买反馈；实际交易仅在本地执行
+            yield return new WaitForSecondsRealtime(0.15f);
             var res = owner.GM.PurchaseTool(tool);                       // 原子扣币+发奖，防重复扣币/发奖
             owner.storePurchasing[(int)tool] = false;
             switch (res)
             {
                 case BlockOutGameManager.BlockOutPurchaseResult.Ok:
                     owner.GM.Settings.PlaySound("sfx_coin");
-                    owner.UI.ShowToast("购买成功");
+                    string name = tool == BlockOutToolId.Hint ? "提示" : tool == BlockOutToolId.Hammer ? "锤子" : "魔法";
+                    owner.UI.ShowToast(name + " +" + BlockOutContentConfig.ToolPackAmount);
                     break;
                 case BlockOutGameManager.BlockOutPurchaseResult.InsufficientCoins:
                     owner.UI.ShowToast("金币不足");

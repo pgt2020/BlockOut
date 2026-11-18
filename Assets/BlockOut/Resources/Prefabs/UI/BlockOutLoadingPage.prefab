@@ -811,7 +811,7 @@ MonoBehaviour:
     fileID: 0
   m_GameObject:
     fileID: 100016
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script:
     fileID: 11500000
@@ -839,7 +839,7 @@ MonoBehaviour:
     fileID: 0
   m_GameObject:
     fileID: 100016
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script:
     fileID: 11500000
@@ -924,7 +924,7 @@ MonoBehaviour:
     fileID: 0
   m_GameObject:
     fileID: 100022
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script:
     fileID: 11500000

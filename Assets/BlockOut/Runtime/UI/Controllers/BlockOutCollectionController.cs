@@ -27,11 +27,22 @@ namespace BlockOut.UI
             if (owner.UI.CollectionPieceText != null)
                 owner.UI.CollectionPieceText.text = "通关 " + completed + "/"+total+" · " + (remain > 0 ? "还差 " + remain + " 关" : "本章已完成");
             if (owner.UI.CollectionProgressFill != null) owner.UI.CollectionProgressFill.fillAmount = completed / (float)Mathf.Max(1,total);
-            if (owner.UI.CollectionEmptyText != null) owner.UI.CollectionEmptyText.gameObject.SetActive(completed <= 0);
+            if (owner.UI.CollectionEmptyText != null)
+            {
+                owner.UI.CollectionEmptyText.gameObject.SetActive(completed <= 0);
+                owner.UI.CollectionEmptyText.text = chapter > owner.HomeChapterIndex
+                    ? "先完成前面的关卡，再来开启本章" : "点击绿色关卡开始挑战";
+            }
 
             RefreshChapterRows(chapter, completed);
             owner.repeatChapter = chapter;
             RefreshRepeatGrid(chapter);
+            LayoutRebuilder.ForceRebuildLayoutImmediate(owner.UI.CollectionContent);
+            if (owner.UI.collectionScroll != null)
+            {
+                owner.UI.collectionScroll.StopMovement();
+                owner.UI.collectionScroll.verticalNormalizedPosition = 1f;
+            }
 
         }
         internal void RefreshChapterRows(int chapter,int completed)
@@ -42,12 +53,14 @@ namespace BlockOut.UI
             {
                 int index=c;
                 var row=owner.UI.ChapterItems[c];
-                bool ready=c<published;
+                bool ready=c<published && owner.GM.Catalog.HasChapterData(c);
                 int done=ready ? owner.GM.Catalog.GetCompletedCountInChapter(c,owner.GM.Profile) : 0;
                 row.Title.text=ready ? "第 "+(c+1)+" 章 · "+BlockOutContentConfig.ChapterThemeName(c) : "新章节准备中";
                 row.Subtitle.text=ready ? done+"/"+owner.GM.Catalog.ChapterLevelCount(c)+(done>=owner.GM.Catalog.ChapterLevelCount(c) ? " · 已完成" : c > owner.HomeChapterIndex ? " · 待开启" : " · 进行中") : "新章节发布时间待定";
                 row.Locked.SetActive(!ready);
                 row.Button.interactable=ready;
+                var image = row.Button.targetGraphic as Image;
+                if (image != null) image.color = c == chapter ? new Color(.88f,1f,.88f,1f) : Color.white;
                 owner.Bind(row.Button,()=>OnCollectionChapterRowClicked(index));
             }
         }
@@ -77,7 +90,6 @@ namespace BlockOut.UI
         internal void OnCollectionChapterRowClicked(int chapter)
         {
             if (chapter < 0 || chapter >= BlockOutContentConfig.PublishedChapters) return;
-            if (owner.collectionChapter == chapter) return;
             owner.collectionChapter = chapter;
             RefreshCollection();
         }

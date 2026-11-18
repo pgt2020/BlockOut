@@ -19,10 +19,10 @@ TextureImporter:
     x: 0.5
     y: 0.5
   spriteBorder:
-    x: 72
-    y: 32
-    z: 72
-    w: 32
+    x: 79
+    y: 70
+    z: 79
+    w: 70
   textureSettings:
     serializedVersion: 2
     filterMode: 1
@@ -31,7 +31,7 @@ TextureImporter:
     wrapU: 1
     wrapV: 1
     wrapW: 1
-  maxTextureSize: 2048
+  maxTextureSize: 4096
   nPOTScale: 0
   spriteSheet:
     serializedVersion: 2
@@ -47,7 +47,58 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable: {}
-  platformSettings: []
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 100
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 100
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 100
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 100
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   userData: ''
   assetBundleName: ''
   assetBundleVariant: ''
+  textureCompression: 0
+  crunchedCompression: 0
+  compressionQuality: 100

@@ -20,7 +20,8 @@ namespace BlockOut.Gameplay
         private BlockOutBoardEffects effects;
         public RectTransform MagicOrigin;
         public Transform EffectSurfaceParent;
-        internal float CellHeight => cellSize*248f/240f;
+        // BlockSoft sprites use square 240 px cells; their pitch must match hit/arrow cells.
+        internal float CellHeight => cellSize;
         internal float ReferenceWorldScale => cellSize/(.86f*Mathf.Min(1.18f,7f/Mathf.Max(boardWidth,boardHeight)));
         internal BlockOutBoardEffects Effects
         {
@@ -157,7 +158,7 @@ namespace BlockOut.Gameplay
             float side = Mathf.Min(rt.rect.width, rt.rect.height);
             if (side <= 1f) side = 354f; // 首帧布局未完成时的基准值（390-36）
             int cells = Mathf.Max(boardWidth, boardHeight);
-            cellSize = Mathf.Min(rt.rect.width*.9f/Mathf.Max(7f,boardWidth),rt.rect.height*.9f/(boardHeight*248f/240f));
+            cellSize = Mathf.Min(rt.rect.width*.9f/Mathf.Max(7f,boardWidth),rt.rect.height*.9f/boardHeight);
             if(cellSize<=0)cellSize=side/Mathf.Max(9.5f,cells);
             // 参考世界单位 → 局部单位（§7.1）：可见半高 / 参考相机半高
             var feel = BlockOut.Config.BlockOutGameplayConfig.Current.feel;
@@ -236,20 +237,8 @@ namespace BlockOut.Gameplay
             bg.color=block.Color;
             bodyRect.sizeDelta=new Vector2(bg.sprite.rect.width,bg.sprite.rect.height)*(cellSize/240f);
 
-            // 奶油白描边底（R2 参考）：同 sprite、同旋转，纯白不染色，压在 body 之下并外扩固定毫米数。
-            // body 的边缘 alpha 渐变透出这层白色 → 形成描边；不染色才不会被 block.Color 乘成同色。
-            var rimGo = new GameObject("Rim", typeof(RectTransform), typeof(Image));
-            rimGo.transform.SetParent(go.transform, false);
-            var rimRect = (RectTransform)rimGo.transform;
-            float rimPad = cellSize * 0.09f;
-            rimRect.sizeDelta = bodyRect.sizeDelta + new Vector2(rimPad, rimPad);
-            rimRect.localRotation = bodyRect.localRotation;
-            var rimImg = rimGo.GetComponent<Image>();
-            rimImg.material = bg.material;
-            rimImg.sprite = bg.sprite;
-            rimImg.color = new Color(1f, 0.988f, 0.965f, 1f);
-            rimImg.raycastTarget = false;
-            rimGo.transform.SetSiblingIndex(bodyGo.transform.GetSiblingIndex());
+            // The sprite owns its continuous bevel. An enlarged duplicate silhouette produces
+            // uneven rims on long/concave pieces and crowds the gap between adjacent blocks.
 
             // 每占格一个透明点击区（异形空洞不可点）
             foreach (var cell in block.GetOccupiedCells())

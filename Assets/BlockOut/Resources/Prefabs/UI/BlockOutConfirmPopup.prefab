@@ -206,14 +206,14 @@ RectTransform:
     x: 0
     y: 1
   m_AnchoredPosition:
-    x: 24
-    y: -200
+    x: 195.0
+    y: -422.0
   m_SizeDelta:
     x: 342
-    y: 444
+    y: 332
   m_Pivot:
-    x: 0
-    y: 1
+    x: 0.5
+    y: 0.5
 --- !u!1 &100012
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,10 +341,10 @@ RectTransform:
     y: 1
   m_AnchoredPosition:
     x: 24
-    y: -72
+    y: -28
   m_SizeDelta:
     x: 294
-    y: 36
+    y: 40
   m_Pivot:
     x: 0
     y: 1
@@ -407,11 +407,11 @@ RectTransform:
     x: 0
     y: 1
   m_AnchoredPosition:
-    x: 24
-    y: -128
+    x: 28
+    y: -88
   m_SizeDelta:
-    x: 294
-    y: 124
+    x: 286
+    y: 120
   m_Pivot:
     x: 0
     y: 1
@@ -483,14 +483,14 @@ RectTransform:
     x: 0
     y: 1
   m_AnchoredPosition:
-    x: 24
-    y: -310
+    x: 94.0
+    y: -272.0
   m_SizeDelta:
     x: 140
-    y: 52
+    y: 56
   m_Pivot:
-    x: 0
-    y: 1
+    x: 0.5
+    y: 0.5
 --- !u!1 &100029
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,14 +626,14 @@ RectTransform:
     x: 0
     y: 1
   m_AnchoredPosition:
-    x: 178
-    y: -310
+    x: 248.0
+    y: -272.0
   m_SizeDelta:
     x: 140
-    y: 52
+    y: 56
   m_Pivot:
-    x: 0
-    y: 1
+    x: 0.5
+    y: 0.5
 --- !u!1 &100038
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,9 +938,9 @@ MonoBehaviour:
       fileID: 12800000
       guid: fd593325a489afb46b970fe4942877e4
       type: 3
-    m_FontSize: 20
+    m_FontSize: 26
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 17
     m_MaxSize: 20
     m_Alignment: 4
@@ -995,9 +995,9 @@ MonoBehaviour:
       fileID: 12800000
       guid: fd593325a489afb46b970fe4942877e4
       type: 3
-    m_FontSize: 16
+    m_FontSize: 18
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 13
     m_MaxSize: 16
     m_Alignment: 4
@@ -1062,7 +1062,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 3
+  m_PixelsPerUnitMultiplier: 4.071428571428571
 --- !u!114 &100028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1173,11 +1173,11 @@ MonoBehaviour:
       fileID: 12800000
       guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
-    m_FontSize: 17
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 13
-    m_MaxSize: 17
+    m_MinSize: 16
+    m_MaxSize: 20
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1240,7 +1240,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 3
+  m_PixelsPerUnitMultiplier: 4.071428571428571
 --- !u!114 &100037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1351,11 +1351,11 @@ MonoBehaviour:
       fileID: 12800000
       guid: 582a552245d65210a4d59f5cd2dc924e
       type: 3
-    m_FontSize: 17
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 13
-    m_MaxSize: 17
+    m_MinSize: 16
+    m_MaxSize: 20
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1

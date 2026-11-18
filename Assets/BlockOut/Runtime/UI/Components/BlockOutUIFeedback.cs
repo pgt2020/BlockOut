@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using BlockOut.Gameplay;
 namespace BlockOut.UI
 {
-    /// <summary>Prefab-owned feedback: editable Animator clips, no generated images or tween curves.</summary>
+    /// <summary>Button feedback uses clips; modal windows open with a centered, unscaled-time zoom.</summary>
     public sealed class BlockOutUIFeedback : MonoBehaviour,IPointerDownHandler,IPointerUpHandler,IPointerExitHandler
     {
         public bool Popup;
@@ -14,10 +14,11 @@ namespace BlockOut.UI
         private Coroutine running;
         private bool buttonTween;
         private float buttonScale=1;
+        private float popupScale=1;
         private void Awake() { restingScale=transform.localScale;player=GetComponent<BlockOutAnimationPlayer>();if(player==null)player=gameObject.AddComponent<BlockOutAnimationPlayer>(); }
         private void OnEnable() { if(Popup)Play("PopupOpen"); }
-        private void LateUpdate() { if(player!=null)transform.localScale=restingScale*(buttonTween ? buttonScale : player.VisualScale); }
-        private void OnDisable() { if(running!=null)StopCoroutine(running);running=null;buttonTween=false;buttonScale=1;if(player!=null)player.Stop();transform.localScale=restingScale; }
+        private void LateUpdate() { if(player!=null)transform.localScale=restingScale*(Popup ? popupScale : buttonTween ? buttonScale : player.VisualScale); }
+        private void OnDisable() { if(running!=null)StopCoroutine(running);running=null;buttonTween=false;buttonScale=popupScale=1;if(player!=null)player.Stop();transform.localScale=restingScale; }
         public void OnPointerDown(PointerEventData data)
         {
             var button=GetComponent<UnityEngine.UI.Button>();
@@ -39,7 +40,39 @@ namespace BlockOut.UI
         public void Play(string state)
         {
             if(running!=null)StopCoroutine(running);
+            if(Popup && state=="PopupOpen")
+            {
+                player.Stop();
+                running=StartCoroutine(OpenFromCenter());
+                return;
+            }
             buttonTween=false;buttonScale=1;running=StartCoroutine(PlayRoutine(state,null));
+        }
+        private IEnumerator OpenFromCenter()
+        {
+            var rect=transform as RectTransform;
+            if(rect!=null)
+            {
+                // Preserve the authored resting rectangle while moving its scale origin.
+                var center=new Vector2(.5f,.5f);
+                rect.anchoredPosition+=Vector2.Scale(center-rect.pivot,rect.rect.size);
+                rect.pivot=center;
+            }
+            popupScale=0;
+            transform.localScale=Vector3.zero;
+            const float duration=.2f;
+            float elapsed=0;
+            while(elapsed<duration)
+            {
+                yield return null;
+                elapsed+=Time.unscaledDeltaTime;
+                float t=Mathf.Clamp01(elapsed/duration);
+                popupScale=1-Mathf.Pow(1-t,3);
+                transform.localScale=restingScale*popupScale;
+            }
+            popupScale=1;
+            transform.localScale=restingScale;
+            running=null;
         }
         public void Close(Action complete)
         {

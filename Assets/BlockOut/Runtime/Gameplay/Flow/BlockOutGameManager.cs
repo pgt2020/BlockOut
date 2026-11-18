@@ -749,6 +749,7 @@ namespace BlockOut.Gameplay
         /// <summary>免费复活资格：全局 1-10 关（参考 DefaultFreeReviveLevelNum=10）。</summary>
         public bool CanReviveThisRun => runPlayable && State==BlockOutGameState.Lost && !reviveAdPending
             && (BlockOutContentConfig.ReviveLimitPerRun<=0 || reviveCountThisRun<BlockOutContentConfig.ReviveLimitPerRun);
+        public bool ReviveAdPending => reviveAdPending;
 
         public bool FreeReviveAvailable
         {

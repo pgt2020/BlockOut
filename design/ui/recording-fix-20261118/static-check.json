@@ -1,0 +1,14 @@
+{
+  "popup_center_pivots": [
+    "BlockOutAboutPopup/Card",
+    "BlockOutConfirmPopup/Card",
+    "BlockOutFailPopup/Card",
+    "BlockOutGuidePopup/Card",
+    "BlockOutPausePopup/Card",
+    "BlockOutSettingsPage/Card"
+  ],
+  "button_cap_ratios_checked": 34,
+  "errors": [],
+  "runtime": "not-run",
+  "visual_acceptance": "pending-user"
+}

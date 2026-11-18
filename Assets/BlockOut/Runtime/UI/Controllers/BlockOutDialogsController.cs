@@ -43,6 +43,7 @@ namespace BlockOut.UI
             owner.settingsReturn = returnTo;
             SyncSettingsSwitches();
             owner.UI.SetLayerActive("SettingsLayer", true);
+            if (returnTo == "PauseLayer") owner.UI.HideLayerImmediately("PauseLayer");
             SyncModalFlag();
         }
         internal void SyncSettingsSwitches()
@@ -67,7 +68,7 @@ namespace BlockOut.UI
             if (delay > 0f) yield return new WaitForSeconds(delay);
             if (owner.GM == null || token != owner.GM.ActiveRunToken) yield break;
             if (owner.GM.State != BlockOutGameState.Lost || !owner.GM.IsRunPlayable) yield break;   // 延迟期间已放弃/重开
-            owner.failLayerOpenedAt = Time.time;
+            owner.failLayerOpenedAt = Time.unscaledTime;
             RefreshFailLayer();
             owner.UI.SetLayerActive("FailLayer", true);
             SyncModalFlag();
@@ -81,11 +82,14 @@ namespace BlockOut.UI
                     ? "增加 " + BlockOutContentConfig.ReviveTimeBonusSeconds + " 秒 · 保留当前进度"
                     : "恢复 " + (owner.GM.FreeReviveAvailable ? BlockOutContentConfig.FreeReviveLifeCount : BlockOutContentConfig.ReviveLifeBonus) + " 颗心 · 保留当前进度";
 
-            bool exhausted = !owner.GM.ReviveAvailableAtAll;
+            bool pending = owner.GM.ReviveAdPending;
+            bool exhausted = !owner.GM.CanReviveThisRun && !pending;
             if (owner.UI.FailReviveBtn != null) owner.UI.FailReviveBtn.gameObject.SetActive(!exhausted);
             if (owner.UI.FailReviveNote != null) owner.UI.FailReviveNote.gameObject.SetActive(!exhausted);
             if (owner.UI.FailExhaustedNote != null) owner.UI.FailExhaustedNote.gameObject.SetActive(exhausted);
+            if (owner.UI.FailFreeBadge != null) owner.UI.FailFreeBadge.SetActive(false);
             if (exhausted) return;
+            if (pending) { SetReviveButton("等待广告结果", false, false); return; }
 
             // 优先级：免费（全局 1-10 关，不限次数）> 激励广告 > 金币；广告未就绪且未超时 → 加载中
             if (owner.GM.FreeReviveAvailable)
@@ -93,7 +97,7 @@ namespace BlockOut.UI
                 SetReviveButton("复活 · 免费", true, true);
                 return;
             }
-            bool adTimedOut = owner.failLayerOpenedAt >= 0f && Time.time - owner.failLayerOpenedAt > BlockOutUIController.AdLoadFallbackSeconds;
+            bool adTimedOut = owner.failLayerOpenedAt >= 0f && Time.unscaledTime - owner.failLayerOpenedAt > BlockOutUIController.AdLoadFallbackSeconds;
             if (owner.GM.AdReviveReady)
             {
                 SetReviveButton("复活 · 激励广告", true, false);
@@ -110,7 +114,7 @@ namespace BlockOut.UI
                 return;
             }
             // 金币不足：置灰 + Toast 提示（仅提示，不跳商店）
-            SetReviveButton("复活 · " + BlockOutContentConfig.CoinReviveCost + " 金币", false, false);
+            SetReviveButton("金币不足 · 需 " + BlockOutContentConfig.CoinReviveCost, false, false);
             if (!owner.coinShortageToastDone)
             {
                 owner.coinShortageToastDone = true;
@@ -146,10 +150,18 @@ namespace BlockOut.UI
             }
             if (owner.GM.AdReviveReady)
             {
+                int token = owner.GM.ActiveRunToken;
+                SetReviveButton("等待广告结果", false, false);
                 owner.GM.ReviveWithAd(applied =>
                 {
+                    if (owner.GM == null || token != owner.GM.ActiveRunToken
+                        || !owner.UI.IsLayerActive("FailLayer")) return;
                     if (applied) CloseFailLayer();
-                    else owner.UI.ShowToast("广告未完成 · 未消耗金币与复活资格");
+                    else
+                    {
+                        RefreshFailLayer();
+                        owner.UI.ShowToast("复活未成功 · 未消耗金币，请重试");
+                    }
                 });
                 return;
             }

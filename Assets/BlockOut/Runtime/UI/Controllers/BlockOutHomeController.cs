@@ -31,8 +31,6 @@ namespace BlockOut.UI
             RefreshHomeCta(chapter, theme, completed);
             if (owner.UI.HomeLevelTitle != null)
                 owner.UI.HomeLevelTitle.text = "第 " + (owner.ctaTargetIndex + 1) + " 关";
-            if (owner.UI.HomeCtaSub != null)
-                owner.UI.HomeCtaSub.text = "第 " + (chapter + 1) + " 章 · 已完成 " + completed + "/" + owner.GM.Catalog.ChapterLevelCount(chapter);
             if (owner.UI.HomeCtaButton != null)
             {
                 var path = owner.UI.HomeCtaButton.GetComponentInParent<BlockOutGardenHomePath>();
@@ -41,7 +39,11 @@ namespace BlockOut.UI
                         index => { var level = owner.GM.Catalog.GetLevel(index); return level != null && profile.IsLevelCompleted(level.Id); },
                         index => owner.EnterLevel(index));
                 if (owner.UI.HomeCtaTitle != null)
-                    owner.UI.HomeCtaTitle.text = "第 " + (owner.ctaTargetIndex + 1) + " 关";
+                {
+                    var target = owner.GM.Catalog.GetLevelMetadata(owner.ctaTargetIndex);
+                    bool replay = target != null && profile.IsLevelCompleted(target.Id);
+                    owner.UI.HomeCtaTitle.text = (replay ? "重玩第 " : "第 ") + (owner.ctaTargetIndex + 1) + " 关";
+                }
             }
             owner.UI.Relayout();
         }
@@ -72,7 +74,7 @@ namespace BlockOut.UI
             else
             {
                 int levelNumber = firstUncompleted + 1;
-                SetCta("开始", "第 " + (chapter + 1) + " 章 · " + theme + " · 第 " + levelNumber + " 关", true);
+                SetCta("开始", "第 " + (chapter + 1) + " 章 · 已完成 " + completed + "/" + owner.GM.Catalog.ChapterLevelCount(chapter), true);
                 owner.ctaTargetIndex = firstUncompleted;
             }
         }
