@@ -330,7 +330,7 @@ def make_pages(chapter,repeat,stores):
     p=Page('BlockOutLoadingPage','BlockOutLoadingView')
     image_node(p,p.surface,'LoadingBackground',None,(0,0,0,0),WHITE,spr('loading_bg'),0,0)
     image_node(p,p.surface,'Logo',(0,236,150,146),None,WHITE,spr('loading_logo'),0,0,1,preset='tc')
-    title_node,tid=p.label('Title','点击画廊',(0,424,300,46),None,32,CORAL,4)
+    title_node,tid=p.label('Title','这块怎么出不去',(0,424,300,46),None,32,CORAL,4)
     title_node.component('Outline',{'m_EffectColor':rgba(WHITE),'m_EffectDistance':vec(2.5,-2.5),'m_UseGraphicAlpha':1})
     title_node.component('Shadow',{'m_EffectColor':rgba((0,0,0,.25)),'m_EffectDistance':vec(0,2.5),'m_UseGraphicAlpha':1})
     sub_node,_=p.label('Sub','正在准备画作…',(0,478,300,24),None,14,TEXT_COCOA,4)

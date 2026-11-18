@@ -53,7 +53,7 @@ def refine():
             place(p,card,24,286,342,272)
             place(p,names['Heading'],16,20,310,36)
             place(p,names['Description'],24,76,294,88)
-            component(p,names['Description'],'m_Text')['m_Text']='点击画廊 · BlockOut\n沿箭头移开方块，揭晓画作'
+            component(p,names['Description'],'m_Text')['m_Text']='这块怎么出不去\n沿箭头移开方块，揭晓画作'
             place(p,names['AboutCloseBtn'],24,192,294,52)
         if file.stem=='BlockOutGuidePopup':
             place(p,card,24,262,342,320)
