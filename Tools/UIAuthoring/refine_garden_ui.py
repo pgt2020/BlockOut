@@ -156,6 +156,8 @@ def refine():
                 for _,d in p.components(g):
                     if 'm_EffectDistance' in d:d['m_Enabled']=0
         p.save()
+    from refine_quality_hud import apply as apply_quality_hud
+    apply_quality_hud()
     print(json.dumps({'sliced_images_refined':count,'textures_uncompressed':len(sprites),'runtime':'not-run'}))
 
 if __name__=='__main__':refine()

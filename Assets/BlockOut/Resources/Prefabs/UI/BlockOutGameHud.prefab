@@ -297,7 +297,7 @@ GameObject:
   m_Layer: 5
   m_Name: Shadow
   m_TagString: Untagged
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &100015
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1454,7 +1454,7 @@ GameObject:
   m_Layer: 5
   m_Name: Gloss
   m_TagString: Untagged
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &100082
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1931,7 +1931,7 @@ GameObject:
   m_Layer: 5
   m_Name: Shadow
   m_TagString: Untagged
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &100110
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2215,7 +2215,7 @@ GameObject:
   m_Layer: 5
   m_Name: Shadow
   m_TagString: Untagged
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &100126
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2903,7 +2903,7 @@ GameObject:
   m_Layer: 5
   m_Name: Shadow
   m_TagString: Untagged
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &100169
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3591,7 +3591,7 @@ GameObject:
   m_Layer: 5
   m_Name: Shadow
   m_TagString: Untagged
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &100212
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4412,7 +4412,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: 323686ed614451be805f1958bdd6d1eb
+    guid: f83e12d6785c524195c4e0e95e120d55
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -4422,7 +4422,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 3
+  m_PixelsPerUnitMultiplier: 2
 --- !u!222 &100024
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4623,22 +4623,22 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.3
+    r: 0.23
     g: 0.2
-    b: 0.13
+    b: 0.17
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: 582a552245d65210a4d59f5cd2dc924e
+      guid: fd593325a489afb46b970fe4942877e4
       type: 3
-    m_FontSize: 20
+    m_FontSize: 22
     m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 17
-    m_MaxSize: 20
+    m_BestFit: 0
+    m_MinSize: 22
+    m_MaxSize: 22
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -4680,9 +4680,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.431
-    g: 0.329
-    b: 0.286
+    r: 0.4
+    g: 0.36
+    b: 0.31
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -4691,11 +4691,11 @@ MonoBehaviour:
       fileID: 12800000
       guid: fd593325a489afb46b970fe4942877e4
       type: 3
-    m_FontSize: 14
+    m_FontSize: 16
     m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 14
-    m_MaxSize: 14
+    m_BestFit: 0
+    m_MinSize: 16
+    m_MaxSize: 16
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -5138,9 +5138,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.42
-    g: 0.278
-    b: 0
+    r: 0.23
+    g: 0.2
+    b: 0.17
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -5149,11 +5149,11 @@ MonoBehaviour:
       fileID: 12800000
       guid: fd593325a489afb46b970fe4942877e4
       type: 3
-    m_FontSize: 14
+    m_FontSize: 16
     m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 14
-    m_MaxSize: 14
+    m_BestFit: 0
+    m_MinSize: 16
+    m_MaxSize: 16
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -5363,9 +5363,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.431
-    g: 0.329
-    b: 0.286
+    r: 0.23
+    g: 0.2
+    b: 0.17
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -5376,7 +5376,7 @@ MonoBehaviour:
       type: 3
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 14
     m_MaxSize: 14
     m_Alignment: 3
@@ -5420,9 +5420,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.541
-    g: 0.459
-    b: 0.408
+    r: 0.4
+    g: 0.36
+    b: 0.31
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -5431,11 +5431,11 @@ MonoBehaviour:
       fileID: 12800000
       guid: fd593325a489afb46b970fe4942877e4
       type: 3
-    m_FontSize: 14
+    m_FontSize: 16
     m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 14
-    m_MaxSize: 14
+    m_BestFit: 0
+    m_MinSize: 16
+    m_MaxSize: 16
     m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -5488,7 +5488,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: 5b7fd6defbec5aee9df68e67ae2477e8
+    guid: f83e12d6785c524195c4e0e95e120d55
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -5498,7 +5498,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 5.107142857142857
+  m_PixelsPerUnitMultiplier: 2
 --- !u!222 &100099
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5589,9 +5589,9 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.231
-    g: 0.165
-    b: 0.141
+    r: 0.23
+    g: 0.2
+    b: 0.17
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -5600,18 +5600,18 @@ MonoBehaviour:
       fileID: 12800000
       guid: fd593325a489afb46b970fe4942877e4
       type: 3
-    m_FontSize: 14
+    m_FontSize: 16
     m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 14
-    m_MaxSize: 14
+    m_BestFit: 0
+    m_MinSize: 16
+    m_MaxSize: 16
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 轻点整块方块，沿箭头方向飞出
+  m_Text: 沿箭头方向，依次移出方块
 --- !u!222 &100107
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5767,7 +5767,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: 323686ed614451be805f1958bdd6d1eb
+    guid: f83e12d6785c524195c4e0e95e120d55
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -5777,7 +5777,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 4.535147392290249
+  m_PixelsPerUnitMultiplier: 2
 --- !u!222 &100119
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5989,7 +5989,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: 323686ed614451be805f1958bdd6d1eb
+    guid: 10f2372aceb15a48bff01b2f78197479
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -5999,7 +5999,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 5.291005291005291
+  m_PixelsPerUnitMultiplier: 2
 --- !u!222 &100135
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6281,7 +6281,7 @@ MonoBehaviour:
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 14
+    m_MinSize: 10
     m_MaxSize: 14
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -6436,22 +6436,22 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.3
+    r: 0.23
     g: 0.2
-    b: 0.13
+    b: 0.17
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: 582a552245d65210a4d59f5cd2dc924e
+      guid: fd593325a489afb46b970fe4942877e4
       type: 3
-    m_FontSize: 14
+    m_FontSize: 18
     m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 14
-    m_MaxSize: 14
+    m_BestFit: 0
+    m_MinSize: 18
+    m_MaxSize: 18
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -6493,16 +6493,16 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.3
-    g: 0.2
-    b: 0.13
+    r: 0.4
+    g: 0.36
+    b: 0.31
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: 582a552245d65210a4d59f5cd2dc924e
+      guid: fd593325a489afb46b970fe4942877e4
       type: 3
     m_FontSize: 14
     m_FontStyle: 0
@@ -6671,7 +6671,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: 323686ed614451be805f1958bdd6d1eb
+    guid: 10f2372aceb15a48bff01b2f78197479
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -6681,7 +6681,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 5.291005291005291
+  m_PixelsPerUnitMultiplier: 2
 --- !u!222 &100178
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6963,7 +6963,7 @@ MonoBehaviour:
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 14
+    m_MinSize: 10
     m_MaxSize: 14
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -7118,22 +7118,22 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.3
+    r: 0.23
     g: 0.2
-    b: 0.13
+    b: 0.17
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: 582a552245d65210a4d59f5cd2dc924e
+      guid: fd593325a489afb46b970fe4942877e4
       type: 3
-    m_FontSize: 14
+    m_FontSize: 18
     m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 14
-    m_MaxSize: 14
+    m_BestFit: 0
+    m_MinSize: 18
+    m_MaxSize: 18
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -7175,16 +7175,16 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.3
-    g: 0.2
-    b: 0.13
+    r: 0.4
+    g: 0.36
+    b: 0.31
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: 582a552245d65210a4d59f5cd2dc924e
+      guid: fd593325a489afb46b970fe4942877e4
       type: 3
     m_FontSize: 14
     m_FontStyle: 0
@@ -7353,7 +7353,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: 323686ed614451be805f1958bdd6d1eb
+    guid: 10f2372aceb15a48bff01b2f78197479
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -7363,7 +7363,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 5.291005291005291
+  m_PixelsPerUnitMultiplier: 2
 --- !u!222 &100221
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7645,7 +7645,7 @@ MonoBehaviour:
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 14
+    m_MinSize: 10
     m_MaxSize: 14
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -7800,22 +7800,22 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.3
+    r: 0.23
     g: 0.2
-    b: 0.13
+    b: 0.17
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: 582a552245d65210a4d59f5cd2dc924e
+      guid: fd593325a489afb46b970fe4942877e4
       type: 3
-    m_FontSize: 14
+    m_FontSize: 18
     m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 14
-    m_MaxSize: 14
+    m_BestFit: 0
+    m_MinSize: 18
+    m_MaxSize: 18
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -7857,16 +7857,16 @@ MonoBehaviour:
   m_Material:
     fileID: 0
   m_Color:
-    r: 0.3
-    g: 0.2
-    b: 0.13
+    r: 0.4
+    g: 0.36
+    b: 0.31
     a: 1
   m_RaycastTarget: 0
   m_Maskable: 1
   m_FontData:
     m_Font:
       fileID: 12800000
-      guid: 582a552245d65210a4d59f5cd2dc924e
+      guid: fd593325a489afb46b970fe4942877e4
       type: 3
     m_FontSize: 14
     m_FontStyle: 0
@@ -8741,7 +8741,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite:
     fileID: 21300000
-    guid: 323686ed614451be805f1958bdd6d1eb
+    guid: f83e12d6785c524195c4e0e95e120d55
     type: 3
   m_Type: 1
   m_PreserveAspect: 0
@@ -8751,4 +8751,4 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 4.329004329004329
+  m_PixelsPerUnitMultiplier: 2
